@@ -1,0 +1,70 @@
+defaults: &defaults
+  docker:
+    - image: circleci/node:8
+
+version: 2
+jobs:
+  pre-build:
+    working_directory: ~/sba-gov-break-even-calculator
+    <<: *defaults
+    steps:
+      - checkout:
+          path: ~/sba-gov-break-even-calculator/
+      - attach_workspace:
+          at: ~/sba-gov-break-even-calculator/
+
+      - restore_cache:
+          key: node-v2-{{ checksum "package.json" }}-{{ arch }}
+
+      - run: npm install
+
+      - save_cache:
+          key: node-v2-{{ checksum "package.json" }}-{{ arch }}
+          paths:
+            - node_modules
+
+      - persist_to_workspace:
+          root: ~/sba-gov-break-even-calculator
+          paths:
+            - node_modules
+  lint:
+    working_directory: ~/sba-gov-break-even-calculator
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/sba-gov-break-even-calculator
+      - run: npm run lint
+# This portion will be configured when s3 buckets are created.
+#  gatsby-deploy:
+#    working_directory: ~/sba-gov-break-even-calculator
+#    <<: *defaults
+#    steps:
+#      - checkout:
+#          path: ~/sba-gov-break-even-calculator/
+#      - attach_workspace:
+#          at: ~/sba-gov-break-even-calculator
+#      - run:
+#          command: |
+#            sudo apt-get -y -qq install awscli
+#            CI=false npm run build:ci
+#            aws s3 sync public/ s3://gatsby-ci-demo  --region ap-southeast-2 --delete
+workflows:
+  version: 2
+  front-backend:
+    jobs:
+      - pre-build:
+          filters:
+            branches:
+              only:
+                - master
+      - lint:
+          requires:
+            - pre-build
+#      - gatsby-deploy:
+#          requires:
+#            - lint
+          filters:
+            branches:
+              only:
+                - master

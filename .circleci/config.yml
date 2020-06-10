@@ -13,15 +13,15 @@ jobs:
       - attach_workspace:
           at: ~/sba-gov-break-even-calculator/
 
-#      - restore_cache:
-#          key: node-v2-{{ checksum "package.json" }}-{{ arch }}
+      - restore_cache:
+          key: node-v2-{{ checksum "package.json" }}-{{ arch }}
 
       - run: npm install
 
-#      - save_cache:
-#          key: node-v2-{{ checksum "package.json" }}-{{ arch }}
-#          paths:
-#            - node_modules
+      - save_cache:
+          key: node-v2-{{ checksum "package.json" }}-{{ arch }}
+          paths:
+            - node_modules
 
       - persist_to_workspace:
           root: ~/sba-gov-break-even-calculator

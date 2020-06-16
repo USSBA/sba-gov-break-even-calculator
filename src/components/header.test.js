@@ -1,10 +1,10 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import IndexPage from './index.js'
+import Header from './header.js'
 
-describe('IndexPage', () => {
+describe('Header', () => {
   it('renders without crashing', () => {
-    const wrapper = shallow(<IndexPage />)
+    const wrapper = shallow(<Header />)
     expect(wrapper).toHaveLength(1);
   })
 })

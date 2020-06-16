@@ -2,26 +2,21 @@ import { Link} from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import logo from "../images/sba-logo-horizontal.jpg"
-import "semantic-ui-less/semantic.less";
+import "semantic-ui-less/semantic.less"
 import "../styles/header.less"
-
-import { Container, Image, Divider } from 'semantic-ui-react'
+import { Container, Image, Divider, Grid } from 'semantic-ui-react'
 
 const Header = ({ siteTitle }) => (
   <header className="bec-header">
     <Container>
-      <Image src={logo} alt="Break Even Calculator" />  
-      <Divider />
+      <Grid columns={1}>
+        <Grid.Column textAlign='center'>
+          <Image src={logo} alt="Break Even Calculator" />  
+          <Divider />
+        </Grid.Column>
+     </Grid>
     </Container>
   </header>
 )
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
 
 export default Header

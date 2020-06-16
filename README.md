@@ -1,18 +1,22 @@
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
-  </a>
-</p>
+
 <h1 align="center">
-  Gatsby's default starter
+  default starter
 </h1>
 
-Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
-
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.org/docs/gatsby-starters/)._
-
 ## 🚀 Quick start
+
+1.  **Make sure you have Xcode installed**
+    Install Xcode Command Line Tools:
+    Open your Terminal.
+    Install Xcode Command line tools by running:
+    Copycopy code to clipboard
+    xcode-select --install
+💡  If that fails, download it directly from [Apple’s site](https://developer.apple.com/download/more/), after signing-in with an Apple developer account.
+
+1. install node ```brew install node```
+
+1. run ```npm install```
 
 1.  **Create a Gatsby site.**
 

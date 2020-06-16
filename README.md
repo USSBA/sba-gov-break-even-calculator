@@ -1,7 +1,7 @@
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 
 <h1 align="center">
-  default starter
+  Install Break Even Calculator
 </h1>
 
 ## 🚀 Quick start

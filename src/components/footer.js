@@ -8,9 +8,9 @@ import { Container, Image, Divider, Grid } from 'semantic-ui-react'
 
 const Footer = () => (
   <Container>
-    <Divider className='footer-divider' />
     <Grid className='footer' columns={1}>
       <Grid.Column textAlign='center'>
+        <Divider className='footer-divider' />
         <Image src={logo} size='tiny' alt='Small Business Administration' centered />
         U.S. Small Business Administration | 409 3rd St, SW. Washington DC 20416
       </Grid.Column>

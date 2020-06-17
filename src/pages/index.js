@@ -1,18 +1,18 @@
-import React from "react"
-import { Link } from "gatsby"
-
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import React from 'react'
+import Layout from '../components/layout'
+import SEO from '../components/seo'
+import { Container, Grid } from 'semantic-ui-react'
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Home" />
-    <h1>Break Even Calculator</h1>
-    <p>Welcome to Break Even Calculator.</p>
-    <p>Now go build something great.</p>
-
-    <Link to="/page-2/">Go to page 2</Link> <br />
+    <SEO title='Break Even Calculator' />
+    <Grid columns={1}>
+      <Grid.Column>
+        <h1>Break Even Calculator</h1>
+        <p>Welcome to Break Even Calculator.</p>
+        <p>Now go build something great.</p>
+      </Grid.Column>
+    </Grid>
   </Layout>
 )
 

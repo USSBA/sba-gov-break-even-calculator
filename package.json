@@ -7,6 +7,7 @@
   "dependencies": {
     "gatsby": "^2.22.15",
     "gatsby-image": "^2.4.5",
+    "gatsby-plugin-less": "^3.2.4",
     "gatsby-plugin-manifest": "^2.4.9",
     "gatsby-plugin-offline": "^3.2.7",
     "gatsby-plugin-react-helmet": "^3.3.2",
@@ -14,14 +15,17 @@
     "gatsby-plugin-sharp": "^2.6.9",
     "gatsby-source-filesystem": "^2.3.8",
     "gatsby-transformer-sharp": "^2.5.3",
+    "less": "^3.11.3",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
-    "semantic-ui-sass": "^2.4.2"
+    "semantic-ui-less": "^2.4.1",
+    "semantic-ui-react": "^0.88.2"
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^26.0.1",
     "babel-preset-gatsby": "^0.4.9",
     "enzyme": "^3.11.0",

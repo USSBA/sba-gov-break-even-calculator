@@ -1,0 +1,170 @@
+/*******************************
+     User Global Variables
+*******************************/
+// # Typography --------------------------------------------------------------
+// # Typography --------------------------------------------------------------
+@font-stack-georgia: ('Georgia', 'Times', 'Times New Roman', serif);
+@font-stack-helvetica: ('Helvetica Neue', 'Helvetica', 'Arial', sans-serif);
+@sans-serif-font-family: 'Source Sans Pro', @font-stack-helvetica;
+@serif-font-family: Merriweather, @font-stack-georgia;
+
+@base-font-size: 18px;
+
+@base-line-height: 1.5;
+@heading-line-height: 1.1;
+
+// for compatibility with Bourbon
+@base-font-family: @sans-serif-font-family;
+
+// # Colors -------------------------------------------------------------------
+
+// ## Primary =================================================================
+
+// e.g. links
+@sba-blue: #002e6d;
+@sba-blue-dark: #000441;
+@sba-blue-light: #41569c;
+// TODO: not in style guide
+@sba-blue-lighter: #d6ecfc;
+
+// e.g. primary buttons
+@sba-red: #cc0000;
+@sba-red-dark: #930000;
+@sba-red-light: #ff4f30;
+
+// e.g. borders
+@sba-gray: #969696;
+@sba-gray-dark: #686868;
+@sba-gray-light: #c5c5c5;
+@sba-gray-lighter: #f5f5f5;
+
+// e.g. everywhere
+@sba-white: #ffffff;
+
+// ## Secondary ===============================================================
+
+// e.g. secondary buttons
+@secondary-blue: #007dbc;
+@secondary-blue-dark: #00518b;
+@secondary-blue-light: #58acef;
+
+// e.g. basic text
+@secondary-black-ish: #1b1e29;
+
+// e.g. success
+@secondary-green: #197e4e;
+
+// e.g. alert
+@secondary-yellow: #f1c400;
+
+// for compatibility with Bourbon
+@action-color: @sba-red;
+@base-background-color: white;
+@base-font-color: @secondary-black-ish;
+
+// # Box model and spacing ----------------------------------------------------
+
+// TODO: standardize spacing
+@base-spacing: @base-line-height * 1rem;
+@base-z-index: 0;
+@small-spacing: @base-spacing / 2;
+
+// # Borders, outlines and shadows --------------------------------------------
+
+@base-border-color: @sba-gray-dark;
+@base-border-radius: 0;
+@base-border: 1px solid @base-border-color;
+
+@box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.1);
+
+@form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
+@form-box-shadow-focus: none;
+
+@focus-outline-color: @sba-gray-light;
+@focus-outline-width: 2px;
+@focus-outline: @focus-outline-width dotted @focus-outline-color;
+@focus-outline-offset: 3px;
+
+// # Breakpoints (mobile-first) -----------------------------------------------
+
+@breakpoint-small: 0px;
+@breakpoint-medium: 768px;
+@breakpoint-large: 1200px;
+
+// # Animations ---------------------------------------------------------------
+
+@base-duration: 150ms;
+@base-timing: ease;
+
+// # Grid ---------------------------------------------------------------------
+
+// TODO: rename to @grid-large-up
+@sba-grid-large: (
+  columns: 12,
+  gutter: 30px,
+  media: '(min-width: #{@breakpoint-large})'
+);
+
+// TODO: rename to @grid-medium-up
+@sba-grid-medium: (
+  columns: 12,
+  gutter: 30px,
+  media: '(min-width: #{@breakpoint-medium})'
+);
+
+// TODO: refactor to @grid-small-up and @grid-large-only
+@sba-grid-medium-and-small: (
+  columns: 6,
+  gutter: 20px,
+  media: '(min-width: 0px) and (max-width: 1199px)'
+);
+
+// TODO: refactor to @grid-small-only
+@sba-grid-small: (
+  columns: 6,
+  gutter: 20px,
+  media: '(max-width: 767px)'
+);
+
+// TODO: refactor these to use function?
+@desktop-0gutter: (
+  columns: 12,
+  gutter: 0px,
+  media: '(min-width: #{@breakpoint-large})'
+);
+
+@tablet-0gutter: (
+  columns: 12,
+  gutter: 0,
+  media: '(min-width: #{@breakpoint-medium}) and (max-width: 1199px)'
+);
+
+@tablet-mobile-0gutter: (
+  columns: 6,
+  gutter: 0,
+  media: '(min-width: 0px) and (max-width: 1199px)'
+);
+
+@mobile-0gutter: (
+  columns: 6,
+  gutter: 0,
+  media: '(max-width: 767px)'
+);
+
+@desktop-nav: (
+  columns: 12,
+  gutter: 0,
+  media: '(min-width: #{@breakpoint-large})'
+);
+
+@tablet-nav: (
+  columns: 12,
+  gutter: 0,
+  media: '(min-width: #{@breakpoint-medium}) and (max-width: 1199px)'
+);
+
+@mobile-nav: (
+  columns: 6,
+  gutter: 0,
+  media: '(max-width: 767px)'
+);

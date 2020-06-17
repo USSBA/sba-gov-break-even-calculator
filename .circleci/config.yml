@@ -61,15 +61,10 @@ workflows:
   version: 2
   front-backend:
     jobs:
-      - pre-build:
-          filters:
-            branches:
-              only:
-                - master
+      - pre-build
       - lint:
           requires:
             - pre-build
-
       - test:
           requires:
             - pre-build

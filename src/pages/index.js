@@ -1,11 +1,11 @@
-import React from "react"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import React from 'react'
+import Layout from '../components/layout'
+import SEO from '../components/seo'
 import { Container, Grid } from 'semantic-ui-react'
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Home" />
+    <SEO title='Break Even Calculator' />
     <Grid columns={1}>
       <Grid.Column>
         <h1>Break Even Calculator</h1>

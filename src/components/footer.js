@@ -1,7 +1,6 @@
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
-import 'semantic-ui-less/semantic.less'
 import '../styles/footer.less'
 import logo from '../images/sba_400x400.jpg'
 import { Container, Image, Divider, Grid } from 'semantic-ui-react'

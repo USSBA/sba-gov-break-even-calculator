@@ -61,6 +61,7 @@ workflows:
   version: 2
   front-backend:
     jobs:
+      - pre-build
       - lint:
           requires:
             - pre-build

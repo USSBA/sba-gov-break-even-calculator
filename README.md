@@ -14,7 +14,7 @@
     xcode-select --install
 💡  If that fails, download it directly from [Apple’s site](https://developer.apple.com/download/more/), after signing-in with an Apple developer account.
 
-1. ***install node***
+1. ***install node version 12 ***
 ```brew install node```
 
 1. run ```npm install```

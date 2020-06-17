@@ -62,14 +62,9 @@ workflows:
   front-backend:
     jobs:
       - pre-build:
-          filters:
-            branches:
-              only:
-                - master
       - lint:
           requires:
             - pre-build
-
       - test:
           requires:
             - pre-build

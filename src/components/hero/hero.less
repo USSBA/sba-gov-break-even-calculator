@@ -1,12 +1,27 @@
 @import '../../styles/variables.less';
 
 .heroContainer {
+  text-align: center;
+
+  h1, p {
+    color: @sba-white;
+  }
+
   .blueGradient{
     height: 400px;
     background: radial-gradient(circle at center, @secondary-blue-light, @secondary-blue-dark);
+    padding: 75px @base-spacing * 4 0;
   }
 
   img {
     margin-bottom: -75px;
+  }
+
+  .formula {
+    color: @sba-white;
+    background-color: rgba(0, 81, 139, 0.7);
+    text-align: center;
+    padding: @small-spacing;
+    font-size: 24px;
   }
 }

@@ -3,6 +3,7 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Hero from '../components/hero/hero'
 import { Grid } from 'semantic-ui-react'
+import '../styles/typography.less'
 
 const IndexPage = () => (
   <Layout>

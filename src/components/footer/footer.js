@@ -1,7 +1,7 @@
 import React from 'react'
-import '../styles/footer.less'
-import logo from '../images/sba_400x400.jpg'
-import { Image, Divider, Grid } from 'semantic-ui-react'
+import './footer.less'
+import logo from '../../images/sba_400x400.jpg'
+import { Image, Grid } from 'semantic-ui-react'
 
 const Footer = () => (
   <Grid className='footer' columns={1}>

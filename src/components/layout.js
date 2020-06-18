@@ -10,18 +10,16 @@ import PropTypes from "prop-types"
 import "semantic-ui-less/semantic.less";
 
 import { Container } from 'semantic-ui-react'
-import Header from "./header"
-import Footer from "./footer"
+import Header from "./header/header"
+import Footer from "./footer/footer"
 
 const Layout = ({ children }) => {
   return (
-    <>
-      <Container>
-        <Header />
+    <Container>
+      <Header />
         <main>{children}</main>
-        <Footer/>
-      </Container>
-    </>
+      <Footer/>
+    </Container>
   )
 }
 

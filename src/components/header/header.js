@@ -1,6 +1,6 @@
 import React from 'react'
-import logo from '../images/sba-logo-horizontal.jpg'
-import '../styles/header.less'
+import logo from '../../images/sba-logo-horizontal.jpg'
+import './header.less'
 import { Image, Divider, Grid } from 'semantic-ui-react'
 
 const Header = ({ siteTitle }) => (

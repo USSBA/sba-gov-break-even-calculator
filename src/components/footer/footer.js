@@ -7,7 +7,7 @@ const Footer = () => (
   <Grid className='footer' columns={1}>
     <Grid.Column textAlign='center'>
       <div className='footer-divider'></div>
-      <Image src={logo} size='tiny' alt='Small Business Administration' centered />
+      <Image src={logo} size='tiny' alt='Small Business Administration Logo' centered />
       U.S. Small Business Administration | 409 3rd St, SW. Washington DC 20416
     </Grid.Column>
   </Grid>

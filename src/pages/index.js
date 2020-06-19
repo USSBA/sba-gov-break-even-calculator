@@ -1,16 +1,18 @@
 import React from 'react'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import { Container, Grid } from 'semantic-ui-react'
+import Hero from '../components/hero/hero'
+import { Grid } from 'semantic-ui-react'
+import '../styles/typography.less'
 
 const IndexPage = () => (
   <Layout>
     <SEO title='Break Even Calculator' />
     <Grid columns={1}>
       <Grid.Column>
-        <h1>Break Even Calculator</h1>
-        <p>Welcome to Break Even Calculator.</p>
-        <p>Now go build something great.</p>
+        <Hero>
+          Placeholder content
+        </Hero>
       </Grid.Column>
     </Grid>
   </Layout>

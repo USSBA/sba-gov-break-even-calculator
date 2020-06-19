@@ -1,0 +1,124 @@
+@import './variables.less';
+
+html {
+    color: @secondary-black-ish;
+    font-family: @sans-serif-font-family;
+    font-size: @base-font-size;
+    letter-spacing: -0.4px;
+    line-height: @base-line-height;
+    text-rendering: optimizeLegibility;
+  }
+  
+  // # Headings -----------------------------------------------------------------
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 0;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h6 {
+    color: @sba-blue;
+    line-height: @heading-line-height;
+    margin-bottom: 0.5em;
+  }
+  
+  h1,
+  h3,
+  h4,
+  h6 {
+    font-weight: 600;
+  }
+  
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: -0.3px;
+  }
+  
+  h1,
+  h2 {
+    letter-spacing: 0;
+  }
+  
+  h1 {
+    font-size: 2.667rem;
+  }
+  
+  h2 {
+    font-size: 1.777rem;
+    font-weight: 400;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  h4 {
+    font-size: 1.23rem;
+  }
+  
+  h6 {
+    font-size: 1rem;
+  }
+  
+  // # Block elements -----------------------------------------------------------
+  
+  p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1.1rem;
+  }
+
+  // # Inline elements ----------------------------------------------------------
+  
+  em {
+    font-style: italic;
+  }
+  
+  strong {
+    font-weight: 600;
+  }
+  
+  // # Links --------------------------------------------------------------------
+  
+  a {
+    color: inherit;
+    cursor: pointer;
+    text-decoration-skip-ink: auto;
+    transition: color @base-duration @base-timing;
+  
+    &:focus {
+      outline: @focus-outline;
+      outline-offset: @focus-outline-offset;
+    }
+  }
+  
+  a:not([class]) {
+    color: @secondary-blue;
+  
+    &:hover {
+      color: @secondary-blue-light;
+    }
+  }
+  
+  // # Utilities
+  
+  :global {
+    .text-primary {
+      color: @sba-blue;
+    }
+  
+    .text-secondary {
+      color: @sba-red;
+    }
+  }
+  

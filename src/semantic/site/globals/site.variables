@@ -1,3 +1,5 @@
 /*******************************
      User Global Variables
 *******************************/
+@fontName : 'Source Sans Pro';
+@fontSize: 18px;

@@ -7,7 +7,7 @@ const Header = ({ siteTitle }) => (
   <header className='bec-header'>
     <Grid columns={1}>
       <Grid.Column textAlign='center'>
-        <Image src={logo} alt='SBA logo' />  
+        <Image src={logo} alt='Small Business Administration' />  
         <Divider />
       </Grid.Column>
     </Grid>

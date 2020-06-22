@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form, Radio, Grid } from 'semantic-ui-react'
 import { NumbersInputForm } from '../../molecules'
+import { moneyInput, MoneyInput } from '../../atoms'
 
 class StepOne extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class StepOne extends React.Component {
     }
   }
 
-  fieldNames = [
+  fixCostFields = [
     {name: 'Amortization'},
     {name: 'Rent'},
     {name: 'Insurance'},
@@ -26,6 +27,15 @@ class StepOne extends React.Component {
   handleChange = (e, { value }) => {
     this.setState({ knowFixedCosts: value})
   }
+
+  totalMonthlyFixedCosts = (
+    <Grid.Column>
+      <Form.Field>
+        <label for='totalFixedCosts'>Total monthly fixed costs</label>
+        <MoneyInput name='totalFixedCosts' />
+      </Form.Field>
+    </Grid.Column>
+  )
 
   render() {
     return (
@@ -56,7 +66,10 @@ class StepOne extends React.Component {
                 />
               </Grid.Column>
           </Grid>
-          <NumbersInputForm fields={this.fieldNames} />
+          <Grid container columns={2} stackable>
+            {this.state.knowFixedCosts === 'no' && <NumbersInputForm fields={this.fixCostFields} />}
+            {this.state.knowFixedCosts === 'yes' && this.totalMonthlyFixedCosts}            
+          </Grid>
         </Form>
       </div>
     )

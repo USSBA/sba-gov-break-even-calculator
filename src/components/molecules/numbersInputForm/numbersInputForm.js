@@ -10,7 +10,7 @@ const numbersInputForm = (props) => {
        <Grid.Column key={field.name}>
          <Form.Field>
            <label for={field.name}>{field.name}</label>
-           <MoneyInput name={field.name}/>
+           <MoneyInput onChange={props.onChange} name={field.name}/>
          </Form.Field>
        </Grid.Column>
      )

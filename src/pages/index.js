@@ -39,7 +39,10 @@ class BreakEvenCalculator extends React.Component {
         <Grid columns={1}>
           <Grid.Column>
             <Hero>
-              <StepOne/>
+              <StepOne 
+                goToStep={this.goToStep}
+                setFixedCost={this.updateFixedCost}
+              />
             </Hero>
           </Grid.Column>
         </Grid>

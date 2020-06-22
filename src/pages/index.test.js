@@ -1,10 +1,10 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import IndexPage from './index.js'
+import BreakEvenCalculator from './index.js'
 
-describe('IndexPage', () => {
+describe('BreakEvenCalculator', () => {
   it('renders without crashing', () => {
-    const wrapper = shallow(<IndexPage />)
+    const wrapper = shallow(<BreakEvenCalculator />)
     expect(wrapper).toHaveLength(1);
   })
 })

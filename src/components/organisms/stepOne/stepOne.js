@@ -3,6 +3,10 @@ import { Form, Radio, Grid } from 'semantic-ui-react'
 import { NumbersInputForm } from '../../molecules'
 import { MoneyInput } from '../../atoms'
 
+import { fixedCostFields, fixedCostInitState } from './helper'
+
+import './stepOne.less'
+
 export const sumValues = obj => Object.values(obj).reduce((a, b) => parseFloat(a) + parseFloat(b));
 
 class StepOne extends React.Component {
@@ -31,34 +35,9 @@ class StepOne extends React.Component {
   }
 
   resetFields = () => {
-    const initState = {
-      Amortization: 0,
-      Rent: 0,
-      Insurance: 0,
-      Salaries: 0,
-      Utilities: 0,
-      Deprecation: 0,
-      'Interest Expense': 0,
-      'Property Taxes': 0,
-      'Other Monthly Costs': 0,
-      'Other Fixed Costs': 0,
-    }
-    this.setState({ fields: initState })
+    this.setState({ fields: fixedCostInitState })
     this.resetTotalFixedCosts()
   }
-
-  fixedCostFields = [
-    {name: 'Amortization'},
-    {name: 'Rent'},
-    {name: 'Insurance'},
-    {name: 'Salaries'},
-    {name: 'Utilities'},
-    {name: 'Deprecation'},
-    {name: 'Interest Expense'},
-    {name: 'Property Taxes'},
-    {name: 'Other Monthly Costs'},
-    {name: 'Other Fixed Costs'},
-  ]
 
   handleRadioButtonChange = (e, { value }) => {
     value === 'yes' && this.resetFields()
@@ -91,7 +70,7 @@ class StepOne extends React.Component {
 
   render() {
     return (
-      <div className='stepOne-card_container'>
+      <div className='stepOne-container'>
         <h3>Calculate your total fixed costs</h3>
         <p>Fixed costs are costs that do not change with sales or volume. They are based on time,  for this calculator the time period based around a monthly schedule.</p>
         <h4>Do you know the total of your monthly fixed costs?</h4>
@@ -117,10 +96,12 @@ class StepOne extends React.Component {
                   onChange={this.handleRadioButtonChange}
                 />
               </Grid.Column>
-            {this.state.knowFixedCosts === 'no' && <NumbersInputForm  onChange={this.handleInputFieldChange} fields={this.fixedCostFields} />}
+            {this.state.knowFixedCosts === 'no' && <NumbersInputForm  onChange={this.handleInputFieldChange} fields={fixedCostFields} />}
             {this.state.knowFixedCosts === 'yes' && this.totalMonthlyFixedCosts}
           </Grid>
+          <Grid columns={1}>
             {this.state.knowFixedCosts && <Form.Button primary content='Continue' />}          
+          </Grid>
         </Form>
       </div>
     )

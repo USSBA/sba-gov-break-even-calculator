@@ -4,7 +4,9 @@
 .ui.radio.checkbox {
   border: 1px solid @sba-gray-light;
   border-radius: 5px;
-  height: 100%;
+  height: auto;
+  min-height: 2rem;
+  max-height: 3rem;
   width: 100%;
   padding: 1rem;
 }

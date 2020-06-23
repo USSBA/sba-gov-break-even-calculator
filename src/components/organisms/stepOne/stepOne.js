@@ -63,7 +63,9 @@ class StepOne extends React.Component {
     <Grid.Column>
       <Form.Field>
         <label for='totalFixedCosts'>Total monthly fixed costs</label>
-        <MoneyInput name='totalFixedCosts' onChange={console.log('hello')}/>
+        <MoneyInput name='totalFixedCosts' onChange={(e, {value}) => {
+          this.setState({totalFixedCosts: value})
+          }}/>
       </Form.Field>
     </Grid.Column>
   )
@@ -100,7 +102,16 @@ class StepOne extends React.Component {
             {this.state.knowFixedCosts === 'yes' && this.totalMonthlyFixedCosts}
           </Grid>
           <Grid columns={1}>
-            {this.state.knowFixedCosts && <Form.Button primary content='Continue' />}          
+            {this.state.knowFixedCosts === 'yes' && 
+              <Grid.Column>
+                <div className='fixedCost-suggestion'>Unsure about your total fixed costs? 
+                  <a onClick={() => this.setState({ knowFixedCosts: 'no'})}>Add all fixed costs individually</a>
+                </div>
+              </Grid.Column>}
+            {this.state.knowFixedCosts && 
+              <Grid.Column>
+                <Form.Button primary content='Continue' />
+              </Grid.Column>}          
           </Grid>
         </Form>
       </div>

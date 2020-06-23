@@ -76,26 +76,26 @@ class StepOne extends React.Component {
         <h4>Do you know the total of your monthly fixed costs?</h4>
         <Form onSubmit={this.handleSubmit}>
           <Grid container columns={2} stackable>
-              <Grid.Column>
-                <Form.Field
-                  control={Radio}
-                  label='Yes'
-                  name='yesBox'
-                  value='yes'
-                  checked={this.state.knowFixedCosts === 'yes'}
-                  onChange={this.handleRadioButtonChange}
-                />
-              </Grid.Column>
-              <Grid.Column>
-                <Form.Field
-                  control={Radio}
-                  label='No'
-                  name='noBox'
-                  value='no'
-                  checked={this.state.knowFixedCosts === 'no'}
-                  onChange={this.handleRadioButtonChange}
-                />
-              </Grid.Column>
+            <Grid.Column>
+              <Form.Field
+                control={Radio}
+                label='Yes'
+                name='yesBox'
+                value='yes'
+                checked={this.state.knowFixedCosts === 'yes'}
+                onChange={this.handleRadioButtonChange}
+              />
+            </Grid.Column>
+            <Grid.Column>
+              <Form.Field
+                control={Radio}
+                label='No'
+                name='noBox'
+                value='no'
+                checked={this.state.knowFixedCosts === 'no'}
+                onChange={this.handleRadioButtonChange}
+              />
+            </Grid.Column>
             {this.state.knowFixedCosts === 'no' && <NumbersInputForm  onChange={this.handleInputFieldChange} fields={fixedCostFields} />}
             {this.state.knowFixedCosts === 'yes' && this.totalMonthlyFixedCosts}
           </Grid>

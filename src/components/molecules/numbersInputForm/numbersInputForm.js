@@ -5,7 +5,7 @@ import { MoneyInput } from '../../atoms'
 
 import './numbersInputForm.less'
 
-const numbersInputForm = (props) => {
+const NumbersInputForm = (props) => {
  return (
    props.fields.map((field) => {
      return (
@@ -21,4 +21,4 @@ const numbersInputForm = (props) => {
  )
 }
 
-export default numbersInputForm
+export default NumbersInputForm

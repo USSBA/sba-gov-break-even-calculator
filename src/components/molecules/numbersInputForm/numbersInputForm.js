@@ -7,7 +7,7 @@ import './numbersInputForm.less'
 
 const NumbersInputForm = (props) => {
  return (
-   props.fields.map((field) => {
+  props.fields && props.fields.map((field) => {
      return (
        <Grid.Column key={field.name}>
          <Form.Field>

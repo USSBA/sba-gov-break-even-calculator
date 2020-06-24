@@ -2,7 +2,7 @@ import React from 'react'
 import { Input, Label } from 'semantic-ui-react'
 import './moneyInput.less'
 
-const moneyInput = (props) => {
+const MoneyInput = (props) => {
   return(
     <Input 
       onChange={props.onChange} 
@@ -17,4 +17,4 @@ const moneyInput = (props) => {
   )
 }
 
-export default moneyInput
+export default MoneyInput

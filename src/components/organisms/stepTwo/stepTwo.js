@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Input, Button } from 'semantic-ui-react'
+import './stepTwo.less'
 
 const StepTwo = (props) => {
   return (

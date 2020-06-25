@@ -52,7 +52,7 @@ jobs:
       - attach_workspace:
           at: ~/sba-gov-break-even-calculator
       - run:
-            command: |
+          command: |
             sudo apt-get -y -qq install awscli
             CI=false npm run build:ci
             aws s3 sync public/ s3://profit-gizmo  --region us-east-1 --delete
@@ -67,12 +67,3 @@ workflows:
       - test:
           requires:
             - pre-build
-#     - gatsby-deploy:
-#         requires:
-#           - lint
-#           - test
-#         filters:
-#           branches:
-#             only:
-#               - master
-        

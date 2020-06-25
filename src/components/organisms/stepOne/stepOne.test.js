@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 
 import StepOne from './stepOne'
-import { fixedCostInitState } from './helper'
+import { fixedCostInitState } from './stepOneFieldsData'
 
 describe('StepOne', () => {
   it('renders without crashing', () => {

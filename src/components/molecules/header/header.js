@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../../images/sba-logo-horizontal.jpg'
+import logo from '../../../images/sba-logo-horizontal.jpg'
 import './header.less'
 import { Image, Divider, Grid } from 'semantic-ui-react'
 

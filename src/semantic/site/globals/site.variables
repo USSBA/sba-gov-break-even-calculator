@@ -3,3 +3,48 @@
 *******************************/
 @fontName : 'Source Sans Pro';
 @fontSize: 18px;
+
+// # Colors -------------------------------------------------------------------
+
+// ## Primary =================================================================
+
+// e.g. links
+@sba-blue: #002e6d;
+@sba-blue-dark: #000441;
+@sba-blue-light: #41569c;
+@sba-blue-lighter: #d6ecfc;
+
+// e.g. primary buttons
+@sba-red: #cc0000;
+@sba-red-dark: #930000;
+@sba-red-light: #ff4f30;
+
+// e.g. borders
+@sba-gray: #969696;
+@sba-gray-dark: #686868;
+@sba-gray-light: #c5c5c5;
+@sba-gray-lighter: #f5f5f5;
+
+// e.g. everywhere
+@sba-white: #ffffff;
+
+// ## Secondary ===============================================================
+
+// e.g. secondary buttons
+@secondary-blue: #007dbc;
+@secondary-blue-dark: #00518b;
+@secondary-blue-light: #58acef;
+
+// e.g. basic text
+@secondary-black-ish: #1b1e29;
+
+// e.g. success
+@secondary-green: #197e4e;
+
+// e.g. alert
+@secondary-yellow: #f1c400;
+
+// for compatibility with Bourbon
+@action-color: @sba-red;
+@base-background-color: white;
+@base-font-color: @secondary-black-ish;

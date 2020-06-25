@@ -1,3 +1,20 @@
 /*******************************
          Site Overrides
 *******************************/
+.ui.radio.checkbox {
+  border: 1px solid @sba-gray-light;
+  border-radius: 5px;
+  height: auto;
+  min-height: 2rem;
+  max-height: 3rem;
+  width: 100%;
+  padding: 1rem;
+}
+
+.ui.radio.checkbox .box:before, .ui.radio.checkbox label:before {
+  transform: scale(1.5);
+}
+
+.ui.radio.checkbox .box:after, .ui.radio.checkbox label:after {
+  transform: scale(.8);
+}

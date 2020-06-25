@@ -9,12 +9,14 @@ import React from "react"
 import PropTypes from "prop-types"
 import "semantic-ui-less/semantic.less";
 
-import Header from "./header/header"
-import Footer from "./footer/footer"
+import Header from "./molecules/header/header"
+import Footer from "./molecules/footer/footer"
+import SEO from "./seo"
 
 const Layout = ({ children }) => {
   return (
     <>
+      <SEO title='Break Even Calculator' />
       <Header />
       <main>{children}</main>
       <Footer/>

@@ -41,7 +41,10 @@ class BreakEvenCalculator extends React.Component {
           setFixedCost={this.updateFixedCost}
           />
       case 2: 
-        return <StepTwo goToStep={this.goToStep} />
+        return <StepTwo 
+          goToStep={this.goToStep}
+          setNumUnits={this.updateNumUnits}
+          />
     }
   }
 

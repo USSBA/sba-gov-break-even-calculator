@@ -1,3 +1,7 @@
 /*******************************
     User Variable Overrides
 *******************************/
+@radioActiveBorderColor: @secondary-blue;
+@radioActiveBulletColor: @secondary-blue;
+@radioActiveFocusBorderColor: @secondary-blue;
+@radioActiveFocusBulletColor: @secondary-blue;

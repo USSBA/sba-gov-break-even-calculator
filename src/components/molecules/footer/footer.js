@@ -1,6 +1,6 @@
 import React from 'react'
 import './footer.less'
-import logo from '../../images/sba_400x400.jpg'
+import logo from '../../../images/sba_400x400.jpg'
 import { Image, Grid } from 'semantic-ui-react'
 
 const Footer = () => (

@@ -43,20 +43,19 @@ jobs:
       - attach_workspace:
           at: ~/sba-gov-break-even-calculator
       - run: npm run test
-# This portion will be configured when s3 buckets are created.
-#  gatsby-deploy:
-#    working_directory: ~/sba-gov-break-even-calculator
-#    <<: *defaults
-#    steps:
-#      - checkout:
-#          path: ~/sba-gov-break-even-calculator/
-#      - attach_workspace:
-#          at: ~/sba-gov-break-even-calculator
-#      - run:
-#          command: |
-#            sudo apt-get -y -qq install awscli
-#            CI=false npm run build:ci
-#            aws s3 sync public/ s3://gatsby-ci-demo  --region ap-southeast-2 --delete
+  gatsby-deploy:
+    working_directory: ~/sba-gov-break-even-calculator
+    <<: *defaults
+    steps:
+      - checkout:
+          path: ~/sba-gov-break-even-calculator/
+      - attach_workspace:
+          at: ~/sba-gov-break-even-calculator
+      - run:
+            command: |
+            sudo apt-get -y -qq install awscli
+            CI=false npm run build:ci
+            aws s3 sync public/ s3://profit-gizmo  --region us-east-1 --delete
 workflows:
   version: 2
   front-backend:

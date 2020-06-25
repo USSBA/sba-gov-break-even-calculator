@@ -12,7 +12,7 @@ const NumbersInputForm = (props) => {
        <Grid.Column key={field.name}>
          <Form.Field>
           <label className='numbersInputForm-label' for={field.name}>{field.name}</label>
-          <p>{field.description}</p>
+          <p className='numbersInputForm-p'>{field.description}</p>
           <MoneyInput onChange={props.onChange} name={field.name}/>
          </Form.Field>
        </Grid.Column>

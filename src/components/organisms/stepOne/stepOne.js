@@ -3,7 +3,7 @@ import { Form, Radio, Grid } from 'semantic-ui-react'
 import { NumbersInputForm } from '../../molecules'
 import { MoneyInput } from '../../atoms'
 
-import { fixedCostFields, fixedCostInitState } from './helper'
+import { fixedCostFields, fixedCostInitState } from './stepOneFieldsData'
 
 import './stepOne.less'
 

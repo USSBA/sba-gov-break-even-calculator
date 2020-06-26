@@ -10,7 +10,7 @@
   .blueGradient{
     min-height: 450px;
     background: radial-gradient(circle at center, @secondary-blue-light, @secondary-blue-dark);
-    padding: 75px @base-spacing * 4 @base-spacing;
+    padding: 75px 0 @base-spacing;
   }
 
   img {
@@ -20,18 +20,18 @@
   .formula {
     color: @sba-white;
     background-color: rgba(0, 81, 139, 0.7);
-    text-align: center;
     padding: @small-spacing;
     font-size: 24px;
-    max-width: 1075px;
-    margin: auto;
+  }
+
+  .ui.container {
+    padding-top: @base-spacing;
   }
 }
 
 .heroChildren-container {
-  margin: -150px auto @base-spacing;
   padding: @base-spacing * 2;
   background-color: @sba-white;
   border: 1px solid @sba-gray-light;
-  max-width: 1075px;
+  margin-top: -7vw;
 }

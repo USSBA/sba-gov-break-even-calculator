@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from '../components/layout'
-import Hero from '../components/molecules/hero/hero'
-import StepOne from '../components/organisms/stepOne/stepOne'
+import { Hero } from '../components/molecules/'
+import { StepOne, StepTwo } from '../components/organisms/'
 import { Grid } from 'semantic-ui-react'
 import '../styles/typography.less'
 
@@ -29,8 +29,32 @@ class BreakEvenCalculator extends React.Component {
     this.setState({numUnits});
   }
 
+  updatePricePerUnit = (price) => {
+    this.setState({pricePerUnit: price})
+  }
+
   updateFixedCost = (fixedCost) => {
     this.setState({totalFixedCost: fixedCost});
+  }
+
+  renderStep = () => {
+    switch(this.state.stepNum) {
+      case 1: 
+        return <StepOne 
+          goToStep={this.goToStep}
+          setFixedCost={this.updateFixedCost}
+          />
+      case 2: 
+        return <StepTwo 
+          goToStep={this.goToStep}
+          setNumUnits={this.updateNumUnits}
+          />
+      case 3: 
+        return <StepTwo 
+          goToStep={this.goToStep}
+          setUnitPrice={this.updatePricePerUnit}
+          />
+    }
   }
 
   render() {
@@ -39,10 +63,7 @@ class BreakEvenCalculator extends React.Component {
         <Grid columns={1}>
           <Grid.Column>
             <Hero>
-              <StepOne 
-                goToStep={this.goToStep}
-                setFixedCost={this.updateFixedCost}
-              />
+              {this.renderStep()}
             </Hero>
           </Grid.Column>
         </Grid>

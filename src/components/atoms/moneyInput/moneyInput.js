@@ -1,6 +1,5 @@
 import React from 'react'
 import { Input, Label } from 'semantic-ui-react'
-import './moneyInput.less'
 
 const MoneyInput = (props) => {
   return(
@@ -11,7 +10,7 @@ const MoneyInput = (props) => {
       value={props.value} 
       type='number' 
       placeholder='0,000.00'>
-      <Label id='moneySymbol' basic>$</Label>
+      <Label basic>$</Label>
       <input name={props.name} />
     </Input>
   )

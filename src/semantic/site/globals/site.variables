@@ -3,6 +3,7 @@
 *******************************/
 @fontName : 'Source Sans Pro';
 @fontSize: 18px;
+@linkUnderline: underline;
 
 // # Colors -------------------------------------------------------------------
 
@@ -43,8 +44,3 @@
 
 // e.g. alert
 @secondary-yellow: #f1c400;
-
-// for compatibility with Bourbon
-@action-color: @sba-red;
-@base-background-color: white;
-@base-font-color: @secondary-black-ish;

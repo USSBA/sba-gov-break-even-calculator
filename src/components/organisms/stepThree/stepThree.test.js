@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import StepThree from './StepThree'
+import StepThree from './stepThree'
 
 describe('StepThree', () => {
   it('renders money input field and submit button', () => {

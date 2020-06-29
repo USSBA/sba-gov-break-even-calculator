@@ -16,7 +16,7 @@ const StepThree = (props) => {
       <p>Calculate the price at which your unit or service will sell to customers.</p>
       <Form onSubmit={handleSubmit}>
         <div>
-          <label for='unit price'>Per unit sellign price*</label>
+          <label for='unit price'>Per unit selling price*</label>
           <p>Enter the price you plan to sell per unit or service</p>
           <MoneyInput 
             onChange={(e, {value}) => setUnitPrice(value)}

@@ -23,7 +23,6 @@ describe('NumbersInputForm', () => {
 
   it('calls the onChange handler', () => {
     const wrapper = shallow(<NumbersInputForm fields={fields} onChange={onChagneMock}/>)
-    console.log(wrapper.find('MoneyInput').first().debug())
     wrapper.find('MoneyInput').first().dive().simulate('change')
     expect(onChagneMock).toHaveBeenCalledTimes(1)
   })

@@ -1,8 +1,9 @@
 import React from 'react'
+import { Grid } from 'semantic-ui-react'
 import Layout from '../components/layout'
 import { Hero } from '../components/molecules/'
 import { FixedCosts, UnitSales, PricePerUnit } from '../components/organisms/'
-import { Grid } from 'semantic-ui-react'
+import { CALCULATOR_STEPS } from '../constants/constants.js'
 import '../styles/typography.less'
 
 class BreakEvenCalculator extends React.Component {
@@ -40,20 +41,7 @@ class BreakEvenCalculator extends React.Component {
   renderStep = () => {
     switch(this.state.stepNum) {
       case 1: 
-        return <FixedCosts 
-          goToStep={this.goToStep}
-          setFixedCost={this.updateFixedCost}
-          />
-      case 2: 
-        return <UnitSales 
-          goToStep={this.goToStep}
-          setNumUnits={this.updateNumUnits}
-          />
-      case 3: 
-        return <PricePerUnit 
-          goToStep={this.goToStep}
-          setUnitPrice={this.updatePricePerUnit}
-          />
+
     }
   }
 
@@ -63,7 +51,21 @@ class BreakEvenCalculator extends React.Component {
         <Grid columns={1}>
           <Grid.Column>
             <Hero>
-              {this.renderStep()}
+              <FixedCosts
+                visible={this.state.stepNum === CALCULATOR_STEPS.FIXED_COSTS}
+                goToStep={this.goToStep}
+                setFixedCost={this.updateFixedCost}
+                />
+              <UnitSales 
+                visible={this.state.stepNum === CALCULATOR_STEPS.UNIT_SALES}
+                goToStep={this.goToStep}
+                setNumUnits={this.updateNumUnits}
+                />
+              <PricePerUnit 
+                visible={this.state.stepNum === CALCULATOR_STEPS.PRICE_PER_UNIT}
+                goToStep={this.goToStep}
+                setUnitPrice={this.updatePricePerUnit}
+                />
             </Hero>
           </Grid.Column>
         </Grid>

@@ -10,7 +10,7 @@ const UnitSales = (props) => {
     props.goToStep(3)
   }
   return (
-    <div className='unitSales-container'>
+    <div className={`unitSales-container ${props.visible ? '' : 'hidden'}`}>
       <h3>Estimate your expected unit sales</h3>
       <p>Establish the number of units your business is expected to sell</p>
       <Form onSubmit={handleSubmit}>

@@ -3,13 +3,13 @@ import { Form, Radio, Grid } from 'semantic-ui-react'
 import { NumbersInputForm } from '../../molecules'
 import { MoneyInput } from '../../atoms'
 
-import { fixedCostFields, fixedCostInitState } from './stepOneFieldsData'
+import { fixedCostFields, fixedCostInitState } from './fixedCostsFieldsData'
 
-import './stepOne.less'
+import './fixedCosts.less'
 
 export const sumValues = obj => Object.values(obj).reduce((a, b) => parseFloat(a) + parseFloat(b));
 
-class StepOne extends React.Component {
+class FixedCosts extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -73,7 +73,7 @@ class StepOne extends React.Component {
 
   render() {
     return (
-      <div className='stepOne-container'>
+      <div className='fixedCosts-container'>
         <h3>Calculate your total fixed costs</h3>
         <p>Fixed costs are costs that do not change with sales or volume. They are based on time,  for this calculator the time period based around a monthly schedule.</p>
         <h4>Do you know the total of your monthly fixed costs?</h4>
@@ -120,4 +120,4 @@ class StepOne extends React.Component {
   }
 }
 
-export default StepOne
+export default FixedCosts

@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from '../components/layout'
 import { Hero } from '../components/molecules/'
-import { StepOne, StepTwo, StepThree } from '../components/organisms/'
+import { FixedCosts, StepTwo, StepThree } from '../components/organisms/'
 import { Grid } from 'semantic-ui-react'
 import '../styles/typography.less'
 
@@ -40,7 +40,7 @@ class BreakEvenCalculator extends React.Component {
   renderStep = () => {
     switch(this.state.stepNum) {
       case 1: 
-        return <StepOne 
+        return <FixedCosts 
           goToStep={this.goToStep}
           setFixedCost={this.updateFixedCost}
           />

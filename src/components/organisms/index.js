@@ -1,9 +1,9 @@
 import FixedCosts from './fixedCosts/fixedCosts'
 import UnitSales from './unitSales/unitSales'
-import StepThree from './stepThree/stepThree'
+import PricePerUnit from './pricePerUnit/pricePerUnit'
 
 export {
   FixedCosts,
   UnitSales,
-  StepThree
+  PricePerUnit
 }

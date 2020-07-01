@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 import { Form } from 'semantic-ui-react'
 
 import { MoneyInput } from '../../atoms'
-import './stepThree.less'
+import './pricePerUnit.less'
 
-const StepThree = (props) => {
+const PricePerUnit = (props) => {
   const [unitPrice, setUnitPrice] = useState(0)
   const handleSubmit = () => {
     props.setUnitPrice(unitPrice)
     props.goToStep(4)
   }
   return (
-    <div className='stepThree-container'>
+    <div className='pricePerUnit-container'>
       <h3>Estimate your selling price per unit</h3>
       <p>Calculate the price at which your unit or service will sell to customers.</p>
       <Form onSubmit={handleSubmit}>
@@ -31,4 +31,4 @@ const StepThree = (props) => {
   )
 }
 
-export default StepThree;
+export default PricePerUnit;

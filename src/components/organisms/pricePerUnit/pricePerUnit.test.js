@@ -1,11 +1,11 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import StepThree from './stepThree'
+import PricePerUnit from './pricePerUnit'
 
-describe('StepThree', () => {
+describe('PricePerUnit', () => {
   it('renders money input field and submit button', () => {
-    const wrapper = shallow(<StepThree />)
+    const wrapper = shallow(<PricePerUnit />)
     expect(wrapper.find('MoneyInput')).toHaveLength(1)
     expect(wrapper.find('FormButton')).toHaveLength(1)
   })
@@ -14,7 +14,7 @@ describe('StepThree', () => {
     const setUnitPriceMock = jest.fn()
     const goToStepMock = jest.fn()
     const wrapper = shallow(
-      <StepThree setUnitPrice={setUnitPriceMock} goToStep={goToStepMock} />
+      <PricePerUnit setUnitPrice={setUnitPriceMock} goToStep={goToStepMock} />
     )
     wrapper.find('Form').simulate('submit')
     expect(setUnitPriceMock).toHaveBeenCalledWith(0)

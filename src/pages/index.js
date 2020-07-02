@@ -12,9 +12,10 @@ class BreakEvenCalculator extends React.Component {
     this.state = {
       stepNum: 1,
       totalVariableCost: 0,
-      numUnits: null,
-      pricePerUnit: null,
+      numUnits: '',
+      pricePerUnit: '',
       totalFixedCost: 0,
+      shouldReset: false,
     }
   }
 
@@ -38,6 +39,20 @@ class BreakEvenCalculator extends React.Component {
     this.setState({totalFixedCost: fixedCost});
   }
 
+  restartAnalysis = () => {
+    this.setState({shouldReset: true}, () => {
+      this.setState({
+        stepNum: 1,
+        totalVariableCost: 0,
+        numUnits: '',
+        pricePerUnit: '',
+        totalFixedCost: 0,
+        shouldReset: false,
+      })
+    })
+    this.goToStep(CALCULATOR_STEPS.FIXED_COSTS)
+  }
+
   render() {
     return (
       <Layout>
@@ -48,18 +63,21 @@ class BreakEvenCalculator extends React.Component {
                 visible={this.state.stepNum === CALCULATOR_STEPS.FIXED_COSTS}
                 goToStep={this.goToStep}
                 setFixedCost={this.updateFixedCost}
+                key={this.state.shouldReset}
                 />
               <UnitSales 
                 visible={this.state.stepNum === CALCULATOR_STEPS.UNIT_SALES}
                 goToStep={this.goToStep}
                 setNumUnits={this.updateNumUnits}
                 value={this.state.numUnits}
+                restart={this.restartAnalysis}
                 />
               <PricePerUnit 
                 visible={this.state.stepNum === CALCULATOR_STEPS.PRICE_PER_UNIT}
                 goToStep={this.goToStep}
                 setUnitPrice={this.updatePricePerUnit}
                 value={this.state.pricePerUnit}
+                restart={this.restartAnalysis}
                 />
             </Hero>
           </Grid.Column>

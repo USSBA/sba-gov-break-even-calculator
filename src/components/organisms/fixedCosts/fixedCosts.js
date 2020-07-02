@@ -61,7 +61,7 @@ class FixedCosts extends React.Component {
 
   totalMonthlyFixedCosts = (
     <Grid.Column>
-      <label for='totalFixedCosts'>Total monthly fixed costs</label>
+      <label htmlFor='totalFixedCosts'>Total monthly fixed costs</label>
       <p>Enter the sum of all known fixed costs</p>
       <Form.Field>
         <MoneyInput name='totalFixedCosts' onChange={(e, {value}) => {

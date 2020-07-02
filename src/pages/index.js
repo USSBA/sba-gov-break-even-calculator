@@ -11,10 +11,10 @@ class BreakEvenCalculator extends React.Component {
     super(props)
     this.state = {
       stepNum: 1,
-      totalVariableCost: 0,
+      totalVariableCost: '',
       numUnits: '',
       pricePerUnit: '',
-      totalFixedCost: 0,
+      totalFixedCost: '',
       shouldReset: false,
     }
   }
@@ -43,10 +43,10 @@ class BreakEvenCalculator extends React.Component {
     this.setState({shouldReset: true}, () => {
       this.setState({
         stepNum: 1,
-        totalVariableCost: 0,
+        totalVariableCost: '',
         numUnits: '',
         pricePerUnit: '',
-        totalFixedCost: 0,
+        totalFixedCost: '',
         shouldReset: false,
       })
     })
@@ -63,7 +63,7 @@ class BreakEvenCalculator extends React.Component {
                 visible={this.state.stepNum === CALCULATOR_STEPS.FIXED_COSTS}
                 goToStep={this.goToStep}
                 setFixedCost={this.updateFixedCost}
-                key={this.state.shouldReset}
+                key={this.state.shouldReset} // change in key forces a re-mount
                 />
               <UnitSales 
                 visible={this.state.stepNum === CALCULATOR_STEPS.UNIT_SALES}

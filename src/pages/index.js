@@ -12,8 +12,8 @@ class BreakEvenCalculator extends React.Component {
     this.state = {
       stepNum: 1,
       totalVariableCost: 0,
-      numUnits: 0,
-      pricePerUnit: 0,
+      numUnits: null,
+      pricePerUnit: null,
       totalFixedCost: 0,
     }
   }
@@ -38,13 +38,6 @@ class BreakEvenCalculator extends React.Component {
     this.setState({totalFixedCost: fixedCost});
   }
 
-  renderStep = () => {
-    switch(this.state.stepNum) {
-      case 1: 
-
-    }
-  }
-
   render() {
     return (
       <Layout>
@@ -60,11 +53,13 @@ class BreakEvenCalculator extends React.Component {
                 visible={this.state.stepNum === CALCULATOR_STEPS.UNIT_SALES}
                 goToStep={this.goToStep}
                 setNumUnits={this.updateNumUnits}
+                value={this.state.numUnits}
                 />
               <PricePerUnit 
                 visible={this.state.stepNum === CALCULATOR_STEPS.PRICE_PER_UNIT}
                 goToStep={this.goToStep}
                 setUnitPrice={this.updatePricePerUnit}
+                value={this.state.pricePerUnit}
                 />
             </Hero>
           </Grid.Column>

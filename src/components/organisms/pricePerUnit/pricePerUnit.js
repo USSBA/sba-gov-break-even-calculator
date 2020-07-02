@@ -5,7 +5,7 @@ import { MoneyInput } from '../../atoms'
 import './pricePerUnit.less'
 
 const PricePerUnit = (props) => {
-  const [unitPrice, setUnitPrice] = useState(0)
+  const [unitPrice, setUnitPrice] = useState(props.value)
   const handleSubmit = () => {
     props.setUnitPrice(unitPrice)
     props.goToStep(4)
@@ -19,6 +19,7 @@ const PricePerUnit = (props) => {
           <label for='unit price'>Per unit selling price*</label>
           <p>Enter the price you plan to sell per unit or service</p>
           <MoneyInput 
+            value={unitPrice}
             onChange={(e, {value}) => setUnitPrice(value)}
             name='unit price' />
         </div>

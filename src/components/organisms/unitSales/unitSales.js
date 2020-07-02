@@ -4,7 +4,7 @@ import { Form, Input } from 'semantic-ui-react'
 import './unitSales.less'
 
 const UnitSales = (props) => {
-  const [units, setUnits] = useState(0)
+  const [units, setUnits] = useState(props.value)
   const handleSubmit = () => {
     props.setNumUnits(units)
     props.goToStep(3)
@@ -21,6 +21,7 @@ const UnitSales = (props) => {
           label={{basic: true, content: 'Units'}}
           labelPosition='right'
           placeholder='0'
+          value={units}
           onChange={(e, {value}) => setUnits(value)}
           />
         </div>

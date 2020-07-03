@@ -6,8 +6,12 @@ import './results.less'
 
 const Results = (props) => {
   const { variableCostPerUnit, numUnits, pricePerUnit, totalFixedCost } = props
-  const breakEvenPointUnits = totalFixedCost / (pricePerUnit - variableCostPerUnit)
-  const breakEvenPointRevenue = breakEvenPointUnits * pricePerUnit;
+  // https://blog.abelotech.com/posts/number-currency-formatting-javascript/
+  const formatNumber = (num) => {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
+  const breakEvenPointUnits = formatNumber(totalFixedCost / (pricePerUnit - variableCostPerUnit))
+  const breakEvenPointRevenue = formatNumber(breakEvenPointUnits * pricePerUnit)
 
   return (
     <div className='resultsContainer'>
@@ -15,8 +19,7 @@ const Results = (props) => {
       <div className='dataCards-container'>
         <Grid columns={2} stackable>
           <Grid.Column>
-            {/* this is holding space for welcome card*/}
-            <BreakEvenProfileCard /> 
+            {/* welcome card goes here */}
           </Grid.Column>
           <Grid.Column>
             <BreakEvenProfileCard 

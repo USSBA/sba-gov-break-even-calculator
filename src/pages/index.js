@@ -24,7 +24,7 @@ class BreakEvenCalculator extends React.Component {
   }
 
   updateVariableCost = (variableCost) => {
-    this.setState({totalVariableCost: variableCost});
+    this.setState({variableCostPerUnit: variableCost});
   }
 
   updateNumUnits = (numUnits) => {
@@ -57,7 +57,12 @@ class BreakEvenCalculator extends React.Component {
     if (this.state.stepNum === CALCULATOR_STEPS.RESULTS_PAGE) {
       return(
         <Layout>
-          <Results />
+          <Results 
+            variableCostPerUnit={this.state.variableCostPerUnit || 0}
+            numUnits={this.state.numUnits || 0}
+            pricePerUnit={this.state.pricePerUnit || 0}
+            totalFixedCost={this.state.totalFixedCost || 0}
+          />
         </Layout>
       )
     }

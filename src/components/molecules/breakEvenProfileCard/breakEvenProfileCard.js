@@ -11,13 +11,13 @@ const BreakEvenProfileCard = (props) => {
       <div className='circles-container'>
         <div className='unitsCircle'>
           <div className='circleContent'>
-            <div className='number'>1,000</div>
+            <div className='number'>{props.breakEvenUnits}</div>
             <div>Units</div>
           </div>
         </div>
         <div className='salesCircle'>
           <div className='circleContent'>
-            <div className='number'>$10,000</div>
+            <div className='number'>{props.breakEvenSales}</div>
             <div>Sales</div>
           </div>
         </div>

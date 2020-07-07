@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from '../components/layout'
 import { Hero } from '../components/molecules/'
-import { StepOne, StepTwo, StepThree } from '../components/organisms/'
+import { StepOne, StepTwo, StepThree, BreakEvenGraph } from '../components/organisms/'
 import { Grid } from 'semantic-ui-react'
 import '../styles/typography.less'
 
@@ -54,6 +54,10 @@ class BreakEvenCalculator extends React.Component {
           goToStep={this.goToStep}
           setUnitPrice={this.updatePricePerUnit}
           />
+      case 4: 
+      return <BreakEvenGraph
+        goToStep={this.goToStep}
+        />
     }
   }
 

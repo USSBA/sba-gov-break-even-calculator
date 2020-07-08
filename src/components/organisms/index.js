@@ -1,9 +1,11 @@
-import StepOne from './stepOne/stepOne'
-import StepTwo from './stepTwo/stepTwo'
-import StepThree from './stepThree/stepThree'
+import FixedCosts from './fixedCosts/fixedCosts'
+import UnitSales from './unitSales/unitSales'
+import PricePerUnit from './pricePerUnit/pricePerUnit'
+import Results from './results/results'
 
 export {
-  StepOne,
-  StepTwo,
-  StepThree
+  FixedCosts,
+  UnitSales,
+  PricePerUnit,
+  Results
 }

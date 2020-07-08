@@ -1,19 +1,21 @@
 import React from 'react'
+import { Grid } from 'semantic-ui-react'
 import Layout from '../components/layout'
 import { Hero } from '../components/molecules/'
-import { StepOne, StepTwo, StepThree } from '../components/organisms/'
-import { Grid } from 'semantic-ui-react'
+import { FixedCosts, UnitSales, PricePerUnit, Results } from '../components/organisms/'
+import { CALCULATOR_STEPS } from '../constants/constants.js'
 import '../styles/typography.less'
 
 class BreakEvenCalculator extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      stepNum: 1,
-      totalVariableCost: 0,
-      numUnits: 0,
-      pricePerUnit: 0,
-      totalFixedCost: 0,
+      stepNum: 0,
+      totalVariableCost: '',
+      numUnits: '',
+      pricePerUnit: '',
+      totalFixedCost: '',
+      shouldReset: false,
     }
   }
 
@@ -22,7 +24,7 @@ class BreakEvenCalculator extends React.Component {
   }
 
   updateVariableCost = (variableCost) => {
-    this.setState({totalVariableCost: variableCost});
+    this.setState({variableCostPerUnit: variableCost});
   }
 
   updateNumUnits = (numUnits) => {
@@ -37,33 +39,58 @@ class BreakEvenCalculator extends React.Component {
     this.setState({totalFixedCost: fixedCost});
   }
 
-  renderStep = () => {
-    switch(this.state.stepNum) {
-      case 1: 
-        return <StepOne 
-          goToStep={this.goToStep}
-          setFixedCost={this.updateFixedCost}
-          />
-      case 2: 
-        return <StepTwo 
-          goToStep={this.goToStep}
-          setNumUnits={this.updateNumUnits}
-          />
-      case 3: 
-        return <StepThree 
-          goToStep={this.goToStep}
-          setUnitPrice={this.updatePricePerUnit}
-          />
-    }
+  restartAnalysis = () => {
+    this.setState({shouldReset: true}, () => {
+      this.setState({
+        stepNum: 0,
+        totalVariableCost: '',
+        numUnits: '',
+        pricePerUnit: '',
+        totalFixedCost: '',
+        shouldReset: false,
+      })
+    })
+    this.goToStep(CALCULATOR_STEPS.FIXED_COSTS)
   }
 
   render() {
+    if (this.state.stepNum === CALCULATOR_STEPS.RESULTS_PAGE) {
+      return(
+        <Layout>
+          <Results 
+            variableCostPerUnit={this.state.variableCostPerUnit || 0}
+            numUnits={this.state.numUnits || 0}
+            pricePerUnit={this.state.pricePerUnit || 0}
+            totalFixedCost={this.state.totalFixedCost || 0}
+          />
+        </Layout>
+      )
+    }
     return (
       <Layout>
         <Grid columns={1}>
           <Grid.Column>
             <Hero>
-              {this.renderStep()}
+              <FixedCosts
+                visible={this.state.stepNum === CALCULATOR_STEPS.FIXED_COSTS}
+                goToStep={this.goToStep}
+                setFixedCost={this.updateFixedCost}
+                key={this.state.shouldReset} // change in key forces a re-mount
+                />
+              <UnitSales 
+                visible={this.state.stepNum === CALCULATOR_STEPS.UNIT_SALES}
+                goToStep={this.goToStep}
+                setNumUnits={this.updateNumUnits}
+                value={this.state.numUnits}
+                restart={this.restartAnalysis}
+                />
+              <PricePerUnit 
+                visible={this.state.stepNum === CALCULATOR_STEPS.PRICE_PER_UNIT}
+                goToStep={this.goToStep}
+                setUnitPrice={this.updatePricePerUnit}
+                value={this.state.pricePerUnit}
+                restart={this.restartAnalysis}
+                />
             </Hero>
           </Grid.Column>
         </Grid>

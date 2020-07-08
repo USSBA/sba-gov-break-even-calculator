@@ -6,6 +6,7 @@ import { MoneyInput } from '../../atoms'
 import { fixedCostFields, fixedCostInitState } from './fixedCostsFieldsData'
 
 import './fixedCosts.less'
+import { CALCULATOR_STEPS } from '../../../constants/constants.js'
 
 export const sumValues = obj => Object.values(obj).reduce((a, b) => parseFloat(a) + parseFloat(b));
 
@@ -56,7 +57,7 @@ class FixedCosts extends React.Component {
 
   handleSubmit = () => {
     this.props.setFixedCost(this.state.totalFixedCosts)
-    this.props.goToStep(2)
+    this.props.goToStep(CALCULATOR_STEPS.FIXED_COSTS + 1)
   }
 
   totalMonthlyFixedCosts = (

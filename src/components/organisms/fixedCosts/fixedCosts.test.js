@@ -3,6 +3,7 @@ import { shallow } from 'enzyme'
 
 import FixedCosts from './fixedCosts'
 import { fixedCostInitState } from './fixedCostsFieldsData'
+import { CALCULATOR_STEPS } from '../../../constants/constants.js'
 
 describe('FixedCosts', () => {
   it('renders without crashing', () => {
@@ -78,7 +79,7 @@ describe('FixedCosts', () => {
     wrapper.setState({knowFixedCosts: 'yes'})
     wrapper.find('Form').simulate('submit')
     expect(setFixedCostMock).toHaveBeenCalledWith(0)
-    expect(goToStepMock).toHaveBeenCalledWith(2)
+    expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.FIXED_COSTS + 1)
   })
 
   it('resets fields on radio button switch', () => {

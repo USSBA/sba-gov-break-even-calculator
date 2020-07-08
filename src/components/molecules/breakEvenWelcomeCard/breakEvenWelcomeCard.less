@@ -1,0 +1,57 @@
+@import '../../../styles/variables.less';
+
+.breakEvenWelcome-container {
+  background-color: @sba-white;
+  padding: @base-spacing;
+  box-shadow: @box-shadow;
+  border: 1px solid @sba-gray-light;
+
+  h4 {
+    font-weight: 500;
+    margin: 5px 0;
+  }
+
+  .column:last-child {
+    padding-left: 0 !important;
+  }
+
+  .units, .sales {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    padding: @small-spacing;
+
+    .heading {
+      color: @sba-blue;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      line-height: 1.3rem;
+    }
+
+    p {
+      margin: 0;
+      font-weight: 400;
+    }
+  }
+
+  .units {
+    border-color: @secondary-blue-light;
+
+    .heading {
+      .number {
+        color: @secondary-blue;
+      }
+    }
+  }
+
+  .sales {
+    border-color: @sba-blue;
+
+    .heading {
+      .number {
+        color: @secondary-blue-dark;
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+@import '../../../styles/variables.less';
+
+.breakEvenProfile-container {
+  background-color: @sba-white;
+  padding: @base-spacing;
+  box-shadow: @box-shadow;
+  border: 1px solid @sba-gray-light;
+
+  .circles-container {
+    text-align: center;
+    margin: @base-spacing;
+
+    .unitsCircle, .salesCircle {
+      color: @sba-white;
+      font-size: 28px;
+      display: inline-block;
+      height: 180px;
+      width: 180px;
+      border-radius: 50%;
+      position: relative;
+      line-height: 30px;
+    }
+  
+    .unitsCircle {
+      background-color: rgba(88,172,239,0.8);
+      margin-right: -25px;
+      z-index: 1;
+    }
+  
+    .salesCircle {
+      background-color: @secondary-blue;
+      opacity: 0.9;
+    }
+  
+    .circleContent {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+  
+      div {
+        text-align: center;
+      }
+
+      .number {
+        font-weight: 600;
+      }
+    }
+  }
+
+  .circles-legend {
+    min-width: 125px;
+    padding: 5px 15px 5px 5px;
+    border: 1px solid @sba-gray-light;
+    border-radius: 8px;
+    display: inline-block;
+    margin-right: @small-spacing;
+
+    .text {
+      margin-bottom: 1px;
+    }
+
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      margin: 0 5px;
+
+      &.units {
+        background-color: @secondary-blue-light;
+      }
+
+      &.sales {
+        background-color: @secondary-blue;
+      }
+    }
+  }
+
+}

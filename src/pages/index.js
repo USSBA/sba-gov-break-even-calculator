@@ -2,7 +2,7 @@ import React from 'react'
 import { Grid } from 'semantic-ui-react'
 import Layout from '../components/layout'
 import { Hero } from '../components/molecules/'
-import { FixedCosts, UnitSales, PricePerUnit } from '../components/organisms/'
+import { FixedCosts, UnitSales, PricePerUnit, Results } from '../components/organisms/'
 import { CALCULATOR_STEPS } from '../constants/constants.js'
 import '../styles/typography.less'
 
@@ -24,7 +24,7 @@ class BreakEvenCalculator extends React.Component {
   }
 
   updateVariableCost = (variableCost) => {
-    this.setState({totalVariableCost: variableCost});
+    this.setState({variableCostPerUnit: variableCost});
   }
 
   updateNumUnits = (numUnits) => {
@@ -54,6 +54,18 @@ class BreakEvenCalculator extends React.Component {
   }
 
   render() {
+    if (this.state.stepNum === CALCULATOR_STEPS.RESULTS_PAGE) {
+      return(
+        <Layout>
+          <Results 
+            variableCostPerUnit={this.state.variableCostPerUnit || 0}
+            numUnits={this.state.numUnits || 0}
+            pricePerUnit={this.state.pricePerUnit || 0}
+            totalFixedCost={this.state.totalFixedCost || 0}
+          />
+        </Layout>
+      )
+    }
     return (
       <Layout>
         <Grid columns={1}>

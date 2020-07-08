@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Container } from 'semantic-ui-react'
-import './BreakEvenProfileCard.less'
+import './breakEvenProfileCard.less'
 
 const BreakEvenProfileCard = (props) => {
   return(

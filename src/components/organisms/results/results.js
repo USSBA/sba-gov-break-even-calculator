@@ -2,7 +2,6 @@ import React from 'react'
 
 import { Grid } from 'semantic-ui-react'
 import { BreakEvenProfileCard, BreakEvenResultsCard } from '../../molecules'
-import { formatNumber } from '../../../helpers'
 import './results.less'
 
 const Results = (props) => {

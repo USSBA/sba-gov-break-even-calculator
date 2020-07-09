@@ -37,7 +37,7 @@ const BreakEvenResultsCard = (props) => {
             <div className='units'>
               <div className='heading'>
                 Units
-                <div className='number'>{breakEvenUnits}</div>
+                <div className='number'>{formatNumber(breakEvenUnits)}</div>
                 <p>needed to sell in order to cover your costs</p>
               </div>
               <p>If you sell your anticipated</p>
@@ -56,13 +56,13 @@ const BreakEvenResultsCard = (props) => {
                 <p>revenue dollars needed to break even</p>
               </div>
               <p>Contribution margin ratio</p>
-              <div className='number'>
-                {roundToTwoDecimals(netUnitProfit / pricePerUnit)}%
+              <div className='number contributionMargin'>
+                {roundToTwoDecimals(netUnitProfit / pricePerUnit)*100}%
               </div>
               {!willBreakEven && (
                 <>
                   <p>You will need to sell</p>
-                  <p><span className='number loss'> {breakEvenUnits - expectedUnits} </span>more to break even</p>
+                  <p><span className='number loss'> {formatNumber(breakEvenUnits - expectedUnits)} </span>more to break even</p>
                 </>
               )}
             </div>

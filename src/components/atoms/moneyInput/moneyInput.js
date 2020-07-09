@@ -5,14 +5,12 @@ const MoneyInput = (props) => {
   return(
     <Input 
       onChange={props.onChange} 
-      label 
+      label={{basic: true, content: '$'}}
+      labelPosition='left'
       name={props.name}
       value={props.value} 
       type='number' 
-      placeholder='0,000.00'>
-      <Label basic>$</Label>
-      <input name={props.name} />
-    </Input>
+      placeholder='0,000.00' />
   )
 }
 

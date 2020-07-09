@@ -3,9 +3,9 @@ import React from 'react'
 import { Container, Grid, Image } from 'semantic-ui-react'
 
 import calculatorIcon from '../../../images/calculator_icon.svg'
-import './BreakEvenWelcomeCard.less'
+import './breakEvenResultsCard.less'
 
-const BreakEvenWelcomeCard = (props) => {
+const BreakEvenResultsCard = (props) => {
   const { expectedUnits, breakEvenUnits, pricePerUnit, variableCost } = props;
 
   const willBreakEven = expectedUnits > breakEvenUnits;
@@ -17,7 +17,6 @@ const BreakEvenWelcomeCard = (props) => {
             <Image src={calculatorIcon} alt='calculator icon' size='tiny' centered/>
           </Grid.Column>
           <Grid.Column width={12}>
-            <h3>Welcome</h3>
             <h4>Your Break-Even Point Results</h4>
             <p>Estimated calculation based on your inputs</p>
           </Grid.Column>
@@ -31,10 +30,10 @@ const BreakEvenWelcomeCard = (props) => {
                 <p>needed to sell in order to cover your costs</p>
               </div>
               <p>If you sell your anticipated</p>
-              <div className='number'>{`${expectedUnits}`}</div>
+              <div className='number'>{`${expectedUnits} units`}</div>
               <p>{`your ${willBreakEven ? 'profit' : 'loss'} will be`}</p>
               <div className={`number ${willBreakEven ? 'profit' : 'loss'}`}>
-                {expectedUnits - breakEvenUnits * pricePerUnit}
+                ${expectedUnits - breakEvenUnits * pricePerUnit}
               </div>
             </div>
           </Grid.Column>
@@ -47,7 +46,7 @@ const BreakEvenWelcomeCard = (props) => {
               </div>
               <p>Contribution margin ratio</p>
               <div className='number'>
-                {(pricePerUnit - variableCost) / pricePerUnit}
+                {(pricePerUnit - variableCost) / pricePerUnit}%
               </div>
               {!willBreakEven && <p>You will need to sell 
                 <span className='number loss'> {123} </span>
@@ -61,4 +60,4 @@ const BreakEvenWelcomeCard = (props) => {
   )
 }
 
-export default BreakEvenWelcomeCard
+export default BreakEvenResultsCard

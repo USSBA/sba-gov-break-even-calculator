@@ -2,6 +2,8 @@ import React from 'react'
 
 import { Container } from 'semantic-ui-react'
 import './breakEvenProfileCard.less'
+import { formatNumber } from '../../../helpers'
+
 
 const BreakEvenProfileCard = (props) => {
   return(
@@ -11,13 +13,13 @@ const BreakEvenProfileCard = (props) => {
       <div className='circles-container'>
         <div className='unitsCircle'>
           <div className='circleContent'>
-            <div className='number'>{props.breakEvenUnits}</div>
+            <div className='number'>{formatNumber(props.breakEvenUnits)}</div>
             <div>Units</div>
           </div>
         </div>
         <div className='salesCircle'>
           <div className='circleContent'>
-            <div className='number'>${props.breakEvenSales}</div>
+            <div className='number'>${formatNumber(props.breakEvenSales)}</div>
             <div>Sales</div>
           </div>
         </div>

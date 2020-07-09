@@ -3,7 +3,7 @@ import React from 'react'
 import { Container, Grid, Image } from 'semantic-ui-react'
 
 import calculatorIcon from '../../../images/calculator_icon.svg'
-import { formatNumber } from '../../../helpers'
+import { formatNumber, roundToTwoDecimals } from '../../../helpers'
 import './breakEvenResultsCard.less'
 
 const BreakEvenResultsCard = (props) => {
@@ -16,10 +16,10 @@ const BreakEvenResultsCard = (props) => {
     if(profitOrLossNum < 0) {
       return `-$${formatNumber(Math.abs(profitOrLossNum))}`
     }
-    return formatNumber(profitOrLossNum)
+    return `$${formatNumber(profitOrLossNum)}`
   }
 
-  const willBreakEven = expectedUnits > breakEvenUnits;
+  const willBreakEven = expectedUnits >= breakEvenUnits;
   return(
     <Container className='breakEvenWelcome-container'>
       <Grid>
@@ -57,7 +57,7 @@ const BreakEvenResultsCard = (props) => {
               </div>
               <p>Contribution margin ratio</p>
               <div className='number'>
-                {netUnitProfit / pricePerUnit}%
+                {roundToTwoDecimals(netUnitProfit / pricePerUnit)}%
               </div>
               {!willBreakEven && (
                 <>

@@ -4,3 +4,5 @@ export const formatNumber = (num) => {
 }
 
 export const sumValues = obj => Object.values(obj).reduce((a, b) => parseFloat(a) + parseFloat(b));
+
+export const roundToTwoDecimals = (num) => Math.round((num + Number.EPSILON) * 100) / 100

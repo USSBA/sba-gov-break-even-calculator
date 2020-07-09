@@ -3,10 +3,19 @@ import React from 'react'
 import { Container, Grid, Image } from 'semantic-ui-react'
 
 import calculatorIcon from '../../../images/calculator_icon.svg'
+import { formatNumber } from '../../../helpers'
 import './breakEvenResultsCard.less'
 
 const BreakEvenResultsCard = (props) => {
   const { expectedUnits, breakEvenUnits, pricePerUnit, variableCost } = props;
+
+  const profitOrLoss = () => {
+    const profitOrLossNum = expectedUnits - breakEvenUnits * pricePerUnit;
+    if(profitOrLossNum < 0) {
+      return `-$${formatNumber(Math.abs(profitOrLossNum))}`
+    }
+    return formatNumber(profitOrLossNum)
+  }
 
   const willBreakEven = expectedUnits > breakEvenUnits;
   return(
@@ -33,7 +42,7 @@ const BreakEvenResultsCard = (props) => {
               <div className='number'>{`${expectedUnits} units`}</div>
               <p>{`your ${willBreakEven ? 'profit' : 'loss'} will be`}</p>
               <div className={`number ${willBreakEven ? 'profit' : 'loss'}`}>
-                ${expectedUnits - breakEvenUnits * pricePerUnit}
+                {profitOrLoss()}
               </div>
             </div>
           </Grid.Column>

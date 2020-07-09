@@ -2,14 +2,12 @@ import React from 'react'
 
 import { Grid } from 'semantic-ui-react'
 import { BreakEvenProfileCard, BreakEvenResultsCard } from '../../molecules'
+import { formatNumber } from '../../../helpers'
 import './results.less'
 
 const Results = (props) => {
   const { variableCostPerUnit, numUnits, pricePerUnit, totalFixedCost } = props
-  // https://blog.abelotech.com/posts/number-currency-formatting-javascript/
-  const formatNumber = (num) => {
-    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-  }
+
   const breakEvenPointUnits = formatNumber(totalFixedCost / (pricePerUnit - variableCostPerUnit))
   const breakEvenPointRevenue = formatNumber(breakEvenPointUnits * pricePerUnit)
 

@@ -8,8 +8,8 @@ import './results.less'
 const Results = (props) => {
   const { variableCostPerUnit, numUnits, pricePerUnit, totalFixedCost } = props
 
-  const breakEvenPointUnits = formatNumber(totalFixedCost / (pricePerUnit - variableCostPerUnit))
-  const breakEvenPointRevenue = formatNumber(breakEvenPointUnits * pricePerUnit)
+  const breakEvenPointUnits = totalFixedCost / (pricePerUnit - variableCostPerUnit)
+  const breakEvenPointRevenue = breakEvenPointUnits * (pricePerUnit - variableCostPerUnit)
 
   return (
     <div className='resultsContainer'>
@@ -19,10 +19,12 @@ const Results = (props) => {
           <Grid.Row columns={2} stackable stretched>
             <Grid.Column>
               <BreakEvenResultsCard 
-                expectedUnits={100}
-                breakEvenUnits={150}
-                pricePerUnit={10}
-                variableCost={4}
+                expectedUnits={numUnits}
+                breakEvenUnits={breakEvenPointUnits}
+                breakEvenRevenue={breakEvenPointRevenue}
+                pricePerUnit={pricePerUnit}
+                variableCost={variableCostPerUnit}
+                fixedCost={totalFixedCost}
               />
             </Grid.Column>
             <Grid.Column>

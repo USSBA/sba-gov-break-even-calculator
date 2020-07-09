@@ -7,10 +7,12 @@ import { formatNumber } from '../../../helpers'
 import './breakEvenResultsCard.less'
 
 const BreakEvenResultsCard = (props) => {
-  const { expectedUnits, breakEvenUnits, pricePerUnit, variableCost } = props;
+  const { expectedUnits, breakEvenUnits, breakEvenRevenue, pricePerUnit, variableCost, fixedCost } = props;
+
+  const netUnitProfit = pricePerUnit - variableCost
 
   const profitOrLoss = () => {
-    const profitOrLossNum = expectedUnits - breakEvenUnits * pricePerUnit;
+    const profitOrLossNum = (expectedUnits * netUnitProfit) - fixedCost;
     if(profitOrLossNum < 0) {
       return `-$${formatNumber(Math.abs(profitOrLossNum))}`
     }
@@ -35,7 +37,7 @@ const BreakEvenResultsCard = (props) => {
             <div className='units'>
               <div className='heading'>
                 Units
-                <div className='number'>100</div>
+                <div className='number'>{breakEvenUnits}</div>
                 <p>needed to sell in order to cover your costs</p>
               </div>
               <p>If you sell your anticipated</p>
@@ -50,17 +52,19 @@ const BreakEvenResultsCard = (props) => {
             <div className='sales'>
               <div className='heading'>
                 Sales
-                <div className='number'>$1,000</div>
+                <div className='number'>${formatNumber(breakEvenRevenue)}</div>
                 <p>revenue dollars needed to break even</p>
               </div>
               <p>Contribution margin ratio</p>
               <div className='number'>
-                {(pricePerUnit - variableCost) / pricePerUnit}%
+                {netUnitProfit / pricePerUnit}%
               </div>
-              {!willBreakEven && <p>You will need to sell 
-                <span className='number loss'> {123} </span>
-                more to break even
-              </p>}
+              {!willBreakEven && (
+                <>
+                  <p>You will need to sell</p>
+                  <p><span className='number loss'> {breakEvenUnits - expectedUnits} </span>more to break even</p>
+                </>
+              )}
             </div>
           </Grid.Column>
         </Grid.Row>

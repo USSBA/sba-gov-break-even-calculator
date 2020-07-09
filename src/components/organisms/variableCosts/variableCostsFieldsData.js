@@ -7,7 +7,7 @@ export const variableCostFields = [
   {name: 'Other Variable Costs', description: 'Additional variable costs per unit that are not included above:'},
 ]
 
-export const fixedCostInitState = {
+export const variableCostInitState = {
   'Direct Materials': 0,
   'Piece Rate Labor': 0,
   'Production Supplies': 0,

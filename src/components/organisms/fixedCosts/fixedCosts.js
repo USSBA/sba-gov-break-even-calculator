@@ -7,8 +7,7 @@ import { fixedCostFields, fixedCostInitState } from './fixedCostsFieldsData'
 
 import './fixedCosts.less'
 import { CALCULATOR_STEPS } from '../../../constants/constants.js'
-
-export const sumValues = obj => Object.values(obj).reduce((a, b) => parseFloat(a) + parseFloat(b));
+import { sumValues } from '../../../helpers'
 
 class FixedCosts extends React.Component {
   constructor(props) {

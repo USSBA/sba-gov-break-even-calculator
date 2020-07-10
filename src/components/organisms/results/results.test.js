@@ -9,6 +9,11 @@ describe('Results', () => {
     expect(wrapper).toHaveLength(1)
   })
 
+  it('renders break even result card', () => {
+    const wrapper = shallow(<Results />)
+    expect(wrapper.find('BreakEvenResultsCard')).toHaveLength(1)
+  })
+
   it('renders break even profile card', () => {
     const wrapper = shallow(<Results />)
     expect(wrapper.find('BreakEvenProfileCard')).toHaveLength(1)

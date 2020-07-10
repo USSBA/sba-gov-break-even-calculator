@@ -16,27 +16,13 @@
   }
 
   .units, .sales {
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 4px;
-    padding: @small-spacing;
-
-    .heading {
-      color: @sba-blue;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      font-size: 1.2rem;
-      line-height: 1.3rem;
-    }
-
     p {
-      margin: 0;
       font-weight: 400;
     }
   }
 
-  .units {
-    border-color: @secondary-blue-light;
+  .units, .sales {
+    border: 1px solid @secondary-blue-light;
 
     .number {
       color: @secondary-blue;
@@ -49,15 +35,6 @@
   }
 
   .sales {
-    border-color: @sba-blue;
-
-    .number {
-      color: @secondary-blue-dark;
-      font-weight: 600;
-
-      &.loss {
-        color: @sba-red-light;
-      }
-    }
+    border: 1px solid @sba-blue;
   }
 }

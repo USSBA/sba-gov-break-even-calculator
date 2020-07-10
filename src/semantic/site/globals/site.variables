@@ -5,6 +5,11 @@
 @fontSize: 18px;
 @linkUnderline: underline;
 
+@base-line-height: 1.5;
+@base-spacing: @base-line-height * 1rem;
+@base-z-index: 0;
+@small-spacing: @base-spacing / 2;
+
 // # Colors -------------------------------------------------------------------
 
 // ## Primary =================================================================

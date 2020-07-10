@@ -7,4 +7,9 @@ describe('Header', () => {
     const wrapper = shallow(<Header />)
     expect(wrapper).toHaveLength(1);
   })
+
+  it('renders link back to landing page', () => {
+    const wrapper = shallow(<Header />)
+    expect(wrapper.find('.return-link').text()).toContain('Return to break-even page')
+  })
 })

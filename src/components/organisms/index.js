@@ -1,11 +1,12 @@
-import StepOne from './stepOne/stepOne'
-import StepTwo from './stepTwo/stepTwo'
-import StepThree from './stepThree/stepThree'
-import BreakEvenGraph from './breakEvenGraph/breakEvenGraph'
+import FixedCosts from './fixedCosts/fixedCosts'
+import UnitSales from './unitSales/unitSales'
+import PricePerUnit from './pricePerUnit/pricePerUnit'
+import Results from './results/results'
+import BreakEvenGraph from '../molecules/breakEvenGraph/breakEvenGraph'
 
 export {
-  StepOne,
-  StepTwo,
-  StepThree,
-  BreakEvenGraph
+  FixedCosts,
+  UnitSales,
+  PricePerUnit,
+  Results,
 }

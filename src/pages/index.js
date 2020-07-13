@@ -2,7 +2,7 @@ import React from 'react'
 import { Grid } from 'semantic-ui-react'
 import Layout from '../components/layout'
 import { Hero } from '../components/molecules/'
-import { FixedCosts, UnitSales, PricePerUnit, Results, BreakEvenGraph } from '../components/organisms/'
+import { FixedCosts, UnitSales, PricePerUnit, Results, VariableCosts, BreakEvenGraph } from '../components/organisms/'
 import { CALCULATOR_STEPS } from '../constants/constants.js'
 import '../styles/typography.less'
 
@@ -92,6 +92,12 @@ class BreakEvenCalculator extends React.Component {
                 setUnitPrice={this.updatePricePerUnit}
                 value={this.state.pricePerUnit}
                 restart={this.restartAnalysis}
+                />
+              <VariableCosts
+                visible={this.state.stepNum === CALCULATOR_STEPS.VARIABLE_COSTS}
+                goToStep={this.goToStep}
+                setVariableCost={this.updateVariableCost}
+                key={this.state.shouldReset} // change in key forces a re-mount
                 />
             </Hero>
           </Grid.Column>

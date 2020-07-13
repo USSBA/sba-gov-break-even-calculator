@@ -4,8 +4,7 @@ import "./lineChart.less"
 class LineChart extends React.Component { 
 
   // GET X & Y || MAX & MIN
-  getX(){
-
+  getX = () => {
     const {data} = this.props;
     return {
       min: 0,
@@ -13,7 +12,7 @@ class LineChart extends React.Component {
     }
   }
 
-  getY(){
+  getY = () => {
     const {data} = this.props;
 
     return {
@@ -26,18 +25,19 @@ class LineChart extends React.Component {
   }
 
    // GET SVG COORDINATES
-  getSvgX(x) {
+  getSvgX = (x) => {
     const {svgWidth, yLabelSize} = this.props;
     return yLabelSize + (x / this.getX().max * (svgWidth - yLabelSize));
   }
-  getSvgY(y) {
+
+  getSvgY = (y) => {
     const {svgHeight, xLabelSize} = this.props;
     const gY = this.getY();
     return ((svgHeight - xLabelSize) * gY.max - (svgHeight - xLabelSize) * y) / (gY.max - gY.min);
   }
   
   // BUILD SVG PATH
-  makePath() {
+  makePath = () => {
     const {data, color} = this.props;
     const svgX = this.getSvgX(data[0].x)
     let pathD = "M " + svgX + " " + this.getSvgY(data[0].y) + " ";
@@ -55,13 +55,13 @@ class LineChart extends React.Component {
   }
   
   // BUILD GRID AXIS
-  makeAxis() {
+  makeAxis = () => {
     const {yLabelSize} = this.props;
     const x = this.getX();
     const y = this.getY();
 
     return (
-      <g className="linechart_axis">
+      <g key={this.key} className="linechart_axis">
         <line
           x1={this.getSvgX(x.min) - yLabelSize} y1={this.getSvgY(y.min)}
           x2={this.getSvgX(x.max)} y2={this.getSvgY(y.min)}
@@ -77,12 +77,10 @@ class LineChart extends React.Component {
   makeLabels(){
     const {svgHeight, svgWidth, xLabelSize, yLabelSize} = this.props;
     const padding = 5;
-    console.log(this.getX())
     const xvalues = [{ width: 0, value: this.getX().min}]
     
     for (let index = 1; index < 11; index++) {
       xvalues.push({width: (svgWidth*index/10)+15, value: this.getX().max*index/10})
-      console.log(xvalues)
     }
 
     const yvalues = [

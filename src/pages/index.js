@@ -11,7 +11,7 @@ class BreakEvenCalculator extends React.Component {
     super(props)
     this.state = {
       stepNum: 0,
-      totalVariableCost: '',
+      variableCostPerUnit: '',
       numUnits: '',
       pricePerUnit: '',
       totalFixedCost: '',
@@ -43,7 +43,7 @@ class BreakEvenCalculator extends React.Component {
     this.setState({shouldReset: true}, () => {
       this.setState({
         stepNum: 0,
-        totalVariableCost: '',
+        variableCostPerUnit: '',
         numUnits: '',
         pricePerUnit: '',
         totalFixedCost: '',

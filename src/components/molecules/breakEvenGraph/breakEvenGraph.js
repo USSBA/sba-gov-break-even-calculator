@@ -1,28 +1,27 @@
 import React from 'react'
-import LineChart from './lineChart.js'
-import { Card, Button} from 'semantic-ui-react'
+import LineChart from '../../atoms'
+import { Card, Label} from 'semantic-ui-react'
 
 class BreakEvenGraph extends React.Component {
-
   breakEvenData= [ { 
             x: this.props.breakEvenUnits,
             y: 0
           },
-          { x: parseInt(this.props.breakEvenUnits.replace(/,/g, '')),
-            y: parseFloat(this.props.breakEvenSales.replace(/,/g, ''))
+          { x: parseInt(this.props.breakEvenUnits),
+            y: parseFloat(this.props.breakEvenSales)
           }
         ]
   render() {
 
     return (
-      <Card>
+      <Card fluid>
         <Card.Content>
           <h3>Break-even Graph</h3>
-          <Button basic size='small'><i aria-hidden="true" class="circle small icon"></i>Break-Even Point</Button>
-
+          <Label basic size='tiny'><i aria-hidden="true" class="circle small icon"></i>Break-Even Point</Label>
           <LineChart data={this.breakEvenData} color={'#007DBC'}  />
         </Card.Content>
-      </Card>
+    </Card>
+      
     );
   }
 }

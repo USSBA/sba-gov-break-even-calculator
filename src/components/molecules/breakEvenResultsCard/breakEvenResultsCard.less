@@ -1,0 +1,35 @@
+@import '../../../styles/variables.less';
+
+.breakEvenWelcome-container {
+  h4 {
+    font-weight: 500;
+    margin: 5px 0;
+  }
+
+  .column:last-child {
+    padding-left: 0 !important;
+  }
+
+  .units, .sales {
+    p {
+      font-weight: 400;
+    }
+  }
+
+  .units, .sales {
+    border: 1px solid @secondary-blue-light;
+
+    .number {
+      color: @secondary-blue;
+      font-weight: 600;
+
+      &.loss {
+        color: @sba-red-light;
+      }
+    }
+  }
+
+  .sales {
+    border: 1px solid @sba-blue;
+  }
+}

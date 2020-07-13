@@ -15,7 +15,7 @@ describe('MoneyInput', () => {
 
     expect(wrapper.props()).toEqual(
       expect.objectContaining({
-        label: true,
+        labelPosition: 'left',
         name: 'Loans',
         value: '0',
         type: 'number',

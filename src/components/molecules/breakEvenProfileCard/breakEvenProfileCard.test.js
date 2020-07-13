@@ -5,7 +5,12 @@ import BreakEvenProfileCard from './breakEvenProfileCard'
 
 describe('BreakEvenProfileCard', () => {
   it('renders two circles', () => {
-    const wrapper = shallow(<BreakEvenProfileCard />)
+    const wrapper = shallow(
+      <BreakEvenProfileCard 
+        breakEvenUnits={'100'}
+        breakEvenSales={'1,200'}
+      />
+    )
     expect(wrapper.find('.circleContent')).toHaveLength(2)
   })
 

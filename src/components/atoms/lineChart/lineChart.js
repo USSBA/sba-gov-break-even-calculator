@@ -41,11 +41,8 @@ class LineChart extends React.Component {
     const {data, color} = this.props;
     const svgX = this.getSvgX(data[0].x)
     let pathD = "M " + svgX + " " + this.getSvgY(data[0].y) + " ";
-    console.log('PATHD',pathD)
 
     pathD += data.map((point, i) => {
-      console.log('PATHD',pathD)
-
       return "L " + this.getSvgX(point.x) + " " + this.getSvgY(point.y) + " ";
     });
 
@@ -61,7 +58,7 @@ class LineChart extends React.Component {
     const y = this.getY();
 
     return (
-      <g key={this.key} className="linechart_axis">
+      <g className='linechart_axis' key='linechart_axis'>
         <line
           x1={this.getSvgX(x.min) - yLabelSize} y1={this.getSvgY(y.min)}
           x2={this.getSvgX(x.max)} y2={this.getSvgY(y.min)}
@@ -102,23 +99,22 @@ class LineChart extends React.Component {
     ]
 
     return(
-      <g className="linechart_label">
+      <g className='linechart_label' key='linechart_label'>
         {/* Y AXIS LABELS */}
         { yvalues.map((yval) => {
           return(
-            <text transform={`translate(${yLabelSize/2}, ${yval.width})`} textAnchor="middle">
+            <text transform={`translate(${yLabelSize/2}, ${yval.width})`} textAnchor='middle'>
              { yval.value}
             </text>
           )
         })}
+
         {/* X AXIS LABELS */}
-        
         { xvalues.map((xval) => {
-          return (<text transform={`translate(${xval.width}, ${svgHeight})`} textAnchor="start">
+          return (<text transform={`translate(${xval.width}, ${svgHeight})`} textAnchor='start'>
            { xval.value }
           </text>)
         })}
-        
       </g>
     )
   }
@@ -127,9 +123,8 @@ class LineChart extends React.Component {
     const {svgHeight, svgWidth} = this.props;
 
     return (
-      <svg  width={svgWidth} height={svgHeight} viewBox={`0 0 ${svgWidth-100} ${svgHeight}`} className={'linechart'}
-             >
-        <g>
+      <svg  width={svgWidth} height={svgHeight} viewBox={`0 0 ${svgWidth-100} ${svgHeight}`} className={'linechart'}>
+        <g key='line_chart'>
           {this.makeAxis()}
           {this.makePath()}
           {this.makeLabels()}

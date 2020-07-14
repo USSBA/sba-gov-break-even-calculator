@@ -1,6 +1,6 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
-import LineChart from './lineChart.js'
+import { shallow } from 'enzyme'
+import { LineChart }  from '../../atoms'
 
 describe('BreakEvenGraph', () => {
   const breakEvenData= [ 
@@ -48,11 +48,11 @@ describe('BreakEvenGraph', () => {
   })
 
   it('returns linechart path', () => {
-    expect(instance.makePath()).toEqual(<path className="linechart_path" d="M 60 480 L 60 480 ,L 530 0 " style={{"stroke": "#007DBC"}} />)
+    expect(instance.makePath()).toEqual(<path className='linechart_path' d='M 60 480 L 60 480 ,L 530 0 ' style={{'stroke': '#007DBC'}} />)
   })
 
   it('max the axes', () => {
-    expect(instance.makeAxis()).toEqual(<g className="linechart_axis"><line strokeDasharray="5" x1={0} x2={1000} y1={480} y2={480} /><line strokeDasharray="5" x1={0} x2={1000} y1={0} y2={0} /></g>)
+    expect(instance.makeAxis()).toEqual(<g className='linechart_axis' key='linechart_axis'><line strokeDasharray='5' x1={0} x2={1000} y1={480} y2={480} /><line strokeDasharray='5' x1={0} x2={1000} y1={0} y2={0} /></g>)
   })
 })
 

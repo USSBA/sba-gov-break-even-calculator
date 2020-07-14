@@ -40,10 +40,10 @@ class LineChart extends React.Component {
   makePath = () => {
     const {data, color} = this.props;
     const svgX = this.getSvgX(data[0].x)
-    let pathD = "M " + svgX + " " + this.getSvgY(data[0].y) + " ";
+    let pathD = `M ${svgX} ${this.getSvgY(data[0].y) }`
 
     pathD += data.map((point, i) => {
-      return "L " + this.getSvgX(point.x) + " " + this.getSvgY(point.y) + " ";
+      return `L ${this.getSvgX(point.x)} ${this.getSvgY(point.y)} `
     });
 
     return (

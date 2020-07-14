@@ -2,3 +2,4 @@
     User Variable Overrides
 *******************************/
 @basicColor: @sba-blue;
+@basicBorder: 1px solid @sba-gray-light;

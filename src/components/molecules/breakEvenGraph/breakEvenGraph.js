@@ -12,13 +12,13 @@ class BreakEvenGraph extends React.Component {
       y: parseFloat(this.props.breakEvenSales)
     } 
   ]
-  
+
   render() {
     return (
       <Card fluid>
         <Card.Content>
           <h3>Break-even Graph</h3>
-          <Label basic size='tiny'><i aria-hidden='true' class='circle small icon'></i>Break-Even Point</Label>
+          <Label basic size='small'><i aria-hidden='true' class='circle small icon'></i>Break-Even Point</Label>
           <LineChart data={this.breakEvenData} color={'#007DBC'}  />
         </Card.Content>
       </Card>   

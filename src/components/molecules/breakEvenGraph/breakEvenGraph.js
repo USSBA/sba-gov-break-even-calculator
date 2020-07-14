@@ -21,7 +21,7 @@ class BreakEvenGraph extends React.Component {
         <Card.Content>
           <h3>Break-even Graph</h3>
           <Label basic size='small'>
-            <Icon name='breakEven circle' />Break-Even Point</Label>
+            <Icon className='breakEven' name='circle' />Break-Even Point</Label>
           <LineChart data={this.breakEvenData} color={'#007DBC'}  />
         </Card.Content>
       </Card>   

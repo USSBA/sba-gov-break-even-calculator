@@ -40,14 +40,14 @@ class LineChart extends React.Component {
   makePath = () => {
     const {data, color} = this.props;
     const svgX = this.getSvgX(data[0].x)
-    let pathD = `M ${svgX} ${this.getSvgY(data[0].y) }`
+    let pathD = `M ${svgX} ${this.getSvgY(data[0].y) } `
 
     pathD += data.map((point, i) => {
       return `L ${this.getSvgX(point.x)} ${this.getSvgY(point.y)} `
     });
 
     return (
-      <path className="linechart_path" d={pathD} style={{stroke: color}} />
+      <path className="lineChartPath" d={pathD} style={{stroke: color}} />
     );
   }
   
@@ -58,11 +58,13 @@ class LineChart extends React.Component {
     const y = this.getY();
 
     return (
-      <g className='linechart_axis' key='linechart_axis'>
+      <g className='lineChartAxis' key='lineChartAxis'>
+        {/* X AXIS */}
         <line
           x1={this.getSvgX(x.min) - yLabelSize} y1={this.getSvgY(y.min)}
           x2={this.getSvgX(x.max)} y2={this.getSvgY(y.min)}
           strokeDasharray="5" />
+        {/* Y AXIS */}
         <line
           x1={this.getSvgX(x.min) - yLabelSize} y1={this.getSvgY(y.max)}
           x2={this.getSvgX(x.max)} y2={this.getSvgY(y.max)}
@@ -71,16 +73,16 @@ class LineChart extends React.Component {
     );
   }
 
-  makeLabels(){
+  makeLabels = () => {
     const {svgHeight, svgWidth, xLabelSize, yLabelSize} = this.props;
     const padding = 5;
-    const xvalues = [{ width: 0, value: this.getX().min}]
+    const xValues = [{ width: 0, value: this.getX().min}]
     
     for (let index = 1; index < 11; index++) {
-      xvalues.push({width: (svgWidth*index/10)+15, value: this.getX().max*index/10})
+      xValues.push({width: (svgWidth*index/10)+15, value:  Math.round( this.getX().max*index/10 )})
     }
-
-    const yvalues = [
+   
+    const yValues = [
       { width: (svgHeight - xLabelSize - padding) * 1/16, 
         value: this.getY().max.toLocaleString('us-EN',{ style: 'currency', currency: 'USD'} )
       },
@@ -99,9 +101,9 @@ class LineChart extends React.Component {
     ]
 
     return(
-      <g className='linechart_label' key='linechart_label'>
+      <g className='lineChartLabel' key='lineChartLabel'>
         {/* Y AXIS LABELS */}
-        { yvalues.map((yval) => {
+        { yValues.map((yval) => {
           return(
             <text transform={`translate(${yLabelSize/2}, ${yval.width})`} textAnchor='middle'>
              { yval.value}
@@ -110,7 +112,7 @@ class LineChart extends React.Component {
         })}
 
         {/* X AXIS LABELS */}
-        { xvalues.map((xval) => {
+        { xValues.map((xval) => {
           return (<text transform={`translate(${xval.width}, ${svgHeight})`} textAnchor='start'>
            { xval.value }
           </text>)
@@ -123,8 +125,8 @@ class LineChart extends React.Component {
     const {svgHeight, svgWidth} = this.props;
 
     return (
-      <svg  width={svgWidth} height={svgHeight} viewBox={`0 0 ${svgWidth-100} ${svgHeight}`} className={'linechart'}>
-        <g key='line_chart'>
+      <svg  width={svgWidth} height={svgHeight} viewBox={`0 0 ${svgWidth-100} ${svgHeight}`} className={'lineChart'}>
+        <g key='lineChart'>
           {this.makeAxis()}
           {this.makePath()}
           {this.makeLabels()}

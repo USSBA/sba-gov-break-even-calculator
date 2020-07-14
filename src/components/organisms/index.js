@@ -3,7 +3,6 @@ import VariableCosts from './variableCosts/variableCosts'
 import UnitSales from './unitSales/unitSales'
 import PricePerUnit from './pricePerUnit/pricePerUnit'
 import Results from './results/results'
-import BreakEvenGraph from '../molecules/breakEvenGraph/breakEvenGraph'
 
 export {
   FixedCosts,

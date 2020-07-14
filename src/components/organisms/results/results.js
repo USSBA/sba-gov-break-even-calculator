@@ -6,15 +6,16 @@ import './results.less'
 
 const Results = (props) => {
   const { variableCostPerUnit, numUnits, pricePerUnit, totalFixedCost } = props
+  const contributionMarginRatio = (pricePerUnit - variableCostPerUnit) / pricePerUnit;
   const breakEvenPointUnits = Math.round(totalFixedCost / (pricePerUnit - variableCostPerUnit))
-  const breakEvenPointRevenue = Math.round(breakEvenPointUnits * (pricePerUnit - variableCostPerUnit))
+  const breakEvenPointRevenue = Math.round(totalFixedCost / contributionMarginRatio)
 
   return (
     <div className='resultsContainer'>
       <div className='gradientBackground'></div>
       <div className='dataCards-container'>
-        <Grid>
-          <Grid.Row columns={2} stackable stretched>
+        <Grid stackable>
+          <Grid.Row columns={2} stretched>
             <Grid.Column>
               <BreakEvenResultsCard 
                 expectedUnits={numUnits}

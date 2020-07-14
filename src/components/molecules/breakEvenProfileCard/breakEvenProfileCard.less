@@ -43,31 +43,16 @@
     }
   }
 
-  .circles-legend {
-    min-width: 125px;
-    padding: 5px 15px 5px 5px;
-    border: 1px solid @sba-gray-light;
-    border-radius: 8px;
-    display: inline-block;
-    margin-right: @small-spacing;
+  .ui.basic.label {
+    font-weight: 400;
+    color: unset;
 
-    .text {
-      margin-bottom: 1px;
+    i.legend-color.units {
+      color: @secondary-blue-light;
     }
 
-    .legend-color {
-      width: 16px;
-      height: 16px;
-      display: inline-block;
-      margin: 0 5px;
-
-      &.units {
-        background-color: @secondary-blue-light;
-      }
-
-      &.sales {
-        background-color: @secondary-blue;
-      }
+    i.legend-color.sales {
+      color: @secondary-blue;
     }
   }
 

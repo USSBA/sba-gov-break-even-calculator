@@ -14,8 +14,8 @@ const Results = (props) => {
     <div className='resultsContainer'>
       <div className='gradientBackground'></div>
       <div className='dataCards-container'>
-        <Grid>
-          <Grid.Row columns={2} stackable stretched>
+        <Grid stackable>
+          <Grid.Row columns={2} stretched>
             <Grid.Column>
               <BreakEvenResultsCard 
                 expectedUnits={numUnits}

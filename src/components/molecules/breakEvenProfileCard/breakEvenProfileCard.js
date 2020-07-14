@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Container, Card} from 'semantic-ui-react'
+import { Label, Card, Icon} from 'semantic-ui-react'
 import './breakEvenProfileCard.less'
 import { formatNumber } from '../../../helpers'
 
@@ -25,14 +25,14 @@ const BreakEvenProfileCard = (props) => {
             </div>
           </div>
         </div>
-        <div className='circles-legend units'>
-          <span className='legend-color units'></span>
-          <span className='text'>Units sold</span>
-        </div>
-        <div className='circles-legend sales'>
-          <span className='legend-color sales'></span>
-          <span className='text'>Sales dollars</span>
-        </div>
+        <Label basic>
+          <Icon className='legend-color units' name='square' />
+          Units Sold
+        </Label>
+        <Label basic>
+          <Icon className='legend-color sales' name='square' />
+          Sales Dollars
+        </Label>
       </Card.Content>
     </Card>
   )

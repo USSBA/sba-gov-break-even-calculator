@@ -7,8 +7,9 @@ import './results.less'
 const Results = (props) => {
   const { variableCostPerUnit, numUnits, pricePerUnit, totalFixedCost } = props
 
+  const contributionMarginRatio = (pricePerUnit - variableCostPerUnit) / pricePerUnit;
   const breakEvenPointUnits = Math.round(totalFixedCost / (pricePerUnit - variableCostPerUnit))
-  const breakEvenPointRevenue = Math.round(breakEvenPointUnits * (pricePerUnit - variableCostPerUnit))
+  const breakEvenPointRevenue = Math.round(totalFixedCost / contributionMarginRatio)
 
   return (
     <div className='resultsContainer'>

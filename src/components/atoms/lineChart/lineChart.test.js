@@ -40,7 +40,7 @@ describe('BreakEvenGraph', () => {
     expect(instance.getX().min).toEqual(0)
   })
 
-  it('has max y value is 1000', () => {
+  it('has max y value at 1000', () => {
     const wrapper = shallow(
       <LineChart data={breakEvenData} color={'#007DBC'}  />
     )
@@ -49,7 +49,7 @@ describe('BreakEvenGraph', () => {
     expect(instance.getY().max).toEqual(1000)
   })
 
-  it('has min y value is 0', () => {
+  it('has min y value at 0', () => {
     const wrapper = shallow(
       <LineChart data={breakEvenData} color={'#007DBC'}  />
     )
@@ -85,7 +85,7 @@ describe('BreakEvenGraph', () => {
     expect(instance.makePath()).toEqual(<path className='lineChartPath' d='M 60 480 L 60 480 ,L 530 0 ' style={{'stroke': '#007DBC'}} />)
   })
 
-  it('max the axes', () => {
+  it('returns the x and y axes', () => {
     const wrapper = shallow(
       <LineChart data={breakEvenData} color={'#007DBC'}  />
     )

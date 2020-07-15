@@ -78,8 +78,8 @@ class LineChart extends React.Component {
     const padding = 5;
     const xValues = [{ width: 0, value: this.getX().min}]
     
-    for (let index = 1; index < 11; index++) {
-      xValues.push({width: (svgWidth*index/10)+15, value:  Math.round( this.getX().max*index/10 )})
+    for (let index = 1; index < 9; index++) {
+      xValues.push({width: (svgWidth*index/8)+15, value:  Math.round( this.getX().max*index/8 )})
     }
    
     const yValues = [
@@ -125,7 +125,7 @@ class LineChart extends React.Component {
     const {svgHeight, svgWidth} = this.props;
 
     return (
-      <svg  width={svgWidth} height={svgHeight} viewBox={`0 0 ${svgWidth-100} ${svgHeight}`} className={'lineChart'}>
+      <svg  width={1400} height={svgHeight} viewBox={`380 0 600 ${svgHeight}`} className={'lineChart'}>
         <g key='lineChart'>
           {this.makeAxis()}
           {this.makePath()}
@@ -141,7 +141,7 @@ LineChart.defaultProps = {
   color: '#2196F3',
   pointRadius: 5,
   svgHeight: 500,
-  svgWidth: 1000,
+  svgWidth: 1060,
   xLabelSize: 20,
   yLabelSize: 60
 }

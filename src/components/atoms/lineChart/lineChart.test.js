@@ -91,7 +91,7 @@ describe('BreakEvenGraph', () => {
     )
     const instance = wrapper.instance()
 
-    expect(instance.makeAxis()).toEqual(<g className='lineChartAxis' key='lineChartAxis'><line strokeDasharray='5' x1={0} x2={1000} y1={480} y2={480} /><line strokeDasharray='5' x1={0} x2={1000} y1={0} y2={0} /></g>)
+    expect(instance.makeAxis()).toEqual(<g className='lineChartAxis' key='lineChartAxis'><line strokeDasharray='5' x1={0} x2={1060} y1={480} y2={480} /><line strokeDasharray='5' x1={0} x2={1060} y1={0} y2={0} /></g>)
   })
 })
 

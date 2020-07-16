@@ -1,18 +1,18 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import { BreakEvenGraph } from '../../molecules'
+import { getDataAndConfig, getHtml, checkSvg } from ‘./helper’;
+
 
 describe('BreakEvenGraph', () => {
   it('renders without crashing', () => {
-    const breakEvenUnits = 10
-    const breakEvenSales = 1000
-
-    const wrapper = shallow(
+    const wrapper = mount(
       <BreakEvenGraph 
         breakEvenUnits={'100'}
-        breakEvenSales={'1,200'}
+        breakEvenSales={'1200'}
       />
     )
+    const html = wrapper.find('svg').html();
     expect(wrapper).toHaveLength(1)
   })
 })

@@ -8,9 +8,8 @@ const drawLineChart = (data) => {
 
   const svgWidth = 800, svgHeight = 500;
   const svg = d3.select('svg')
-  .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`)
+    .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`)
  
-
   const margin = { top: 20, right: 20, bottom: 30, left: 50 };
   const g = svg.append("g")
     .attr("transform","translate(" + margin.left + "," + margin.top + ")");
@@ -19,16 +18,16 @@ const drawLineChart = (data) => {
   const height = svgHeight - margin.top - margin.bottom;
   
   const y = d3.scaleLinear()
-    .domain(d3.extent(data, (d) => d.sales))
+    .domain(d3.extent(data, (d) => d.y))
     .range([height, 0])
 
   const x = d3.scaleLinear()
-    .domain([0, data[1].units*2])
+    .domain([0, data[1].x*2])
     .range([0, width])
 
   const breakEvenLine = d3.line()
-    .x((d) => x(d.units))
-    .y((d) =>y(d.sales))
+    .x((d) => x(d.x))
+    .y((d) =>y(d.y))
 
 
   // X - Axis
@@ -62,8 +61,8 @@ const drawLineChart = (data) => {
 
 class BreakEvenGraph extends React.Component {
   breakEvenData= [ 
-    { units: this.props.breakEvenUnits, sales: 0},
-    { units: this.props.breakEvenUnits, sales: this.props.breakEvenSales}
+    { x: this.props.breakEvenUnits, y: 0},
+    { x: this.props.breakEvenUnits, y: this.props.breakEvenSales}
   ]
 
   componentDidMount() {

@@ -9,5 +9,5 @@ export {
   UnitSales,
   PricePerUnit,
   Results,
-  VariableCosts,
+  VariableCosts
 }

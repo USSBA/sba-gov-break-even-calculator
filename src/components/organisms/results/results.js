@@ -1,12 +1,11 @@
 import React from 'react'
 
 import { Grid } from 'semantic-ui-react'
-import { BreakEvenProfileCard, BreakEvenResultsCard } from '../../molecules'
+import { BreakEvenProfileCard, BreakEvenResultsCard, BreakEvenGraph } from '../../molecules'
 import './results.less'
 
 const Results = (props) => {
   const { variableCostPerUnit, numUnits, pricePerUnit, totalFixedCost } = props
-
   const contributionMarginRatio = (pricePerUnit - variableCostPerUnit) / pricePerUnit;
   const breakEvenPointUnits = Math.round(totalFixedCost / (pricePerUnit - variableCostPerUnit))
   const breakEvenPointRevenue = Math.round(totalFixedCost / contributionMarginRatio)
@@ -35,7 +34,12 @@ const Results = (props) => {
             </Grid.Column>
           </Grid.Row>
           <Grid.Row columns={1}>
-            {/* Graph goes here */}
+            <Grid.Column>
+              <BreakEvenGraph 
+                breakEvenUnits={breakEvenPointUnits}
+                breakEvenSales={breakEvenPointRevenue}
+              />
+            </Grid.Column>
           </Grid.Row>
           <Grid.Row columns={1}>
             {/* Table goes here */}

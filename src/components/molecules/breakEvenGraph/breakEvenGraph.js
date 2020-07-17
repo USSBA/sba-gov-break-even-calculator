@@ -29,7 +29,6 @@ const drawLineChart = (data) => {
     .x((d) => x(d.x))
     .y((d) =>y(d.y))
 
-
   // X - Axis
   g.append("g")
     .attr("transform", "translate(0," + height + ")")

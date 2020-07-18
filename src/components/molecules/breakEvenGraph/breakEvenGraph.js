@@ -4,19 +4,22 @@ import "./breakEvenGraph.less"
 import * as d3 from 'd3';
 
 const drawLineChart = (data) => {
-  const dollarFormat = function(d) { return "$" + d3.format(",.2f")(d); } 
+  //Clean out the SVG
+  d3.select('#lineChart > *').remove()
+
+  const dollarFormat = function(d) { return "$" + d3.format(",.2f")(d); }
 
   const svgWidth = 800, svgHeight = 500;
-  const svg = d3.select('svg')
+  const svg = d3.select('#lineChart')
     .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`)
- 
+
   const margin = { top: 20, right: 20, bottom: 30, left: 50 };
   const g = svg.append("g")
     .attr("transform","translate(" + margin.left + "," + margin.top + ")");
 
   const width = svgWidth - margin.left - margin.right;
   const height = svgHeight - margin.top - margin.bottom;
-  
+
   const y = d3.scaleLinear()
     .domain(d3.extent(data, (d) => d.y))
     .range([height, 0])
@@ -59,16 +62,17 @@ const drawLineChart = (data) => {
 }
 
 class BreakEvenGraph extends React.Component {
-  breakEvenData= [ 
-    { x: this.props.breakEvenUnits, y: 0},
-    { x: this.props.breakEvenUnits, y: this.props.breakEvenSales}
-  ]
 
   componentDidMount() {
-    drawLineChart(this.breakEvenData)
+    drawLineChart(breakEvenData(this.props))
   }
-  
+
+  componentDidUpdate() {
+    drawLineChart(breakEvenData(this.props))
+  }
+
   render() {
+
     return (
       <Card fluid>
         <Card.Content id='breakEvenGraph'>
@@ -80,9 +84,14 @@ class BreakEvenGraph extends React.Component {
             <svg id="lineChart"></svg>
           </div>
         </Card.Content>
-      </Card>   
+      </Card>
     );
   }
 }
 
 export default BreakEvenGraph
+
+const breakEvenData = (props) => [
+  { x: props.breakEvenUnits, y: 0},
+  { x: props.breakEvenUnits, y: props.breakEvenSales}
+]

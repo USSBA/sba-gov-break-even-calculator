@@ -5,6 +5,8 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@storybook/addon-knobs": "^5.3.19",
+    "css-loader": "^3.6.0",
     "d3": "^5.16.0",
     "gatsby": "^2.22.15",
     "gatsby-image": "^2.4.5",
@@ -17,17 +19,26 @@
     "gatsby-source-filesystem": "^2.3.8",
     "gatsby-transformer-sharp": "^2.5.3",
     "less": "^3.11.3",
+    "less-loader": "^6.2.0",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
     "semantic-ui-less": "^2.4.1",
-    "semantic-ui-react": "^0.88.2"
+    "semantic-ui-react": "^0.88.2",
+    "storybook": "^5.3.19",
+    "style-loader": "^1.2.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/react": "^5.3.19",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.0.1",
+    "babel-loader": "^8.1.0",
     "babel-preset-gatsby": "^0.4.9",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
@@ -53,7 +64,9 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "jest",
-    "lint": "./node_modules/.bin/eslint"
+    "lint": "./node_modules/.bin/eslint",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",

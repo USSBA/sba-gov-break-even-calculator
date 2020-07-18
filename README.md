@@ -33,3 +33,22 @@
     Your site is now running at `http://localhost:8000`!
 
     Open the `sba-gov-break-even-calculator` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+
+
+## Storybook
+
+Storybook is a UI tool that allows for mocking of components in isolation.  You can add run storybook with 
+
+    ```npm run storybook```
+    
+This will run storybook locally, normally on port 6006.
+
+To add new components to the library please use existing examples and reference the [Story Book docs](https://storybook.js.org/docs/basics/introduction/)
+
+
+## Common Problems
+
+   1. 'JavaScript heap out of memory' when starting the gatsby development server.  To resolve this run the following command to increase the heap size:
+
+   ```export NODE_OPTIONS="--max-old-space-size=8192"```
+   

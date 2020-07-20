@@ -1,11 +1,15 @@
 import React from 'react'
 import { Card, Icon, Label } from 'semantic-ui-react'
-import "./breakEvenGraph.less"
+import { BreakEvenGraphData } from '../../atoms'
+import './breakEvenGraph.less'
 import * as d3 from 'd3';
 
 const drawLineChart = (data) => {
-  const dollarFormat = function(d) { return "$" + d3.format(",.2f")(d); } 
+  console.log('data is', data)
+  //Clean out the SVG
+  d3.select('#lineChart > *').remove()
 
+  const dollarFormat = function(d) { return "$" + d3.format(",.2f")(d); } 
   const svgWidth = 800, svgHeight = 500;
   const svg = d3.select('svg')
     .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`)
@@ -18,16 +22,12 @@ const drawLineChart = (data) => {
   const height = svgHeight - margin.top - margin.bottom;
   
   const y = d3.scaleLinear()
-    .domain(d3.extent(data, (d) => d.y))
+    .domain(d3.extent(data.breakEven.data, (d) => d.y))
     .range([height, 0])
 
   const x = d3.scaleLinear()
-    .domain([0, data[1].x*2])
+    .domain([0, data.breakEven.data[1].x*2])
     .range([0, width])
-
-  const breakEvenLine = d3.line()
-    .x((d) => x(d.x))
-    .y((d) =>y(d.y))
 
   // X - Axis
   g.append("g")
@@ -48,24 +48,44 @@ const drawLineChart = (data) => {
     .attr("dy", "0.71em")
     .attr("text-anchor", "end")
 
-    g.append("path")
-    .datum(data)
+  // planning to refactor this to loop through each
+  const breakEvenLine = d3.line()
+    .x((d) => x(d.x))
+    .y((d) =>y(d.y))
+
+  const fixedCostLine = d3.line()
+    .x((d) => x(d.x))
+    .y((d) =>y(d.y))
+
+  // draw break even line
+  g.append("path")
+    .datum(data.breakEven.data)
     .attr("fill", "none")
-    .attr("stroke", "#007dbc")
+    .attr("stroke", data.breakEven.lineColor)
     .attr("stroke-linejoin", "round")
     .attr("stroke-linecap", "round")
     .attr("stroke-width", 3)
     .attr("d", breakEvenLine)
+
+  // draw fixed cost line
+  g.append("path")
+    .datum(data.fixedCost.data)
+    .attr("fill", "none")
+    .attr("stroke", data.fixedCost.lineColor)
+    .attr("stroke-linejoin", "round")
+    .attr("stroke-linecap", "round")
+    .attr("stroke-width", 3)
+    .attr("d", fixedCostLine)
 }
 
 class BreakEvenGraph extends React.Component {
-  breakEvenData= [ 
-    { x: this.props.breakEvenUnits, y: 0},
-    { x: this.props.breakEvenUnits, y: this.props.breakEvenSales}
-  ]
 
   componentDidMount() {
-    drawLineChart(this.breakEvenData)
+    drawLineChart(BreakEvenGraphData(this.props))
+  }
+
+  componentDidUpdate() {
+    drawLineChart(BreakEvenGraphData(this.props))
   }
   
   render() {
@@ -75,6 +95,9 @@ class BreakEvenGraph extends React.Component {
           <h3>Break-even Graph</h3>
           <Label basic size='small'>
             <Icon className='breakEven' name='circle' />Break-Even Point
+          </Label>
+          <Label basic size='small'>
+            <Icon className='fixedCost' name='circle' />Fixed Costs
           </Label>
           <div>
             <svg id="lineChart"></svg>

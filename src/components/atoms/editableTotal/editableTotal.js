@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 
-import { Grid, Button, Input } from 'semantic-ui-react'
-import { MoneyInput } from '../../atoms'
+import { Grid, Input, Divider } from 'semantic-ui-react'
+import { formatNumber } from '../../../helpers'
+import './editableTotal.less'
 
 const EditableTotal = (props) => {
-  const {title, value, onEdit} = props;
+  const {title, value, type='currency', onEdit} = props;
 
   const [fieldValue, setFieldValue] = useState(value)
   const [isEditing, setIsEditing] = useState(false)
@@ -21,12 +22,12 @@ const EditableTotal = (props) => {
 
   return (
     <>
-    <Grid.Row columns={2}>
+    <Grid.Row className='editableTotal-row' columns={2}>
       <Grid.Column className='title'>{title}</Grid.Column>
       <Grid.Column textAlign='right' className='editableSection'>
         {isEditing ? 
         (<Input 
-          label={{basic: true, content: '$'}} 
+          label={{basic: true, content: `${props.type === 'currency' ? '$' : 'Units'}`}} 
           action={{
             content:'APPLY',
             onClick: () => handleApply(),
@@ -36,8 +37,10 @@ const EditableTotal = (props) => {
           onChange={(e, { value }) => {handleInputFieldChange(value)}}
         />) :
         (<>
-          <span>{value}</span>
-          <a onClick={() => setIsEditing(true)}>Edit</a>
+          <span className='editableValue'>
+            {`${type === 'currency' ? '$' : ''}${formatNumber(value)} ${type !== 'currency' ? 'Units' : ''}`}
+          </span>
+          <a onClick={() => setIsEditing(true)}>edit</a>
         </>)
         }
       </Grid.Column >

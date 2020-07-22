@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Grid, Input, Divider } from 'semantic-ui-react'
+import { Grid, Input, Form } from 'semantic-ui-react'
 import { formatNumber } from '../../../helpers'
 import './editableTotal.less'
 
@@ -26,16 +26,23 @@ const EditableTotal = (props) => {
       <Grid.Column className='title'>{title}</Grid.Column>
       <Grid.Column textAlign='right' className='editableSection'>
         {isEditing ? 
-        (<Input 
-          label={{basic: true, content: `${props.type === 'currency' ? '$' : 'Units'}`}} 
-          action={{
-            content:'APPLY',
-            onClick: () => handleApply(),
-          }}
-          type='number'
-          value={fieldValue} 
-          onChange={(e, { value }) => {handleInputFieldChange(value)}}
-        />) :
+        (
+          <Form onSubmit={handleApply} size='small'>
+            <Form.Field>
+              <Input 
+                label={{basic: true, content: `${type === 'currency' ? '$' : 'Units'}`}} 
+                action={{
+                  color: 'blue',
+                  content:'APPLY',
+                  onClick: () => handleApply(),
+                }}
+                type='number'
+                value={fieldValue} 
+                onChange={(e, { value }) => {handleInputFieldChange(value)}}
+              />
+            </Form.Field>
+          </Form>
+        ) :
         (<>
           <span className='editableValue'>
             {`${type === 'currency' ? '$' : ''}${formatNumber(value)} ${type !== 'currency' ? 'Units' : ''}`}

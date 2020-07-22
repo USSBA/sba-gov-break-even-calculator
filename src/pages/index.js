@@ -1,10 +1,12 @@
 import React from 'react'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Container, Form } from 'semantic-ui-react'
 import Layout from '../components/layout'
+import { EditableTotal } from '../components/atoms'
 import { Hero } from '../components/molecules/'
 import { FixedCosts, UnitSales, PricePerUnit, Results, VariableCosts } from '../components/organisms/'
 import { CALCULATOR_STEPS } from '../constants/constants.js'
 import '../styles/typography.less'
+import './index.less'
 
 class BreakEvenCalculator extends React.Component {
   constructor(props) {
@@ -100,6 +102,29 @@ class BreakEvenCalculator extends React.Component {
             </Hero>
           </Grid.Column>
         </Grid>
+        <Container className='runningTotals-container'>
+          <Grid>
+              {this.state.stepNum > CALCULATOR_STEPS.UNIT_SALES &&
+              <EditableTotal
+                title='Number of units'
+                type='units'
+                value={this.state.numUnits || 1000}
+                onEdit={this.updateNumUnits}
+              />}
+              {this.state.stepNum > CALCULATOR_STEPS.PRICE_PER_UNIT &&
+              <EditableTotal
+                title='Selling price per unit'
+                value={this.state.pricePerUnit || 1000}
+                onEdit={this.updatePricePerUnit}
+              />}
+              {this.state.stepNum > CALCULATOR_STEPS.FIXED_COSTS && 
+              <EditableTotal
+                title='Total fixed cost'
+                value={this.state.totalFixedCost}
+                onEdit={this.updateFixedCost}
+              />}
+          </Grid>
+        </Container>
       </Layout>
     )
   }

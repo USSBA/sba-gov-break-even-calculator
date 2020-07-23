@@ -76,6 +76,7 @@ class BreakEvenCalculator extends React.Component {
                 visible={this.state.stepNum === CALCULATOR_STEPS.FIXED_COSTS}
                 goToStep={this.goToStep}
                 setFixedCost={this.updateFixedCost}
+                totalFixedCosts={this.state.totalFixedCost}
                 key={this.state.shouldReset} // change in key forces a re-mount
                 />
               <UnitSales 
@@ -96,7 +97,8 @@ class BreakEvenCalculator extends React.Component {
                 visible={this.state.stepNum === CALCULATOR_STEPS.VARIABLE_COSTS}
                 goToStep={this.goToStep}
                 setVariableCost={this.updateVariableCost}
-                key={this.state.shouldReset} // change in key forces a re-mount
+                restart={this.restartAnalysis}
+                key={this.state.shouldReset + 1} // change in key forces a re-mount
                 />
             </Hero>
           </Grid.Column>
@@ -107,13 +109,13 @@ class BreakEvenCalculator extends React.Component {
               <EditableTotal
                 title='Number of units'
                 type='units'
-                value={this.state.numUnits || 1000}
+                value={this.state.numUnits}
                 onEdit={this.updateNumUnits}
               />}
               {this.state.stepNum > CALCULATOR_STEPS.PRICE_PER_UNIT &&
               <EditableTotal
                 title='Selling price per unit'
-                value={this.state.pricePerUnit || 1000}
+                value={this.state.pricePerUnit}
                 onEdit={this.updatePricePerUnit}
               />}
               {this.state.stepNum > CALCULATOR_STEPS.FIXED_COSTS && 

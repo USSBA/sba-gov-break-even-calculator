@@ -15,15 +15,16 @@ const PricePerUnit = (props) => {
         <div>
           <label htmlFor='unit price'>Per unit selling price*</label>
           <p>Enter the price you plan to sell per unit or service</p>
-          <MoneyInput 
+          <MoneyInput
+            autoFocus
             value={props.value}
             onChange={(e, {value}) => props.setUnitPrice(value)}
             name='unit price' />
         </div>
         <div className='button-container'>
-          <Form.Button primary content='Continue' />
+          <Form.Button primary content='CONTINUE' />
         </div>
-        <a onClick={() => props.goToStep(self - 1)}>{`<Back to unit sales`}</a>
+        <a onClick={() => props.goToStep(self - 1)}>{`< Back to fixed costs`}</a>
         <a onClick={props.restart}>Restart Analysis</a>
       </Form>
     </div>

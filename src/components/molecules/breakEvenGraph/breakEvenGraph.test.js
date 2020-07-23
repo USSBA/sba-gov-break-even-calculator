@@ -10,7 +10,6 @@ describe('BreakEvenGraph', () => {
         breakEvenSales={'1200'}
       />
     );
-    console.log(wrapper.debug())
     expect(wrapper.find('svg')).toHaveLength(1)
   })
 
@@ -21,7 +20,6 @@ describe('BreakEvenGraph', () => {
         breakEvenSales={'1200'}
       />
     );
-    console.log(wrapper.debug())
     expect(wrapper.find('Icon.breakEven')).toHaveLength(1)
   })
 
@@ -32,7 +30,16 @@ describe('BreakEvenGraph', () => {
         breakEvenSales={'1200'}
       />
     );
-    console.log(wrapper.debug())
     expect(wrapper.find('Icon.totalCost')).toHaveLength(1)
+  })
+
+  it('includes unit label bottom of x axis', () => {
+    const wrapper = shallow(
+      <BreakEvenGraph 
+        breakEvenUnits={'100'}
+        breakEvenSales={'1200'}
+      />
+    );
+    expect(wrapper.find('.unitLabel').first().text()).toEqual('Units')
   })
 })

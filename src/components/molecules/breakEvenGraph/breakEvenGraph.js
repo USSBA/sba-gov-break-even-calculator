@@ -92,7 +92,6 @@ class BreakEvenGraph extends React.Component {
             <svg id="lineChart"></svg>
             <div className='unitLabel'>Units</div>
           </div>
-
         </Card.Content>
       </Card>   
     );

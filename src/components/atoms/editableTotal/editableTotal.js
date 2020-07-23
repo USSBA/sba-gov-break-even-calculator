@@ -22,7 +22,6 @@ const EditableTotal = (props) => {
   }, []);
 
   const handleClickOutside = e => {
-    console.log('hi')
     if (node.current.contains(e.target)) {
       return;
     }
@@ -39,7 +38,6 @@ const EditableTotal = (props) => {
   }
 
   return (
-    <>
     <Grid.Row className='editableTotal-row' columns={2}>
       <Grid.Column className='title'>{title}</Grid.Column>
       <Grid.Column textAlign='right' className='editableSection'>
@@ -69,7 +67,6 @@ const EditableTotal = (props) => {
         </>)}
       </Grid.Column >
     </Grid.Row>
-    </>
   )
   
 }

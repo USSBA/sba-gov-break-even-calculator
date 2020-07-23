@@ -113,7 +113,7 @@ class VariableCosts extends React.Component {
               </Grid.Column>}          
           </Grid>
         </Form>
-        <a className='navLink' onClick={() => this.props.goToStep(this.self - 1)}>{`< Back to price per unit`}</a>
+        <a className='navLink' onClick={() => this.props.goToStep(this.self - 1)}>{`< Back to unit sales`}</a>
         <a className='navLink' onClick={this.props.restart}>Restart Analysis</a>
       </div>
     )

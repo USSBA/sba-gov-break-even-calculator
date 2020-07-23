@@ -81,7 +81,7 @@ class BreakEvenGraph extends React.Component {
     return (
       <Card fluid>
         <Card.Content id='breakEvenGraph'>
-          <h3>Break-even Graph</h3>
+          <h3>Break-even Point Graph</h3>
           <Label basic size='small'>
             <Icon className='breakEven' name='circle' />Break-Even Point
           </Label>

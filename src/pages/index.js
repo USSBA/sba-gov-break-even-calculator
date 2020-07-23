@@ -6,7 +6,6 @@ import { Hero } from '../components/molecules/'
 import { FixedCosts, UnitSales, PricePerUnit, Results, VariableCosts } from '../components/organisms/'
 import { CALCULATOR_STEPS } from '../constants/constants.js'
 import '../styles/typography.less'
-import './index.less'
 
 class BreakEvenCalculator extends React.Component {
   constructor(props) {

@@ -22,6 +22,7 @@ const EditableTotal = (props) => {
   }, []);
 
   const handleClickOutside = e => {
+    console.log('hi')
     if (node.current.contains(e.target)) {
       return;
     }
@@ -29,7 +30,6 @@ const EditableTotal = (props) => {
   };
 
   const handleInputFieldChange = (value) => {
-    setIsEditing(true)
     setFieldValue(value)
   }
 
@@ -46,7 +46,8 @@ const EditableTotal = (props) => {
           <Form onSubmit={handleApply} size='small'>
             <Form.Field>
               <div ref={node}>
-                {isEditing && <Input 
+                {isEditing && <Input
+                  autoFocus
                   label={{basic: true, content: `${type === 'currency' ? '$' : 'Units'}`}} 
                   action={{
                     color: 'blue',
@@ -62,9 +63,9 @@ const EditableTotal = (props) => {
           </Form>
         {!isEditing && (<>
           <span className='editableValue'>
-            {`${type === 'currency' ? '$' : ''}${formatNumber(value)} ${type !== 'currency' ? 'Units' : ''}`}
+            {`${type === 'currency' ? '$' : ''}${formatNumber(value)}${type !== 'currency' ? ' Units' : ''}`}
           </span>
-          <a onClick={() => setIsEditing(true)}>edit</a>
+          <a className='editButton' onClick={() => setIsEditing(true)}>edit</a>
         </>)}
       </Grid.Column >
     </Grid.Row>

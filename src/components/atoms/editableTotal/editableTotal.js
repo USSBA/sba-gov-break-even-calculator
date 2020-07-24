@@ -37,6 +37,10 @@ const EditableTotal = (props) => {
     setIsEditing(false)
   }
 
+  const formatTotals = (val) => {
+    return `${type === 'currency' ? '$' : ''}${formatNumber(val)}${type !== 'currency' ? ' Units' : ''}`
+  }
+
   return (
     <Grid.Row className='editableTotal-row' columns={2}>
       <Grid.Column className='title'>{title}</Grid.Column>
@@ -61,7 +65,7 @@ const EditableTotal = (props) => {
           </Form>
         {!isEditing && (<>
           <span className='editableValue'>
-            {`${type === 'currency' ? '$' : ''}${formatNumber(value)}${type !== 'currency' ? ' Units' : ''}`}
+            {formatTotals(value)}
           </span>
           <a className='editButton' onClick={() => setIsEditing(true)}>edit</a>
         </>)}

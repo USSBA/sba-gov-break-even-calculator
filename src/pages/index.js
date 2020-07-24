@@ -1,6 +1,7 @@
 import React from 'react'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Container, Form } from 'semantic-ui-react'
 import Layout from '../components/layout'
+import { EditableTotal } from '../components/atoms'
 import { Hero } from '../components/molecules/'
 import { FixedCosts, UnitSales, PricePerUnit, Results, VariableCosts } from '../components/organisms/'
 import { CALCULATOR_STEPS } from '../constants/constants.js'
@@ -75,6 +76,7 @@ class BreakEvenCalculator extends React.Component {
                 visible={this.state.stepNum === CALCULATOR_STEPS.FIXED_COSTS}
                 goToStep={this.goToStep}
                 setFixedCost={this.updateFixedCost}
+                totalFixedCosts={this.state.totalFixedCost}
                 key={this.state.shouldReset} // change in key forces a re-mount
                 />
               <UnitSales 
@@ -95,11 +97,35 @@ class BreakEvenCalculator extends React.Component {
                 visible={this.state.stepNum === CALCULATOR_STEPS.VARIABLE_COSTS}
                 goToStep={this.goToStep}
                 setVariableCost={this.updateVariableCost}
-                key={this.state.shouldReset} // change in key forces a re-mount
+                restart={this.restartAnalysis}
+                key={this.state.shouldReset + 1} // change in key forces a re-mount
                 />
             </Hero>
           </Grid.Column>
         </Grid>
+        <Container className='runningTotals-container'>
+          <Grid>
+              {this.state.stepNum > CALCULATOR_STEPS.UNIT_SALES &&
+              <EditableTotal
+                title='Number of units'
+                type='units'
+                value={this.state.numUnits}
+                onEdit={this.updateNumUnits}
+              />}
+              {this.state.stepNum > CALCULATOR_STEPS.PRICE_PER_UNIT &&
+              <EditableTotal
+                title='Selling price per unit'
+                value={this.state.pricePerUnit}
+                onEdit={this.updatePricePerUnit}
+              />}
+              {this.state.stepNum > CALCULATOR_STEPS.FIXED_COSTS && 
+              <EditableTotal
+                title='Total fixed cost'
+                value={this.state.totalFixedCost}
+                onEdit={this.updateFixedCost}
+              />}
+          </Grid>
+        </Container>
       </Layout>
     )
   }

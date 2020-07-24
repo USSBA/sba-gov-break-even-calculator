@@ -26,6 +26,8 @@ class VariableCosts extends React.Component {
     }
   }
 
+  self = CALCULATOR_STEPS.VARIABLE_COSTS
+
   resetTotalVariableCosts = () => {
     this.setState({ totalVariableCosts: 0 })
   }
@@ -107,10 +109,12 @@ class VariableCosts extends React.Component {
               </Grid.Column>}
             {this.state.knowVariableCosts && 
               <Grid.Column>
-                <Form.Button primary content='Continue' />
+                <Form.Button primary content='CONTINUE' />
               </Grid.Column>}          
           </Grid>
         </Form>
+        <a className='navLink' onClick={() => this.props.goToStep(this.self - 1)}>{`< Back to unit sales`}</a>
+        <a className='navLink' onClick={this.props.restart}>Restart Analysis</a>
       </div>
     )
   }

@@ -3,10 +3,10 @@ import { Table } from 'semantic-ui-react'
 import { sortBy } from 'lodash';
 
 const tableData = [
-  { name: 'John', age: 15, gender: 'Male' },
-  { name: 'Amber', age: 40, gender: 'Female' },
-  { name: 'Leslie', age: 25, gender: 'Other' },
-  { name: 'Ben', age: 70, gender: 'Male' },
+  { units: 'John', profit: 15, revenue: 'Male', variableCosts: '200', fixedCosts: '123' },
+  { units: 'Amber', profit: 40, revenue: 'Female', variableCosts: '200', fixedCosts: '123' },
+  { units: 'Leslie', profit: 25, revenue: 'Other', variableCosts: '200', fixedCosts: '123' },
+  { units: 'Ben', profit: 70, revenue: 'Male', variableCosts: '200', fixedCosts: '123' },
 ]
 
 class BreakEvenDataTable extends React.Component {
@@ -44,31 +44,45 @@ class BreakEvenDataTable extends React.Component {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell
-              sorted={column === 'name' ? direction : null}
-              onClick={this.handleSort('name')}
+              sorted={column === 'units' ? direction : null}
+              onClick={this.handleSort('units')}
             >
-              Name
+              Unit Sales
             </Table.HeaderCell>
             <Table.HeaderCell
-              sorted={column === 'age' ? direction : null}
-              onClick={this.handleSort('age')}
+              sorted={column === 'profit' ? direction : null}
+              onClick={this.handleSort('profit')}
             >
-              Age
+              Operating Profit
             </Table.HeaderCell>
             <Table.HeaderCell
-              sorted={column === 'gender' ? direction : null}
-              onClick={this.handleSort('gender')}
+              sorted={column === 'revenue' ? direction : null}
+              onClick={this.handleSort('revenue')}
             >
-              Gender
+              Revenue
+            </Table.HeaderCell>
+						<Table.HeaderCell
+              sorted={column === 'variableCosts' ? direction : null}
+              onClick={this.handleSort('variableCosts')}
+            >
+              Variable Costs
+            </Table.HeaderCell>
+						<Table.HeaderCell
+              sorted={column === 'fixedCosts' ? direction : null}
+              onClick={this.handleSort('fixedCosts')}
+            >
+              Fixed Costs
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {data.map(({ age, gender, name }) => (
-            <Table.Row key={name}>
-              <Table.Cell>{name}</Table.Cell>
-              <Table.Cell>{age}</Table.Cell>
-              <Table.Cell>{gender}</Table.Cell>
+          {data.map(({ units, profit, revenue, variableCosts, fixedCosts }) => (
+            <Table.Row key={units}>
+              <Table.Cell>{units}</Table.Cell>
+              <Table.Cell>{profit}</Table.Cell>
+              <Table.Cell>{revenue}</Table.Cell>
+							<Table.Cell>{variableCosts}</Table.Cell>
+							<Table.Cell>{fixedCosts}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>

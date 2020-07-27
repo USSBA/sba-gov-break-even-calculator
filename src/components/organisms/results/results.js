@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Grid } from 'semantic-ui-react'
 import { BreakEvenProfileCard, BreakEvenResultsCard, BreakEvenGraph, BreakEvenDataTable } from '../../molecules'
-import { findStepSize } from '../../../helpers'
+import { findStepSize, formatNumber } from '../../../helpers'
 
 import './results.less'
 
@@ -13,11 +13,11 @@ const generateDataTableRow = (data) => {
   const totalVariableCost = Math.round(variableCostPerUnit * units);
 
   return {
-    units: units,
-    profit: revenue - totalVariableCost - fixedCost,
-    revenue: revenue,
-    variableCost: totalVariableCost,
-    fixedCost: fixedCost,
+    units: formatNumber(units),
+    profit: `$${formatNumber(revenue - totalVariableCost - fixedCost)}`,
+    revenue: `$${formatNumber(revenue)}`,
+    variableCosts: `$${formatNumber(totalVariableCost)}`,
+    fixedCosts: `$${formatNumber(fixedCost)}`,
   }
 }
 
@@ -42,8 +42,7 @@ const Results = (props) => {
   const breakEvenPointUnits = Math.round(totalFixedCost / (pricePerUnit - variableCostPerUnit))
   const breakEvenPointRevenue = Math.round(totalFixedCost / contributionMarginRatio)
 
-  const tableData = generateTableData(breakEvenPointUnits, parseInt(pricePerUnit), parseInt(variableCostPerUnit), totalFixedCost);
-  console.log(tableData)
+  const tableData = generateTableData(breakEvenPointUnits, parseInt(pricePerUnit), parseInt(variableCostPerUnit), parseInt(totalFixedCost));
 
   return (
     <div className='resultsContainer'>
@@ -80,7 +79,7 @@ const Results = (props) => {
             </Grid.Column>
           </Grid.Row>
           <Grid.Row columns={1}>
-            <BreakEvenDataTable />
+            <BreakEvenDataTable data={tableData}/>
           </Grid.Row>
         </Grid>
       </div>

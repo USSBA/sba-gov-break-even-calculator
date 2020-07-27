@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Grid } from 'semantic-ui-react'
-import { BreakEvenProfileCard, BreakEvenResultsCard, BreakEvenGraph } from '../../molecules'
+import { BreakEvenProfileCard, BreakEvenResultsCard, BreakEvenGraph, BreakEvenDataTable } from '../../molecules'
 import './results.less'
 
 const Results = (props) => {
@@ -45,7 +45,7 @@ const Results = (props) => {
             </Grid.Column>
           </Grid.Row>
           <Grid.Row columns={1}>
-            {/* Table goes here */}
+            <BreakEvenDataTable />
           </Grid.Row>
         </Grid>
       </div>

@@ -104,10 +104,12 @@ class BreakEvenGraph extends React.Component {
           <div class="graphContainer">
             <div id="lineChart"></div>
             <div className='unitLabel'>Units</div>
-            <div className="tooltip" >
-                <div className="units">{ BreakEvenGraphData(this.props).breakEvenPoint.data[0].x }</div>
+            <Card fluid className="tooltip" >
+                <div className="units">
+                  { BreakEvenGraphData(this.props).breakEvenPoint.data[0].x }
+                </div>
                 <div>Break-Even<br/>Units Sold</div>
-            </div>
+            </Card>
           </div>
         </Card.Content>
       </Card>   

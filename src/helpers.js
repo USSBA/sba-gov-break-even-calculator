@@ -27,9 +27,11 @@ const decimalAdjust = (value, exp) => {
 }
 
 const decimalPrettify = (value) => {
-  return decimalAdjust(value, value.length-1)
+  const numLength = value.toString().length
+  return decimalAdjust(value, numLength - 1)
 }
 
 export const findStepSize = (value) => {
-  return decimalPrettify(value) / 4
+  if (value < 5) return 1;
+  return decimalPrettify(Math.round(value/4))
 }

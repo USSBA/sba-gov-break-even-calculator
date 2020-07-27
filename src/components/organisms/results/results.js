@@ -10,7 +10,7 @@ const generateDataTableRow = (data) => {
   const {units, pricePerUnit, variableCostPerUnit, fixedCost } = data
 
   const revenue = Math.round(units * pricePerUnit);
-  const totalVariableCost = math.round(variableCostPerUnit * units);
+  const totalVariableCost = Math.round(variableCostPerUnit * units);
 
   return {
     units: units,
@@ -21,12 +21,29 @@ const generateDataTableRow = (data) => {
   }
 }
 
+const generateTableData = (breakEvenPointUnits, pricePerUnit, variableCostPerUnit, fixedCost) => {
+  const stepSize = findStepSize(breakEvenPointUnits)
+  const tableData = []
+  for(let i = 1; i < 9; i++) {
+    tableData.push(generateDataTableRow({
+      units: stepSize * i, 
+      pricePerUnit,
+      variableCostPerUnit,
+      fixedCost,
+    }))
+  }
+  return tableData;
+}
+
 const Results = (props) => {
   const { variableCostPerUnit, numUnits, pricePerUnit, totalFixedCost } = props
 
   const contributionMarginRatio = (pricePerUnit - variableCostPerUnit) / pricePerUnit;
   const breakEvenPointUnits = Math.round(totalFixedCost / (pricePerUnit - variableCostPerUnit))
   const breakEvenPointRevenue = Math.round(totalFixedCost / contributionMarginRatio)
+
+  const tableData = generateTableData(breakEvenPointUnits, parseInt(pricePerUnit), parseInt(variableCostPerUnit), totalFixedCost);
+  console.log(tableData)
 
   return (
     <div className='resultsContainer'>

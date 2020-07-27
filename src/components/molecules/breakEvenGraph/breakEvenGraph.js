@@ -101,11 +101,11 @@ class BreakEvenGraph extends React.Component {
           <Label basic size='small'>
             <Icon className='totalCost' name='circle' />Total Costs
           </Label>
-          <div>
+          <div class="graphContainer">
             <div id="lineChart"></div>
             <div className='unitLabel'>Units</div>
             <div className="tooltip" >
-                <div className="units">100</div>
+                <div className="units">{ BreakEvenGraphData(this.props).breakEvenPoint.data[0].x }</div>
                 <div>Break-Even<br/>Units Sold</div>
             </div>
           </div>

@@ -11,9 +11,9 @@ const tableData = [
 
 class BreakEvenDataTable extends React.Component {
 	state = {
-    column: null,
-    data: tableData,
-    direction: null,
+    column: 'units',
+    data: this.props.data,
+    direction: 'ascending',
   }
 
   handleSort = (clickedColumn) => () => {
@@ -34,7 +34,7 @@ class BreakEvenDataTable extends React.Component {
       data: data.reverse(),
       direction: direction === 'ascending' ? 'descending' : 'ascending',
     })
-  }
+	}
 
   render() {
     const { column, data, direction } = this.state

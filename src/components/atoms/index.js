@@ -1,5 +1,5 @@
 import MoneyInput from './moneyInput/moneyInput'
-import { BreakEvenGraphData } from './breakEvenGraphData/breakEvenGraphData'
 import EditableTotal from './editableTotal/editableTotal'
+import { BreakEvenGraphData } from './breakEvenGraphData/breakEvenGraphData'
 
 export { MoneyInput, BreakEvenGraphData, EditableTotal }

@@ -10,7 +10,7 @@ describe('BreakEvenGraph', () => {
         breakEvenSales={'1200'}
       />
     );
-    expect(wrapper.find('svg')).toHaveLength(1)
+    expect(wrapper.find('#lineChart')).toHaveLength(1)
   })
 
   it('includes the Break Even label for the graph', () => {
@@ -41,5 +41,15 @@ describe('BreakEvenGraph', () => {
       />
     );
     expect(wrapper.find('.unitLabel').first().text()).toEqual('Units')
+  })
+
+  it('includes break even point label', () => {
+    const wrapper = shallow(
+      <BreakEvenGraph 
+        breakEvenUnits={'100'}
+        breakEvenSales={'1200'}
+      />
+    );
+    expect(wrapper.find('.units').first().text()).toEqual('100')
   })
 })

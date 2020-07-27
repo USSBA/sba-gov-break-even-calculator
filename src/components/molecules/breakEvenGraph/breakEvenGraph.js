@@ -12,6 +12,7 @@ const drawLineChart = (data) => {
 
   const svgWidth = 800, svgHeight = 330;
   const svg = d3.select('#lineChart')
+    .append("svg")
     .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`)
  
   const margin = { top: 15, right: 20, bottom: 30, left: 50 };
@@ -67,6 +68,18 @@ const drawLineChart = (data) => {
       .attr('class', `${path}Line`)
       .attr("d", line)
   ))
+  
+  // plot the break even point
+  g.selectAll("dot")
+    .data(data.breakEvenPoint.data)
+    .enter()
+    .append("circle")
+    .attr("r", 9)
+    .attr("cx", function(d) { return x(d.x); })
+    .attr("cy", function(d) { return y(d.y); })
+    .attr("fill", data.breakEvenPoint.color)
+    .attr('id', 'breakEvenCircle')
+
 }
 class BreakEvenGraph extends React.Component {
   componentDidMount() {
@@ -89,8 +102,12 @@ class BreakEvenGraph extends React.Component {
             <Icon className='totalCost' name='circle' />Total Costs
           </Label>
           <div>
-            <svg id="lineChart"></svg>
+            <div id="lineChart"></div>
             <div className='unitLabel'>Units</div>
+            <div className="tooltip" >
+                <div className="units">100</div>
+                <div>Break-Even<br/>Units Sold</div>
+            </div>
           </div>
         </Card.Content>
       </Card>   

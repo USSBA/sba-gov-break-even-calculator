@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Label } from 'semantic-ui-react'
+import { Input } from 'semantic-ui-react'
 
 const MoneyInput = (props) => {
   return(

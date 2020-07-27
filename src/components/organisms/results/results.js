@@ -38,6 +38,9 @@ const Results = (props) => {
               <BreakEvenGraph 
                 breakEvenUnits={breakEvenPointUnits}
                 breakEvenSales={breakEvenPointRevenue}
+                fixedCost={totalFixedCost}
+                variableCost={variableCostPerUnit}
+                expectedUnits={numUnits}
               />
             </Grid.Column>
           </Grid.Row>

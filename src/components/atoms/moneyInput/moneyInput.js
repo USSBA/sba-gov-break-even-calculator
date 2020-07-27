@@ -4,6 +4,7 @@ import { Input } from 'semantic-ui-react'
 const MoneyInput = (props) => {
   return(
     <Input 
+      autoFocus={!!props.autoFocus}
       onChange={props.onChange} 
       label={{basic: true, content: '$'}}
       labelPosition='left'

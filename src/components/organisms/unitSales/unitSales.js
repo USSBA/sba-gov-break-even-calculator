@@ -16,6 +16,7 @@ const UnitSales = (props) => {
           <label htmlFor='units'>Number of units to sell*</label>
           <p>Enter the number of units or services you expect to sell</p>
         <Input 
+          autoFocus
           label={{basic: true, content: 'Units'}}
           labelPosition='right'
           placeholder='0'
@@ -24,9 +25,9 @@ const UnitSales = (props) => {
           />
         </div>
         <div className='button-container'>
-          <Form.Button primary content='Continue' />
+          <Form.Button primary content='CONTINUE' />
         </div>
-        <a onClick={() => props.goToStep(self - 1)}>{`<Back to fixed costs`}</a>
+        <a onClick={() => props.goToStep(self - 1)}>{`< Back to price per unit`}</a>
         <a onClick={props.restart}>Restart Analysis</a>
       </Form>
     </div>

@@ -59,18 +59,6 @@ class FixedCosts extends React.Component {
     this.props.goToStep(CALCULATOR_STEPS.FIXED_COSTS + 1)
   }
 
-  totalMonthlyFixedCosts = (
-    <Grid.Column>
-      <label htmlFor='totalFixedCosts'>Total monthly fixed costs</label>
-      <p>Enter the sum of all known fixed costs</p>
-      <Form.Field>
-        <MoneyInput name='totalFixedCosts' onChange={(e, {value}) => {
-          this.setState({totalFixedCosts: value})
-          }}/>
-      </Form.Field>
-    </Grid.Column>
-  )
-
   render() {
     return (
       <div className={`fixedCosts-container ${this.props.visible ? '' : 'hidden'}`}>
@@ -100,7 +88,21 @@ class FixedCosts extends React.Component {
               />
             </Grid.Column>
             {this.state.knowFixedCosts === 'no' && <NumbersInputForm  onChange={this.handleInputFieldChange} fields={fixedCostFields} />}
-            {this.state.knowFixedCosts === 'yes' && this.totalMonthlyFixedCosts}
+            {this.state.knowFixedCosts === 'yes' &&
+              <Grid.Column>
+                <label htmlFor='totalFixedCosts'>Total monthly fixed costs</label>
+                <p>Enter the sum of all known fixed costs</p>
+                <Form.Field>
+                  <MoneyInput 
+                    value={this.props.totalFixedCosts} 
+                    name='totalFixedCosts'
+                    autoFocus
+                    onChange={(e, {value}) => {
+                      this.props.setFixedCost(value)
+                      this.setState({totalFixedCosts: value})
+                    }}/>
+                </Form.Field>
+              </Grid.Column>}
           </Grid>
           <Grid columns={1}>
             {this.state.knowFixedCosts === 'yes' && 
@@ -111,7 +113,7 @@ class FixedCosts extends React.Component {
               </Grid.Column>}
             {this.state.knowFixedCosts && 
               <Grid.Column>
-                <Form.Button primary content='Continue' />
+                <Form.Button primary content='CONTINUE' />
               </Grid.Column>}          
           </Grid>
         </Form>

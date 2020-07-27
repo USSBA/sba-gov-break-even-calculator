@@ -79,8 +79,8 @@ const drawLineChart = (data) => {
     .attr("cy", function(d) { return y(d.y); })
     .attr("fill", data.breakEvenPoint.color)
     .attr('id', 'breakEvenCircle')
-
 }
+
 class BreakEvenGraph extends React.Component {
   componentDidMount() {
     drawLineChart(BreakEvenGraphData(this.props))

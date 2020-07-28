@@ -66,7 +66,7 @@ class FixedCosts extends React.Component {
         <p>
           Fixed costs are costs that do not change with sales or volume because they are based on time.
           For this calculator the time period is calculated monthly. 
-          <div className="fixedCost-subtext">* indicates required field</div>
+          <div className="subtext">* indicates required field</div>
         </p>
         <h4>Do you know the total of your monthly fixed costs?*</h4>
         <Form onSubmit={this.handleSubmit}>
@@ -95,7 +95,7 @@ class FixedCosts extends React.Component {
             {this.state.knowFixedCosts === 'yes' &&
               <Grid.Column>
                 <label htmlFor='totalFixedCosts'>Do you know the total of your monthly fixed costs?*</label>
-                <div className="fixedCost-subtext">Enter the sum of all known fixed costs:</div>
+                <div className="subtext">Enter the sum of all known fixed costs:</div>
                
                 <Form.Field>
                   <MoneyInput 

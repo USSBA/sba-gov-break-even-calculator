@@ -10,7 +10,11 @@ const PricePerUnit = (props) => {
   return (
     <div className={`pricePerUnit-container ${props.visible ? '' : 'hidden'}`}>
       <h3>Estimate your selling price per unit</h3>
-      <p>Calculate the price at which your unit or service will sell to customers.</p>
+      <p>
+        Calculate the price at which your unit or service will sell to customers.
+        <div className="subtext">* indicates required field</div>
+      </p>
+
       <Form onSubmit={() => props.goToStep(self + 1)}>
         <div>
           <label htmlFor='unit price'>Per unit selling price*</label>

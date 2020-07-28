@@ -77,6 +77,8 @@ const drawLineChart = (data) => {
     .attr("r", 9)
     .attr("cx", function(d) { return x(d.x); })
     .attr("cy", function(d) { return y(d.y); })
+    .style("stroke",  "white")
+    .style("stroke-width", "3px")
     .attr("fill", data.breakEvenPoint.color)
     .attr('id', 'breakEvenCircle')
 }

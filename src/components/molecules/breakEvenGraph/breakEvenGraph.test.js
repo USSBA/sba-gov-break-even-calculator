@@ -33,7 +33,7 @@ describe('BreakEvenGraph', () => {
     expect(wrapper.find('Icon.totalCost')).toHaveLength(1)
   })
 
-  it('includes the Total Cost label for the graph', () => {
+  it('includes the Fixed Cost label for the graph', () => {
     const wrapper = shallow(
       <BreakEvenGraph 
         breakEvenUnits={'100'}

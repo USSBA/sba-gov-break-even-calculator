@@ -6,7 +6,7 @@ import { findStepSize } from '../../../helpers'
 
 import './results.less'
 
-const generateDataTableRow = (data) => {
+export const generateDataTableRow = (data) => {
   const {units, pricePerUnit, variableCostPerUnit, fixedCost } = data
 
   const revenue = Math.round(units * pricePerUnit);
@@ -21,7 +21,7 @@ const generateDataTableRow = (data) => {
   }
 }
 
-const generateTableData = (breakEvenPointUnits, pricePerUnit, variableCostPerUnit, fixedCost) => {
+export const generateTableData = (breakEvenPointUnits, pricePerUnit, variableCostPerUnit, fixedCost) => {
   const stepSize = findStepSize(breakEvenPointUnits)
   const tableData = []
 

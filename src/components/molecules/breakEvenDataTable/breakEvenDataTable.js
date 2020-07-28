@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table } from 'semantic-ui-react'
+import { Responsive, Table } from 'semantic-ui-react'
 import { sortBy } from 'lodash';
 import { formatNumber } from '../../../helpers'
 
@@ -39,7 +39,7 @@ class BreakEvenDataTable extends React.Component {
     const { column, data, direction } = this.state
 
     return (
-      <Table sortable celled fixed>
+      <Table sortable celled fixed unstackable>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell
@@ -60,18 +60,18 @@ class BreakEvenDataTable extends React.Component {
             >
               Revenue
             </Table.HeaderCell>
-						<Table.HeaderCell
+						<Responsive as={Table.HeaderCell} minWidth={Responsive.onlyLargeScreen.minWidth}
               sorted={column === 'variableCosts' ? direction : null}
               onClick={this.handleSort('variableCosts')}
             >
               Variable Costs
-            </Table.HeaderCell>
-						<Table.HeaderCell
+            </Responsive>
+						<Responsive as={Table.HeaderCell} minWidth={Responsive.onlyLargeScreen.minWidth}
               sorted={column === 'fixedCosts' ? direction : null}
               onClick={this.handleSort('fixedCosts')}
             >
               Fixed Costs
-            </Table.HeaderCell>
+            </Responsive>
           </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -80,8 +80,8 @@ class BreakEvenDataTable extends React.Component {
               <Table.Cell>{formatNumber(units)}</Table.Cell>
               <Table.Cell>{formatNumber(profit)}</Table.Cell>
               <Table.Cell>{formatNumber(revenue)}</Table.Cell>
-							<Table.Cell>{formatNumber(variableCosts)}</Table.Cell>
-							<Table.Cell>{formatNumber(fixedCosts)}</Table.Cell>
+							<Responsive as={Table.Cell} minWidth={Responsive.onlyLargeScreen.minWidth}>{formatNumber(variableCosts)}</Responsive>
+							<Responsive as={Table.Cell} minWidth={Responsive.onlyLargeScreen.minWidth}>{formatNumber(fixedCosts)}</Responsive>
             </Table.Row>
           ))}
         </Table.Body>

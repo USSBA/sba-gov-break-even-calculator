@@ -88,6 +88,9 @@ class BreakEvenGraph extends React.Component {
           <Label basic size='small'>
             <Icon className='totalCost' name='circle' />Total Costs
           </Label>
+          <Label basic size='small'>
+            <Icon className='fixedCost' name='circle' />Fixed Costs
+          </Label>
           <div>
             <svg id="lineChart"></svg>
             <div className='unitLabel'>Units</div>

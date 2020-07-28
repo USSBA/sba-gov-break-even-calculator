@@ -45,4 +45,10 @@ describe('Results', () => {
       breakEvenUnits: 10,
     })
   })
+
+  it('renders BreakEvenDataTable', () => {
+    const wrapper = shallow(<Results {...sampleProps}/>)
+    const bepDataTable = wrapper.find('BreakEvenDataTable').dive()
+    expect(bepDataTable.find('TableRow')).toHaveLength(9)
+  })
 })

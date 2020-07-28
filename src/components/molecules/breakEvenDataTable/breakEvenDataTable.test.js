@@ -16,7 +16,7 @@ describe('BreakEvenDataTable', () => {
     expect(wrapper.find('TableRow')).toHaveLength(tableData.length + 1)
   })
 
-  it('Renders 5 columbns', () => {
+  it('Renders 5 columns', () => {
     const wrapper = shallow(<BreakEvenDataTable data={tableData} />)
     expect(wrapper.find('TableHeaderCell')).toHaveLength(3)
     expect(wrapper.find('TableRow').first().find('Responsive')).toHaveLength(2)

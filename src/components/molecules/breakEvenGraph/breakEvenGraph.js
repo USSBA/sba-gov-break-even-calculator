@@ -108,7 +108,8 @@ class BreakEvenGraph extends React.Component {
                 <div className="units">
                   { BreakEvenGraphData(this.props).breakEvenPoint.data[0].x }
                 </div>
-                <div>Break-Even<br/>Units Sold</div>
+                <div>Break-Even</div>
+                <div>Units Sold</div>
             </Card>
           </div>
         </Card.Content>

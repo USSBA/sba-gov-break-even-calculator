@@ -11,7 +11,7 @@ const Hero = (props) => {
         <Image src={calculatorIcon} alt='calculator icon' size='small' centered/>
         <div className='blueGradient'>
           <Container>
-            <h1>Break-Even Point Analysis Tool</h1>
+            <h1>Calculate Your Break-Even Point</h1>
             <p>This calculator will help you determine the break-even point for your business.</p>
             <div className='formula'>
               Fixed Costs ÷ (Price - Variable Costs) = Break-Even Point in Units

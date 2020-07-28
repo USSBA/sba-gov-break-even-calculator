@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Grid } from 'semantic-ui-react'
 import { BreakEvenProfileCard, BreakEvenResultsCard, BreakEvenGraph, BreakEvenDataTable } from '../../molecules'
-import { findStepSize, formatNumber } from '../../../helpers'
+import { findStepSize } from '../../../helpers'
 
 import './results.less'
 
@@ -13,24 +13,36 @@ const generateDataTableRow = (data) => {
   const totalVariableCost = Math.round(variableCostPerUnit * units);
 
   return {
-    units: formatNumber(units),
-    profit: `$${formatNumber(revenue - totalVariableCost - fixedCost)}`,
-    revenue: `$${formatNumber(revenue)}`,
-    variableCosts: `$${formatNumber(totalVariableCost)}`,
-    fixedCosts: `$${formatNumber(fixedCost)}`,
+    units: units,
+    profit: revenue - totalVariableCost - fixedCost,
+    revenue: revenue,
+    variableCosts: totalVariableCost,
+    fixedCosts: fixedCost,
   }
 }
 
 const generateTableData = (breakEvenPointUnits, pricePerUnit, variableCostPerUnit, fixedCost) => {
   const stepSize = findStepSize(breakEvenPointUnits)
   const tableData = []
-  for(let i = 1; i < 9; i++) {
+
+  // generate points around BEP
+  for(let i = 0; i < 8; i++) {
     tableData.push(generateDataTableRow({
       units: stepSize * i, 
       pricePerUnit,
       variableCostPerUnit,
       fixedCost,
     }))
+    if(stepSize * i < breakEvenPointUnits && (stepSize * (i+1)) > breakEvenPointUnits) {
+      // push BEP data into the generated table
+      tableData.push({
+        units: breakEvenPointUnits,
+        profit: 0,
+        revenue: Math.round(breakEvenPointUnits * pricePerUnit),
+        variableCosts: Math.round(variableCostPerUnit * breakEvenPointUnits),
+        fixedCosts: fixedCost,
+      })
+    }
   }
   return tableData;
 }

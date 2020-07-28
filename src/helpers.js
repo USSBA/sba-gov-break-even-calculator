@@ -26,7 +26,7 @@ const decimalAdjust = (value, exp) => {
   return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
 }
 
-const decimalPrettify = (value) => {
+export const decimalPrettify = (value) => {
   const numLength = value.toString().length
   return Math.ceil(decimalAdjust(value, numLength - 1) / 5) * 5
 }

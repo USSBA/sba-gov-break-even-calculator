@@ -3,6 +3,8 @@ import { Responsive, Table } from 'semantic-ui-react'
 import { sortBy } from 'lodash';
 import { formatNumber } from '../../../helpers'
 
+import './BreakEvenDataTable.less'
+
 class BreakEvenDataTable extends React.Component {
 	state = {
     column: null,
@@ -11,8 +13,6 @@ class BreakEvenDataTable extends React.Component {
   }
 
   handleSort = (clickedColumn) => () => {
-		console.log('sorting', clickedColumn)
-		console.log(this.state.data)
     const { column, data, direction } = this.state
 
     if (column !== clickedColumn) {
@@ -31,15 +31,16 @@ class BreakEvenDataTable extends React.Component {
     })
 	}
 
-	componentDidMount = () => {
-		this.handleSort('units')
+	formatProfitOrLoss = (profit) => {
+		if (profit >= 0) return `$${formatNumber(profit)}`
+		return `(${formatNumber(Math.abs(profit))})`
 	}
-
+	
   render() {
     const { column, data, direction } = this.state
 
     return (
-      <Table sortable celled fixed unstackable>
+      <Table id='bep-DataTable' sortable celled fixed unstackable>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell
@@ -77,11 +78,21 @@ class BreakEvenDataTable extends React.Component {
         <Table.Body>
           {data.map(({ units, profit, revenue, variableCosts, fixedCosts }) => (
             <Table.Row key={units}>
-              <Table.Cell>{formatNumber(units)}</Table.Cell>
-              <Table.Cell>{formatNumber(profit)}</Table.Cell>
-              <Table.Cell>{formatNumber(revenue)}</Table.Cell>
-							<Responsive as={Table.Cell} minWidth={Responsive.onlyLargeScreen.minWidth}>{formatNumber(variableCosts)}</Responsive>
-							<Responsive as={Table.Cell} minWidth={Responsive.onlyLargeScreen.minWidth}>{formatNumber(fixedCosts)}</Responsive>
+              <Table.Cell>
+								{formatNumber(units)}
+							</Table.Cell>
+              <Table.Cell className={profit < 0 ? 'netLoss' : ''}>
+								{this.formatProfitOrLoss(profit)}
+							</Table.Cell>
+              <Table.Cell>
+								${formatNumber(revenue)}
+							</Table.Cell>
+							<Responsive as={Table.Cell} minWidth={Responsive.onlyLargeScreen.minWidth}>
+								${formatNumber(variableCosts)}
+							</Responsive>
+							<Responsive as={Table.Cell} minWidth={Responsive.onlyLargeScreen.minWidth}>
+								${formatNumber(fixedCosts)}
+							</Responsive>
             </Table.Row>
           ))}
         </Table.Body>

@@ -35,7 +35,7 @@ const drawLineChart = (data) => {
     .x((d) => x(d.x))
     .y((d) =>y(d.y))
 
-  const paths = ['totalCost', 'breakEven']
+  const paths = ['totalCost', 'breakEven','fixedCost']
 
   // X - Axis
   g.append("g")

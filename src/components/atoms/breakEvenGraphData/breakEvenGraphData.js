@@ -10,7 +10,7 @@ export const BreakEvenGraphData = (props) => {
       ],
     },
     totalCost: {
-      lineColor: '#969696',
+      lineColor: '#686868',
       data: [ 
         { x: 0, y: 0},
         { x: props.breakEvenUnits*2, y: totalCost*2 }

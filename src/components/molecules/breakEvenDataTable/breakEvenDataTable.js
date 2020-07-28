@@ -1,23 +1,18 @@
 import React from 'react'
 import { Table } from 'semantic-ui-react'
 import { sortBy } from 'lodash';
-
-const tableData = [
-  { units: 'John', profit: 15, revenue: 'Male', variableCosts: '200', fixedCosts: '123' },
-  { units: 'Amber', profit: 40, revenue: 'Female', variableCosts: '200', fixedCosts: '123' },
-  { units: 'Leslie', profit: 25, revenue: 'Other', variableCosts: '200', fixedCosts: '123' },
-  { units: 'Ben', profit: 70, revenue: 'Male', variableCosts: '200', fixedCosts: '123' },
-]
+import { formatNumber } from '../../../helpers'
 
 class BreakEvenDataTable extends React.Component {
 	state = {
-    column: 'units',
+    column: null,
     data: this.props.data,
-    direction: 'ascending',
+    direction: null,
   }
 
   handleSort = (clickedColumn) => () => {
 		console.log('sorting', clickedColumn)
+		console.log(this.state.data)
     const { column, data, direction } = this.state
 
     if (column !== clickedColumn) {
@@ -34,6 +29,10 @@ class BreakEvenDataTable extends React.Component {
       data: data.reverse(),
       direction: direction === 'ascending' ? 'descending' : 'ascending',
     })
+	}
+
+	componentDidMount = () => {
+		this.handleSort('units')
 	}
 
   render() {
@@ -78,11 +77,11 @@ class BreakEvenDataTable extends React.Component {
         <Table.Body>
           {data.map(({ units, profit, revenue, variableCosts, fixedCosts }) => (
             <Table.Row key={units}>
-              <Table.Cell>{units}</Table.Cell>
-              <Table.Cell>{profit}</Table.Cell>
-              <Table.Cell>{revenue}</Table.Cell>
-							<Table.Cell>{variableCosts}</Table.Cell>
-							<Table.Cell>{fixedCosts}</Table.Cell>
+              <Table.Cell>{formatNumber(units)}</Table.Cell>
+              <Table.Cell>{formatNumber(profit)}</Table.Cell>
+              <Table.Cell>{formatNumber(revenue)}</Table.Cell>
+							<Table.Cell>{formatNumber(variableCosts)}</Table.Cell>
+							<Table.Cell>{formatNumber(fixedCosts)}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>

@@ -63,8 +63,12 @@ class FixedCosts extends React.Component {
     return (
       <div className={`fixedCosts-container ${this.props.visible ? '' : 'hidden'}`}>
         <h3>Calculate your total fixed costs</h3>
-        <p>Fixed costs are costs that do not change with sales or volume. They are based on time,  for this calculator the time period based around a monthly schedule.</p>
-        <h4>Do you know the total of your monthly fixed costs?</h4>
+        <p>
+          Fixed costs are costs that do not change with sales or volume because they are based on time.
+          For this calculator the time period is calculated monthly. 
+          <div className="fixedCost-subtext">* indicates required field</div>
+        </p>
+        <h4>Do you know the total of your monthly fixed costs?*</h4>
         <Form onSubmit={this.handleSubmit}>
           <Grid container columns={2} stackable>
             <Grid.Column>
@@ -90,8 +94,9 @@ class FixedCosts extends React.Component {
             {this.state.knowFixedCosts === 'no' && <NumbersInputForm  onChange={this.handleInputFieldChange} fields={fixedCostFields} />}
             {this.state.knowFixedCosts === 'yes' &&
               <Grid.Column>
-                <label htmlFor='totalFixedCosts'>Total monthly fixed costs</label>
-                <p>Enter the sum of all known fixed costs</p>
+                <label htmlFor='totalFixedCosts'>Do you know the total of your monthly fixed costs?*</label>
+                <div className="fixedCost-subtext">Enter the sum of all known fixed costs:</div>
+               
                 <Form.Field>
                   <MoneyInput 
                     value={this.props.totalFixedCosts} 

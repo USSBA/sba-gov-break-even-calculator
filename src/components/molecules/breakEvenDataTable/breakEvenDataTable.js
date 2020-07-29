@@ -53,7 +53,7 @@ class BreakEvenDataTable extends React.Component {
               sorted={column === 'profit' ? direction : null}
               onClick={this.handleSort('profit')}
             >
-              Operating Profit
+              Profit
             </Table.HeaderCell>
             <Table.HeaderCell
               sorted={column === 'revenue' ? direction : null}

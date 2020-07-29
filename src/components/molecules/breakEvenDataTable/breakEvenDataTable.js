@@ -3,7 +3,7 @@ import { Responsive, Table } from 'semantic-ui-react'
 import { sortBy } from 'lodash';
 import { formatNumber } from '../../../helpers'
 
-import './BreakEvenDataTable.less'
+import './breakEvenDataTable.less'
 
 class BreakEvenDataTable extends React.Component {
 	state = {

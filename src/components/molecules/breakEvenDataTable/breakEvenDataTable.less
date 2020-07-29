@@ -1,6 +1,10 @@
 @import '../../../styles/variables.less';
 
 #bep-dataTable {
+  &.ui.fixed.table th {
+    font-weight: 600;
+  }
+
   &.ui.fixed.table th,
   &.ui.fixed.table td,
   &.ui.sortable.table thead th {
@@ -8,9 +12,14 @@
     text-overflow: unset;
     overflow-wrap: break-word;
     white-space: unset;
-  }
-
-  .netLoss {
-    color: @sba-red-light;
+    color: @sba-blue;
+    
+    &.netLoss {
+      color: @sba-red-light;
+    }
+  
+    &.netGain {
+      color: @secondary-green;
+    }
   }
 }

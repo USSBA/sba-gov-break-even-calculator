@@ -1,41 +1,63 @@
 @import '../../../styles/variables.less';
 
-i.breakEven.circle.icon {
-  color: @secondary-blue;
-}
-
-i.totalCost.circle.icon {
-  color: @sba-gray-dark;
-}
-
-i.fixedCost.circle.icon {
-  color: @sba-gray;
-}
-
-path.breakEvenLine {
-  stroke-width: 4px;
-}
-
-.unitLabel {
-  text-align: center;
-  margin-left: 37px;
-  font-size: 16px;
-  color: @sba-gray;
-  margin-top: -12px;
-  font-weight: 500;
-  line-height: 18px;
-}
-
-card.breakEvenPointLabel {
-  text-align: center;
-  top: 100px;
-  left: 191px;
-  position: relative;
-  .unitsSold {
-    font-size: 28px;
+#breakEvenGraph {
+  card.breakEvenPointLabel {
+    left: 191px;
+    position: relative;
+    text-align: center;
+    top: 100px;
+  }
+  
+  i.breakEven.circle.icon {
     color: @secondary-blue;
   }
-  .text {
-    font-size: 18px;
+  
+  i.totalCost.circle.icon {
+    color: @sba-gray-dark;
+  }
+  
+  i.fixedCost.circle.icon {
+    color: @sba-gray;
+  }
+  
+  path.breakEvenLine {
+    stroke-width: 4px;
+  }
+  .graphContainer {
+    position: relative;
+
+    
+    .ui.card.tooltip {
+      border-width: 2px;
+      font-size: 1.1vw;
+      font-weight: 600;
+      height: 6.5vw;
+      left: 46.7%;
+      line-height: 1.6vw;
+      position: absolute;
+      text-align: center;
+      top: 7%;
+      width: 8vw;
+    
+      div.units {
+        color: @secondary-blue;
+        font-size: 2vw;
+        margin-bottom:0.5vw;
+        margin-top: 0.7vw;
+      }
+    }
+
+    .unitLabel {
+      color: @sba-gray;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 18px;
+      margin-left: 37px;
+      margin-top: -12px;
+      text-align: center;
+    }
   }
 }
+
+
+

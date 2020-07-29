@@ -18,7 +18,7 @@ const PricePerUnit = (props) => {
       <Form onSubmit={() => props.goToStep(self + 1)}>
         <div>
           <label htmlFor='unit price'>Per unit selling price*</label>
-          <p>Enter the price you plan to sell per unit or service</p>
+          <p className="subtext">Enter the price you plan to sell per unit or service:</p>
           <MoneyInput
             autoFocus
             value={props.value}

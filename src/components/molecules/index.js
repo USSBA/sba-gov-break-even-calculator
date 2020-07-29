@@ -15,6 +15,6 @@ export{
   Footer,
   Header,
   Hero,
-  NumbersInputForm,
+  NumbersInputForm
 }
 

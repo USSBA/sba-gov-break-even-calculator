@@ -35,12 +35,12 @@ class BreakEvenDataTable extends React.Component {
 		if (profit >= 0) return `$${formatNumber(profit)}`
 		return `(${formatNumber(Math.abs(profit))})`
 	}
-	
+
   render() {
     const { column, data, direction } = this.state
 
     return (
-      <Table id='bep-DataTable' sortable celled fixed unstackable>
+      <Table id='bep-dataTable' sortable celled fixed unstackable>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell

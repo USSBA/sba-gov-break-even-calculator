@@ -1,0 +1,16 @@
+@import '../../../styles/variables.less';
+
+#bep-dataTable {
+  &.ui.fixed.table th,
+  &.ui.fixed.table td,
+  &.ui.sortable.table thead th {
+    overflow: visible;
+    text-overflow: unset;
+    overflow-wrap: break-word;
+    white-space: unset;
+  }
+
+  .netLoss {
+    color: @sba-red-light;
+  }
+}

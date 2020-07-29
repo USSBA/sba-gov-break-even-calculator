@@ -1,3 +1,4 @@
+import BreakEvenDataTable from './breakEvenDataTable/breakEvenDataTable'
 import BreakEvenProfileCard from './breakEvenProfileCard/breakEvenProfileCard'
 import BreakEvenResultsCard from './breakEvenResultsCard/breakEvenResultsCard'
 import BreakEvenGraph from './breakEvenGraph/breakEvenGraph'
@@ -7,6 +8,7 @@ import Hero from './hero/hero'
 import NumbersInputForm from './numbersInputForm/numbersInputForm'
 
 export{
+  BreakEvenDataTable,
   BreakEvenGraph,
   BreakEvenProfileCard,
   BreakEvenResultsCard,

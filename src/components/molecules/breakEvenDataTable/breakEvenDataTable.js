@@ -40,7 +40,7 @@ class BreakEvenDataTable extends React.Component {
     const { column, data, direction } = this.state
 
     return (
-      <Table id='bep-dataTable' sortable celled fixed unstackable>
+      <Table id='bep-dataTable' textAlign='left' sortable fixed unstackable>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell
@@ -81,7 +81,7 @@ class BreakEvenDataTable extends React.Component {
               <Table.Cell>
 								{formatNumber(units)}
 							</Table.Cell>
-              <Table.Cell className={profit < 0 ? 'netLoss' : ''}>
+              <Table.Cell className={profit < 0 ? 'netLoss' : 'netGain'}>
 								{this.formatProfitOrLoss(profit)}
 							</Table.Cell>
               <Table.Cell>

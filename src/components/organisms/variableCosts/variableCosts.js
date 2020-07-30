@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Radio, Grid } from 'semantic-ui-react'
+import { Form, Icon, Radio, Grid } from 'semantic-ui-react'
 import { NumbersInputForm } from '../../molecules'
 import { MoneyInput } from '../../atoms'
 
@@ -109,7 +109,17 @@ class VariableCosts extends React.Component {
               </Grid.Column>}
             {this.state.knowVariableCosts && 
               <Grid.Column>
-                <Form.Button primary content='CONTINUE' />
+                <Grid columns={3} verticalAlign='middle'>
+                  <Grid.Column width={3}>
+                    <Form.Button className='continueButton' primary content='CONTINUE' />
+                  </Grid.Column>
+                  <Grid.Column textAlign='right' className='warningMessage' width={1}>
+                    <Icon size='small' circular name='minus'/>
+                  </Grid.Column>
+                  <Grid.Column className='warningMessage' width={10}>
+                    <p>Your variable costs are higher than your unit price. You will never break-even. Consider adjusting your values.</p>
+                  </Grid.Column>
+                </Grid>
               </Grid.Column>}          
           </Grid>
         </Form>

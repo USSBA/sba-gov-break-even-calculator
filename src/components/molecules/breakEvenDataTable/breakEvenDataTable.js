@@ -40,7 +40,7 @@ class BreakEvenDataTable extends React.Component {
     const { column, data, direction } = this.state
 
     return (
-      <Table id='bep-dataTable' textAlign='left' sortable fixed unstackable>
+      <Table id='bep-dataTable' textAlign='right' sortable fixed unstackable>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell

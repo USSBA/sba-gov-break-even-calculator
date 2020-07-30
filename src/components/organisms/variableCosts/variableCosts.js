@@ -70,6 +70,8 @@ class VariableCosts extends React.Component {
   )
 
   render() {
+    const showWarning = parseInt(this.state.totalVariableCosts) >= parseInt(this.props.pricePerUnit);
+    
     return (
       <div className={`variableCosts-container ${this.props.visible ? '' : 'hidden'}`}>
         <h3>Calculate your total variable costs per unit</h3>
@@ -100,7 +102,7 @@ class VariableCosts extends React.Component {
             {this.state.knowVariableCosts === 'no' && <NumbersInputForm  onChange={this.handleInputFieldChange} fields={variableCostFields} />}
             {this.state.knowVariableCosts === 'yes' && this.totalMonthlyVariableCosts}
           </Grid>
-          <Grid columns={1}>
+          <Grid className='formBody' columns={1}>
             {this.state.knowVariableCosts === 'yes' && 
               <Grid.Column>
                 <div className='variableCost-suggestion'>Unsure about your total variable costs? 
@@ -113,12 +115,16 @@ class VariableCosts extends React.Component {
                   <Grid.Column width={3}>
                     <Form.Button className='continueButton' primary content='CONTINUE' />
                   </Grid.Column>
+
+                  {showWarning && 
                   <Grid.Column textAlign='right' className='warningMessage' width={1}>
                     <Icon size='small' circular name='minus'/>
-                  </Grid.Column>
+                  </Grid.Column>}
+
+                  {showWarning && 
                   <Grid.Column className='warningMessage' width={10}>
                     <p>Your variable costs are higher than your unit price. You will never break-even. Consider adjusting your values.</p>
-                  </Grid.Column>
+                  </Grid.Column>}
                 </Grid>
               </Grid.Column>}          
           </Grid>

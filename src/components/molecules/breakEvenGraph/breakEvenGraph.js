@@ -59,7 +59,7 @@ const drawLineChart = (data) => {
   // Y Grid Lines
   g.append("g")
     .call(d3.axisLeft(y).tickFormat('').ticks(5).tickSize(-width))
-    .attr("class", "grid")
+    .attr("class", "yGridLines")
 
   // draw break even line
   paths.map(path => (

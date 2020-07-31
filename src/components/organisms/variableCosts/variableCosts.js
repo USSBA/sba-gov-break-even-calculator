@@ -102,7 +102,7 @@ class VariableCosts extends React.Component {
             {this.state.knowVariableCosts === 'no' && <NumbersInputForm  onChange={this.handleInputFieldChange} fields={variableCostFields} />}
             {this.state.knowVariableCosts === 'yes' && this.totalMonthlyVariableCosts}
           </Grid>
-          <Grid className='formBody' columns={1}>
+          <Grid columns={1}>
             {this.state.knowVariableCosts === 'yes' && 
               <Grid.Column>
                 <div className='variableCost-suggestion'>Unsure about your total variable costs? 

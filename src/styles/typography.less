@@ -132,3 +132,59 @@ html {
     margin-bottom: @base-spacing;
   }
   
+  // # semantic ui overrides
+  #___gatsby {
+   
+    .ui.form .field.error { 
+      .prompt.label {
+        border: none !important;
+        color: @sba-red !important;
+        margin-left: -10px;
+        font-weight: 400;
+        font-size: 18px;
+      }
+
+      .ui.pointing.label:before, 
+        .ui[class*="pointing above"].label:before {
+        border: none;
+      } 
+
+      .ui.basic.label {
+        background: none #FFFFFF;
+        border-top: 2px solid @sba-red;
+        border-bottom: 2px solid @sba-red;
+        border-left: 2px solid @sba-red;
+        color: @sba-red;
+        border-radius: 0;
+      }
+
+      textarea, 
+      select, 
+      input:not([type]),
+      input[type="number"], 
+      input[type="text"] {
+        background: @sba-white;
+        color: @sba-red;
+        border-radius: '';
+        box-shadow: none;
+        border-top: 2px solid @sba-red;
+        border-bottom: 2px solid @sba-red;
+        border-right: 2px solid @sba-red;
+        border-left: @sba-gray-dark;
+        border-radius: 0;
+      }
+    }
+
+    i.exclamation.circle.icon {
+      opacity: 1px;
+      color: @sba-red;
+    }
+
+    .ui.input > input {
+      border-radius: none;
+    }
+
+    .ui.icon.input > i.icon {
+      opacity: 1;
+    }
+  } 

@@ -70,7 +70,6 @@ describe('BreakEvenGraph', () => {
         breakEvenSales={'1200'}
       />
     );
-    console.log(wrapper.debug())
     expect(wrapper.find('Icon.breakEven')).toHaveLength(1)
   })
 

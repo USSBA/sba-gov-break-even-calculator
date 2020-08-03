@@ -111,13 +111,13 @@ class VariableCosts extends React.Component {
               </Grid.Column>}
             {this.state.knowVariableCosts && 
               <Grid.Column>
-                <Grid columns={3} verticalAlign='middle'>
-                  <Grid.Column width={3}>
+                <Grid columns={3} verticalAlign='middle' stackable>
+                  <Grid.Column width={3} textAlign='center'>
                     <Form.Button className='continueButton' primary content='CONTINUE' />
                   </Grid.Column>
 
                   {showWarning && 
-                  <Grid.Column textAlign='right' className='warningMessage' width={1}>
+                  <Grid.Column textAlign='center' className='warningMessage' width={1}>
                     <Icon size='small' circular name='minus'/>
                   </Grid.Column>}
 

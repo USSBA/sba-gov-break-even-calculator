@@ -36,7 +36,7 @@ const drawLineChart = (data) => {
     .x((d) => x(d.x))
     .y((d) =>y(d.y))
 
-  const paths = ['totalCost', 'breakEven','fixedCost']
+  const paths = ['totalCost', 'breakEven','fixedCost', 'unitSales']
 
   // X - Axis
   g.append("g")
@@ -102,6 +102,9 @@ class BreakEvenGraph extends React.Component {
       <Card fluid>
         <Card.Content id='breakEvenGraph'>
           <h3>Break-even Point Graph</h3>
+          <Label basic size='small'>
+            <Icon className='unitSales' name='circle' />Unit Sales
+          </Label>
           <Label basic size='small'>
             <Icon className='breakEven' name='circle' />Break-Even Point
           </Label>

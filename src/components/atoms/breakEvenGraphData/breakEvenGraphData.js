@@ -13,6 +13,13 @@ export const BreakEvenGraphData = (props) => {
         { x: props.breakEvenUnits, y: props.breakEvenSales*2 }
       ],
     },
+    unitSales: {
+      lineColor: '#41569C',
+      data: [ 
+        { x: 0, y: 0 },
+        { x: props.breakEvenUnits*2, y: props.breakEvenSales*2 }
+      ]
+    },
     totalCost: {
       lineColor: '#686868',
       data: [ 

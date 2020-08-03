@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Icon, Radio, Grid } from 'semantic-ui-react'
+import { Form, Icon, Radio, Grid, Message } from 'semantic-ui-react'
 import { NumbersInputForm } from '../../molecules'
 import { MoneyInput } from '../../atoms'
 
@@ -111,22 +111,23 @@ class VariableCosts extends React.Component {
               </Grid.Column>}
             {this.state.knowVariableCosts && 
               <Grid.Column>
-                <Grid columns={3} verticalAlign='middle' stackable>
-                  <Grid.Column width={3} textAlign='center'>
+                <Grid columns={2} reversed='mobile' verticalAlign='middle' stackable>
+                  <Grid.Column width={3}>
                     <Form.Button className='continueButton' primary content='CONTINUE' />
                   </Grid.Column>
-
                   {showWarning && 
-                  <Grid.Column textAlign='center' className='warningMessage' width={1}>
-                    <Icon size='small' circular name='minus'/>
-                  </Grid.Column>}
-
-                  {showWarning && 
-                  <Grid.Column className='warningMessage' width={10}>
-                    <p>Your variable costs are higher than your unit price. You will never break-even. Consider adjusting your values.</p>
+                  <Grid.Column width={12}>
+                    <Grid columns={2} verticalAlign='middle'>
+                      <Grid.Column className='warningMessage' width={1}>
+                      <Icon size='small' circular name='minus'/>
+                    </Grid.Column>
+                    <Grid.Column floated='left' className='warningMessage' width={12}>
+                      <p>Your variable costs are higher than your unit price. You will never break-even. Consider adjusting your values.</p>
+                    </Grid.Column>
+                    </Grid>
                   </Grid.Column>}
                 </Grid>
-              </Grid.Column>}          
+              </Grid.Column>}           
           </Grid>
         </Form>
         <a className='navLink' onClick={() => this.props.goToStep(this.self - 1)}>{`< Back to unit sales`}</a>

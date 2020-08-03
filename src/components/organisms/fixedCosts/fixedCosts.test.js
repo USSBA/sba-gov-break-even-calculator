@@ -109,6 +109,8 @@ describe('FixedCosts', () => {
     wrapper.find('Form').simulate('submit')
 
     expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.FIXED_COSTS + 1)
+    expect(wrapper.state().formError).toEqual(false)
+
   })
 
   it ('does not go to next step if all the fields are empty', () => {
@@ -121,6 +123,7 @@ describe('FixedCosts', () => {
     wrapper.find('Form').simulate('submit')
 
     expect(goToStepMock).toHaveBeenCalledTimes(0)
+    expect(wrapper.state().formError).toEqual(true)
 
   })
 
@@ -133,6 +136,7 @@ describe('FixedCosts', () => {
     wrapper.setState({knowFixedCosts: 'no'})
     wrapper.find('Form').simulate('submit')
     expect(wrapper.find('.errorMsg').text()).toEqual('Enter a valid fixed cost to continue')
+    expect(wrapper.state().formError).toEqual(true)
   })
 
 

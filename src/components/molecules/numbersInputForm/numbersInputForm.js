@@ -13,6 +13,7 @@ const NumbersInputForm = (props) => {
          <Form.Field>
           <label className='numbersInputForm-label' htmlFor={field.name}>{field.name}</label>
           <p className='numbersInputForm-p'>{field.description}</p>
+          
           <MoneyInput 
            onChange={props.onChange } 
            name={field.name}/>

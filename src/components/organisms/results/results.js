@@ -91,7 +91,9 @@ const Results = (props) => {
             </Grid.Column>
           </Grid.Row>
           <Grid.Row columns={1}>
-            <BreakEvenDataTable data={tableData}/>
+            <Grid.Column>
+              <BreakEvenDataTable data={tableData}/>
+            </Grid.Column>
           </Grid.Row>
         </Grid>
       </div>

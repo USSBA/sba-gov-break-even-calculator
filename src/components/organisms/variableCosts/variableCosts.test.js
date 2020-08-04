@@ -83,10 +83,33 @@ describe('VariableCosts', () => {
   })
 
   it('resets fields on radio button switch', () => {
-    const wrapper = shallow(<VariableCosts />);
+    const wrapper = shallow(<VariableCosts pricePerUnit={10}/>);
     wrapper.setState({knowVariableCosts: 'no'})
     wrapper.setState({fields: {Rent: '100'}})
+    wrapper.setState({totalVariableCosts: '20'})
     wrapper.find('[label="Yes"]').simulate('change', null, {value: 'yes'})
     expect(wrapper.state().fields).toEqual(variableCostInitState);
+  })
+
+  it('displays warning message when appropriate', () => {
+    const wrapper = shallow(<VariableCosts pricePerUnit={10}/>);
+    expect(wrapper.find('.warningMessage')).toHaveLength(0)
+    wrapper.setState({knowVariableCosts: 'yes'})
+    wrapper.setState({totalVariableCosts: '20'})
+    expect(wrapper.find('.warningMessage')).toHaveLength(2)
+    wrapper.setState({totalVariableCosts: '10'})
+    expect(wrapper.find('.warningMessage')).toHaveLength(2)
+  })
+
+  it('does not prevent submission when warning is displayed', () => {
+    const goToStepMock = jest.fn()
+    const setVariableCostMock = jest.fn()
+    const wrapper = shallow(
+      <VariableCosts pricePerUnit={10} goToStep={goToStepMock} setVariableCost={setVariableCostMock} />
+    );
+    wrapper.setState({knowVariableCosts: 'yes'})
+    wrapper.setState({totalVariableCosts: '20'})
+    wrapper.find('Form').simulate('submit')
+    expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.VARIABLE_COSTS + 1)
   })
 })

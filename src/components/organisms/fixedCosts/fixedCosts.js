@@ -46,7 +46,7 @@ class FixedCosts extends React.Component {
     this.setState({ knowFixedCosts: value})
   }
 
-  handleInputFieldChange = (name, value ) => {
+  handleInputFieldChange = (name, value) => {
     this.setState({
       fields: {...this.state.fields, [name]: value}
     }, () => {

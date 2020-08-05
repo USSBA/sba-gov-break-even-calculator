@@ -27,20 +27,20 @@ const PricePerUnit = (props) => {
         <span className="subtext">* indicates required field</span>
       </p>
 
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={ handleSubmit }>
         <div>
           <label htmlFor='unit price'>Per unit selling price*</label>
           <p className="subtext">Enter the price you plan to sell per unit or service:</p>
           
           <MoneyInput
             autoFocus
-            value={props.value}
-            formError= {formError}
+            value={ props.value }
+            formError= { formError }
             errorMessage= 'Enter a valid price per unit to continue'
-            onChange={(e, { value }) => {
+            onChange={ (e, { value }) => {
               props.setUnitPrice(value)
               setFormError(false)
-            }}
+            } }
             name='unit price' />
         </div>
         <div className='button-container'>

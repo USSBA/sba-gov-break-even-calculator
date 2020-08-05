@@ -14,7 +14,7 @@ class FixedCosts extends React.Component {
     super(props)
     this.state = {
       knowFixedCosts: null,
-      totalFixedCosts: 0,
+      totalFixedCosts: '',
       formError: false,
       fields: {
         Amortization: 0,
@@ -32,7 +32,7 @@ class FixedCosts extends React.Component {
   }
 
   resetTotalFixedCosts = () => {
-    this.setState({ totalFixedCosts: 0 })
+    this.setState({ totalFixedCosts: '' })
   }
 
   resetFields = () => {
@@ -56,7 +56,7 @@ class FixedCosts extends React.Component {
   }
 
   handleSubmit = () => {
-    if (this.state.totalFixedCosts == '') {
+    if (!this.state.totalFixedCosts && this.state.totalFixedCosts !== 0) {
       this.setState({ formError: true })
     } else {
       this.setState({ formError: false })

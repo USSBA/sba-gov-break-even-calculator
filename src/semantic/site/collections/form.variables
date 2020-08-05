@@ -1,7 +1,9 @@
 /*******************************
     User Variable Overrides
 *******************************/
-@formErrorBackground: unset;
+@formErrorBackground: @sba-white;
+@inputErrorFocusBorder: @sba-red;
+@inputErrorFocusBackground: @sba-white;
 @formErrorColor: @sba-red;
 @formErrorBorder: @sba-red;
 @inputErrorBorderRadius: 0px;

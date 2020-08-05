@@ -14,7 +14,7 @@ describe('FixedCosts', () => {
   it('has correct initial state', () => {
     const wrapper = shallow(<FixedCosts />);
     expect(wrapper.state().knowFixedCosts).toBe(null)
-    expect(wrapper.state().totalFixedCosts).toEqual(0)
+    expect(wrapper.state().totalFixedCosts).toEqual('')
     expect(wrapper.state().fields).toEqual(fixedCostInitState);
   })
 
@@ -76,11 +76,66 @@ describe('FixedCosts', () => {
     const wrapper = shallow(
       <FixedCosts setFixedCost={setFixedCostMock} goToStep={goToStepMock} />
     );
+    wrapper.setState({totalFixedCosts: 10}) 
     wrapper.setState({knowFixedCosts: 'yes'})
+    
     wrapper.find('Form').simulate('submit')
-    expect(setFixedCostMock).toHaveBeenCalledWith(0)
+    expect(setFixedCostMock).toHaveBeenCalledWith(10)
     expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.FIXED_COSTS + 1)
   })
+
+  it('calls setFixedCost and does not go to the next step when fixedcost field is empty', () => {
+    const setFixedCostMock = jest.fn()
+    const goToStepMock = jest.fn()
+    const wrapper = shallow(
+      <FixedCosts setFixedCost={setFixedCostMock} goToStep={goToStepMock} />
+    );
+    wrapper.setState({knowFixedCosts: 'yes'})
+    
+    wrapper.find('Form').simulate('submit')
+    expect(setFixedCostMock).toHaveBeenCalledTimes(0)
+    expect(goToStepMock).toHaveBeenCalledTimes(0)
+  })
+
+  it ('goes to next step if at least one of the form fields is filled', () => {
+    const setFixedCostMock = jest.fn()
+    const goToStepMock = jest.fn()
+    const wrapper = shallow(
+      <FixedCosts setFixedCost={setFixedCostMock} goToStep={goToStepMock} />
+    );
+    wrapper.setState({knowFixedCosts: 'no'})
+    wrapper.find('NumbersInputForm').simulate('change', null, {name: 'Rent', value: '100'})
+    wrapper.find('Form').simulate('submit')
+
+    expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.FIXED_COSTS + 1)
+    expect(wrapper.state().formError).toEqual(false)
+  })
+
+  it ('does not go to next step if all the fields are empty', () => {
+    const setFixedCostMock = jest.fn()
+    const goToStepMock = jest.fn()
+    const wrapper = shallow(
+      <FixedCosts setFixedCost={setFixedCostMock} goToStep={goToStepMock} />
+    );
+    wrapper.setState({knowFixedCosts: 'no'})
+    wrapper.find('Form').simulate('submit')
+
+    expect(goToStepMock).toHaveBeenCalledTimes(0)
+    expect(wrapper.state().formError).toEqual(true)
+  })
+
+  it ('outputs a message if user has not filled at least one field', () => {
+    const setFixedCostMock = jest.fn()
+    const goToStepMock = jest.fn()
+    const wrapper = shallow(
+      <FixedCosts setFixedCost={setFixedCostMock} goToStep={goToStepMock} />
+    );
+    wrapper.setState({knowFixedCosts: 'no'})
+    wrapper.find('Form').simulate('submit')
+    expect(wrapper.find('.errorMsg').text()).toEqual('Enter a valid fixed cost to continue')
+    expect(wrapper.state().formError).toEqual(true)
+  })
+
 
   it('resets fields on radio button switch', () => {
     const wrapper = shallow(<FixedCosts />);

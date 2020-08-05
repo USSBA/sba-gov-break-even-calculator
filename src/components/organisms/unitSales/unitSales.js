@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { Form, Input } from 'semantic-ui-react'
 import { CALCULATOR_STEPS } from '../../../constants/constants'

@@ -14,7 +14,7 @@ class FixedCosts extends React.Component {
     super(props)
     this.state = {
       knowFixedCosts: null,
-      totalFixedCosts: 0,
+      totalFixedCosts: '',
       formError: false,
       fields: {
         Amortization: 0,
@@ -32,7 +32,7 @@ class FixedCosts extends React.Component {
   }
 
   resetTotalFixedCosts = () => {
-    this.setState({ totalFixedCosts: 0 })
+    this.setState({ totalFixedCosts: '' })
   }
 
   resetFields = () => {
@@ -46,7 +46,7 @@ class FixedCosts extends React.Component {
     this.setState({ knowFixedCosts: value})
   }
 
-  handleInputFieldChange = (name, value ) => {
+  handleInputFieldChange = (name, value) => {
     this.setState({
       fields: {...this.state.fields, [name]: value}
     }, () => {
@@ -56,12 +56,12 @@ class FixedCosts extends React.Component {
   }
 
   handleSubmit = () => {
-    if (this.state.totalFixedCosts > 0) {
-      this.setState({ formError: false})
+    if (!this.state.totalFixedCosts && this.state.totalFixedCosts !== 0) {
+      this.setState({ formError: true })
+    } else {
+      this.setState({ formError: false })
       this.props.setFixedCost(this.state.totalFixedCosts)
       this.props.goToStep(CALCULATOR_STEPS.FIXED_COSTS + 1)
-    } else {
-      this.setState({ formError: true})
     }
   }
 
@@ -131,11 +131,11 @@ class FixedCosts extends React.Component {
                   <a onClick={() => this.setState({ knowFixedCosts: 'no'})}>Add all fixed costs individually</a>
                 </div>
               </Grid.Column>}
-            {this.state.knowFixedCosts && 
-              <Grid.Column>
-                {this.state.formError && 
+              {this.state.formError && this.state.knowFixedCosts === 'no' &&
                 <p className='errorMsg'>Enter a valid fixed cost to continue</p>
                 }
+            {this.state.knowFixedCosts && 
+              <Grid.Column>
                 <Form.Button primary content='CONTINUE' />
               </Grid.Column>}          
           </Grid>

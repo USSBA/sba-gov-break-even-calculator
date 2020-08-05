@@ -121,7 +121,6 @@ describe('FixedCosts', () => {
     wrapper.find('Form').simulate('submit')
 
     expect(goToStepMock).toHaveBeenCalledTimes(0)
-
   })
 
   it ('outputs a message if user has not filled at least one field', () => {

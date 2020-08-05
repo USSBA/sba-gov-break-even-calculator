@@ -15,7 +15,7 @@ const NumbersInputForm = (props) => {
           <p className='numbersInputForm-p'>{field.description}</p>
           
           <MoneyInput 
-           onChange={props.onChange } 
+           onChange={ props.onChange } 
            name={field.name}/>
          </Form.Field>
        </Grid.Column>

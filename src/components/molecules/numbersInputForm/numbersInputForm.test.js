@@ -8,7 +8,7 @@ describe('NumbersInputForm', () => {
     {name: 'Rent', description: 'Amount of rent'},
     {name: 'Production Supplies', description: 'Supplies for machinery'}
   ]
-  const onChagneMock = jest.fn()
+  const onChangeMock = jest.fn()
 
   it('renders the correct number of fields', () => {
     const wrapper = shallow(<NumbersInputForm fields={fields} />)
@@ -22,9 +22,9 @@ describe('NumbersInputForm', () => {
   })
 
   it('calls the onChange handler', () => {
-    const wrapper = shallow(<NumbersInputForm fields={fields} onChange={onChagneMock}/>)
-    wrapper.find('MoneyInput').first().dive().simulate('change')
-    expect(onChagneMock).toHaveBeenCalledTimes(1)
+    const wrapper = shallow(<NumbersInputForm fields={fields} onChange={onChangeMock}/>)
+    wrapper.find('MoneyInput').first().dive().find('Input').simulate('change')
+    expect(onChangeMock).toHaveBeenCalledTimes(1)
   })
 
 })

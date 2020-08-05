@@ -10,14 +10,14 @@ describe('MoneyInput', () => {
       <MoneyInput
         onChange={onChangeMock}
         name='Loans'
-        value='0' />
+        value='10' />
     )
 
-    expect(wrapper.props()).toEqual(
+    expect(wrapper.props().children.props).toEqual(
       expect.objectContaining({
         labelPosition: 'left',
         name: 'Loans',
-        value: '0',
+        value: '10',
         type: 'number',
         placeholder: '0,000.00',
         onChange: onChangeMock,

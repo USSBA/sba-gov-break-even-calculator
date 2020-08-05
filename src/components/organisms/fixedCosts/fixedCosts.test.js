@@ -14,7 +14,7 @@ describe('FixedCosts', () => {
   it('has correct initial state', () => {
     const wrapper = shallow(<FixedCosts />);
     expect(wrapper.state().knowFixedCosts).toBe(null)
-    expect(wrapper.state().totalFixedCosts).toEqual(0)
+    expect(wrapper.state().totalFixedCosts).toEqual('')
     expect(wrapper.state().fields).toEqual(fixedCostInitState);
   })
 

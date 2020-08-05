@@ -14,7 +14,8 @@ class FixedCosts extends React.Component {
     super(props)
     this.state = {
       knowFixedCosts: null,
-      totalFixedCosts: 0,
+      totalFixedCosts: '',
+      formError: false,
       fields: {
         Amortization: 0,
         Rent: 0,
@@ -31,7 +32,7 @@ class FixedCosts extends React.Component {
   }
 
   resetTotalFixedCosts = () => {
-    this.setState({ totalFixedCosts: 0 })
+    this.setState({ totalFixedCosts: '' })
   }
 
   resetFields = () => {
@@ -45,7 +46,7 @@ class FixedCosts extends React.Component {
     this.setState({ knowFixedCosts: value})
   }
 
-  handleInputFieldChange = (e, { name, value }) => {
+  handleInputFieldChange = (name, value) => {
     this.setState({
       fields: {...this.state.fields, [name]: value}
     }, () => {
@@ -55,8 +56,13 @@ class FixedCosts extends React.Component {
   }
 
   handleSubmit = () => {
-    this.props.setFixedCost(this.state.totalFixedCosts)
-    this.props.goToStep(CALCULATOR_STEPS.FIXED_COSTS + 1)
+    if (!this.state.totalFixedCosts && this.state.totalFixedCosts !== 0) {
+      this.setState({ formError: true })
+    } else {
+      this.setState({ formError: false })
+      this.props.setFixedCost(this.state.totalFixedCosts)
+      this.props.goToStep(CALCULATOR_STEPS.FIXED_COSTS + 1)
+    }
   }
 
   render() {
@@ -65,8 +71,8 @@ class FixedCosts extends React.Component {
         <h3>Calculate your total fixed costs</h3>
         <p>
           Fixed costs are costs that do not change with sales or volume because they are based on time.
-          For this calculator the time period is calculated monthly. 
-          <div className="subtext">* indicates required field</div>
+          For this calculator the time period is calculated monthly. <br/>
+          <span className="subtext">* indicates required field</span>
         </p>
         <h4>Do you know the total of your monthly fixed costs?*</h4>
         <Form onSubmit={this.handleSubmit}>
@@ -91,20 +97,29 @@ class FixedCosts extends React.Component {
                 onChange={this.handleRadioButtonChange}
               />
             </Grid.Column>
-            {this.state.knowFixedCosts === 'no' && <NumbersInputForm  onChange={this.handleInputFieldChange} fields={fixedCostFields} />}
+            {this.state.knowFixedCosts === 'no' && 
+              <NumbersInputForm
+                onChange={(e, { name, value }) => {
+                  this.handleInputFieldChange(name, value)
+                  this.setState({ formError: false })
+                }}
+                fields={fixedCostFields} />
+            }
             {this.state.knowFixedCosts === 'yes' &&
               <Grid.Column>
                 <label htmlFor='totalFixedCosts'>Do you know the total of your monthly fixed costs?*</label>
                 <div className="subtext">Enter the sum of all known fixed costs:</div>
-               
                 <Form.Field>
                   <MoneyInput 
                     value={this.props.totalFixedCosts} 
                     name='totalFixedCosts'
                     autoFocus
-                    onChange={(e, {value}) => {
+                    errorMessage= 'Enter a valid fixed cost to continue'
+                    formError= {this.state.formError}
+                    onChange={(e, { value }) => {
                       this.props.setFixedCost(value)
-                      this.setState({totalFixedCosts: value})
+                      this.setState({ totalFixedCosts: value })
+                      this.setState({ formError: false })
                     }}/>
                 </Form.Field>
               </Grid.Column>}
@@ -116,6 +131,9 @@ class FixedCosts extends React.Component {
                   <a onClick={() => this.setState({ knowFixedCosts: 'no'})}>Add all fixed costs individually</a>
                 </div>
               </Grid.Column>}
+              {this.state.formError && this.state.knowFixedCosts === 'no' &&
+                <p className='errorMsg'>Enter a valid fixed cost to continue</p>
+                }
             {this.state.knowFixedCosts && 
               <Grid.Column>
                 <Form.Button primary content='CONTINUE' />

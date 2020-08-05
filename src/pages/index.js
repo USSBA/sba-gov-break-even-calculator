@@ -95,6 +95,7 @@ class BreakEvenCalculator extends React.Component {
                 />
               <VariableCosts
                 visible={this.state.stepNum === CALCULATOR_STEPS.VARIABLE_COSTS}
+                pricePerUnit={this.state.pricePerUnit}
                 goToStep={this.goToStep}
                 setVariableCost={this.updateVariableCost}
                 restart={this.restartAnalysis}

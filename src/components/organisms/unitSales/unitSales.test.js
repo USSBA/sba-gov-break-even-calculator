@@ -30,7 +30,7 @@ describe('UnitSales', () => {
 
   it('goes to the next step on submit if a value is entered', () => {
     const wrapper = shallow(
-      <UnitSales  setNumUnits={setNumUnitsMock} goToStep={goToStepMock} />
+      <UnitSales setNumUnits={setNumUnitsMock} goToStep={goToStepMock} />
     )
 
     wrapper.setProps({value: 100})
@@ -38,7 +38,7 @@ describe('UnitSales', () => {
     expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.UNIT_SALES + 1)
   })
 
-  it('does not go to the next step on submit if a input field is blank', () => {
+  it('does not go to the next step on submit if the input field is blank', () => {
     const wrapper = shallow(
       <UnitSales  setNumUnits={setNumUnitsMock} goToStep={goToStepMock} />
     )
@@ -46,7 +46,7 @@ describe('UnitSales', () => {
     expect(goToStepMock).toHaveBeenCalledTimes(0)
   })
 
-  it('returns an error if field is empty', () => {
+  it('returns an error if the field is empty', () => {
     const wrapper = shallow(
       <UnitSales  setNumUnits={setNumUnitsMock} goToStep={goToStepMock} />
     )

@@ -27,12 +27,41 @@ describe('PricePerUnit', () => {
     expect(setUnitPriceMock).toHaveBeenCalledWith(100)
   })  
 
+  it('sets formError to false when input field is changed.', () => {
+    const wrapper = shallow(
+      <PricePerUnit setUnitPrice={setUnitPriceMock} goToStep={goToStepMock} />
+    )
+
+    wrapper.find('MoneyInput').simulate('change', null, {value: 100})
+    expect(wrapper.find('MoneyInput').prop('formError')).toEqual(false);
+  })  
+
   it('goes to the next step on submit', () => {
     const wrapper = shallow(
-      <PricePerUnit goToStep={goToStepMock} />
+      <PricePerUnit setUnitPrice={setUnitPriceMock} goToStep={goToStepMock} />
     )
+
+    wrapper.setProps({value: 100})
     wrapper.find('Form').simulate('submit')
     expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.PRICE_PER_UNIT + 1)
+  })
+
+  it('does not go to the next step on submit if field is empty', () => {
+    const wrapper = shallow(
+      <PricePerUnit setUnitPrice={setUnitPriceMock} goToStep={goToStepMock} />
+    )
+
+    wrapper.find('Form').simulate('submit')
+    expect(goToStepMock).toHaveBeenCalledTimes(0)
+  })
+
+  it('returns an error if field is empty', () => {
+    const wrapper = shallow(
+      <PricePerUnit setUnitPrice={setUnitPriceMock} goToStep={goToStepMock} />
+    )
+
+    wrapper.find('Form').simulate('submit')    
+    expect(wrapper.find('MoneyInput').prop('errorMessage')).toEqual('Enter a valid price per unit to continue');
   })
 
   it('goes to the previous step on back click', () => {

@@ -9,10 +9,7 @@
   color: @sba-blue;
 
   .editableSection {
-
-    .editableValue {
-      margin-right: @base-spacing;
-    }
+    overflow-wrap: break-word;
 
     .editButton {
       color: @secondary-blue;
@@ -21,6 +18,18 @@
       &:hover {
         color: @secondary-blue-light;
       }
+    }
+  }
+
+  @media only screen and (max-width: 767px) and (min-width: 320px) {
+    padding: @small-spacing 0;
+    
+    .ui.small.input {
+      margin-left: 0;
+    }
+
+    .ui.input input {
+      width: 50%;
     }
   }
 }

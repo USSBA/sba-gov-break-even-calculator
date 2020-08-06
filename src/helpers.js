@@ -35,3 +35,48 @@ export const findStepSize = (value) => {
   if (value < 6) return 1;
   return decimalPrettify(Math.round(value/4))
 }
+
+export const formatBreakEvenGraphData = (data) => { 
+  const breakEvenUnits = parseInt(data.breakEvenUnits)
+  const fixedCost = parseInt(data.fixedCost)
+  
+  const totalCost = Math.round((data.variableCost * breakEvenUnits) + fixedCost)                 
+  const maxTotalCost = Math.round((data.variableCost * breakEvenUnits * 2) + fixedCost)
+
+  return {
+    breakEven: {
+      lineColor: "#007dbc",
+      data: [ 
+        { x: breakEvenUnits, y: 0 },
+        { x: breakEvenUnits, y: data.breakEvenSales*2 }
+      ],
+    },
+    unitSales: {
+      lineColor: '#41569C',
+      data: [ 
+        { x: 0, y: 0 },
+        { x: breakEvenUnits*2, y: data.breakEvenSales*2 }
+      ]
+    },
+    totalCost: {
+      lineColor: '#686868',
+      data: [ 
+        { x: 0, y: fixedCost},
+        { x: breakEvenUnits*2, y: maxTotalCost }
+      ]
+    },
+    fixedCost: {
+      lineColor: '#969696',
+      data: [ 
+        { x: 0, y: fixedCost},
+        { x: breakEvenUnits*2, y: fixedCost}
+      ]
+    },
+    breakEvenPoint: {
+      color: "#007dbc",
+      data: [
+        {  x: breakEvenUnits, y: totalCost }
+      ]
+    }
+  }
+}

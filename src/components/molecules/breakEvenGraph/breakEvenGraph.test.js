@@ -53,6 +53,16 @@ describe('BreakEvenGraph', () => {
     expect(wrapper.find('.units').first().text()).toEqual('100')
   })
 
+  it('includes the Unit Sales label for the graph', () => {
+    const wrapper = shallow(
+      <BreakEvenGraph 
+        breakEvenUnits={'100'}
+        breakEvenSales={'1200'}
+      />
+    );
+    expect(wrapper.find('Icon.unitSales')).toHaveLength(1)
+  })
+
   it('includes the Break Even label for the graph', () => {
     const wrapper = shallow(
       <BreakEvenGraph 

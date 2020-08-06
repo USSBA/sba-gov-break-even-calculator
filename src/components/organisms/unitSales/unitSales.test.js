@@ -28,14 +28,33 @@ describe('UnitSales', () => {
     expect(setNumUnitsMock).toHaveBeenCalledWith(100)
   })
 
-  it('goes to the next step on submit', () => {
+  it('goes to the next step on submit if a value is entered', () => {
     const wrapper = shallow(
-      <UnitSales goToStep={goToStepMock} />
+      <UnitSales  setNumUnits={setNumUnitsMock} goToStep={goToStepMock} />
     )
+
+    wrapper.setProps({value: 100})
     wrapper.find('Form').simulate('submit')
     expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.UNIT_SALES + 1)
   })
 
+  it('does not go to the next step on submit if a input field is blank', () => {
+    const wrapper = shallow(
+      <UnitSales  setNumUnits={setNumUnitsMock} goToStep={goToStepMock} />
+    )
+    wrapper.find('Form').simulate('submit')
+    expect(goToStepMock).toHaveBeenCalledTimes(0)
+  })
+
+  it('returns an error if field is empty', () => {
+    const wrapper = shallow(
+      <UnitSales  setNumUnits={setNumUnitsMock} goToStep={goToStepMock} />
+    )
+
+    wrapper.find('Form').simulate('submit')
+    expect(wrapper.find('FormInput').dive().dive().find('Label').prop('content')).toEqual('Enter a valid number of units');
+  })
+  
   it('goes to the previous step on back click', () => {
     const wrapper = shallow(
       <UnitSales goToStep={goToStepMock} />

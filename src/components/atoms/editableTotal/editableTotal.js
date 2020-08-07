@@ -48,7 +48,8 @@ const EditableTotal = (props) => {
           <Form onSubmit={handleApply} size='small'>
             <Form.Field>
               <div ref={node}>
-                {isEditing && <Input
+                {isEditing && 
+                <Input
                   size='small'
                   autoFocus
                   label={{basic: true, content: `${type === 'currency' ? '$' : 'Units'}`}} 

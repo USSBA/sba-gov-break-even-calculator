@@ -20,6 +20,7 @@ const PricePerUnit = (props) => {
           <label htmlFor='unit price'>Per unit selling price*</label>
           <p className="subtext">Enter the price you plan to sell per unit or service:</p>
           <MoneyInput
+            width={6}
             autoFocus
             value={props.value}
             onChange={(e, {value}) => props.setUnitPrice(value)}

@@ -91,7 +91,7 @@ describe('VariableCosts', () => {
     const wrapper = shallow(
       <VariableCosts setVariableCost={setVariableCostMock} goToStep={goToStepMock} />
     );
-    
+
     wrapper.setState({knowVariableCosts: 'yes'})
     wrapper.find('Form').simulate('submit')
     
@@ -141,8 +141,10 @@ describe('VariableCosts', () => {
     const wrapper = shallow(
       <VariableCosts setVariableCost={setVariableCostMock} goToStep={goToStepMock} />
     );
+
     wrapper.setState({knowVariableCosts: 'no'})
     wrapper.find('Form').simulate('submit')
+    
     expect(wrapper.find('.errorMsg').text()).toEqual('Enter a valid variable cost to continue')
     expect(wrapper.state().formError).toEqual(true)
   })

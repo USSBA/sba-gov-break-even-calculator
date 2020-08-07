@@ -12,6 +12,7 @@
     display: none;
   }
   .ui.basic.label {
+    color: @sba-red;
     border-left: 2px solid @sba-red;
     border-top: 2px solid @sba-red;
     border-bottom: 2px solid @sba-red;

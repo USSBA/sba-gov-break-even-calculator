@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Icon, Label } from 'semantic-ui-react'
-import { formatBreakEvenGraphData } from '../../../helpers'
+import { formatBreakEvenGraphData, formatNumber } from '../../../helpers'
 import './breakEvenGraph.less'
 import * as d3 from 'd3';
 
@@ -118,8 +118,8 @@ class BreakEvenGraph extends React.Component {
             <div id="lineChart"></div>
             <div className='unitLabel'>Units</div>
             <Card fluid className="tooltip" >
-                <div className="units">
-                  { formatBreakEvenGraphData(this.props).breakEvenPoint.data[0].x }
+                <div className="units number">
+                  { formatNumber(formatBreakEvenGraphData(this.props).breakEvenPoint.data[0].x) }
                 </div>
                 <div>Break-Even</div>
                 <div>Units Sold</div>

@@ -76,10 +76,11 @@ describe('VariableCosts', () => {
     const wrapper = shallow(
       <VariableCosts setVariableCost={setVariableCostMock} goToStep={goToStepMock} />
     );
+
     wrapper.setState({knowVariableCosts: 'yes'})
     wrapper.setState({totalVariableCosts: 10})
-
     wrapper.find('Form').simulate('submit')
+
     expect(setVariableCostMock).toHaveBeenCalledWith(10)
     expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.VARIABLE_COSTS + 1)
   })
@@ -90,9 +91,10 @@ describe('VariableCosts', () => {
     const wrapper = shallow(
       <VariableCosts setVariableCost={setVariableCostMock} goToStep={goToStepMock} />
     );
+    
     wrapper.setState({knowVariableCosts: 'yes'})
-
     wrapper.find('Form').simulate('submit')
+    
     expect(setVariableCostMock).toHaveBeenCalledTimes(0)
     expect(goToStepMock).toHaveBeenCalledTimes(0)
   })

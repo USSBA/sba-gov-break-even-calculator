@@ -66,19 +66,19 @@ class VariableCosts extends React.Component {
   
   totalMonthlyVariableCosts = () => {
     return(<Grid.Column>
-         <label htmlFor='totalVariableCosts'>Total monthly variable costs</label>
-         <p>Enter the sum of all known variable costs</p>
-          <Form.Field>
-            <MoneyInput name='totalVariableCosts'
-              errorMessage= 'Enter a valid variable cost to continue'
-              formError= {this.state.formError}
-              onChange={(e, {value}) => {
-                this.setState({totalVariableCosts: value})
-                this.setState({ totalVariableCosts: value })
-                this.setState({ formError: false })
-              }}/>
-         </Form.Field>
-       </Grid.Column>)
+      <label htmlFor='totalVariableCosts'>Total monthly variable costs</label>
+      <p>Enter the sum of all known variable costs</p>
+      <Form.Field>
+        <MoneyInput name='totalVariableCosts'
+          errorMessage= 'Enter a valid variable cost to continue'
+          formError= {this.state.formError}
+          onChange={(e, {value}) => {
+            this.setState({totalVariableCosts: value})
+            this.setState({ totalVariableCosts: value })
+            this.setState({ formError: false })
+          }}/>
+      </Form.Field>
+    </Grid.Column>)
   }
 
   render() {

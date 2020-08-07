@@ -75,7 +75,6 @@ class VariableCosts extends React.Component {
           errorMessage= 'Enter a valid variable cost to continue'
           formError= {this.state.formError}
           onChange={(e, {value}) => {
-            this.setState({totalVariableCosts: value})
             this.setState({ totalVariableCosts: value })
             this.setState({ formError: false })
           }}/>

@@ -14,7 +14,7 @@ describe('VariableCosts', () => {
   it('has correct initial state', () => {
     const wrapper = shallow(<VariableCosts />);
     expect(wrapper.state().knowVariableCosts).toBe(null)
-    expect(wrapper.state().totalVariableCosts).toEqual(0)
+    expect(wrapper.state().totalVariableCosts).toEqual('')
     expect(wrapper.state().fields).toEqual(variableCostInitState);
   })
 
@@ -77,9 +77,24 @@ describe('VariableCosts', () => {
       <VariableCosts setVariableCost={setVariableCostMock} goToStep={goToStepMock} />
     );
     wrapper.setState({knowVariableCosts: 'yes'})
+    wrapper.setState({totalVariableCosts: 10})
+
     wrapper.find('Form').simulate('submit')
-    expect(setVariableCostMock).toHaveBeenCalledWith(0)
+    expect(setVariableCostMock).toHaveBeenCalledWith(10)
     expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.VARIABLE_COSTS + 1)
+  })
+
+  it('calls setVariableCost and does not go to the next step when variable cost field is empty', () => {
+    const setVariableCostMock = jest.fn()
+    const goToStepMock = jest.fn()
+    const wrapper = shallow(
+      <VariableCosts setVariableCost={setVariableCostMock} goToStep={goToStepMock} />
+    );
+    wrapper.setState({knowVariableCosts: 'yes'})
+
+    wrapper.find('Form').simulate('submit')
+    expect(setVariableCostMock).toHaveBeenCalledTimes(0)
+    expect(goToStepMock).toHaveBeenCalledTimes(0)
   })
 
   it('resets fields on radio button switch', () => {
@@ -89,6 +104,45 @@ describe('VariableCosts', () => {
     wrapper.setState({totalVariableCosts: '20'})
     wrapper.find('[label="Yes"]').simulate('change', null, {value: 'yes'})
     expect(wrapper.state().fields).toEqual(variableCostInitState);
+  })
+
+  it ('goes to next step if at least one of the form fields is filled', () => {
+    const setVariableCostMock = jest.fn()
+    const goToStepMock = jest.fn()
+    const wrapper = shallow(
+      <VariableCosts setVariableCost={setVariableCostMock} goToStep={goToStepMock} />
+    );
+    wrapper.setState({knowVariableCosts: 'no'})
+    wrapper.find('NumbersInputForm').simulate('change', null, {name: 'Rent', value: '100'})
+    wrapper.find('Form').simulate('submit')
+
+    expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.VARIABLE_COSTS + 1)
+    expect(wrapper.state().formError).toEqual(false)
+  })
+
+  it ('does not go to next step if all the fields are empty', () => {
+    const setVariableCostMock = jest.fn()
+    const goToStepMock = jest.fn()
+    const wrapper = shallow(
+      <VariableCosts setVariableCost={setVariableCostMock} goToStep={goToStepMock} />
+    );
+    wrapper.setState({knowVariableCosts: 'no'})
+    wrapper.find('Form').simulate('submit')
+
+    expect(goToStepMock).toHaveBeenCalledTimes(0)
+    expect(wrapper.state().formError).toEqual(true)
+  })
+
+  it ('outputs a message if user has not filled at least one field', () => {
+    const setVariableCostMock = jest.fn()
+    const goToStepMock = jest.fn()
+    const wrapper = shallow(
+      <VariableCosts setVariableCost={setVariableCostMock} goToStep={goToStepMock} />
+    );
+    wrapper.setState({knowVariableCosts: 'no'})
+    wrapper.find('Form').simulate('submit')
+    expect(wrapper.find('.errorMsg').text()).toEqual('Enter a valid variable cost to continue')
+    expect(wrapper.state().formError).toEqual(true)
   })
 
   it('displays warning message when appropriate', () => {

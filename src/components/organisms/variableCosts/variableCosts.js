@@ -14,7 +14,8 @@ class VariableCosts extends React.Component {
     super(props)
     this.state = {
       knowVariableCosts: null,
-      totalVariableCosts: 0,
+      totalVariableCosts: '',
+      formError: false,
       fields: {
         'Direct Materials': 0,
         'Piece Rate Labor': 0,
@@ -29,7 +30,7 @@ class VariableCosts extends React.Component {
   self = CALCULATOR_STEPS.VARIABLE_COSTS
 
   resetTotalVariableCosts = () => {
-    this.setState({ totalVariableCosts: 0 })
+    this.setState({ totalVariableCosts: '' })
   }
 
   resetFields = () => {
@@ -43,7 +44,7 @@ class VariableCosts extends React.Component {
     this.setState({ knowVariableCosts: value})
   }
 
-  handleInputFieldChange = (e, { name, value }) => {
+  handleInputFieldChange = (name, value) => {
     this.setState({
       fields: {...this.state.fields, [name]: value}
     }, () => {
@@ -53,21 +54,32 @@ class VariableCosts extends React.Component {
   }
 
   handleSubmit = () => {
-    this.props.setVariableCost(this.state.totalVariableCosts)
-    this.props.goToStep(CALCULATOR_STEPS.VARIABLE_COSTS + 1)
+    if (!this.state.totalVariableCosts && this.state.totalVarialbeCosts !== 0) {
+      this.setState({ formError: true })
+    } else {
+      this.setState({ formError: false })
+      this.props.setVariableCost(this.state.totalVariableCosts)
+      this.props.goToStep(CALCULATOR_STEPS.VARIABLE_COSTS + 1)
+    }
   }
 
-  totalMonthlyVariableCosts = (
-    <Grid.Column>
-      <label htmlFor='totalVariableCosts'>Total monthly variable costs</label>
-      <p>Enter the sum of all known variable costs</p>
-      <Form.Field>
-        <MoneyInput name='totalVariableCosts' onChange={(e, {value}) => {
-          this.setState({totalVariableCosts: value})
-          }}/>
-      </Form.Field>
-    </Grid.Column>
-  )
+  
+  totalMonthlyVariableCosts = () => {
+    return(<Grid.Column>
+         <label htmlFor='totalVariableCosts'>Total monthly variable costs</label>
+         <p>Enter the sum of all known variable costs</p>
+          <Form.Field>
+            <MoneyInput name='totalVariableCosts'
+              errorMessage= 'Enter a valid variable cost to continue'
+              formError= {this.state.formError}
+              onChange={(e, {value}) => {
+                this.setState({totalVariableCosts: value})
+                this.setState({ totalVariableCosts: value })
+                this.setState({ formError: false })
+              }}/>
+         </Form.Field>
+       </Grid.Column>)
+  }
 
   render() {
     const showWarning = parseInt(this.state.totalVariableCosts) >= parseInt(this.props.pricePerUnit);
@@ -99,8 +111,15 @@ class VariableCosts extends React.Component {
                 onChange={this.handleRadioButtonChange}
               />
             </Grid.Column>
-            {this.state.knowVariableCosts === 'no' && <NumbersInputForm  onChange={this.handleInputFieldChange} fields={variableCostFields} />}
-            {this.state.knowVariableCosts === 'yes' && this.totalMonthlyVariableCosts}
+            {this.state.knowVariableCosts === 'no' && 
+              <NumbersInputForm
+                onChange={(e, { name, value }) => {
+                  this.handleInputFieldChange(name, value)
+                  this.setState({ formError: false })
+                }}
+                fields={variableCostFields} />
+            }
+            {this.state.knowVariableCosts === 'yes' && this.totalMonthlyVariableCosts()}
           </Grid>
           <Grid columns={1}>
             {this.state.knowVariableCosts === 'yes' && 
@@ -109,6 +128,9 @@ class VariableCosts extends React.Component {
                   <a onClick={() => this.setState({ knowVariableCosts: 'no'})}>Add all variable costs individually</a>
                 </div>
               </Grid.Column>}
+              { this.state.formError && this.state.knowVariableCosts === 'no' &&
+                <p className='errorMsg'>Enter a valid variable cost to continue</p>
+              }
             {this.state.knowVariableCosts && 
               <Grid.Column>
                 <Grid columns={2} reversed='mobile' verticalAlign='middle' stackable>

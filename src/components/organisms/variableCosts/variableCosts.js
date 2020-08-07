@@ -54,7 +54,9 @@ class VariableCosts extends React.Component {
   }
 
   handleSubmit = () => {
-    if (!this.state.totalVariableCosts && this.state.totalVarialbeCosts !== 0) {
+    const {totalVariableCosts} = this.state
+
+    if (!totalVariableCosts && totalVariableCosts !== 0) {
       this.setState({ formError: true })
     } else {
       this.setState({ formError: false })
@@ -64,7 +66,7 @@ class VariableCosts extends React.Component {
   }
 
   
-  totalMonthlyVariableCosts = () => {
+  totalVariableCostPerUnit = () => {
     return(<Grid.Column>
       <label htmlFor='totalVariableCosts'>Total monthly variable costs</label>
       <p>Enter the sum of all known variable costs</p>
@@ -119,7 +121,7 @@ class VariableCosts extends React.Component {
                 }}
                 fields={variableCostFields} />
             }
-            {this.state.knowVariableCosts === 'yes' && this.totalMonthlyVariableCosts()}
+            {this.state.knowVariableCosts === 'yes' && this.totalVariableCostPerUnit()}
           </Grid>
           <Grid columns={1}>
             {this.state.knowVariableCosts === 'yes' && 

@@ -145,7 +145,7 @@ describe('VariableCosts', () => {
     wrapper.setState({knowVariableCosts: 'no'})
     wrapper.find('Form').simulate('submit')
     
-    expect(wrapper.find('.errorMsg').text()).toEqual('Enter a valid variable cost to continue')
+    expect(wrapper.find('.errorMsg').text()).toEqual('Enter a valid variable cost per unit to continue')
     expect(wrapper.state().formError).toEqual(true)
   })
 

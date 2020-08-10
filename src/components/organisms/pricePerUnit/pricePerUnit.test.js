@@ -61,7 +61,7 @@ describe('PricePerUnit', () => {
     )
 
     wrapper.find('Form').simulate('submit')    
-    expect(wrapper.find('MoneyInput').prop('errorMessage')).toEqual('Enter a valid price per unit to continue');
+    expect(wrapper.find('MoneyInput').prop('errorMessage')).toEqual('Enter a valid selling price to continue');
   })
 
   it('goes to the previous step on back click', () => {

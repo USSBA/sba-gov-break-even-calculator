@@ -52,7 +52,7 @@ describe('UnitSales', () => {
     )
 
     wrapper.find('Form').simulate('submit')
-    expect(wrapper.find('FormInput').dive().dive().find('Label').prop('content')).toEqual('Enter a valid number of units');
+    expect(wrapper.find('FormInput').dive().dive().find('Label').prop('content')).toEqual('Enter a valid number of units to continue');
   })
   
   it('goes to the previous step on back click', () => {

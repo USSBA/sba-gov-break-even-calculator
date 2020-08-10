@@ -1,0 +1,5 @@
+packages:
+  - cicd/*
+  - solution/*
+  - packages/*
+  - integration-tests

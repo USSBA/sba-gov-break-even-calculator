@@ -1,0 +1,9 @@
+id: st-handle-etran-response
+v: 1
+title: Handle Etran Response
+desc: |
+  Expects an etran response or an error in the payload and updates the
+  database accordingly.
+
+skippable: false # this means that if there is an error in a previous step, then this step will be skipped
+hidden: false

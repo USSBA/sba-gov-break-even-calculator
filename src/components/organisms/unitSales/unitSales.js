@@ -17,7 +17,7 @@ const UnitSales = (props) => {
   }
 
   const errorContent = (formError) => {
-    if (formError) return { content: 'Enter a valid number of units', 
+    if (formError) return { content: 'Enter a valid number of units to continue', 
                             pointing: 'above' 
                           }
   }

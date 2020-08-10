@@ -35,7 +35,7 @@ const PricePerUnit = (props) => {
             autoFocus
             value={props.value}
             formError= {formError}
-            errorMessage= 'Enter a valid price per unit to continue'
+            errorMessage= 'Enter a valid selling price to continue'
             onChange={(e, { value }) => {
               props.setUnitPrice(value)
               setFormError(false)

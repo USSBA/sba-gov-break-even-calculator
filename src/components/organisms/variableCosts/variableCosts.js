@@ -72,7 +72,7 @@ class VariableCosts extends React.Component {
       <p>Enter the sum of all known variable costs</p>
       <Form.Field>
         <MoneyInput name='totalVariableCosts'
-          errorMessage= 'Enter a valid variable cost to continue'
+          errorMessage= 'Enter a valid variable cost per unit to continue'
           formError= {this.state.formError}
           onChange={(e, {value}) => {
             this.setState({ totalVariableCosts: value })
@@ -130,7 +130,7 @@ class VariableCosts extends React.Component {
                 </div>
               </Grid.Column>}
               { this.state.formError && this.state.knowVariableCosts === 'no' &&
-                <p className='errorMsg'>Enter a valid variable cost to continue</p>
+                <p className='errorMsg'>Enter a valid variable cost per unit to continue</p>
               }
             {this.state.knowVariableCosts && 
               <Grid.Column>

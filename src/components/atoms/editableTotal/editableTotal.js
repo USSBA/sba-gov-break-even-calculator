@@ -42,18 +42,21 @@ const EditableTotal = (props) => {
   }
 
   return (
-    <Grid.Row className='editableTotal-row' columns={2}>
-      <Grid.Column className='title'>{title}</Grid.Column>
-      <Grid.Column textAlign='right' className='editableSection'>
+    <Grid.Row verticalAlign='middle' className='editableTotal-row' columns={2}>
+      <Grid.Column computer={8} mobile={6} className='title'>{title}</Grid.Column>
+      <Grid.Column computer={8} mobile={10} textAlign='right' className='editableSection'>
           <Form onSubmit={handleApply} size='small'>
             <Form.Field>
               <div ref={node}>
-                {isEditing && <Input
+                {isEditing && 
+                <Input
+                  size='small'
                   autoFocus
                   label={{basic: true, content: `${type === 'currency' ? '$' : 'Units'}`}} 
                   action={{
                     color: 'blue',
                     content:'APPLY',
+                    size: 'small',
                     onClick: () => handleApply(),
                   }}
                   type='number'
@@ -63,12 +66,16 @@ const EditableTotal = (props) => {
               </div>
             </Form.Field>
           </Form>
-        {!isEditing && (<>
-          <span className='editableValue'>
-            {formatTotals(value)}
-          </span>
-          <a className='editButton' onClick={() => setIsEditing(true)}>edit</a>
-        </>)}
+        {!isEditing && (
+          <Grid columns={2} stackable={false}>
+            <Grid.Column computer={13} mobile={11} verticalAlign='middle' className='editableValue'>
+              {formatTotals(value)}
+            </Grid.Column>
+            <Grid.Column computer={3} mobile={5} verticalAlign='middle'>
+              <a className='editButton' onClick={() => setIsEditing(true)}>edit</a>
+            </Grid.Column>
+          </Grid>
+        )}
       </Grid.Column >
     </Grid.Row>
   )

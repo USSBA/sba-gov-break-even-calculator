@@ -11,11 +11,28 @@
   .ui[class*="pointing above"].label:before {
     display: none;
   }
-  .ui.basic.label {
-    border-left: 2px solid @sba-red;
-    border-top: 2px solid @sba-red;
-    border-bottom: 2px solid @sba-red;
-    border-radius: 0;
+
+  .ui.right.labeled.input {
+    i.icon {
+      right: 71px;
+    }
+    .ui.basic.label {
+      color: @sba-red;
+      border-right: 2px solid @sba-red;
+      border-top: 2px solid @sba-red;
+      border-bottom: 2px solid @sba-red;
+      border-radius: 0;
+    }
+  }
+  
+  .ui.icon.left.labeled.input {
+    .ui.basic.label {
+      color: @sba-red;
+      border-left: 2px solid @sba-red;
+      border-top: 2px solid @sba-red;
+      border-bottom: 2px solid @sba-red;
+      border-radius: 0;
+    }
   }
 
   textarea,  

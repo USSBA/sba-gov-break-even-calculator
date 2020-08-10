@@ -110,7 +110,7 @@ class FixedCosts extends React.Component {
                 <label htmlFor='totalFixedCosts'>Do you know the total of your monthly fixed costs?*</label>
                 <div className="subtext">Enter the sum of all known fixed costs:</div>
                 <Form.Field>
-                  <MoneyInput 
+                  <MoneyInput
                     value={this.props.totalFixedCosts} 
                     name='totalFixedCosts'
                     autoFocus

@@ -44,7 +44,7 @@ const BreakEvenResultsCard = (props) => {
                   </Card.Header>
                   <Card.Description extra>
                     <p>If you sell your anticipated</p>
-                    <div className='number'>{`${expectedUnits} units`}</div>
+                    <div className='number'>{`${formatNumber(expectedUnits)} units`}</div>
                     <p>{`your ${willBreakEven ? 'profit' : 'loss'} will be`}</p>
                     <div className={`number ${willBreakEven ? 'profit' : 'loss'}`}>
                       {profitOrLoss()}

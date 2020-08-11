@@ -19,7 +19,7 @@ class ServerlessUIToolsPlugin {
         options: {
           'build-dir': {
             usage: 'Specify the directory containing UI code to be deployed to S3.',
-            default: 'build/',
+            default: 'public/',
           },
           'invalidate-cache': {
             usage:
@@ -34,7 +34,7 @@ class ServerlessUIToolsPlugin {
         options: {
           'build-dir': {
             usage: 'Specify the directory containing UI code to be deployed to S3.',
-            default: 'build/',
+            default: 'public/',
           },
           'invalidate-cache': {
             usage:

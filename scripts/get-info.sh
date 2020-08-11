@@ -26,9 +26,6 @@ function get_info() {
   local stack_name_infrastructure=$($EXEC sls info -s $STAGE | grep 'stack:' --ignore-case | sed 's/ //g' | cut -d':' -f2)
   popd
 
-  pushd $SOLUTION_DIR/backend
-  local stack_name_backend=$($EXEC sls info -s $STAGE | grep 'stack:' --ignore-case | sed 's/ //g' | cut -d':' -f2)
-  popd
 
   local solution_name="$(cat $CONFIG_DIR/settings/$STAGE.yml | grep 'solutionName:' --ignore-case | sed 's/ //g' | cut -d':' -f2)"
   local aws_region="$(cat $CONFIG_DIR/settings/$STAGE.yml | grep 'awsRegion:' --ignore-case | sed 's/ //g' | cut -d':' -f2)"
@@ -41,7 +38,7 @@ function get_info() {
       root_psswd_cmd="aws ssm get-parameters --names /$STAGE/$solution_name/user/root/password --output text --region $aws_region --profile $aws_profile --with-decryption --query Parameters[0].Value"
 #      root_passwd="$(${root_psswd_cmd})"
       website_domain_name="$(aws cloudformation describe-stacks --stack-name $stack_name_infrastructure --output text --region $aws_region --profile $aws_profile --query 'Stacks[0].Outputs[?OutputKey==`CloudFrontEndpoint`].OutputValue')"
-      api_endpoint="$(aws cloudformation describe-stacks --stack-name $stack_name_backend --output text --region $aws_region --profile $aws_profile --query 'Stacks[0].Outputs[?OutputKey==`ServiceEndpoint`].OutputValue')"
+
   else
       root_psswd_cmd="aws ssm get-parameters --names /$STAGE/$solution_name/user/root/password --output text --region $aws_region --with-decryption --query Parameters[0].Value"
 #      root_passwd="$(${root_psswd_cmd})"
@@ -61,20 +58,6 @@ function get_info() {
   printf "\n\nEnv Name       : ${ENV_NAME}"
   printf "\nSolution       : ${solution_name}"
   printf "\nWebsite URL    : ${WEBSITE_ENDPOINT}"
-  printf "\nAPI Endpoint   : ${API_ENDPOINT}"
-
-  # only show profile and root password command when running in an interactive terminal
-  if [ -t 1 ] ; then
-      [ -z ${aws_profile} ] || printf "\nAWS Profile    : ${aws_profile}"
-      root_passwd="$(${root_psswd_cmd})"
-      echo ""
-      # Using echo instead of printf here as the line fails if the root_passwd contains certain characters
-      # such as question mark (?)
-      echo "Root Password  : ${root_passwd}"
-  else
-      printf "\nExecute following command to get Root Password :"
-      printf "\n${root_psswd_cmd}"
-  fi
   printf "\n\n-------------------------------------------------------------------------\n\n"
 }
 

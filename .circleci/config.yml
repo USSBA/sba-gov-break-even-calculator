@@ -1,80 +1,70 @@
 defaults: &defaults
   docker:
     - image: circleci/node:12
-
-version: 2
+      environment:
+        ## this enables colors in the output
+        TERM: xterm
+version: 2.1
 jobs:
-  pre-build:
-    working_directory: ~/sba-gov-break-even-calculator
-    <<: *defaults
-    steps:
-      - checkout:
-          path: ~/sba-gov-break-even-calculator/
-      - attach_workspace:
-          at: ~/sba-gov-break-even-calculator/
-
-      - restore_cache:
-          key: node-v2-{{ checksum "package.json" }}-{{ arch }}
-
-      - run: npm install
-
-      - save_cache:
-          key: node-v2-{{ checksum "package.json" }}-{{ arch }}
-          paths:
-            - node_modules
-
-      - persist_to_workspace:
-          root: ~/sba-gov-break-even-calculator
-          paths:
-            - node_modules
-  lint:
-    working_directory: ~/sba-gov-break-even-calculator
-    <<: *defaults
+  lint-frontend:
+    << : *defaults
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/sba-gov-break-even-calculator
-      - run: npm run lint
-  test:
-    working_directory: ~/sba-gov-break-even-calculator
-    <<: *defaults
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/sba-gov-break-even-calculator
-      - run: npm run test
-  gatsby-deploy:
-    working_directory: ~/sba-gov-break-even-calculator
-    <<: *defaults
-    steps:
-      - checkout:
-          path: ~/sba-gov-break-even-calculator/
-      - attach_workspace:
-          at: ~/sba-gov-break-even-calculator
       - run:
           command: |
-            sudo apt-get -y -qq install awscli
-            CI=false npm run build
-            aws s3 sync public/ s3://profit-gizmo.qa.ussba.io --region us-east-1 --delete
+            cd ~/project/solution/ui
+            npm run lint
+  deploy-code:
+    << : *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "pnpm-lock.yaml" }}
+            - v1-deps-{{ .Branch }}-
+            - v1-deps-
+      - run:
+          name: Install tooling
+          command: |
+            sudo apt-get -y -qq install awscli dnsutils libgtk2.0-0 libgtk-3-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+            sudo npm install -g pnpm
+            sudo npm install -g serverless
+      - run:
+          name: Install dependencies
+          command: |
+            pnpm install
+      - save_cache:
+          key: v1-deps-{{ .Branch }}-{{ checksum "pnpm-lock.yaml" }}
+          paths:
+            - ~/project/node_modules
+      - run:
+          name: Deploy the code
+          requires:
+            Install dependencies
+          command: |
+             serverless config credentials --provider aws --profile lower --key ${AWS_ACCESS_KEY_ID} --secret ${AWS_SECRET_ACCESS_KEY}
+             cd solution/ui
+             gatsby build
+             cd ../../scripts
+             source ./environment-deploy.sh ${CIRCLE_USERNAME}
+      - run:
+          name: Run Tests
+          requires:
+            Deploy the code
+          command: |
+            serverless config credentials --provider aws --profile lower --key ${AWS_ACCESS_KEY_ID} --secret ${AWS_SECRET_ACCESS_KEY}
+            cd scripts
+            source ./get-info.sh ${CIRCLE_USERNAME}
+            cd ../solution/ui
+            pnpm run test 
+
+
 workflows:
-  version: 2
-  front-backend:
+  version: 2.1
+  build:
     jobs:
-      - pre-build       
-      - lint:
+      - lint-frontend
+      - deploy-code:
+          context: bec
           requires:
-            - pre-build
-      - test:
-          requires:
-            - pre-build
-      - gatsby-deploy:
-          context: sba-gov-bepcalc
-          requires:
-            - lint
-            - test
-          filters:
-            branches:
-              only:
-                - develop 
-                - master
-           
+            - lint-frontend

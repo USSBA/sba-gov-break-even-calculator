@@ -5,6 +5,7 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    `gatsby-plugin-pnpm`,
     `gatsby-plugin-less`,
     `gatsby-plugin-react-helmet`,
     {
@@ -26,8 +27,8 @@ module.exports = {
       },
     },
     'gatsby-plugin-eslint'
-    
-    
+
+
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

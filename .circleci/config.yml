@@ -48,7 +48,7 @@ jobs:
              cd scripts
              if [[ "master" == "${CIRCLE_BRANCH}" ]]; 
                then export TARGET="bec-staging"; 
-             elseif [[ "develop" == "${CIRCLE_BRANCH}" ]]
+             else if [[ "develop" == "${CIRCLE_BRANCH}" ]]
                then export TARGET="bec-develop"
              else export TARGET="${CIRCLE_USERNAME}"; fi
              source ./environment-deploy.sh ${TARGET}

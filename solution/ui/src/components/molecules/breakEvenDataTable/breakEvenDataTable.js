@@ -8,12 +8,12 @@ import './breakEvenDataTable.less'
 class BreakEvenDataTable extends React.Component {
 	state = {
     column: null,
-    data: this.props.data,
     direction: null,
   }
 
   handleSort = (clickedColumn) => () => {
-    const { column, data, direction } = this.state
+    const { column, direction } = this.state
+    const { data } = this.props
 
     if (column !== clickedColumn) {
       this.setState({
@@ -37,7 +37,8 @@ class BreakEvenDataTable extends React.Component {
 	}
 
   render() {
-    const { column, data, direction } = this.state
+    const { column, direction } = this.state
+    const { data } = this.props
 
     return (
       <Table id='bep-dataTable' textAlign='right' sortable fixed unstackable>

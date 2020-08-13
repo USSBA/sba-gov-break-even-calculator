@@ -46,7 +46,10 @@ jobs:
           command: |
              serverless config credentials --provider aws --profile SBA-lower --key ${AWS_ACCESS_KEY_ID} --secret ${AWS_SECRET_ACCESS_KEY}
              cd scripts
-             if [[ "master" == "${CIRCLE_BRANCH}" ]]; then export TARGET="staging"; else export TARGET="${CIRCLE_USERNAME}"; fi
+             if [[ "master" == "${CIRCLE_BRANCH}" ]]; 
+               then export TARGET="staging"; 
+             elseif [[ "develop" == "${CIRCLE_BRANCH}" ]]
+             else export TARGET="${CIRCLE_USERNAME}"; fi
              source ./environment-deploy.sh ${TARGET}
 
 workflows:

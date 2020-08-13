@@ -6,14 +6,6 @@ defaults: &defaults
         TERM: xterm
 version: 2.1
 jobs:
-  lint-frontend:
-    << : *defaults
-    steps:
-      - checkout
-      - run:
-          command: |
-            cd ~/project/solution/ui
-            npm run lint
   deploy-code:
     << : *defaults
     steps:
@@ -26,7 +18,7 @@ jobs:
       - run:
           name: Install tooling
           command: |
-            sudo apt-get -y -qq install awscli dnsutils libgtk2.0-0 libgtk-3-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+            sudo apt-get -y -qq install awscli dnsutils
             sudo npm install -g pnpm
             sudo npm install -g serverless
       - run:
@@ -38,33 +30,28 @@ jobs:
           paths:
             - ~/project/node_modules
       - run:
+          name: pnpm run lint
+          command: |
+            cd ~/project/solution/ui
+            pnpm run lint
+      - run:
+          name: Run test
+          command: |
+            cd ~/project/solution/ui
+            pnpm run test
+      - run:
           name: Deploy the code
           requires:
             Install dependencies
           command: |
-             serverless config credentials --provider aws --profile lower --key ${AWS_ACCESS_KEY_ID} --secret ${AWS_SECRET_ACCESS_KEY}
-             cd solution/ui
-             gatsby build
-             cd ../../scripts
-             source ./environment-deploy.sh ${CIRCLE_USERNAME}
-      - run:
-          name: Run Tests
-          requires:
-            Deploy the code
-          command: |
-            serverless config credentials --provider aws --profile lower --key ${AWS_ACCESS_KEY_ID} --secret ${AWS_SECRET_ACCESS_KEY}
-            cd scripts
-            source ./get-info.sh ${CIRCLE_USERNAME}
-            cd ../solution/ui
-            pnpm run test 
-
+             serverless config credentials --provider aws --profile SBA-lower --key ${AWS_ACCESS_KEY_ID} --secret ${AWS_SECRET_ACCESS_KEY}
+             cd scripts
+             if [[ "master" == "${CIRCLE_BRANCH}" ]]; then export TARGET="staging"; else export TARGET="${CIRCLE_USERNAME}"; fi
+             source ./environment-deploy.sh ${TARGET}
 
 workflows:
   version: 2.1
   build:
     jobs:
-      - lint-frontend
       - deploy-code:
-          context: bec
-          requires:
-            - lint-frontend
+          context: sba-gov-bepcalc

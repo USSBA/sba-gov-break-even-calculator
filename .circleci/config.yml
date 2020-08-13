@@ -47,8 +47,9 @@ jobs:
              serverless config credentials --provider aws --profile SBA-lower --key ${AWS_ACCESS_KEY_ID} --secret ${AWS_SECRET_ACCESS_KEY}
              cd scripts
              if [[ "master" == "${CIRCLE_BRANCH}" ]]; 
-               then export TARGET="staging"; 
+               then export TARGET="bec-staging"; 
              elseif [[ "develop" == "${CIRCLE_BRANCH}" ]]
+               then export TARGET="bec-develop"
              else export TARGET="${CIRCLE_USERNAME}"; fi
              source ./environment-deploy.sh ${TARGET}
 
@@ -57,4 +58,4 @@ workflows:
   build:
     jobs:
       - deploy-code:
-          context: sba-gov-bepcalc
+          context: sba-gov-lower

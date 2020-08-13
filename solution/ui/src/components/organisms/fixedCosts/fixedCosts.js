@@ -48,7 +48,7 @@ class FixedCosts extends React.Component {
 
   handleInputFieldChange = (name, value) => {
     this.setState({
-      fields: {...this.state.fields, [name]: value}
+      fields: {...this.state.fields, [name]: value || 0}
     }, () => {
       const runningSum = sumValues(this.state.fields)
       this.setState({totalFixedCosts: runningSum})

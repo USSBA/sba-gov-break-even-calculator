@@ -136,12 +136,31 @@ describe('FixedCosts', () => {
     expect(wrapper.state().formError).toEqual(true)
   })
 
-
   it('resets fields on radio button switch', () => {
     const wrapper = shallow(<FixedCosts />);
     wrapper.setState({knowFixedCosts: 'no'})
     wrapper.setState({fields: {Rent: '100'}})
     wrapper.find('[label="Yes"]').simulate('change', null, {value: 'yes'})
     expect(wrapper.state().fields).toEqual(fixedCostInitState);
+  })
+
+  it('correctly resets the total cost value on radio button change', () => {
+    const wrapper = shallow(<FixedCosts />);
+    const yesButton = wrapper.find('[label="Yes"]')
+    const noButton = wrapper.find('[label="No"]')
+    yesButton.simulate('change', null, {value: 'yes'})
+    wrapper.setState({totalFixedCosts: 100}) 
+    noButton.simulate('change', null, {value: 'no'})
+    expect(wrapper.state('totalFixedCosts')).toEqual('')
+  })
+
+  it('correctly calculates total cost when a field value is erased', () => {
+    const wrapper = shallow(<FixedCosts />);
+    wrapper.setState({knowFixedCosts: 'no'})
+    wrapper.find('NumbersInputForm').simulate('change', null, {name: 'Rent', value: '100'})
+    wrapper.find('NumbersInputForm').simulate('change', null, {name: 'Salaries', value: '3000'})
+    expect(wrapper.state('totalFixedCosts')).toEqual(3100)
+    wrapper.find('NumbersInputForm').simulate('change', null, {name: 'Rent', value: ''})
+    expect(wrapper.state('totalFixedCosts')).toEqual("3000")
   })
 })

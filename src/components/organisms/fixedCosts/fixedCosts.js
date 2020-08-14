@@ -51,7 +51,6 @@ class FixedCosts extends React.Component {
       fields: {...this.state.fields, [name]: value}
     }, () => {
       const runningSum = sumValues(this.state.fields)
-      console.log('running sum', runningSum)
       this.setState({totalFixedCosts: runningSum})
     })
   }
@@ -118,7 +117,6 @@ class FixedCosts extends React.Component {
                     errorMessage= 'Enter a valid fixed cost to continue'
                     formError= {this.state.formError}
                     onChange={(e, { value }) => {
-                      this.props.setFixedCost(value)
                       this.setState({ totalFixedCosts: value })
                       this.setState({ formError: false })
                     }}/>

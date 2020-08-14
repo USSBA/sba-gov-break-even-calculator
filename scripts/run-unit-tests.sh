@@ -1,0 +1,1 @@
+pnpm run test --recursive --if-present

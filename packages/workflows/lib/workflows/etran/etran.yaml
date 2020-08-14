@@ -1,0 +1,23 @@
+id: wf-etran
+v: 1
+workflowTemplateId: wt-empty
+workflowTemplateVer: 1
+title: Call the ETRAN system
+desc: |
+  This workflow calls the ETRAN system and then updates the results into DynamoDB table for later retreival
+hidden: false
+builtin: true
+instanceTtl: 30 # In days, however, empty value means that it is indefinite
+
+runSpec:
+  size: small
+  target: stepFunctions
+
+selectedSteps:
+  - stepTemplateId: st-call-etran
+    stepTemplateVer: 1
+    id: wf-step_1_1585788794380_37
+
+  - stepTemplateId: st-handle-etran-response
+    stepTemplateVer: 1
+    id: wf-step_2_9906471371180_35

@@ -1,0 +1,8 @@
+id: st-call-etran
+v: 1
+title: Call Etran
+desc: |
+  Call the Etran system and then
+  - Expects the raw data to be submitted
+skippable: true # this means that if there is an error in a previous step, then this step will be skipped
+hidden: false

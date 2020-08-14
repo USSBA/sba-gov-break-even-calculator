@@ -1,0 +1,1 @@
+pnpm run lint --recursive --if-present

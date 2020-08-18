@@ -46,29 +46,33 @@ $ unset AWS_PROFILE
 
 # Install dependencies
 ```bash
+$ brew install pnpm
 $ pnpm install
+$ sudo pnpm i -g hygen
 ```
 
 # Generate a settings file
 
 ```bash
 $ cd solution
-solution $ hygen settings new
+$ hygen settings new
 ```
-Each input has instructions on how it will be used.  These values can be changed at a later date.
+Each input has instructions on how it will be used. Make sure to name it your github username.  These values can be changed at a later date.
 
 when complete 2 files will be created.  Environment and stage will be used interchangably going forward.
 
 # Deploy the infrastructure
 
 ```bash
-solution $ ../scripts/environment-deploy.sh <stage>
+$ ../scripts/environment-deploy.sh <stage>
 ```
 or 
 
 ```bash
 $ scripts/environment-deploy.sh <stage>
 ```
+
+Where <stage> is the name you gave your environment in hygen settings
 
 This will create and deploy all of the necessary infrastructure and code for the specified stage
 

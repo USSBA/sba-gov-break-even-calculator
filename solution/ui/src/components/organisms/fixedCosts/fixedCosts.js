@@ -91,8 +91,8 @@ class FixedCosts extends React.Component {
             <Grid.Column>
               <Form.Field
                 control={Radio}
-                label='No'
-                aria-label='no'
+                label='No, input values individually'
+                aria-label='no, input values individually'
                 name='noBox'
                 value='no'
                 checked={this.state.knowFixedCosts === 'no'}

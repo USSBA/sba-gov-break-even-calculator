@@ -96,6 +96,7 @@ class VariableCosts extends React.Component {
               <Form.Field
                 control={Radio}
                 label='Yes'
+                aria-label='yes'
                 name='yesBox'
                 value='yes'
                 checked={this.state.knowVariableCosts === 'yes'}
@@ -106,6 +107,7 @@ class VariableCosts extends React.Component {
               <Form.Field
                 control={Radio}
                 label='No'
+                aria-label='no'
                 name='noBox'
                 value='no'
                 checked={this.state.knowVariableCosts === 'no'}

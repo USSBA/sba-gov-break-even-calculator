@@ -11,7 +11,7 @@ const NumbersInputForm = (props) => {
      return (
        <Grid.Column key={field.name}>
          <Form.Field>
-          <label className='numbersInputForm-label' htmlFor={field.name}>{field.name}</label>
+          <label className='numbersInputForm-label' for={field.name}>{field.name}</label>
           <p className='numbersInputForm-p'>{field.description}</p>
           
           <MoneyInput 

@@ -81,6 +81,7 @@ class FixedCosts extends React.Component {
               <Form.Field
                 control={Radio}
                 label='Yes'
+                aria-label='yes'
                 name='yesBox'
                 value='yes'
                 checked={this.state.knowFixedCosts === 'yes'}
@@ -91,6 +92,7 @@ class FixedCosts extends React.Component {
               <Form.Field
                 control={Radio}
                 label='No'
+                aria-label='no'
                 name='noBox'
                 value='no'
                 checked={this.state.knowFixedCosts === 'no'}
@@ -112,6 +114,7 @@ class FixedCosts extends React.Component {
                 <Form.Field>
                   <MoneyInput
                     value={this.state.totalFixedCosts} 
+                    ariaLabel='total fixed cost'
                     name='totalFixedCosts'
                     autoFocus
                     errorMessage= 'Enter a valid fixed cost to continue'

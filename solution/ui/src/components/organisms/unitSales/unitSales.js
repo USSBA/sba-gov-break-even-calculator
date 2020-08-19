@@ -32,6 +32,7 @@ const UnitSales = (props) => {
           <p>Enter the number of units or services you expect to sell</p>
           <Form.Input width={6} {...(formError ? {error: errorContent(true)} : {})} >
             <Input 
+              id='units'
               autoFocus
               label={{basic: true, content: 'Units'}}
               labelPosition='right'

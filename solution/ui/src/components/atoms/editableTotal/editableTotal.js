@@ -51,6 +51,7 @@ const EditableTotal = (props) => {
                 {isEditing && 
                 <Input
                   size='small'
+                  aria-label={title}
                   autoFocus
                   label={{basic: true, content: `${type === 'currency' ? '$' : 'Units'}`}} 
                   action={{

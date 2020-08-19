@@ -49,7 +49,11 @@ const UnitSales = (props) => {
         <div className='button-container'>
           <Form.Button primary content='CONTINUE' />
         </div>
-        <a href="#" onClick={() => props.goToStep(self - 1)}>{`< Back to price per unit`}</a>
+        <a 
+          href="#" 
+          aria-label='Back to price per unit' 
+          onClick={() => props.goToStep(self - 1)}
+        >{`< Back to price per unit`}</a>
         <a href="#" onClick={props.restart}>Restart Analysis</a>
       </Form>
     </div>

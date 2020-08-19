@@ -3,7 +3,11 @@ export const formatNumber = (num) => {
   return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 }
 
-export const sumValues = obj => Object.values(obj).reduce((a, b) => parseFloat(a) + parseFloat(b));
+export const sumValues = (obj) => {
+  const valuesArray = Object.values(obj).filter(val => val !== '');
+  if(!valuesArray.length) return ''
+  return valuesArray.reduce((accumulator, currentVal) => parseFloat(accumulator) + parseFloat(currentVal));
+}
 
 export const roundToTwoDecimals = (num) => Math.round((num + Number.EPSILON) * 100) / 100
 

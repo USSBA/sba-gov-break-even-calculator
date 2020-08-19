@@ -12,14 +12,14 @@ export const fixedCostFields = [
 ]
 
 export const fixedCostInitState = {
-  Amortization: 0,
-  Rent: 0,
-  Insurance: 0,
-  Salaries: 0,
-  Utilities: 0,
-  Deprecation: 0,
-  'Interest Expense': 0,
-  'Property Taxes': 0,
-  'Other Monthly Costs': 0,
-  'Other Fixed Costs': 0,
+  Amortization: '',
+  Rent: '',
+  Insurance: '',
+  Salaries: '',
+  Utilities: '',
+  Deprecation: '',
+  'Interest Expense': '',
+  'Property Taxes': '',
+  'Other Monthly Costs': '',
+  'Other Fixed Costs': '',
 }

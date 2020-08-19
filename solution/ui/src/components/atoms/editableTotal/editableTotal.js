@@ -73,7 +73,7 @@ const EditableTotal = (props) => {
               {formatTotals(value)}
             </Grid.Column>
             <Grid.Column computer={3} mobile={5} verticalAlign='middle'>
-              <a className='editButton' onClick={() => setIsEditing(true)}>edit</a>
+              <a href="#" className='editButton' onClick={() => setIsEditing(true)}>edit</a>
             </Grid.Column>
           </Grid>
         )}

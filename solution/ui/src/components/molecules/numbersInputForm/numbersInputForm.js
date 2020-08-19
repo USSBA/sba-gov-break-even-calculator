@@ -7,7 +7,7 @@ import './numbersInputForm.less'
 
 const NumbersInputForm = (props) => {
  return (
-  props.fields && props.fields.map((field) => {
+  props.fields && props.fields.map((field, index) => {
      return (
        <Grid.Column key={field.name}>
          <Form.Field>
@@ -15,8 +15,9 @@ const NumbersInputForm = (props) => {
           <p className='numbersInputForm-p'>{field.description}</p>
           
           <MoneyInput 
-           onChange={ props.onChange } 
-           name={field.name}/>
+            autoFocus={index === 0}
+            onChange={props.onChange}
+            name={field.name}/>
          </Form.Field>
        </Grid.Column>
      )

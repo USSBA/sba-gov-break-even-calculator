@@ -8,12 +8,14 @@ const errorContent = (error) => {
 const MoneyInput = (props) => {
   return(
     <Form.Input width={props.width} {...(props.formError ? {error: errorContent(props)} : {})} >
-      <Input 
+      <Input
+        aria-label={props.ariaLabel}
         autoFocus={!!props.autoFocus}
         onChange={props.onChange} 
         label={{basic: true, content: '$'}}
         labelPosition='left'
         name={props.name}
+        id={props.name}
         value={props.value} 
         type='number' 
         placeholder='0,000.00'

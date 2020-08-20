@@ -21,7 +21,7 @@ describe('VariableCosts', () => {
   it('changes knowVariableCosts state on radio button selection', () => {
     const wrapper = shallow(<VariableCosts />);
     const yesButton = wrapper.find('[label="Yes"]')
-    const noButton = wrapper.find('[label="No"]')
+    const noButton = wrapper.find('[name="noBox"]')
     yesButton.simulate('change', null, {value: 'yes'})
     expect(wrapper.state().knowVariableCosts).toEqual('yes')
     noButton.simulate('change', null, {value: 'no'})

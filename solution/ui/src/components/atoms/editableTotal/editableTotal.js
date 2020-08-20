@@ -68,6 +68,7 @@ const EditableTotal = (props) => {
                   <Form.Input width={props.width} {...(formError ? {error: errorContent()} : {})} >
                     <Input
                       size='small'
+                      aria-label={title}
                       autoFocus
                       label={{basic: true, content: `${type === 'currency' ? '$' : 'Units'}`}} 
                       action={!formError && {
@@ -91,7 +92,7 @@ const EditableTotal = (props) => {
               {formatTotals(props.value)}
             </Grid.Column>
             <Grid.Column computer={3} mobile={5} verticalAlign='middle'>
-              <a className='editButton' onClick={() => setIsEditing(true)}>edit</a>
+              <a aria-label={`edit ${title}`} href="#" className='editButton' onClick={() => setIsEditing(true)}>edit</a>
             </Grid.Column>
           </Grid>
         )}

@@ -11,11 +11,11 @@ const errorContent = () => {
 }
 
 const EditableTotal = (props) => {
-  const {title, value, type='currency', onEdit} = props;
+  const {title, type='currency', onEdit} = props;
 
   const node = useRef()
 
-  const [fieldValue, setFieldValue] = useState(value)
+  const [fieldValue, setFieldValue] = useState(props.value)
   const [isEditing, setIsEditing] = useState(false)
   const [formError, setFormError] = useState(false)
 
@@ -30,12 +30,10 @@ const EditableTotal = (props) => {
   }, []);
 
   const handleClickOutside = e => {
-    console.log('form error is',formError)
     if (node.current.contains(e.target) || formError) {
       return;
     }
     setIsEditing(false)
-    setFieldValue(value)
     setFormError(false)
   };
 
@@ -90,14 +88,14 @@ const EditableTotal = (props) => {
         {!isEditing && (
           <Grid columns={2} stackable={false}>
             <Grid.Column computer={13} mobile={11} verticalAlign='middle' className='editableValue'>
-              {formatTotals(value)}
+              {formatTotals(props.value)}
             </Grid.Column>
             <Grid.Column computer={3} mobile={5} verticalAlign='middle'>
               <a className='editButton' onClick={() => setIsEditing(true)}>edit</a>
             </Grid.Column>
           </Grid>
         )}
-      </Grid.Column >
+      </Grid.Column>
     </Grid.Row>
   )
   

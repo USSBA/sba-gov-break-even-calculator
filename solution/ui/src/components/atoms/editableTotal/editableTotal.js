@@ -98,7 +98,6 @@ const EditableTotal = (props) => {
       </Grid.Column>
     </Grid.Row>
   )
-  
 }
 
 export default EditableTotal;

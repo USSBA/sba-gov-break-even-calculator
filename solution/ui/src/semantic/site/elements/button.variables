@@ -2,3 +2,4 @@
     User Variable Overrides
 *******************************/
 @borderRadius: 0;
+@primaryColor: @secondary-blue;

@@ -81,6 +81,7 @@ class FixedCosts extends React.Component {
               <Form.Field
                 control={Radio}
                 label='Yes'
+                aria-label='yes'
                 name='yesBox'
                 value='yes'
                 checked={this.state.knowFixedCosts === 'yes'}
@@ -90,7 +91,8 @@ class FixedCosts extends React.Component {
             <Grid.Column>
               <Form.Field
                 control={Radio}
-                label='No'
+                label='No, input values individually'
+                aria-label='no, input values individually'
                 name='noBox'
                 value='no'
                 checked={this.state.knowFixedCosts === 'no'}
@@ -112,6 +114,7 @@ class FixedCosts extends React.Component {
                 <Form.Field>
                   <MoneyInput
                     value={this.state.totalFixedCosts} 
+                    ariaLabel='total fixed cost'
                     name='totalFixedCosts'
                     autoFocus
                     errorMessage= 'Enter a valid fixed cost to continue'
@@ -127,7 +130,7 @@ class FixedCosts extends React.Component {
             {this.state.knowFixedCosts === 'yes' && 
               <Grid.Column>
                 <div className='fixedCost-suggestion'>Unsure about your total fixed costs? 
-                  <a onClick={() => this.setState({ knowFixedCosts: 'no'})}>Add all fixed costs individually</a>
+                  <a href="#" onClick={() => this.setState({ knowFixedCosts: 'no'})}>Add all fixed costs individually</a>
                 </div>
               </Grid.Column>
             }

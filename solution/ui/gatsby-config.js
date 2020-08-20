@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    title: `SBA - Break Even Calculator`,
+    description: `This calculator will help you determine the break-even point for your business.`,
     author: `@gatsbyjs`,
   },
   plugins: [

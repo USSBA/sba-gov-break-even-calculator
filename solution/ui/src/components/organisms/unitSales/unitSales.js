@@ -32,6 +32,7 @@ const UnitSales = (props) => {
           <p>Enter the number of units or services you expect to sell</p>
           <Form.Input width={6} {...(formError ? {error: errorContent(true)} : {})} >
             <Input 
+              id='units'
               autoFocus
               label={{basic: true, content: 'Units'}}
               labelPosition='right'
@@ -48,8 +49,12 @@ const UnitSales = (props) => {
         <div className='button-container'>
           <Form.Button primary content='CONTINUE' />
         </div>
-        <a onClick={() => props.goToStep(self - 1)}>{`< Back to price per unit`}</a>
-        <a onClick={props.restart}>Restart Analysis</a>
+        <a 
+          href="#" 
+          aria-label='Back to price per unit' 
+          onClick={() => props.goToStep(self - 1)}
+        >{`< Back to price per unit`}</a>
+        <a href="#" onClick={props.restart}>Restart Analysis</a>
       </Form>
     </div>
   )

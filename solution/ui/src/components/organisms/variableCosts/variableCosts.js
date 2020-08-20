@@ -96,6 +96,7 @@ class VariableCosts extends React.Component {
               <Form.Field
                 control={Radio}
                 label='Yes'
+                aria-label='yes'
                 name='yesBox'
                 value='yes'
                 checked={this.state.knowVariableCosts === 'yes'}
@@ -105,7 +106,8 @@ class VariableCosts extends React.Component {
             <Grid.Column>
               <Form.Field
                 control={Radio}
-                label='No'
+                label='No, input values individually'
+                aria-label='no, input values individually'
                 name='noBox'
                 value='no'
                 checked={this.state.knowVariableCosts === 'no'}
@@ -126,7 +128,7 @@ class VariableCosts extends React.Component {
             {this.state.knowVariableCosts === 'yes' && 
               <Grid.Column>
                 <div className='variableCost-suggestion'>Unsure about your total variable costs? 
-                  <a onClick={() => this.setState({ knowVariableCosts: 'no'})}>Add all variable costs individually</a>
+                  <a href="#" onClick={() => this.setState({ knowVariableCosts: 'no'})}>Add all variable costs individually</a>
                 </div>
               </Grid.Column>}
               { this.state.formError && this.state.knowVariableCosts === 'no' &&
@@ -153,8 +155,13 @@ class VariableCosts extends React.Component {
               </Grid.Column>}           
           </Grid>
         </Form>
-        <a className='navLink' onClick={() => this.props.goToStep(this.self - 1)}>{`< Back to unit sales`}</a>
-        <a className='navLink' onClick={this.props.restart}>Restart Analysis</a>
+        <a 
+          aria-label='Back to unit sales'
+          href="#"
+          className='navLink'
+          onClick={() => this.props.goToStep(this.self - 1)}
+        >{`< Back to unit sales`}</a>
+        <a href="#" className='navLink' onClick={this.props.restart}>Restart Analysis</a>
       </div>
     )
   }

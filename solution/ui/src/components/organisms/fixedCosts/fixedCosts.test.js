@@ -21,7 +21,7 @@ describe('FixedCosts', () => {
   it('changes knowFixedCosts state on radio button selection', () => {
     const wrapper = shallow(<FixedCosts />);
     const yesButton = wrapper.find('[label="Yes"]')
-    const noButton = wrapper.find('[label="No"]')
+    const noButton = wrapper.find('[name="noBox"]')
     yesButton.simulate('change', null, {value: 'yes'})
     expect(wrapper.state().knowFixedCosts).toEqual('yes')
     noButton.simulate('change', null, {value: 'no'})
@@ -147,7 +147,7 @@ describe('FixedCosts', () => {
   it('correctly resets the total cost value on radio button change', () => {
     const wrapper = shallow(<FixedCosts />);
     const yesButton = wrapper.find('[label="Yes"]')
-    const noButton = wrapper.find('[label="No"]')
+    const noButton = wrapper.find('[name="noBox"]')
     yesButton.simulate('change', null, {value: 'yes'})
     wrapper.setState({totalFixedCosts: 100}) 
     noButton.simulate('change', null, {value: 'no'})

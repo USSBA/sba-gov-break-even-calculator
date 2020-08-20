@@ -18,7 +18,7 @@ envName: ${opt:stage}
 # For example, all developers' environments can be of type "dev".
 # This can be use for enabling some envType driven conditionals in code. (For example, create only single node
 # ElasticSearch cluster when envType is 'dev' but create multi-node cluster when it's 'prod')
-envType: dev
+envType: staging 
 
 # ACM Certificate Arn
 # This is the ACM certificate valid for the websiteDomain that will allow associated to the CloudFront distribution

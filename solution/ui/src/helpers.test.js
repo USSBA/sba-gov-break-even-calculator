@@ -1,4 +1,27 @@
-import { findStepSize, formatBreakEvenGraphData } from './helpers'
+import { findStepSize, formatBreakEvenGraphData, sumValues } from './helpers'
+import { fixedCostInitState } from './components/organisms/fixedCosts/fixedCostsFieldsData'
+
+describe('sumValues', () => {
+  it('Returns an empty string when there are no values', () => {
+    expect(sumValues(fixedCostInitState)).toEqual('')
+  })
+
+  it('Returns single value if only one field is not empty', () => {
+    const newObj = {...fixedCostInitState, Rent: '400'}
+    expect(sumValues(newObj)).toEqual('400')
+  })
+
+  it('Correctly adds all non-empty fields', () => {
+    const newObj = {...fixedCostInitState, Rent: '600', Insurance: '400'}
+    expect(sumValues(newObj)).toEqual(1000)
+  })
+
+  it('Corectly handles zero', () => {
+    const newObj = {...fixedCostInitState, Rent: '0'}
+    expect(sumValues(newObj)).toEqual('0')
+    expect(sumValues({...newObj, Insurance: '0'})).toEqual(0)
+  })
+})
 
 describe('findStepSize', () => {
   it('Returns a prettified step size', () => {

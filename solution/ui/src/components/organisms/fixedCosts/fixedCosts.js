@@ -14,19 +14,19 @@ class FixedCosts extends React.Component {
     super(props)
     this.state = {
       knowFixedCosts: null,
-      totalFixedCosts: '',
+      totalFixedCosts: this.props.totalFixedCosts || '',
       formError: false,
       fields: {
-        Amortization: 0,
-        Rent: 0,
-        Insurance: 0,
-        Salaries: 0,
-        Utilities: 0,
-        Deprecation: 0,
-        'Interest Expense': 0,
-        'Property Taxes': 0,
-        'Other Monthly Costs': 0,
-        'Other Fixed Costs': 0,
+        Amortization: '',
+        Rent: '',
+        Insurance: '',
+        Salaries: '',
+        Utilities: '',
+        Deprecation: '',
+        'Interest Expense': '',
+        'Property Taxes': '',
+        'Other Monthly Costs': '',
+        'Other Fixed Costs': '',
       }
     }
   }
@@ -111,13 +111,12 @@ class FixedCosts extends React.Component {
                 <div className="subtext">Enter the sum of all known fixed costs:</div>
                 <Form.Field>
                   <MoneyInput
-                    value={this.props.totalFixedCosts} 
+                    value={this.state.totalFixedCosts} 
                     name='totalFixedCosts'
                     autoFocus
                     errorMessage= 'Enter a valid fixed cost to continue'
                     formError= {this.state.formError}
                     onChange={(e, { value }) => {
-                      this.props.setFixedCost(value)
                       this.setState({ totalFixedCosts: value })
                       this.setState({ formError: false })
                     }}/>
@@ -130,10 +129,11 @@ class FixedCosts extends React.Component {
                 <div className='fixedCost-suggestion'>Unsure about your total fixed costs? 
                   <a onClick={() => this.setState({ knowFixedCosts: 'no'})}>Add all fixed costs individually</a>
                 </div>
-              </Grid.Column>}
-              {this.state.formError && this.state.knowFixedCosts === 'no' &&
-                <p className='errorMsg'>Enter a valid fixed cost to continue</p>
-                }
+              </Grid.Column>
+            }
+            {this.state.formError && this.state.knowFixedCosts === 'no' &&
+              <p className='errorMsg'>Enter a valid fixed cost to continue</p>
+            }
             {this.state.knowFixedCosts && 
               <Grid.Column>
                 <Form.Button primary content='CONTINUE' />

@@ -47,7 +47,7 @@ jobs:
              serverless config credentials --provider aws --profile SBA-lower --key ${AWS_ACCESS_KEY_ID} --secret ${AWS_SECRET_ACCESS_KEY}
              cd scripts
              if [[ "master" == "${CIRCLE_BRANCH}" ]]; 
-               then export TARGET="bec-staging";
+               then export TARGET="staging";
              else export TARGET="${CIRCLE_USERNAME}"; fi
              source ./environment-deploy.sh ${TARGET}
 

@@ -44,4 +44,44 @@ describe('EditableTotal', () => {
     expect(mockOnEdit).toHaveBeenCalledWith('1000')
     expect(wrapper.find('Input')).toHaveLength(0)
   })
+
+  it('does not call onEdit when apply is clicked on an empty value', () => {
+    sampleProps.value = '';
+    const wrapper = shallow(<EditableTotal {...sampleProps}/>)
+    wrapper.find('.editButton').simulate('click')
+    wrapper.find('Input').dive().find('Button').simulate('click')
+    expect(wrapper.find('Input')).toHaveLength(1)
+  })
+
+  it('displays error when empty value is submited', () => {
+    sampleProps.value = '';
+    const wrapper = shallow(<EditableTotal {...sampleProps}/>)
+    wrapper.find('.editButton').simulate('click')
+    wrapper.find('Form').simulate('submit')
+
+    expect(wrapper.find('FormInput').
+      dive().
+      dive().
+      find('Label').
+      prop('content')).
+      toEqual('This field is required');
+
+  })
+
+  it('displays apply button when user edits the input field', () => {
+    sampleProps.value = '1000';
+    const wrapper = shallow(<EditableTotal {...sampleProps}/>)
+    wrapper.find('.editButton').simulate('click')
+    expect(wrapper.find('Input').dive().find('Button')).toHaveLength(1)
+  })
+
+  it('does not display apply button when there is an error', () => {
+    sampleProps.value = '';
+    const wrapper = shallow(<EditableTotal {...sampleProps}/>)
+    wrapper.find('.editButton').simulate('click')
+    wrapper.find('Form').simulate('submit')
+    expect(wrapper.find('Input').dive().find('Button')).toHaveLength(0)
+  })
+
+
 })

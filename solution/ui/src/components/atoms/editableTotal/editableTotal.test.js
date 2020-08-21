@@ -11,6 +11,10 @@ describe('EditableTotal', () => {
     onEdit: mockOnEdit
   }
 
+  const mockEvent = {
+    preventDefault: jest.fn()
+  }
+
   beforeEach(() => {
     jest.clearAllMocks()
   })
@@ -25,13 +29,13 @@ describe('EditableTotal', () => {
   it('renders input field when edit button is clicked', () => {
     const wrapper = shallow(<EditableTotal {...sampleProps}/>)
     expect(wrapper.find('Input')).toHaveLength(0)
-    wrapper.find('.editButton').simulate('click')
+    wrapper.find('.editButton').simulate('click', mockEvent)
     expect(wrapper.find('Input')).toHaveLength(1)
   })
 
   it('calls onEdit when apply is clicked', () => {
     const wrapper = shallow(<EditableTotal {...sampleProps}/>)
-    wrapper.find('.editButton').simulate('click')
+    wrapper.find('.editButton').simulate('click', mockEvent)
     wrapper.find('Input').dive().find('Button').simulate('click')
     expect(mockOnEdit).toHaveBeenCalledWith('1000')
     expect(wrapper.find('Input')).toHaveLength(0)
@@ -39,7 +43,7 @@ describe('EditableTotal', () => {
 
   it('calls onEdit when the form is submitted', () => {
     const wrapper = shallow(<EditableTotal {...sampleProps}/>)
-    wrapper.find('.editButton').simulate('click')
+    wrapper.find('.editButton').simulate('click', mockEvent)
     wrapper.find('Form').simulate('submit')
     expect(mockOnEdit).toHaveBeenCalledWith('1000')
     expect(wrapper.find('Input')).toHaveLength(0)
@@ -47,14 +51,14 @@ describe('EditableTotal', () => {
 
   it('does not call onEdit when apply is clicked on an empty value', () => {
     const wrapper = shallow(<EditableTotal {...sampleProps} value={''}/>)
-    wrapper.find('.editButton').simulate('click')
+    wrapper.find('.editButton').simulate('click', mockEvent)
     wrapper.find('Input').dive().find('Button').simulate('click')
     expect(wrapper.find('Input')).toHaveLength(1)
   })
 
   it('displays error when empty value is submited', () => {
     const wrapper = shallow(<EditableTotal {...sampleProps} value={''}/>)
-    wrapper.find('.editButton').simulate('click')
+    wrapper.find('.editButton').simulate('click', mockEvent)
     wrapper.find('Form').simulate('submit')
 
     expect(wrapper.find('FormInput').
@@ -68,13 +72,13 @@ describe('EditableTotal', () => {
 
   it('displays apply button when user edits the input field', () => {
     const wrapper = shallow(<EditableTotal {...sampleProps}/>)
-    wrapper.find('.editButton').simulate('click')
+    wrapper.find('.editButton').simulate('click', mockEvent)
     expect(wrapper.find('Input').dive().find('Button')).toHaveLength(1)
   })
 
   it('does not display apply button when there is an error, but redisplays it when value is entered.', () => {
     const wrapper = shallow(<EditableTotal {...sampleProps} value={''}/>)
-    wrapper.find('.editButton').simulate('click')
+    wrapper.find('.editButton').simulate('click', mockEvent)
     wrapper.find('Form').simulate('submit')
     expect(wrapper.find('Input').dive().find('Button')).toHaveLength(0)
     wrapper.find('Input').simulate('change', null, { value: '123' })    

@@ -12,13 +12,12 @@
     display: none;
   }
 
-  .ui.right.labeled.input {
-    i.icon {
-      right: 71px;
-    }
+  .ui.labeled.input {
+
     .ui.basic.label {
       color: @sba-red;
       border-right: 2px solid @sba-red;
+      border-left: 2px solid @sba-red;
       border-top: 2px solid @sba-red;
       border-bottom: 2px solid @sba-red;
       border-radius: 0;
@@ -33,6 +32,10 @@
       border-bottom: 2px solid @sba-red;
       border-radius: 0;
     }
+  }
+
+  .ui.pointing.label, .ui[class*="pointing above"].label {
+    margin-top: 0.5em;
   }
 
   textarea,  

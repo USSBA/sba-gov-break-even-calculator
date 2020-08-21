@@ -114,6 +114,7 @@ class BreakEvenCalculator extends React.Component {
           <Grid>
               {this.state.stepNum > CALCULATOR_STEPS.UNIT_SALES &&
               <EditableTotal
+                key="number of units"
                 title='Number of units'
                 type='units'
                 value={this.state.numUnits}
@@ -121,12 +122,14 @@ class BreakEvenCalculator extends React.Component {
               />}
               {this.state.stepNum > CALCULATOR_STEPS.PRICE_PER_UNIT &&
               <EditableTotal
+                key="price per unit"
                 title='Selling price per unit'
                 value={this.state.pricePerUnit}
                 onEdit={this.updatePricePerUnit}
               />}
               {this.state.stepNum > CALCULATOR_STEPS.FIXED_COSTS && 
               <EditableTotal
+                key="total fixed cost"
                 title='Total fixed cost'
                 value={this.state.totalFixedCost}
                 onEdit={this.updateFixedCost}

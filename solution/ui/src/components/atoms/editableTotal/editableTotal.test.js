@@ -46,7 +46,6 @@ describe('EditableTotal', () => {
   })
 
   it('does not call onEdit when apply is clicked on an empty value', () => {
-    sampleProps.value = '';
     const wrapper = shallow(<EditableTotal {...sampleProps} value={''}/>)
     wrapper.find('.editButton').simulate('click')
     wrapper.find('Input').dive().find('Button').simulate('click')

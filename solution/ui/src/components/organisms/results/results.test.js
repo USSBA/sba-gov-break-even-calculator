@@ -8,7 +8,11 @@ describe('Results', () => {
     variableCostPerUnit: '10',
     numUnits: '90',
     pricePerUnit: '110',
-    totalFixedCost: '1000'
+    totalFixedCost: '1000',
+    updateNumUnits: jest.fn(),
+    updatePricePerUnit: jest.fn(),
+    updateFixedCost: jest.fn(),
+    updateVariableCost: jest.fn()
   }
 
   it('renders without crashing', () => {
@@ -50,5 +54,10 @@ describe('Results', () => {
     const wrapper = shallow(<Results {...sampleProps}/>)
     const bepDataTable = wrapper.find('BreakEvenDataTable').dive()
     expect(bepDataTable.find('TableRow')).toHaveLength(9)
+  })
+
+  it('renders running totals', () => {
+    const wrapper = shallow(<Results {...sampleProps}/>)
+    expect(wrapper.find('EditableTotal')).toHaveLength(4)
   })
 })

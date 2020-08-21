@@ -38,6 +38,7 @@ const EditableTotal = (props) => {
   }
 
   const formatTotals = (val) => {
+    if(!val && val !== 0) return ''
     return `${type === 'currency' ? '$' : ''}${formatNumber(val)}${type !== 'currency' ? ' Units' : ''}`
   }
 

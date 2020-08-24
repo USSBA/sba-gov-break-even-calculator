@@ -83,7 +83,8 @@ describe('formatBreakEvenGraphData', () => {
     })
     expect(formattedData).toEqual(expect.objectContaining({
       unitSales: {
-        lineColor: '#41569C',
+        lineColor: '#00518B',
+        stroke: '5,10',
         data: [ 
           { x: 0, y: 0 },
           { x: 200, y: 4000 }
@@ -101,7 +102,8 @@ describe('formatBreakEvenGraphData', () => {
     })
     expect(formattedData).toEqual(expect.objectContaining({
       totalCost: {
-        lineColor: '#686868',
+        lineColor: '#197E4E',
+        stroke: '10,10',
         data: [ 
           { x: 0, y: 1000 },
           { x: 200, y: 3000 }
@@ -119,7 +121,8 @@ describe('formatBreakEvenGraphData', () => {
     })
     expect(formattedData).toEqual(expect.objectContaining({
       fixedCost: {
-        lineColor: '#969696',
+        lineColor: '#FF4F30',
+        stroke: '5,5',
         data: [ 
           { x: 0, y: 1000},
           { x: 200, y: 1000}

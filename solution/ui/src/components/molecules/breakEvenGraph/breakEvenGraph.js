@@ -61,14 +61,15 @@ const drawLineChart = (data) => {
     .call(d3.axisLeft(y).tickFormat('').ticks(5).tickSize(-width))
     .attr("class", "yGridLines")
 
-  // draw break even line
+  // draw line
   paths.map(path => (
     g.append("path")
       .datum(data[path].data)
       .attr("fill", "none")
       .attr("stroke", data[path].lineColor)
+      .attr("stroke-dasharray", data[path].stroke)
       .attr("stroke-linejoin", "round")
-      .attr("stroke-linecap", "round")
+      .attr("stroke-linecap", "butt")
       .attr("stroke-width", 3)
       .attr('class', `${path}Line`)
       .attr("d", line)
@@ -103,16 +104,36 @@ class BreakEvenGraph extends React.Component {
         <Card.Content id='breakEvenGraph'>
           <h3>Break-even Point Graph</h3>
           <Label basic size='small'>
-            <Icon className='unitSales' name='circle' />Unit Sales
+            Unit Sales
+            <svg className="lineLegend" height="20" width="60">
+              <g fill="none" stroke="#00518B" stroke-width="10">
+                <path stroke-dasharray="5,10" d="M5 20 l215 0" />
+              </g>
+            </svg>
           </Label>
           <Label basic size='small'>
-            <Icon className='breakEven' name='circle' />Break-Even Point
+            Break-Even Point
+            <svg className="lineLegend" height="20" width="100%">
+              <g fill="none" stroke="#007dbc" stroke-width="10">
+                <path stroke-dasharray="0" d="M5 20 l215 0" />
+              </g>
+            </svg>
           </Label>
           <Label basic size='small'>
-            <Icon className='totalCost' name='circle' />Total Costs
+            Total Costs
+            <svg className="lineLegend" height="20" width="80">
+              <g fill="none" stroke="#197E4E" stroke-width="10">
+                <path stroke-dasharray="10,10" d="M5 20 l215 0" />
+              </g>
+            </svg>
           </Label>
           <Label basic size='small'>
-            <Icon className='fixedCost' name='circle' />Fixed Costs
+            Fixed Costs
+            <svg className="lineLegend" height="20" width="100%">
+              <g fill="none" stroke="#FF4F30" stroke-width="10">
+                <path stroke-dasharray="5,5" d="M5 20 l215 0" />
+              </g>
+            </svg>
           </Label>
           <div class="graphContainer">
             <div id="lineChart"></div>

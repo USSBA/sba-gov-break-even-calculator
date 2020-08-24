@@ -60,7 +60,9 @@ const Results = (props) => {
   return (
     <>
     <div className='resultsContainer'>
-      <div className='gradientBackground'></div>
+      <div className='gradientBackground'>
+        <h1>Break-Even Point Results</h1>
+      </div>
       <div className='dataCards-container'>
         <Grid stackable>
           <Grid.Row columns={2} stretched>

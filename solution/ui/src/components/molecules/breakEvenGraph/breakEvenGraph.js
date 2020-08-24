@@ -113,7 +113,7 @@ class BreakEvenGraph extends React.Component {
           </Label>
           <Label basic size='small'>
             Break-Even Point
-            <svg className="lineLegend" height="20" width="100%">
+            <svg className="lineLegend" height="20" width="90">
               <g fill="none" stroke="#007dbc" stroke-width="10">
                 <path stroke-dasharray="0" d="M5 20 l215 0" />
               </g>
@@ -129,7 +129,7 @@ class BreakEvenGraph extends React.Component {
           </Label>
           <Label basic size='small'>
             Fixed Costs
-            <svg className="lineLegend" height="20" width="100%">
+            <svg className="lineLegend" height="20" width="70">
               <g fill="none" stroke="#FF4F30" stroke-width="10">
                 <path stroke-dasharray="5,5" d="M5 20 l215 0" />
               </g>

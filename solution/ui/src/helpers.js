@@ -37,6 +37,7 @@ export const decimalPrettify = (value) => {
 
 export const findStepSize = (value) => {
   if (value < 6) return 1;
+  if (value === Infinity) return 50;
   return decimalPrettify(Math.round(value/4))
 }
 

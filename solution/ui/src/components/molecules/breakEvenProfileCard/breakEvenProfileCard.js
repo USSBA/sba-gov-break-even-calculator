@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Card, Grid} from 'semantic-ui-react'
 import './breakEvenProfileCard.less'
 import { EditableTotal } from '../../atoms'
 
 const BreakEvenProfileCard = (props) => {
+  const [showModal, setShowModal] = useState(false)
   return(
     <Card fluid>
       <Card.Content className='breakEvenProfile-container'>
@@ -15,22 +16,34 @@ const BreakEvenProfileCard = (props) => {
               title='Number of units'
               type='units'
               value={props.numUnits}
-              onEdit={props.updateNumUnits}
+              onEdit={(val) => {
+                props.updateNumUnits(val)
+                setShowModal(true)
+              }}
             />
             <EditableTotal
               title='Selling price per unit'
               value={props.pricePerUnit}
-              onEdit={props.updatePricePerUnit}
+              onEdit={(val) => {
+                props.updatePricePerUnit(val)
+                setShowModal(true)
+              }}
             />
             <EditableTotal
               title='Total fixed cost'
               value={props.totalFixedCost}
-              onEdit={props.updateFixedCost}
+              onEdit={(val) => {
+                props.updateFixedCost(val)
+                setShowModal(true)
+              }}
             />
             <EditableTotal
               title='Total variable cost'
               value={props.variableCostPerUnit}
-              onEdit={props.updateVariableCost}
+              onEdit={(val) => {
+                props.updateVariableCost(val)
+                setShowModal(true)
+              }}
             />
           </Grid>
         </div>

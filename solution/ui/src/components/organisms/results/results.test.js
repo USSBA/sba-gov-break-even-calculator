@@ -45,8 +45,14 @@ describe('Results', () => {
   it('passes correct props to BreakEvenProfileCard', () => {
     const wrapper = shallow(<Results {...sampleProps}/>)
     expect(wrapper.find('BreakEvenProfileCard').props()).toEqual({
-      breakEvenSales: 1100,
-      breakEvenUnits: 10,
+      numUnits: sampleProps.numUnits,
+      totalFixedCost: sampleProps.totalFixedCost,
+      pricePerUnit: sampleProps.pricePerUnit,
+      variableCostPerUnit: sampleProps.variableCostPerUnit,
+      updateNumUnits: expect.any(Function),
+      updatePricePerUnit: expect.any(Function),
+      updateFixedCost: expect.any(Function),
+      updateVariableCost: expect.any(Function),
     })
   })
 
@@ -54,10 +60,5 @@ describe('Results', () => {
     const wrapper = shallow(<Results {...sampleProps}/>)
     const bepDataTable = wrapper.find('BreakEvenDataTable').dive()
     expect(bepDataTable.find('TableRow')).toHaveLength(9)
-  })
-
-  it('renders running totals', () => {
-    const wrapper = shallow(<Results {...sampleProps}/>)
-    expect(wrapper.find('EditableTotal')).toHaveLength(4)
   })
 })

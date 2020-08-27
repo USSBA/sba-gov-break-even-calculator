@@ -60,14 +60,17 @@ const EditableTotal = (props) => {
 
   return (
     <Grid.Row verticalAlign='middle' className='editableTotal-row' columns={2}>
-      <Grid.Column computer={8} mobile={6} className='title'>{title}</Grid.Column>
-      <Grid.Column computer={8} mobile={10} textAlign='right' className='editableSection'>
-          <Form onSubmit={handleApply} size='small'>
+      <Grid.Column computer={6} tablet={6} mobile={6} className='title'>{title}</Grid.Column>
+      <Grid.Column computer={10} tablet={10} mobile={10} textAlign='right' className='editableSection'>
+          <Form className='editValueForm' onSubmit={handleApply} size='small'>
             <Form.Field>
               <div ref={node}>
                 {isEditing && 
-                  <Form.Input width={props.width} {...(formError ? {error: errorContent()} : {})} >
+                  <Form.Input 
+                    size='small' 
+                    {...(formError ? {error: errorContent()} : {})} >
                     <Input
+                      width={8}
                       size='small'
                       aria-label={title}
                       autoFocus
@@ -89,10 +92,10 @@ const EditableTotal = (props) => {
           </Form>
         {!isEditing && (
           <Grid columns={2} stackable={false}>
-            <Grid.Column computer={13} mobile={11} verticalAlign='middle' className='editableValue'>
+            <Grid.Column computer={11} tablet={10} mobile={11} verticalAlign='middle' className='editableValue'>
               {formatTotals(props.value)}
             </Grid.Column>
-            <Grid.Column computer={3} mobile={5} verticalAlign='middle'>
+            <Grid.Column computer={5} tablet={6} mobile={5} verticalAlign='middle'>
               <a 
                 aria-label={`edit ${title}`} 
                 href="#" className='editButton' 

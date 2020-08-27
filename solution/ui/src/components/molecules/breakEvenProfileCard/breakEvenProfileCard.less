@@ -1,48 +1,16 @@
 @import '../../../styles/variables.less';
 
 .breakEvenProfile-container {
-  .circles-container {
-    text-align: center;
-    margin: 2rem 0;
+  .runningTotals-container {
+    margin: @base-spacing * 2 0;
 
-    .unitsCircle, .salesCircle {
-      color: @sba-white;
-      font-size: 28px;
-      display: inline-block;
-      height: 200px;
-      width: 200px;
-      border-radius: 50%;
-      position: relative;
-      line-height: 30px;
+    .ui.grid > .row.editableTotal-row {
+      padding-right: @small-spacing;
+      padding-left: @small-spacing;
     }
-  
-    .unitsCircle {
-      background-color: @secondary-blue;
-      opacity: 0.9;
-      margin-right: -25px;
-      z-index: 1;
-    }
-  
-    .salesCircle {
-      background-color: @secondary-blue-dark;
-      opacity: 0.9;
-    }
-  
-    .circleContent {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100%;
-      padding: 0 @small-spacing;
-  
-      div {
-        text-align: center;
-      }
 
-      .number {
-        font-weight: 600;
-      }
+    .editableSection .editValueForm {
+      margin-left: -30px;
     }
   }
-
 }

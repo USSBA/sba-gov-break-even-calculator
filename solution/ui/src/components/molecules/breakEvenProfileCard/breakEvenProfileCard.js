@@ -1,38 +1,39 @@
 import React from 'react'
 
-import { Label, Card, Icon} from 'semantic-ui-react'
+import { Card, Grid} from 'semantic-ui-react'
 import './breakEvenProfileCard.less'
-import { formatNumber } from '../../../helpers'
-
+import { EditableTotal } from '../../atoms'
 
 const BreakEvenProfileCard = (props) => {
   return(
     <Card fluid>
       <Card.Content className='breakEvenProfile-container'>
         <h3>Break-Even Profile</h3>
-        <p>High-level estimate for units and sales dollars</p>
-        <div className='circles-container'>
-          <div className='unitsCircle'>
-            <div className='circleContent'>
-              <div className='number'>{formatNumber(props.breakEvenUnits)}</div>
-              <div>Units</div>
-            </div>
-          </div>
-          <div className='salesCircle'>
-            <div className='circleContent'>
-              <div className='number'>${formatNumber(props.breakEvenSales)}</div>
-              <div>Sales</div>
-            </div>
-          </div>
+        <div className='runningTotals-container'>
+          <Grid>
+            <EditableTotal
+              title='Number of units'
+              type='units'
+              value={props.numUnits}
+              onEdit={props.updateNumUnits}
+            />
+            <EditableTotal
+              title='Selling price per unit'
+              value={props.pricePerUnit}
+              onEdit={props.updatePricePerUnit}
+            />
+            <EditableTotal
+              title='Total fixed cost'
+              value={props.totalFixedCost}
+              onEdit={props.updateFixedCost}
+            />
+            <EditableTotal
+              title='Total variable cost'
+              value={props.variableCostPerUnit}
+              onEdit={props.updateVariableCost}
+            />
+          </Grid>
         </div>
-        <Label basic>
-          <Icon className='legend-color units' name='square' />
-          Units Sold
-        </Label>
-        <Label basic>
-          <Icon className='legend-color sales' name='square' />
-          Sales Dollars
-        </Label>
       </Card.Content>
     </Card>
   )

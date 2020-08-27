@@ -64,7 +64,6 @@ class BreakEvenCalculator extends React.Component {
             numUnits={this.state.numUnits || 0}
             pricePerUnit={this.state.pricePerUnit || 0}
             totalFixedCost={this.state.totalFixedCost || 0}
-            totalVariableCost={this.state.variableCostPerUnit}
             updateFixedCost={this.updateFixedCost}
             updateNumUnits={this.updateNumUnits}
             updatePricePerUnit={this.updatePricePerUnit}

@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { Grid, Container } from 'semantic-ui-react'
-import { EditableTotal } from '../../atoms'
+import { Grid } from 'semantic-ui-react'
 import { BreakEvenProfileCard, BreakEvenResultsCard, BreakEvenGraph, BreakEvenDataTable } from '../../molecules'
 import { findStepSize } from '../../../helpers'
 
@@ -78,8 +77,14 @@ const Results = (props) => {
             </Grid.Column>
             <Grid.Column>
               <BreakEvenProfileCard 
-                breakEvenUnits={breakEvenPointUnits}
-                breakEvenSales={breakEvenPointRevenue}
+                variableCostPerUnit={variableCostPerUnit}
+                numUnits={numUnits}
+                pricePerUnit={pricePerUnit}
+                totalFixedCost={totalFixedCost}
+                updateFixedCost={props.updateFixedCost}
+                updateNumUnits={props.updateNumUnits}
+                updatePricePerUnit={props.updatePricePerUnit}
+                updateVariableCost={props.updateVariableCost}
               />
             </Grid.Column>
           </Grid.Row>
@@ -102,31 +107,6 @@ const Results = (props) => {
         </Grid>
       </div>
     </div>
-      <Container className='runningTotals-container'>
-        <Grid>
-          <EditableTotal
-            title='Number of units'
-            type='units'
-            value={props.numUnits}
-            onEdit={props.updateNumUnits}
-          />
-          <EditableTotal
-            title='Selling price per unit'
-            value={props.pricePerUnit}
-            onEdit={props.updatePricePerUnit}
-          />
-          <EditableTotal
-            title='Total fixed cost'
-            value={props.totalFixedCost}
-            onEdit={props.updateFixedCost}
-          />
-          <EditableTotal
-            title='Total variable cost'
-            value={props.totalVariableCost}
-            onEdit={props.updateVariableCost}
-          />
-        </Grid>
-      </Container>
     </>
   )
 }

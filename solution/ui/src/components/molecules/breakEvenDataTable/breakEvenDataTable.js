@@ -78,7 +78,7 @@ class BreakEvenDataTable extends React.Component {
         </Table.Header>
         <Table.Body>
           {data.map(({ units, profit, revenue, variableCosts, fixedCosts }) => (
-            <Table.Row key={`${units + Math.random()}`}>
+            <Table.Row key={`${units}-${profit}-${revenue}-${variableCosts}-${fixedCosts}`}>
               <Table.Cell>
 								{formatNumber(units)}
 							</Table.Cell>

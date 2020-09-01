@@ -1,0 +1,40 @@
+@import '../../../styles/variables.less';
+
+.ui.cards > .card > :first-child, .ui.card > :first-child.confirmationModal-container {
+  border-radius: 4px !important;
+  background-color: #197E4E;
+  box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.25);
+  position: fixed;
+  top: @base-spacing * 4;
+  left: 50%;
+  min-width: 270px;
+  transform: translate(-50%, 0);
+  padding: 0 @small-spacing;
+  opacity: 1;
+  z-index: 100;
+
+  &.hidden {
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    -moz-transition: opacity 2s ease-in-out;
+    -ms-transition: opacity 2s ease-in-out;
+    -o-transition: opacity 2s ease-in-out;
+  }
+
+  .closeModal {
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    transform: rotate(45deg);
+    text-decoration: none;
+    color: @sba-white;
+    font-size: 1.5rem;
+  }
+
+  p {
+    color: @sba-white;
+    padding: @base-spacing;
+    margin: 0;
+  }
+}

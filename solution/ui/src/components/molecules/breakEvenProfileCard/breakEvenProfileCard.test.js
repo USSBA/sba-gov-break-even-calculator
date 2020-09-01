@@ -19,4 +19,9 @@ describe('BreakEvenProfileCard', () => {
     const wrapper = shallow(<BreakEvenProfileCard {...sampleProps}/>)
     expect(wrapper.find('EditableTotal')).toHaveLength(4)
   })
+
+  it('renders a modal', () => {
+    const wrapper = shallow(<BreakEvenProfileCard {...sampleProps}/>)
+    expect(wrapper.find('Modal')).toHaveLength(1)
+  })
 })

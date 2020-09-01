@@ -7,7 +7,7 @@ import { findStepSize } from '../../../helpers'
 import './results.less'
 
 export const generateDataTableRow = (data) => {
-  const {units, pricePerUnit, variableCostPerUnit, fixedCost } = data
+  const { units, pricePerUnit, variableCostPerUnit, fixedCost } = data
 
   const revenue = Math.round(units * pricePerUnit);
   const totalVariableCost = Math.round(variableCostPerUnit * units);
@@ -44,6 +44,7 @@ export const generateTableData = (breakEvenPointUnits, pricePerUnit, variableCos
       })
     }
   }
+
   return tableData;
 }
 
@@ -88,7 +89,7 @@ const Results = (props) => {
               />
             </Grid.Column>
           </Grid.Row>
-          <Grid.Row columns={1}>
+          {variableCostPerUnit < pricePerUnit && <Grid.Row columns={1}>
             <Grid.Column>
               <BreakEvenGraph 
                 breakEvenUnits={breakEvenPointUnits}
@@ -98,7 +99,7 @@ const Results = (props) => {
                 expectedUnits={numUnits}
               />
             </Grid.Column>
-          </Grid.Row>
+          </Grid.Row>}
           <Grid.Row columns={1}>
             <Grid.Column>
               <BreakEvenDataTable data={tableData}/>

@@ -56,6 +56,16 @@ describe('Results', () => {
     })
   })
 
+  it('renders the graph', () => {
+    const wrapper = shallow(<Results {...sampleProps}/>)
+    expect(wrapper.find('BreakEvenGraph')).toHaveLength(1)
+  })
+
+  it('doesn\'t render the graph when variable cost is equal or higher than price per unit', () => {
+    const wrapper = shallow(<Results {...sampleProps} variableCostPerUnit={110} />)
+    expect(wrapper.find('BreakEvenGraph')).toHaveLength(0)
+  })
+
   it('renders BreakEvenDataTable', () => {
     const wrapper = shallow(<Results {...sampleProps}/>)
     const bepDataTable = wrapper.find('BreakEvenDataTable').dive()

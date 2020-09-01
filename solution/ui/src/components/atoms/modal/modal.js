@@ -8,7 +8,7 @@ const Modal = (props) => {
 
   return(
     <div className={`confirmationModal-container ${open ? '' : 'hidden'}`}>
-      <p><Icon name='check circle' size='small' />{content}</p>
+      <p className='modalContent'><Icon name='check circle' size='small' />{content}</p>
       <a 
         aria-label='close modal'
         className='closeModal'

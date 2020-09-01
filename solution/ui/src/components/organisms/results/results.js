@@ -89,7 +89,8 @@ const Results = (props) => {
               />
             </Grid.Column>
           </Grid.Row>
-          {variableCostPerUnit < pricePerUnit && <Grid.Row columns={1}>
+          {parseInt(variableCostPerUnit) < parseInt(pricePerUnit) && 
+          <Grid.Row columns={1}>
             <Grid.Column>
               <BreakEvenGraph 
                 breakEvenUnits={breakEvenPointUnits}

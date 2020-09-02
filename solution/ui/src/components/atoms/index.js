@@ -1,4 +1,5 @@
-import MoneyInput from './moneyInput/moneyInput'
 import EditableTotal from './editableTotal/editableTotal'
+import Modal from './modal/modal'
+import MoneyInput from './moneyInput/moneyInput'
 
-export { MoneyInput, EditableTotal }
+export { Modal, MoneyInput, EditableTotal }

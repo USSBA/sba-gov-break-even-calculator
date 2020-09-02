@@ -65,7 +65,7 @@ const Results = (props) => {
       </div>
       <div className='dataCards-container'>
         <Grid stackable>
-          <Grid.Row columns={2} stretched>
+          <Grid.Row className='topRow' columns={2} stretched>
             <Grid.Column>
               <BreakEvenResultsCard 
                 expectedUnits={numUnits}
@@ -89,7 +89,8 @@ const Results = (props) => {
               />
             </Grid.Column>
           </Grid.Row>
-          {variableCostPerUnit < pricePerUnit && <Grid.Row columns={1}>
+          {parseInt(variableCostPerUnit) < parseInt(pricePerUnit) && 
+          <Grid.Row className='graphRow' columns={1}>
             <Grid.Column>
               <BreakEvenGraph 
                 breakEvenUnits={breakEvenPointUnits}
@@ -100,7 +101,7 @@ const Results = (props) => {
               />
             </Grid.Column>
           </Grid.Row>}
-          <Grid.Row columns={1}>
+          <Grid.Row className='tableRow' columns={1}>
             <Grid.Column>
               <BreakEvenDataTable data={tableData}/>
             </Grid.Column>

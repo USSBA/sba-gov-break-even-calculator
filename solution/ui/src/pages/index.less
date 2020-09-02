@@ -3,3 +3,51 @@
 .errorMsg {
   color: @sba-red;
 }
+
+
+@media print {
+  .bec-header, .becFooter {
+    visibility: hidden;
+    display: none;
+  }
+
+  .resultsContainer {
+
+    .topRow {
+      height: 88vh;
+    }
+
+    .graphRow {
+      height: 100vh;
+    }
+
+    .tableRow {
+      height: 95vh;
+    }
+
+    .runningTotals-container {
+      .ui.column.grid>[class*="six wide tablet"].column, 
+      .ui.grid>.column.row>[class*="six wide tablet"].column, 
+      .ui.grid>.row>[class*="six wide tablet"].column, 
+      .ui.grid>[class*="six wide tablet"].column {
+        width: 49% !important;
+      }
+  
+      .ui.grid>.row>[class*="right aligned"].column.column, 
+      .ui.grid>[class*="right aligned"].column.column, 
+      .ui.grid>[class*="right aligned"].row>.column, 
+      .ui[class*="right aligned"].grid>.column, 
+      .ui[class*="right aligned"].grid>.row>.column {
+        width: 49% !important;
+      }
+      
+      .middle.aligned.eleven.wide.computer.eleven.wide.mobile.ten.wide.tablet.column.editableValue {
+        width: 100% !important;
+      }
+  
+      .middle.aligned.five.wide.computer.five.wide.mobile.six.wide.tablet.column.editTotal-container {
+        display: none;
+      }
+    }
+  }
+}

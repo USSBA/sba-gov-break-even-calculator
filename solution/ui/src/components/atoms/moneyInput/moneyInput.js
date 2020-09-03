@@ -7,7 +7,7 @@ const errorContent = (error) => {
 
 const MoneyInput = (props) => {
   return(
-    <Form.Input width={props.width} {...(props.formError ? {error: errorContent(props)} : {})} >
+    <Form.Input {...(props.formError ? {error: errorContent(props)} : {})} >
       <Input
         aria-label={props.ariaLabel}
         autoFocus={!!props.autoFocus}

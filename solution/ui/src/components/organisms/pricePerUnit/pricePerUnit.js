@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form } from 'semantic-ui-react'
+import { Grid, Form } from 'semantic-ui-react'
 
 import { MoneyInput } from '../../atoms'
 import { CALCULATOR_STEPS } from '../../../constants/constants'
@@ -27,21 +27,22 @@ const PricePerUnit = (props) => {
       </p>
 
       <Form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor='unit price'>Per unit selling price*</label>
-          <p className="subtext">Enter the price you plan to sell per unit or service:</p>
-          <MoneyInput
-            width={6}
-            autoFocus
-            value={props.value}
-            formError= {formError}
-            errorMessage= 'Enter a valid selling price to continue'
-            onChange={(e, { value }) => {
-              props.setUnitPrice(value)
-              setFormError(false)
-            }}
-            name='unit price' />
-        </div>
+        <Grid>
+          <Grid.Column computer={8} tablet={8} mobile={16}>
+            <label htmlFor='unit price'>Per unit selling price*</label>
+            <p className="subtext">Enter the price you plan to sell per unit or service:</p>
+            <MoneyInput
+              autoFocus
+              value={props.value}
+              formError= {formError}
+              errorMessage= 'Enter a valid selling price to continue'
+              onChange={(e, { value }) => {
+                props.setUnitPrice(value)
+                setFormError(false)
+              }}
+              name='unit price' />
+          </Grid.Column>
+        </Grid>
         <div className='button-container'>
           <Form.Button primary content='CONTINUE' />
         </div>

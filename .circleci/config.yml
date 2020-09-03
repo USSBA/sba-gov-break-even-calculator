@@ -44,6 +44,10 @@ jobs:
           requires:
             Install dependencies
           command: |
+             cd solution/ui
+             pnpm install gatsby
+             gatsby build --prefix-paths
+             cd ../../
              serverless config credentials --provider aws --profile SBA-lower --key ${AWS_ACCESS_KEY_ID} --secret ${AWS_SECRET_ACCESS_KEY}
              cd scripts
              if [[ "master" == "${CIRCLE_BRANCH}" ]]; 

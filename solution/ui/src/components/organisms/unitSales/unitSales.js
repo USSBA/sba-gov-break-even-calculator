@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Input } from 'semantic-ui-react'
+import { Grid, Form, Input } from 'semantic-ui-react'
 import { CALCULATOR_STEPS } from '../../../constants/constants'
 import './unitSales.less'
 
@@ -27,10 +27,11 @@ const UnitSales = (props) => {
       <h3>Estimate your expected unit sales</h3>
       <p>Establish the number of units your business is expected to sell</p>
       <Form onSubmit={handleSubmit}>
-        <div>
+      <Grid>
+        <Grid.Column computer={8} tablet={8} mobile={16}>
           <label htmlFor='units'>Number of units to sell*</label>
           <p>Enter the number of units or services you expect to sell</p>
-          <Form.Input width={6} {...(formError ? {error: errorContent(true)} : {})} >
+          <Form.Input {...(formError ? {error: errorContent(true)} : {})} >
             <Input 
               id='units'
               autoFocus
@@ -43,18 +44,25 @@ const UnitSales = (props) => {
                 setFormError(false)
               }}
               {...(formError ? {icon: 'exclamation circle'} : {})}
-            />
-          </Form.Input>
-        </div>
+              />
+            </Form.Input>
+          </Grid.Column>
+        </Grid>
         <div className='button-container'>
           <Form.Button primary content='CONTINUE' />
         </div>
-        <a 
-          href="#" 
-          aria-label='Back to price per unit' 
-          onClick={() => props.goToStep(self - 1)}
-        >{`< Back to price per unit`}</a>
-        <a href="#" onClick={props.restart}>Restart Analysis</a>
+        <Grid columns={2} equal>
+          <Grid.Column>
+            <a 
+              href="#" 
+              aria-label='Back to price per unit' 
+              onClick={() => props.goToStep(self - 1)}
+            >{`< Back to price per unit`}</a>
+          </Grid.Column>
+          <Grid.Column>
+            <a href="#" onClick={props.restart}>Restart Analysis</a>
+          </Grid.Column>
+        </Grid>
       </Form>
     </div>
   )

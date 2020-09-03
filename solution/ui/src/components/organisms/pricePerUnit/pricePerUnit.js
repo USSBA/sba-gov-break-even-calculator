@@ -46,12 +46,18 @@ const PricePerUnit = (props) => {
         <div className='button-container'>
           <Form.Button primary content='CONTINUE' />
         </div>
-        <a 
-          aria-label='Back to fixed costs'
-          href="#" 
-          onClick={() => props.goToStep(self - 1)}
-        >{`< Back to fixed costs`}</a>
-        <a href="#" onClick={props.restart}>Restart Analysis</a>
+        <Grid columns={2} equal>
+          <Grid.Column>
+            <a 
+              aria-label='Back to fixed costs'
+              href="#" 
+              onClick={() => props.goToStep(self - 1)}
+            >{`< Back to fixed costs`}</a>
+          </Grid.Column>
+          <Grid.Column>
+            <a href="#" onClick={props.restart}>Restart Analysis</a>
+          </Grid.Column>
+        </Grid>
       </Form>
     </div>
   )

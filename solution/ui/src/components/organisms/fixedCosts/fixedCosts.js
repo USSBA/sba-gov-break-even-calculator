@@ -79,6 +79,7 @@ class FixedCosts extends React.Component {
           <Grid container columns={2} stackable>
             <Grid.Column>
               <Form.Field
+                className='radioButton'
                 control={Radio}
                 label='Yes'
                 aria-label='yes'
@@ -90,6 +91,7 @@ class FixedCosts extends React.Component {
             </Grid.Column>
             <Grid.Column>
               <Form.Field
+                className='radioButton'
                 control={Radio}
                 label='No, input values individually'
                 aria-label='no, input values individually'

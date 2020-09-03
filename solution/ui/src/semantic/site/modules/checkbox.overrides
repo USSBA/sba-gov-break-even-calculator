@@ -11,6 +11,11 @@
   padding: 1rem;
 }
 
+.ui.checkbox .box,
+.ui.checkbox label {
+  font-size: 16px;
+}
+
 .ui.radio.checkbox .box:before, .ui.radio.checkbox label:before {
   transform: scale(1.5);
 }

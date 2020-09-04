@@ -10,7 +10,19 @@
     }
 
     .editableSection .editValueForm {
-      margin-left: -30px;
+      .ui.action.input {
+        @media only screen and (max-width: @breakpoint-large) {
+          width: 50%;
+        }
+        @media only screen and (max-width: @breakpoint-medium) {
+            width: 90%;
+        }
+
+        &> .button {
+          padding: 12px 15px;
+        }
+      }
+
     }
   }
 }

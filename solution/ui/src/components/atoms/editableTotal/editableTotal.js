@@ -92,10 +92,10 @@ const EditableTotal = (props) => {
           </Form>
         {!isEditing && (
           <Grid columns={2} stackable={false}>
-            <Grid.Column className='totalValue-container' computer={11} tablet={10} mobile={11} verticalAlign='middle' className='editableValue'>
+            <Grid.Column className='totalValue-container' computer={11} tablet={10} mobile={10} verticalAlign='middle' className='editableValue'>
               {formatTotals(props.value)}
             </Grid.Column>
-            <Grid.Column className='editTotal-container' computer={5} tablet={6} mobile={5} verticalAlign='middle'>
+            <Grid.Column className='editTotal-container' computer={5} tablet={6} mobile={6} verticalAlign='middle'>
               <a 
                 aria-label={`edit ${title}`} 
                 href="#" className='editButton' 

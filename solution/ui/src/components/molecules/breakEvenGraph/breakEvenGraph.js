@@ -103,7 +103,12 @@ const drawLineChart = (data, windowWidth) => {
 
 class BreakEvenGraph extends React.Component {
   componentDidMount() {
+    window.addEventListener('resize', () => drawLineChart(formatBreakEvenGraphData(this.props), window.innerWidth));
     drawLineChart(formatBreakEvenGraphData(this.props), window.innerWidth)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', () => drawLineChart(formatBreakEvenGraphData(this.props), window.innerWidth));
   }
 
   componentDidUpdate() {

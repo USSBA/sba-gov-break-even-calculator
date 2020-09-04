@@ -35,15 +35,13 @@
   }
   .graphContainer {
     position: relative;
+    
+  .tick text {
+      font-size: 12px;
     @media only screen and (max-width: @breakpoint-medium) {
-      padding-top: 40px;
+      font-size: 25px;
     }
-
-    .tick text {
-      @media only screen and (max-width: @breakpoint-medium) {
-        font-size: 24px;
-      }
-    }
+  }
     
     .ui.card.tooltip {
       border-width: 2px;
@@ -62,8 +60,8 @@
       width: 8vw;
       min-width: 100px;
       @media only screen and (max-width: @breakpoint-medium) {
-        top: 0px;
-        left: 30px;
+        top: 50px;
+        left: 35px;
       }
     
       div.units {

@@ -39,6 +39,12 @@ class BreakEvenDataTable extends React.Component {
   render() {
     const { column, direction } = this.state
     const { data } = this.props
+    const uniqueKey = () => {
+      if(isNaN(data.units)) {
+        return `${data[1].units}-${data[1].profit}-${data[1].revenue}-${data[1].variableCosts}-${data[1].fixedCosts}`
+      }
+      return `${Math.floor(Math.random() * 100)}`;
+    }
 
     return (
       <Card fluid>
@@ -79,9 +85,9 @@ class BreakEvenDataTable extends React.Component {
                 </Responsive>
               </Table.Row>
             </Table.Header>
-            <Table.Body>
+            <Table.Body key={uniqueKey()}>
               {data.map(({ units, profit, revenue, variableCosts, fixedCosts }) => (
-                <Table.Row key={`${units}-${profit}-${revenue}-${variableCosts}-${fixedCosts}`}>
+                <Table.Row key={`${profit}-${revenue}-${variableCosts}`}>
                   <Table.Cell>
                     {formatNumber(units)}
                   </Table.Cell>

@@ -5,26 +5,34 @@ import './breakEvenGraph.less'
 import * as d3 from 'd3';
 
 const drawLineChart = (data, windowWidth) => {
-  console.log('window', windowWidth)
   //Clean out the SVG
   d3.select('#lineChart > *').remove()
-
-  const dollarFormat = function(d) { return "$" + d3.format(",.2f")(d); } 
 
   const mobileBreakpoint = 768;
   const svgWidth = 800; 
   const svgHeight = windowWidth > mobileBreakpoint ? 330 : 700;
   const svgVerticalOffset = windowWidth > mobileBreakpoint ? 0 : 15;
 
+  const dollarFormat = function(d) {
+    if(windowWidth < mobileBreakpoint) {
+      return d3.format("$,.2s")(d)
+    }
+    return  d3.format("$,.0f")(d); 
+  }
+
+  const unitsFormat = function(d) {
+    return d3.format(",.2s")(d)
+  }
+
   const svg = d3.select('#lineChart')
     .append("svg")
     .attr("viewBox", `0 ${svgVerticalOffset} ${svgWidth} ${svgHeight}`)
  
   const margin = { 
-    top: 15, 
+    top: windowWidth > mobileBreakpoint ? 15 : 90, 
     right: 20, 
-    bottom: 30, 
-    left: windowWidth > mobileBreakpoint ? 50 : 110 };
+    bottom: windowWidth > mobileBreakpoint ? 30 : 50, 
+    left: windowWidth > mobileBreakpoint ? 60 : 110 };
 
   const g = svg.append("g")
     .attr("transform","translate(" + margin.left + "," + margin.top + ")");
@@ -52,7 +60,7 @@ const drawLineChart = (data, windowWidth) => {
   g.append("g")
     .attr("class", "xAxis")
     .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x).ticks(9))
+    .call(d3.axisBottom(x).tickFormat(unitsFormat).ticks(9))
     .selectAll("text")
     .attr("dy", "1.2em")
     .attr("transform", "" )
@@ -92,7 +100,7 @@ const drawLineChart = (data, windowWidth) => {
     .data(data.breakEvenPoint.data)
     .enter()
     .append("circle")
-    .attr("r", 9)
+    .attr("r", windowWidth > mobileBreakpoint ? 9 : 16)
     .attr("cx", function(d) { return x(d.x); })
     .attr("cy", function(d) { return y(d.y); })
     .style("stroke",  "white")

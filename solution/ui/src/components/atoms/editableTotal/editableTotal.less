@@ -25,8 +25,16 @@
     text-align: left;
   }
 
-  @media only screen and (max-width: 767px) and (min-width: 320px) {
+  @media only screen and (max-width: @breakpoint-medium) {
     padding: @small-spacing 0;
+
+    .editValueForm {
+      margin-left: -1rem;
+
+      .ui.action.input > .button {
+        padding: 10px;
+      }
+    }
     
     .ui.small.input {
       margin-left: 0;

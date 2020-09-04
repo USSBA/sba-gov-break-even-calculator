@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: `/breakevenpointcalculator/calculate`,
   siteMetadata: {
     title: `SBA - Break Even Calculator`,
     description: `This calculator will help you determine the break-even point for your business.`,

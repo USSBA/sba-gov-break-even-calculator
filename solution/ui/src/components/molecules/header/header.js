@@ -9,7 +9,7 @@ const Header = ({ siteTitle }) => (
       <Grid.Column textAlign='left'>
         <Image src={logo} alt='Small Business Administration' />  
         <Divider />
-        <a className='return-link' href='https://sba.gov/breakevencalculator/'>
+        <a className='return-link' href='/breakevenpointcalculator'>
           <Icon name='angle left' />
           Return to break-even page
         </a>

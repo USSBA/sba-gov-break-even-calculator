@@ -1,21 +1,39 @@
 import React from 'react'
-import { Card, Icon, Label } from 'semantic-ui-react'
+import { Card, Label } from 'semantic-ui-react'
 import { formatBreakEvenGraphData, formatNumber } from '../../../helpers'
 import './breakEvenGraph.less'
 import * as d3 from 'd3';
 
-const drawLineChart = (data) => {
+const drawLineChart = (data, windowWidth) => {
   //Clean out the SVG
   d3.select('#lineChart > *').remove()
 
-  const dollarFormat = function(d) { return "$" + d3.format(",.2f")(d); } 
+  const mobileBreakpoint = 768;
+  const svgWidth = 800; 
+  const svgHeight = windowWidth > mobileBreakpoint ? 330 : 700;
+  const svgVerticalOffset = windowWidth > mobileBreakpoint ? 0 : 15;
 
-  const svgWidth = 800, svgHeight = 330;
+  const dollarFormat = function(d) {
+    if(windowWidth < mobileBreakpoint) {
+      return d3.format("$,.2s")(d)
+    }
+    return  d3.format("$,.0f")(d); 
+  }
+
+  const unitsFormat = function(d) {
+    return d3.format(",.2s")(d)
+  }
+
   const svg = d3.select('#lineChart')
     .append("svg")
-    .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`)
+    .attr("viewBox", `0 ${svgVerticalOffset} ${svgWidth} ${svgHeight}`)
  
-  const margin = { top: 15, right: 20, bottom: 30, left: 50 };
+  const margin = { 
+    top: windowWidth > mobileBreakpoint ? 15 : 90, 
+    right: 20, 
+    bottom: windowWidth > mobileBreakpoint ? 30 : 50, 
+    left: windowWidth > mobileBreakpoint ? 60 : 110 };
+
   const g = svg.append("g")
     .attr("transform","translate(" + margin.left + "," + margin.top + ")");
 
@@ -40,14 +58,16 @@ const drawLineChart = (data) => {
 
   // X - Axis
   g.append("g")
+    .attr("class", "xAxis")
     .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x).ticks(9))
+    .call(d3.axisBottom(x).tickFormat(unitsFormat).ticks(9))
     .selectAll("text")
     .attr("dy", "1.2em")
     .attr("transform", "" )
 
   // Y - Axis
   g.append("g")
+    .attr("class", "yAxis")
     .call(d3.axisLeft(y).tickFormat(dollarFormat).ticks(5))
     .append("text")
     .attr("fill", "#000")
@@ -70,7 +90,7 @@ const drawLineChart = (data) => {
       .attr("stroke-dasharray", data[path].stroke)
       .attr("stroke-linejoin", "round")
       .attr("stroke-linecap", "butt")
-      .attr("stroke-width", 3)
+      .attr("stroke-width", windowWidth > mobileBreakpoint ? 4 : 7)
       .attr('class', `${path}Line`)
       .attr("d", line)
   ))
@@ -80,7 +100,7 @@ const drawLineChart = (data) => {
     .data(data.breakEvenPoint.data)
     .enter()
     .append("circle")
-    .attr("r", 9)
+    .attr("r", windowWidth > mobileBreakpoint ? 9 : 16)
     .attr("cx", function(d) { return x(d.x); })
     .attr("cy", function(d) { return y(d.y); })
     .style("stroke",  "white")
@@ -91,11 +111,16 @@ const drawLineChart = (data) => {
 
 class BreakEvenGraph extends React.Component {
   componentDidMount() {
-    drawLineChart(formatBreakEvenGraphData(this.props))
+    window.addEventListener('resize', () => drawLineChart(formatBreakEvenGraphData(this.props), window.innerWidth));
+    drawLineChart(formatBreakEvenGraphData(this.props), window.innerWidth)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', () => drawLineChart(formatBreakEvenGraphData(this.props), window.innerWidth));
   }
 
   componentDidUpdate() {
-    drawLineChart(formatBreakEvenGraphData(this.props))
+    drawLineChart(formatBreakEvenGraphData(this.props), window.innerWidth)
   }
   
   render() {
@@ -103,7 +128,7 @@ class BreakEvenGraph extends React.Component {
       <Card fluid>
         <Card.Content id='breakEvenGraph'>
           <h3>Break-Even Point Graph</h3>
-          <Label basic size='small'>
+          <Label className='graphLineLabel' basic size='small'>
             Unit Sales
             <svg className="lineLegend" height="20" width="60">
               <g fill="none" stroke="#00518B" stroke-width="10">
@@ -111,7 +136,7 @@ class BreakEvenGraph extends React.Component {
               </g>
             </svg>
           </Label>
-          <Label basic size='small'>
+          <Label className='graphLineLabel' basic size='small'>
             Break-Even Point
             <svg className="lineLegend" height="20" width="90">
               <g fill="none" stroke="#007dbc" stroke-width="10">
@@ -119,7 +144,7 @@ class BreakEvenGraph extends React.Component {
               </g>
             </svg>
           </Label>
-          <Label basic size='small'>
+          <Label className='graphLineLabel' basic size='small'>
             Total Costs
             <svg className="lineLegend" height="20" width="80">
               <g fill="none" stroke="#197E4E" stroke-width="10">
@@ -127,7 +152,7 @@ class BreakEvenGraph extends React.Component {
               </g>
             </svg>
           </Label>
-          <Label basic size='small'>
+          <Label className='graphLineLabel' basic size='small'>
             Fixed Costs
             <svg className="lineLegend" height="20" width="70">
               <g fill="none" stroke="#FF4F30" stroke-width="10">

@@ -8,6 +8,10 @@
     top: 100px;
   }
 
+  .graphLineLabel {
+    margin-bottom: 5px;
+  }
+
   .yGridLines line {
     stroke: lightgrey;
     stroke-opacity: 0.7;
@@ -31,24 +35,39 @@
   }
   .graphContainer {
     position: relative;
-
+    
+  .tick text {
+      font-size: 12px;
+    @media only screen and (max-width: @breakpoint-medium) {
+      font-size: 25px;
+    }
+  }
     
     .ui.card.tooltip {
       border-width: 2px;
-      font-size: 1.1vw;
+      font-size: calc(12px + .6vw);
       font-weight: 600;
-      left: 46.7%;
-      line-height: 1.6vw;
+      line-height: calc(12px + .8vw);
       padding: 5px;
       position: absolute;
       text-align: center;
-      top: 7%;
+      margin-left: auto;
+      margin-right: auto;
+      left: 4%;
+      right: 0;
+      top: 10px;
+      text-align: center;
       width: 8vw;
+      min-width: 100px;
+      @media only screen and (max-width: @breakpoint-medium) {
+        top: 50px;
+        left: 35px;
+      }
     
       div.units {
         color: @secondary-blue;
-        font-size: 2vw;
-        line-height: 2.1vw;
+        font-size: calc(12px + 1vw);
+        line-height: calc(12px + 1.1vw);
         margin-bottom:0.5vw;
         margin-top: 0.7vw;
       }
@@ -59,8 +78,6 @@
       font-size: 16px;
       font-weight: 500;
       line-height: 18px;
-      margin-left: 37px;
-      margin-top: -12px;
       text-align: center;
     }
   }

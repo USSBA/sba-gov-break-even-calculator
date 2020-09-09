@@ -4,7 +4,6 @@
   color: @sba-red;
 }
 
-
 @media print {
   .bec-header, .becFooter {
     visibility: hidden;
@@ -13,8 +12,18 @@
 
   .resultsContainer {
 
+    .breakEvenWelcome-container{
+      .ui.grid {
+        align-items: start;
+      }
+    }
+
+    .gradientBackground {
+      height: 25vh;
+    }
+
     .topRow {
-      height: 88vh;
+      height: 80vh;
     }
 
     .graphRow {
@@ -22,7 +31,12 @@
     }
 
     .tableRow {
-      height: 95vh;
+      height: 90vh;
+    }
+
+    .topRow, .graphRow, .tableRow {
+      display: inline-block !important;
+      break-inside: avoid;
     }
 
     .runningTotals-container {

@@ -3,8 +3,6 @@
 
 # Install Break Even Calculator
 
-
-
 1.  **Make sure you have Xcode installed**
     Install Xcode Command Line Tools:
     Open your Terminal.
@@ -64,7 +62,7 @@ when complete 2 files will be created.  Environment and stage will be used inter
 # Deploy the infrastructure
 
 ```bash
-$ ../scripts/environment-deploy.sh <stage>
+$ scripts/environment-deploy.sh <stage>
 ```
 or 
 
@@ -79,7 +77,15 @@ This will create and deploy all of the necessary infrastructure and code for the
 a Website URL will be part of the final output.  You can visit your deployed code there.
 
 # Deploy new front end code
-After you have made some changes to your front end app you may want to redeploy it.  To do this you can do 1 of the following:
+
+After you have made some changes to your front end app you may want to redeploy it. To do so you have to first
+run gatsby build. 
+
+```bash
+$ solution/ui/gatsby build 
+```
+
+To deploy the app you can do 1 of the following:
 
 ```bash
 solution/ui $ sls publish-ui --stage <stage>

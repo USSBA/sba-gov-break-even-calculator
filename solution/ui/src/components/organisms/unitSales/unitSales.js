@@ -16,10 +16,11 @@ const UnitSales = (props) => {
     }
   }
 
-  const errorContent = (formError) => {
-    if (formError) return { content: 'Enter a valid number of units to continue', 
-                            pointing: 'above' 
-                          }
+  const errorContent = () => {
+    return { 
+      content: 'Enter a valid number of units to continue', 
+      pointing: 'above'
+    }
   }
 
   return (
@@ -31,13 +32,14 @@ const UnitSales = (props) => {
         <Grid.Column computer={8} tablet={8} mobile={16}>
           <label htmlFor='units'>Number of units to sell*</label>
           <p>Enter the number of units or services you expect to sell</p>
-          <Form.Input {...(formError ? {error: errorContent(true)} : {})} >
+          <Form.Input {...(formError ? {error: errorContent()} : {})} >
             <Input 
               id='units'
               autoFocus
-              label={{basic: true, content: 'Units'}}
-              labelPosition='right'
+              label={!formError && {basic: true, content: 'Units'}}
+              labelPosition={formError ? '' : 'right'}
               placeholder='0'
+              type='number'
               value={props.value}
               onChange={(e, { value }) => {
                 props.setNumUnits(value)

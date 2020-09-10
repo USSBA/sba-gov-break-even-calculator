@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 import { Grid } from 'semantic-ui-react'
 import { BreakEvenProfileCard, BreakEvenResultsCard, BreakEvenGraph, BreakEvenDataTable } from '../../molecules'
@@ -51,6 +51,10 @@ export const generateTableData = (breakEvenPointUnits, pricePerUnit, variableCos
 const Results = (props) => {
   const { variableCostPerUnit, numUnits, pricePerUnit, totalFixedCost } = props
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const contributionMarginRatio = (pricePerUnit - variableCostPerUnit) / pricePerUnit;
   const breakEvenPointUnits = Math.round(totalFixedCost / (pricePerUnit - variableCostPerUnit))
   const breakEvenPointRevenue = Math.round(totalFixedCost / contributionMarginRatio)
@@ -89,7 +93,7 @@ const Results = (props) => {
               />
             </Grid.Column>
           </Grid.Row>
-          {parseInt(variableCostPerUnit) < parseInt(pricePerUnit) && 
+          {parseFloat(variableCostPerUnit) < parseFloat(pricePerUnit) && 
           <Grid.Row className='graphRow' columns={1}>
             <Grid.Column>
               <BreakEvenGraph 

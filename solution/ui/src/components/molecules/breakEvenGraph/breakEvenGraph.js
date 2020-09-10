@@ -17,10 +17,13 @@ const drawLineChart = (data, windowWidth) => {
     if(windowWidth < mobileBreakpoint) {
       return d3.format("$,.2s")(d)
     }
-    return  d3.format("$,.0f")(d); 
+    return  d3.format("$,.2f")(d); 
   }
 
   const unitsFormat = function(d) {
+    if(d.toString().length < 4) {
+      return d3.format(",.2f")(d)
+    }
     return d3.format(",.2s")(d)
   }
 

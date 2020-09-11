@@ -26,12 +26,16 @@ const UnitSales = (props) => {
   return (
     <div className={`unitSales-container ${props.visible ? '' : 'hidden'}`}>
       <h3>Estimate your expected unit sales</h3>
-      <p>Establish the number of units your business is expected to sell</p>
+      <p>
+        Establish the number of units your business is expected to sell<br/>
+        <span className="subtext">* indicates required field</span>
+      </p>
       <Form onSubmit={handleSubmit}>
       <Grid>
         <Grid.Column computer={8} tablet={8} mobile={16}>
           <label htmlFor='units'>Number of units to sell*</label>
-          <p>Enter the number of units or services you expect to sell</p>
+          <p className="subtext">Enter the number of units or services you expect to sell</p>
+
           <Form.Input {...(formError ? {error: errorContent()} : {})} >
             <Input 
               id='units'

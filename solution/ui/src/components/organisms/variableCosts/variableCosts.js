@@ -88,7 +88,11 @@ class VariableCosts extends React.Component {
     return (
       <div className={`variableCosts-container ${this.props.visible ? '' : 'hidden'}`}>
         <h3>Calculate your total variable costs per unit</h3>
-        <p>Variable costs are costs that change with sales or volume. They are based on the production of one unit.</p>
+        <p>
+          Variable costs are costs that change with sales or volume. They are based on the production of one unit.<br/>
+          <span className="subtext">* indicates required field</span>
+        </p>
+        
         <h4>Do you know your variable cost per unit?</h4>
         <Form onSubmit={this.handleSubmit}>
           <Grid container columns={2} stackable>

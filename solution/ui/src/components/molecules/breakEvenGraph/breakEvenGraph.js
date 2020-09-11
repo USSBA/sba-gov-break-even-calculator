@@ -30,6 +30,15 @@ const drawLineChart = (data, windowWidth) => {
   const svg = d3.select('#lineChart')
     .append("svg")
     .attr("viewBox", `0 ${svgVerticalOffset} ${svgWidth} ${svgHeight}`)
+    .attr("aria-labelledby","breakEvenTitle breakEvenDescription")
+    .attr("role","img")
+
+  svg.append("title")
+    .text("Break-Even Point Line graph")
+    .attr("id","breakEvenTitle")
+  svg.append("desc")
+    .text("This image is a line graph representation of the data table below.")
+    .attr("id","breakEvenDescription")
  
   const margin = { 
     top: windowWidth > mobileBreakpoint ? 15 : 90, 

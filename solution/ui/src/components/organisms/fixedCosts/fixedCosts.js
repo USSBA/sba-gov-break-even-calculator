@@ -74,14 +74,15 @@ class FixedCosts extends React.Component {
           For this calculator the time period is calculated monthly. <br/>
           <span className="subtext">* indicates required field</span>
         </p>
-        <h4>Do you know the total of your monthly fixed costs?*</h4>
-        <Form onSubmit={this.handleSubmit}>
+        <Form>
+          <div role='group' aria-labelledby='fixedCostQuestion'>
+          <h4 id='fixedCostQuestion'>Do you know the total of your monthly fixed costs?*</h4>
           <Grid container columns={2} stackable>
             <Grid.Column>
               <Form.Field
                 control={Radio}
                 label='Yes'
-                aria-label='yes'
+                aria-label='yes, I know the total of my monthly fixed costs'
                 name='yesBox'
                 value='yes'
                 checked={this.state.knowFixedCosts === 'yes'}
@@ -126,6 +127,9 @@ class FixedCosts extends React.Component {
                 </Form.Field>
               </Grid.Column>}
           </Grid>
+          </div>
+        </Form>
+        <Form onSubmit={this.handleSubmit}>
           <Grid columns={1}>
             {this.state.knowFixedCosts === 'yes' && 
               <Grid.Column>

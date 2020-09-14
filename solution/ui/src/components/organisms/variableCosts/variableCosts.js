@@ -92,42 +92,43 @@ class VariableCosts extends React.Component {
           Variable costs are costs that change with sales or volume. They are based on the production of one unit.<br/>
           <span className="subtext">* indicates required field</span>
         </p>
-        
-        <h4>Do you know your variable cost per unit?</h4>
-        <Form onSubmit={this.handleSubmit}>
-          <Grid container columns={2} stackable>
-            <Grid.Column>
-              <Form.Field
-                control={Radio}
-                label='Yes'
-                aria-label='yes'
-                name='yesBox'
-                value='yes'
-                checked={this.state.knowVariableCosts === 'yes'}
-                onChange={this.handleRadioButtonChange}
-              />
-            </Grid.Column>
-            <Grid.Column>
-              <Form.Field
-                control={Radio}
-                label='No, input values individually'
-                aria-label='no, input values individually'
-                name='noBox'
-                value='no'
-                checked={this.state.knowVariableCosts === 'no'}
-                onChange={this.handleRadioButtonChange}
-              />
-            </Grid.Column>
-            {this.state.knowVariableCosts === 'no' && 
-              <NumbersInputForm
-                onChange={(e, { name, value }) => {
-                  this.handleInputFieldChange(name, value)
-                  this.setState({ formError: false })
-                }}
-                fields={variableCostFields} />
-            }
-            {this.state.knowVariableCosts === 'yes' && this.totalVariableCostPerUnit()}
-          </Grid>
+                <Form onSubmit={this.handleSubmit}>
+          <div role='group' aria-labelledby='variableCostQuestion'>
+            <h4 id='variableCostQuestion'>Do you know your variable cost per unit?</h4>
+            <Grid container columns={2} stackable>
+              <Grid.Column>
+                <Form.Field
+                  control={Radio}
+                  label='Yes'
+                  aria-label='yes, I know the total of my variable costs per unit'
+                  name='yesBox'
+                  value='yes'
+                  checked={this.state.knowVariableCosts === 'yes'}
+                  onChange={this.handleRadioButtonChange}
+                />
+              </Grid.Column>
+              <Grid.Column>
+                <Form.Field
+                  control={Radio}
+                  label='No, input values individually'
+                  aria-label='no, input values individually'
+                  name='noBox'
+                  value='no'
+                  checked={this.state.knowVariableCosts === 'no'}
+                  onChange={this.handleRadioButtonChange}
+                />
+              </Grid.Column>
+              {this.state.knowVariableCosts === 'no' && 
+                <NumbersInputForm
+                  onChange={(e, { name, value }) => {
+                    this.handleInputFieldChange(name, value)
+                    this.setState({ formError: false })
+                  }}
+                  fields={variableCostFields} />
+              }
+              {this.state.knowVariableCosts === 'yes' && this.totalVariableCostPerUnit()}
+            </Grid>
+          </div>
           <Grid columns={1}>
             {this.state.knowVariableCosts === 'yes' && 
               <Grid.Column>

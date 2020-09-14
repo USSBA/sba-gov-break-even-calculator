@@ -92,7 +92,7 @@ class VariableCosts extends React.Component {
           Variable costs are costs that change with sales or volume. They are based on the production of one unit.<br/>
           <span className="subtext">* indicates required field</span>
         </p>
-                <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit}>
           <div role='group' aria-labelledby='variableCostQuestion'>
             <h4 id='variableCostQuestion'>Do you know your variable cost per unit?</h4>
             <Grid container columns={2} stackable>

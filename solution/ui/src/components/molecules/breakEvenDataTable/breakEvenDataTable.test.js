@@ -18,8 +18,7 @@ describe('BreakEvenDataTable', () => {
 
   it('Renders 5 columns', () => {
     const wrapper = shallow(<BreakEvenDataTable data={tableData} />)
-    expect(wrapper.find('TableHeaderCell')).toHaveLength(3)
-    expect(wrapper.find('TableRow').first().find('Responsive')).toHaveLength(2)
+    expect(wrapper.find('TableHeaderCell')).toHaveLength(5)
   })
 
   it('Adds class of netLoss on profits less than zero', () => {

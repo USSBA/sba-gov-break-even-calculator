@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Grid, Form, Input } from 'semantic-ui-react'
 import { CALCULATOR_STEPS } from '../../../constants/constants'
 import './unitSales.less'
@@ -6,6 +6,7 @@ import './unitSales.less'
 const UnitSales = (props) => {
   const [formError, setFormError] = useState(false)
   const self = CALCULATOR_STEPS.UNIT_SALES
+  const unitsInputField = document.querySelector("#units");
 
   const handleSubmit = () => {  
     if (!props.value && props.value !== 0) {
@@ -23,6 +24,12 @@ const UnitSales = (props) => {
     }
   }
 
+  useEffect(() => {
+    if (unitsInputField) {
+      unitsInputField.focus()
+    }
+  })
+  
   return (
     <div className={`unitSales-container ${props.visible ? '' : 'hidden'}`}>
       <h3>Estimate your expected unit sales</h3>

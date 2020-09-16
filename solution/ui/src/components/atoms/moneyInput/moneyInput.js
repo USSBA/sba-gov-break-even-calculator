@@ -6,6 +6,8 @@ const errorContent = (error) => {
 }
 
 const MoneyInput = (props) => {
+  console.log(props)
+
   return(
     <Form.Input {...(props.formError ? {error: errorContent(props)} : {})} >
       <Input

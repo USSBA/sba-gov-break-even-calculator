@@ -11,6 +11,7 @@
   transform: translate(-50%, 0);
   padding: 0 @small-spacing;
   opacity: 1;
+  visibility: visible;
   z-index: 100;
   transition: top .3s ease-in, opacity 0s .2s;
   -moz-transition: top .3s ease-in, opacity 0s .2s;
@@ -18,6 +19,7 @@
   -o-transition: top .3s ease-in, opacity 0s .2s;
 
   &.hidden {
+    visibility: hidden;
     opacity: 0;
     transition: opacity 2s ease-in-out, top 0s 3s;
     -moz-transition: opacity 2s ease-in-out, top 0s 3s;

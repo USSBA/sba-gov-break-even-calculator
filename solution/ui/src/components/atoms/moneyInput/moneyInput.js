@@ -6,10 +6,8 @@ const errorContent = (error) => {
 }
 
 const MoneyInput = (props) => {
-
   return(
     <Form.Input {...(props.formError ? {error: errorContent(props)} : {})} >
-    
       <Input
         ref={props.inputRef}
         aria-label={props.ariaLabel}

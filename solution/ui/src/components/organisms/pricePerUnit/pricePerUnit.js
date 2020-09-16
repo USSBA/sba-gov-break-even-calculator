@@ -38,7 +38,6 @@ const PricePerUnit = (props) => {
           <Grid.Column computer={8} tablet={8} mobile={16}>
             <label htmlFor='unit price'>Per unit selling price*</label>
             <p className="subtext">Enter the price you plan to sell per unit or service:</p>
-
             <MoneyInput
               inputRef={priceInputRef}
               autoFocus

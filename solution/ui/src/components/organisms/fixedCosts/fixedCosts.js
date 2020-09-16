@@ -74,58 +74,60 @@ class FixedCosts extends React.Component {
           For this calculator the time period is calculated monthly. <br/>
           <span className="subtext">* indicates required field</span>
         </p>
-        <h4>Do you know the total of your monthly fixed costs?*</h4>
         <Form onSubmit={this.handleSubmit}>
-          <Grid container columns={2} stackable>
-            <Grid.Column>
-              <Form.Field
-                control={Radio}
-                label='Yes'
-                aria-label='yes'
-                name='yesBox'
-                value='yes'
-                checked={this.state.knowFixedCosts === 'yes'}
-                onChange={this.handleRadioButtonChange}
-              />
-            </Grid.Column>
-            <Grid.Column>
-              <Form.Field
-                control={Radio}
-                label='No, input values individually'
-                aria-label='no, input values individually'
-                name='noBox'
-                value='no'
-                checked={this.state.knowFixedCosts === 'no'}
-                onChange={this.handleRadioButtonChange}
-              />
-            </Grid.Column>
-            {this.state.knowFixedCosts === 'no' && 
-              <NumbersInputForm
-                onChange={(e, { name, value }) => {
-                  this.handleInputFieldChange(name, value)
-                  this.setState({ formError: false })
-                }}
-                fields={fixedCostFields} />
-            }
-            {this.state.knowFixedCosts === 'yes' &&
+          <div role='group' aria-labelledby='fixedCostQuestion'>
+            <h4 id='fixedCostQuestion'>Do you know the total of your monthly fixed costs?*</h4>
+            <Grid container columns={2} stackable>
               <Grid.Column>
-                <label htmlFor='totalFixedCosts'>Do you know the total of your monthly fixed costs?*</label>
-                <div className="subtext">Enter the sum of all known fixed costs:</div>
-                <Form.Field>
-                  <MoneyInput
-                    value={this.state.totalFixedCosts} 
-                    ariaLabel='total fixed cost'
-                    name='totalFixedCosts'
-                    autoFocus
-                    errorMessage= 'Enter a valid fixed cost to continue'
-                    formError= {this.state.formError}
-                    onChange={(e, { value }) => {
-                      this.setState({ totalFixedCosts: value })
-                      this.setState({ formError: false })
-                    }}/>
-                </Form.Field>
-              </Grid.Column>}
-          </Grid>
+                <Form.Field
+                  control={Radio}
+                  label='Yes'
+                  aria-label='yes, I know the total of my monthly fixed costs'
+                  name='yesBox'
+                  value='yes'
+                  checked={this.state.knowFixedCosts === 'yes'}
+                  onChange={this.handleRadioButtonChange}
+                />
+              </Grid.Column>
+              <Grid.Column>
+                <Form.Field
+                  control={Radio}
+                  label='No, input values individually'
+                  aria-label='no, input values individually'
+                  name='noBox'
+                  value='no'
+                  checked={this.state.knowFixedCosts === 'no'}
+                  onChange={this.handleRadioButtonChange}
+                />
+              </Grid.Column>
+              {this.state.knowFixedCosts === 'no' && 
+                <NumbersInputForm
+                  onChange={(e, { name, value }) => {
+                    this.handleInputFieldChange(name, value)
+                    this.setState({ formError: false })
+                  }}
+                  fields={fixedCostFields} />
+              }
+              {this.state.knowFixedCosts === 'yes' &&
+                <Grid.Column>
+                  <label htmlFor='totalFixedCosts'>Do you know the total of your monthly fixed costs?*</label>
+                  <div className="subtext">Enter the sum of all known fixed costs:</div>
+                  <Form.Field>
+                    <MoneyInput
+                      value={this.state.totalFixedCosts} 
+                      ariaLabel='total fixed cost'
+                      name='totalFixedCosts'
+                      autoFocus
+                      errorMessage= 'Enter a valid fixed cost to continue'
+                      formError= {this.state.formError}
+                      onChange={(e, { value }) => {
+                        this.setState({ totalFixedCosts: value })
+                        this.setState({ formError: false })
+                      }}/>
+                  </Form.Field>
+                </Grid.Column>}
+            </Grid>
+          </div>
           <Grid columns={1}>
             {this.state.knowFixedCosts === 'yes' && 
               <Grid.Column>

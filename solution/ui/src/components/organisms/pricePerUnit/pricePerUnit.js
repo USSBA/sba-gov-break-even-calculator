@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { Grid, Form } from 'semantic-ui-react'
 
 import { MoneyInput } from '../../atoms'
@@ -6,6 +6,7 @@ import { CALCULATOR_STEPS } from '../../../constants/constants'
 import './pricePerUnit.less'
 
 const PricePerUnit = (props) => {
+  const priceInputRef = useRef(null)
   const [formError, setFormError] = useState(false)
   const self = CALCULATOR_STEPS.PRICE_PER_UNIT
 
@@ -17,6 +18,12 @@ const PricePerUnit = (props) => {
       props.goToStep(self + 1)
     }
   }
+
+  useEffect(() => {
+    if (priceInputRef) {
+      priceInputRef.current.focus()
+    }
+  })
 
   return (
     <div className={`pricePerUnit-container ${props.visible ? '' : 'hidden'}`}>
@@ -31,7 +38,9 @@ const PricePerUnit = (props) => {
           <Grid.Column computer={8} tablet={8} mobile={16}>
             <label htmlFor='unit price'>Per unit selling price*</label>
             <p className="subtext">Enter the price you plan to sell per unit or service:</p>
+
             <MoneyInput
+              inputRef={priceInputRef}
               autoFocus
               value={props.value}
               formError= {formError}

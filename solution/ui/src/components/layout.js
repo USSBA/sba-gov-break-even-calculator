@@ -12,10 +12,13 @@ import "semantic-ui-less/semantic.less";
 import Header from "./molecules/header/header"
 import Footer from "./molecules/footer/footer"
 import SEO from "./seo"
+import favicon from '../images/favicon.ico'
+import { Helmet } from "react-helmet";
 
 const Layout = ({ children }) => {
   return (
     <>
+      <Helmet link={[{rel: 'shortcut icon', type: 'image/png', href: `${favicon}`}]} />
       <SEO title='Break Even Calculator' />
       <Header />
       <main>{children}</main>

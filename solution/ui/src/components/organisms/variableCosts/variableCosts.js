@@ -137,7 +137,7 @@ class VariableCosts extends React.Component {
                 </div>
               </Grid.Column>}
               { this.state.formError && this.state.knowVariableCosts === 'no' &&
-                <p className='errorMsg'>Enter a valid variable cost per unit to continue</p>
+                <p role="alert" className='errorMsg'>Enter a valid variable cost per unit to continue</p>
               }
             {this.state.knowVariableCosts && 
               <Grid.Column>
@@ -151,7 +151,7 @@ class VariableCosts extends React.Component {
                       <Grid.Column className='warningMessage' width={1}>
                       <Icon size='small' circular name='minus'/>
                     </Grid.Column>
-                    <Grid.Column floated='left' className='warningMessage' width={12}>
+                    <Grid.Column role="alert" floated='left' className='warningMessage' width={12}>
                       <p>Your variable costs are higher than your unit price. You will never break-even. Consider adjusting your values.</p>
                     </Grid.Column>
                     </Grid>

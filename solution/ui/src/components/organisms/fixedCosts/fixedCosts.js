@@ -137,7 +137,7 @@ class FixedCosts extends React.Component {
               </Grid.Column>
             }
             {this.state.formError && this.state.knowFixedCosts === 'no' &&
-              <p className='errorMsg'>Enter a valid fixed cost to continue</p>
+              <p role="alert" className='errorMsg'>Enter a valid fixed cost to continue</p>
             }
             {this.state.knowFixedCosts && 
               <Grid.Column>

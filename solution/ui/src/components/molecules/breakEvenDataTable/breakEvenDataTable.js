@@ -33,7 +33,7 @@ class BreakEvenDataTable extends React.Component {
 
 	formatProfitOrLoss = (profit) => {
 		if (profit >= 0) return `$${formatNumber(profit)}`
-		return `(${formatNumber(Math.abs(profit))})`
+		return <span>&minus;{`$${formatNumber(Math.abs(profit))}`}</span>
 	}
 
   render() {

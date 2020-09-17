@@ -8,11 +8,11 @@ const Modal = (props) => {
 
   return(
     <div className={`confirmationModal-container ${open ? '' : 'hidden'}`}>
-      <p role='alert' className='modalContent'><Icon name='check circle' size='small' />{content}</p>
+      <p role={open ? 'alert' : ''} className='modalContent'><Icon name='check circle' size='small' />{content}</p>
       <a 
         aria-label='close modal'
         className='closeModal'
-        href='#' 
+        href='/' 
         onClick={(e) => {
           e.preventDefault()
           onClose()

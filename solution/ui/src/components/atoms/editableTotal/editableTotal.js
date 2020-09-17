@@ -98,7 +98,7 @@ const EditableTotal = (props) => {
             <Grid.Column className='editTotal-container' computer={5} tablet={6} mobile={6} verticalAlign='middle'>
               <a 
                 aria-label={`edit ${title}`} 
-                href="#" className='editButton' 
+                href="/" className='editButton' 
                 onClick={(e) => {
                   e.preventDefault()
                   setIsEditing(true)

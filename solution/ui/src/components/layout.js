@@ -12,7 +12,7 @@ import "semantic-ui-less/semantic.less";
 import Header from "./molecules/header/header"
 import Footer from "./molecules/footer/footer"
 import SEO from "./seo"
-import favicon from '../images/favicon.ico'
+import favicon from '../images/favicon.png'
 import { Helmet } from "react-helmet";
 
 const Layout = ({ children }) => {

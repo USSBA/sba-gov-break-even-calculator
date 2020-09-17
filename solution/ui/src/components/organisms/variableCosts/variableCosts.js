@@ -160,7 +160,7 @@ class VariableCosts extends React.Component {
               </Grid.Column>}           
           </Grid>
         </Form>
-        <Grid className='returnLinks' columns={2} equal>
+        <Grid className='returnLinks' columns={2} >
           <Grid.Column id='backLink' mobile={8} computer={4}>
             <a 
               aria-label='Back to unit sales'

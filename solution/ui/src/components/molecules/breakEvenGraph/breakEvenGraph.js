@@ -76,7 +76,6 @@ const drawLineChart = (data, windowWidth) => {
     .selectAll("text")
     .attr("dy", "1.2em")
 
-
   // Y - Axis
   g.append("g")
     .attr("class", "yAxis")

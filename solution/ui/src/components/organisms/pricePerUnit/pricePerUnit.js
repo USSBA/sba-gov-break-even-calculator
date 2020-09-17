@@ -20,10 +20,10 @@ const PricePerUnit = (props) => {
   }
 
   useEffect(() => {
-    if (priceInputRef) {
+    if (props.visible) {
       priceInputRef.current.focus()
     }
-  })
+  }, [props.visible])
 
   return (
     <div className={`pricePerUnit-container ${props.visible ? '' : 'hidden'}`}>

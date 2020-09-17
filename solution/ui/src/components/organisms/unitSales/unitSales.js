@@ -25,10 +25,10 @@ const UnitSales = (props) => {
   }
 
   useEffect(() => {
-    if (unitsInputRef) {
+    if (props.visible) {
       unitsInputRef.current.focus()
     }
-  })
+  }, [props.visible])
   
   return (
     <div className={`unitSales-container ${props.visible ? '' : 'hidden'}`}>

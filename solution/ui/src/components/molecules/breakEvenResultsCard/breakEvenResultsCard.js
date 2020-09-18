@@ -29,7 +29,7 @@ const BreakEvenResultsCard = (props) => {
               <Image src={calculatorIcon} alt='calculator icon' size='tiny' centered/>
             </Grid.Column>
             <Grid.Column width={12}>
-              <h4>Your Break-Even Point Results</h4>
+              <h3>Your Break-Even Point Results</h3>
               <p>Estimated calculation based on your inputs</p>
             </Grid.Column>
           </Grid.Row>

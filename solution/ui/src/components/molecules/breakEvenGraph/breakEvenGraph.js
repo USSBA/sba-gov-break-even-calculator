@@ -174,7 +174,7 @@ class BreakEvenGraph extends React.Component {
           </Label>
           <div class="graphContainer">
             <div id="lineChart"></div>
-            <div className='unitLabel'>Units</div>
+            <div className='unitLabel' aria-hidden="true">Units</div>
             <Card fluid className="tooltip" >
                 <div className="units number">
                   { formatNumber(formatBreakEvenGraphData(this.props).breakEvenPoint.data[0].x) }

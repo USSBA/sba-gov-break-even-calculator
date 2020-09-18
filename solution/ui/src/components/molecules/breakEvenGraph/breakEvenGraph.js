@@ -14,15 +14,12 @@ const drawLineChart = (data, windowWidth) => {
   const svgVerticalOffset = windowWidth > mobileBreakpoint ? 0 : 15;
 
   const dollarFormat = function(d) {
-    if(windowWidth < mobileBreakpoint) {
-      return d3.format("$,.2s")(d)
-    }
-    return  d3.format("$,.2f")(d); 
+    return d3.format("$,.2s")(d)
   }
 
   const unitsFormat = function(d) {
     if(d.toString().length < 4) {
-      return d3.format(",.2f")(d)
+      return d3.format(",")(d)
     }
     return d3.format(",.2s")(d)
   }
@@ -75,7 +72,6 @@ const drawLineChart = (data, windowWidth) => {
     .call(d3.axisBottom(x).tickFormat(unitsFormat).ticks(9))
     .selectAll("text")
     .attr("dy", "1.2em")
-    .attr("transform", "" )
 
   // Y - Axis
   g.append("g")

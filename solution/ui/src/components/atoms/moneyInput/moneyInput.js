@@ -9,6 +9,7 @@ const MoneyInput = (props) => {
   return(
     <Form.Input {...(props.formError ? {error: errorContent(props)} : {})} >
       <Input
+        ref={props.inputRef}
         aria-label={props.ariaLabel}
         autoFocus={!!props.autoFocus}
         onChange={props.onChange} 

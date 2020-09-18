@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { Grid, Form, Input } from 'semantic-ui-react'
 import { CALCULATOR_STEPS } from '../../../constants/constants'
 import './unitSales.less'
@@ -6,6 +6,7 @@ import './unitSales.less'
 const UnitSales = (props) => {
   const [formError, setFormError] = useState(false)
   const self = CALCULATOR_STEPS.UNIT_SALES
+  const unitsInputRef = useRef(null)
 
   const handleSubmit = () => {  
     if (!props.value && props.value !== 0) {
@@ -23,6 +24,12 @@ const UnitSales = (props) => {
     }
   }
 
+  useEffect(() => {
+    if (props.visible) {
+      unitsInputRef.current.focus()
+    }
+  }, [props.visible])
+  
   return (
     <div className={`unitSales-container ${props.visible ? '' : 'hidden'}`}>
       <h3>Estimate your expected unit sales</h3>
@@ -39,6 +46,7 @@ const UnitSales = (props) => {
           <Form.Input {...(formError ? {error: errorContent()} : {})} >
             <Input 
               id='units'
+              ref={unitsInputRef}
               autoFocus
               label={!formError && {basic: true, content: 'Units'}}
               labelPosition={formError ? '' : 'right'}

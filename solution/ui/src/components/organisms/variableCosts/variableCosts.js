@@ -68,7 +68,7 @@ class VariableCosts extends React.Component {
   
   totalVariableCostPerUnit = () => {
     return(<Grid.Column>
-      <label htmlFor='totalVariableCosts'>Total monthly variable costs</label>
+      <label htmlFor='totalVariableCosts'>Total monthly variable costs*</label>
       <p>Enter the sum of all known variable costs</p>
       <Form.Field>
         <MoneyInput name='totalVariableCosts'

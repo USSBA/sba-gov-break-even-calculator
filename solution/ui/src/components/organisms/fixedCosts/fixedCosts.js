@@ -110,7 +110,7 @@ class FixedCosts extends React.Component {
               }
               {this.state.knowFixedCosts === 'yes' &&
                 <Grid.Column>
-                  <label htmlFor='totalFixedCosts'>Do you know the total of your monthly fixed costs?*</label>
+                  <label htmlFor='totalFixedCosts'>Total monthly fixed costs*</label>
                   <div className="subtext">Enter the sum of all known fixed costs:</div>
                   <Form.Field>
                     <MoneyInput

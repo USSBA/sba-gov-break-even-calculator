@@ -94,7 +94,7 @@ class VariableCosts extends React.Component {
         </p>
         <Form onSubmit={this.handleSubmit}>
           <div role='group' aria-labelledby='variableCostQuestion'>
-            <h4 id='variableCostQuestion'>Do you know your variable cost per unit?</h4>
+            <h4 id='variableCostQuestion'>Do you know your variable cost per unit?*</h4>
             <Grid container columns={2} stackable>
               <Grid.Column>
                 <Form.Field

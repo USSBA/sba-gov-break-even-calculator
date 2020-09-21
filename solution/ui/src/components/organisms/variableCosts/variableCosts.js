@@ -68,7 +68,7 @@ class VariableCosts extends React.Component {
   
   totalVariableCostPerUnit = () => {
     return(<Grid.Column>
-      <label htmlFor='totalVariableCosts'>Total monthly variable costs</label>
+      <label htmlFor='totalVariableCosts'>Total monthly variable costs*</label>
       <p>Enter the sum of all known variable costs</p>
       <Form.Field>
         <MoneyInput name='totalVariableCosts'
@@ -94,7 +94,7 @@ class VariableCosts extends React.Component {
         </p>
         <Form onSubmit={this.handleSubmit}>
           <div role='group' aria-labelledby='variableCostQuestion'>
-            <h4 id='variableCostQuestion'>Do you know your variable cost per unit?</h4>
+            <h4 id='variableCostQuestion'>Do you know your variable cost per unit?*</h4>
             <Grid container columns={2} stackable>
               <Grid.Column>
                 <Form.Field

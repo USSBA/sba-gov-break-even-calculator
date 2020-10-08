@@ -56,6 +56,18 @@ export const formatBreakEvenGraphData = (data) => {
         { x: breakEvenUnits, y: data.breakEvenSales*2 }
       ],
       label: 'Break Even'
+<<<<<<< HEAD
+=======
+    },
+    unitSales: {
+      lineColor: '#00518B',
+      stroke: '5,10',
+      data: [ 
+        { x: 0, y: 0 },
+        { x: breakEvenUnits*2, y: data.breakEvenSales*2 }
+      ],
+      label: 'Unit Sales'
+>>>>>>> TC-506 - Display points that follow the graph with values
     },
     totalCost: {
       lineColor: '#197E4E',

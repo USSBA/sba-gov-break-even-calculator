@@ -57,6 +57,15 @@ export const formatBreakEvenGraphData = (data) => {
       ],
       label: 'Break Even'
     },
+    unitSales: {
+      lineColor: '#00518B',
+      stroke: '5,10',
+      data: [ 
+        { x: 0, y: 0 },
+        { x: breakEvenUnits*2, y: data.breakEvenSales*2 }
+      ],
+      label: 'Unit Sales'
+    },
     totalCost: {
       lineColor: '#197E4E',
       stroke: '10,10',

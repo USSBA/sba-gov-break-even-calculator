@@ -4,10 +4,36 @@
   color: @sba-red;
 }
 
+@page {
+  size: A4;
+  margin: 11mm 17mm 17mm 17mm;
+}
+
 @media print {
-  .bec-header, .becFooter {
+  html, body {
+    width: 210mm;
+    height: 297mm;
+  }
+
+  .return-link, h1, .becFooter img, .footer-divider {
     visibility: hidden;
     display: none;
+  }
+
+  .becFooter {
+    position: fixed;
+    bottom: 0;
+  }
+
+  .bec-header {
+    margin: 5mm 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    div.ui.divider {
+      border-bottom: 8px solid #41569c !important;
+    }
   }
 
   .resultsContainer {
@@ -18,20 +44,22 @@
       }
     }
 
-    .gradientBackground {
-      height: 25vh;
-    }
-
     .topRow {
-      height: 80vh;
+      height: 297mm;
+      margin-top: 5mm;
+      margin-top: 5vh;
     }
 
     .graphRow {
-      height: 100vh;
+      height: 297mm;
+      margin-top: 10mm;
+      margin-top: 10vh;
     }
 
     .tableRow {
-      height: 90vh;
+      height: 240mm;
+      margin-top: 10mm;
+      margin-top: 10vh;
     }
 
     .topRow, .graphRow, .tableRow {

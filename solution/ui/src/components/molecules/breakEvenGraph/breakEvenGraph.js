@@ -19,10 +19,11 @@ const drawLineChart = (data, windowWidth) => {
   const svgWidth = 800; 
   const svgHeight = windowWidth > mobileBreakpoint ? 330 : 700;
   const svgVerticalOffset = windowWidth > mobileBreakpoint ? 0 : 15;
-
+  
   const dollarFormat = function(d) {
     return d3.format('$,.2s')(d)
   }
+  
   const unitsFormat = function(d) {
     if(d.toString().length < 4) {
       return d3.format(',')(d)

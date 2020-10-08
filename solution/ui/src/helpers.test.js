@@ -52,7 +52,7 @@ describe('formatBreakEvenGraphData', () => {
         data: [
           {  x: 100, y: 2000 }
         ],
-        label: 'Break Even Point'
+        label: 'Break-Even Point'
       }
     }))
   })

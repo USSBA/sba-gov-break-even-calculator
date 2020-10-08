@@ -51,7 +51,8 @@ describe('formatBreakEvenGraphData', () => {
         color: "#007dbc",
         data: [
           {  x: 100, y: 2000 }
-        ]
+        ],
+        label: 'Break Even Point'
       }
     }))
   })
@@ -65,11 +66,12 @@ describe('formatBreakEvenGraphData', () => {
     })
     expect(formattedData).toEqual(expect.objectContaining({
       breakEven: {
-        lineColor: "#007dbc",
+        lineColor: '#007dbc',
         data: [ 
           { x: 100, y: 0 },
           { x: 100, y: 4000 }
         ],
+        label: 'Break Even'
       },
     }))
   })
@@ -88,7 +90,8 @@ describe('formatBreakEvenGraphData', () => {
         data: [ 
           { x: 0, y: 0 },
           { x: 200, y: 4000 }
-        ]
+        ],
+        label: 'Unit Sales'
       }
     }))
   })
@@ -107,7 +110,8 @@ describe('formatBreakEvenGraphData', () => {
         data: [ 
           { x: 0, y: 1000 },
           { x: 200, y: 3000 }
-        ]
+        ],
+        label: 'Total Cost'
       }
     }))
   })
@@ -126,7 +130,8 @@ describe('formatBreakEvenGraphData', () => {
         data: [ 
           { x: 0, y: 1000},
           { x: 200, y: 1000}
-        ]
+        ],
+        label: 'Fixed Cost'
       }
     }))
   })

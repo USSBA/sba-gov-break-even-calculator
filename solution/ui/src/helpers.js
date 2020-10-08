@@ -55,6 +55,7 @@ export const formatBreakEvenGraphData = (data) => {
         { x: breakEvenUnits, y: 0 },
         { x: breakEvenUnits, y: data.breakEvenSales*2 }
       ],
+      label: 'Break Even'
     },
     unitSales: {
       lineColor: '#00518B',
@@ -62,7 +63,8 @@ export const formatBreakEvenGraphData = (data) => {
       data: [ 
         { x: 0, y: 0 },
         { x: breakEvenUnits*2, y: data.breakEvenSales*2 }
-      ]
+      ],
+      label: 'Unit Sales'
     },
     totalCost: {
       lineColor: '#197E4E',
@@ -70,7 +72,8 @@ export const formatBreakEvenGraphData = (data) => {
       data: [ 
         { x: 0, y: fixedCost},
         { x: breakEvenUnits*2, y: maxTotalCost }
-      ]
+      ],
+      label: 'Total Cost'
     },
     fixedCost: {
       lineColor: '#FF4F30',
@@ -78,13 +81,15 @@ export const formatBreakEvenGraphData = (data) => {
       data: [ 
         { x: 0, y: fixedCost},
         { x: breakEvenUnits*2, y: fixedCost}
-      ]
+      ],
+      label: 'Fixed Cost'
     },
     breakEvenPoint: {
       color: "#007dbc",
       data: [
         {  x: breakEvenUnits, y: totalCost }
-      ]
+      ],
+      label: 'Break-Even Point'
     }
   }
 }

@@ -1,5 +1,8 @@
 @import '../../../styles/variables.less';
-
+#tooltipLegend {
+  position: absolute;
+  z-index:10;
+}
 #breakEvenGraph {
   card.breakEvenPointLabel {
     left: 191px;
@@ -42,7 +45,8 @@
       font-size: 25px;
     }
   }
-    
+
+
     .ui.card.tooltip {
       border-width: 2px;
       font-size: calc(12px + .6vw);

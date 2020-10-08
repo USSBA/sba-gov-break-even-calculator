@@ -166,6 +166,9 @@ const drawLineChart = (data, windowWidth) => {
         .style('opacity', '0');
       d3.selectAll('.mouse-per-line text')
         .style('opacity', '0');
+   
+    })
+    .on('click', function(){
       d3.selectAll('.breakEvenLabel')
         .style('opacity', '1');
     })

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 
-import { Grid } from 'semantic-ui-react'
+import { Container, Grid, Button } from 'semantic-ui-react'
 import { BreakEvenProfileCard, BreakEvenResultsCard, BreakEvenGraph, BreakEvenDataTable } from '../../molecules'
 import { findStepSize } from '../../../helpers'
 
@@ -113,6 +113,11 @@ const Results = (props) => {
         </Grid>
       </div>
     </div>
+      <Container id='printCTA'>
+        <h3>Next Steps</h3>
+        <p>Print this dashboard for your reference to add to your business plan or to share with a consultant.</p>
+        <Button color='red' onClick={() => window.print()}>Print Results</Button>
+      </Container>
     </>
   )
 }

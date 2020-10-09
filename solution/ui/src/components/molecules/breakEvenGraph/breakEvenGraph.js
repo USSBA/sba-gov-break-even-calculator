@@ -168,10 +168,6 @@ const drawLineChart = (data, windowWidth) => {
         .style('opacity', '0');
    
     })
-    .on('click', function(){
-      d3.selectAll('.breakEvenLabel')
-        .style('opacity', '1');
-    })
     .on('mouseover', function() { // on mouse in show line, circles and text
       d3.select('.mouse-line')
         .style('opacity', '1');
@@ -180,8 +176,6 @@ const drawLineChart = (data, windowWidth) => {
       d3.selectAll('.mouse-per-line text')
         .style('fill', 'black')
         .style('opacity', '1')
-      d3.selectAll('.breakEvenLabel')
-        .style('opacity', '0');
     })
     .on('mousemove touchmove', function() {
       var mouse = d3.mouse(this);

@@ -71,4 +71,9 @@ describe('Results', () => {
     const bepDataTable = wrapper.find('BreakEvenDataTable').dive()
     expect(bepDataTable.find('TableRow')).toHaveLength(9)
   })
+
+  it('renders print CTA', () => {
+    const wrapper = shallow(<Results {...sampleProps}/>)
+    expect(wrapper.find('#printCTA')).toHaveLength(1)
+  })
 })

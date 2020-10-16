@@ -133,7 +133,7 @@ class VariableCosts extends React.Component {
             {this.state.knowVariableCosts === 'yes' && 
               <Grid.Column>
                 <div className='variableCost-suggestion'>Unsure about your total variable costs? 
-                  <a href="#" onClick={() => this.setState({ knowVariableCosts: 'no'})}>Add all variable costs individually</a>
+                  <a href="/" onClick={() => this.setState({ knowVariableCosts: 'no'})}>Add all variable costs individually</a>
                 </div>
               </Grid.Column>}
               { this.state.formError && this.state.knowVariableCosts === 'no' &&
@@ -164,13 +164,13 @@ class VariableCosts extends React.Component {
           <Grid.Column id='backLink' mobile={8} computer={4}>
             <a 
               aria-label='Back to unit sales'
-              href="#"
+              href="/"
               className='navLink'
               onClick={() => this.props.goToStep(this.self - 1)}
             >{`< Back to unit sales`}</a>
           </Grid.Column>
           <Grid.Column id='restartLink' mobile={8} computer={3}>
-            <a href="#" className='navLink' onClick={this.props.restart}>Restart Analysis</a>
+            <a href="/" className='navLink' onClick={this.props.restart}>Restart Analysis</a>
           </Grid.Column>
         </Grid>
       </div>

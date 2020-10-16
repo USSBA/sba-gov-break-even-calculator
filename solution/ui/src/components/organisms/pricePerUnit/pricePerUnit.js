@@ -58,12 +58,12 @@ const PricePerUnit = (props) => {
           <Grid.Column id='backLink' mobile={8} computer={4}>
             <a 
               aria-label='Back to fixed costs'
-              href="#" 
+              href="/" 
               onClick={() => props.goToStep(self - 1)}
             >{`< Back to fixed costs`}</a>
           </Grid.Column>
           <Grid.Column id='restartLink' mobile={8} computer={3}>
-            <a href="#" onClick={props.restart}>Restart Analysis</a>
+            <a href="/" onClick={props.restart}>Restart Analysis</a>
           </Grid.Column>
         </Grid>
       </Form>

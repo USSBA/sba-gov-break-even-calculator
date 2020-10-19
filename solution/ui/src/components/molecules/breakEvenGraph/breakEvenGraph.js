@@ -292,19 +292,19 @@ class BreakEvenGraph extends React.Component {
     return (
       <Card fluid>
         <Card.Content id='breakEvenGraph'>
-          <Grid stackable columns={1}>
-            <Grid.Row>
-              <Grid.Column width={2}>
+          <Grid>
+            <Grid.Row columns={3}>
+              <Grid.Column computer={2} mobile={6}>
                 <Image src={graphIcon} alt='graph icon' size='small' left/>              
               </Grid.Column>
-              <Grid.Column width={5}>
+              <Grid.Column computer={5} mobile={10}>
                 <h3>Break-Even Point Graph</h3>
                 <div className='subtext'>
                   Graphical representation of your inputs Click or tap in the graph for 
                   detailed values.
                 </div>
               </Grid.Column>
-              <Grid.Column width={9}>
+              <Grid.Column textAlign='center' computer={9} mobile={16}>
                 <Image className='labelImg' src={unitSalesImg} alt='unit sales label' size='small' left/>
                 <Image className='labelImg' src={totalCostImg} alt='total cost label' size='small' left/>              
                 <Image className='labelImg' src={fixedCostImg} alt='fixed cost label' size='small' left/> 

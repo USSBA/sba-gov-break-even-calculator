@@ -35,5 +35,29 @@ export const FAQ_CONTENT = {
         <p>Semi-variable costs comprise a mixture of both fixed and variable components. Costs are fixed for a set level of production or consumption and become variable after this production level is exceeded. For example, fixed expenses such as salaries might increase in proportion to production volume increases in the form of overtime pay.</p>
       `
     }
+  ],
+  1: [
+    {
+      question: 'How to calculate selling price per unit',
+      answer: `
+        <p>Run your business on gross margin (net income), not on revenues and sales. Dropping your prices to sell more will make it difficult in the long run to attract customers who will buy your product at full price. Aim for more profitable sales, not just more sales.</p>
+        <p>Factor value into your pricing, too. Value correlates to the reason why customers buy from you and not from others. With that in mind, consider these three benchmarks when pricing per unit:</p>
+        <ul>
+          <li><strong>Cost-plus pricing</strong>: Factor in direct expenses per unit plus a percentage above the cost of goods.</li>
+          <li><a href='https://www.sba.gov/business-guide/plan-your-business/market-research-competitive-analysis#section-header-2'>Competitive analysis</a>: Be aware of what your competitors charge and the value of what they deliver.</li>
+          <li><strong>Value proposition</strong>: Develop a brand that supports your ability to charge the highest price possible.</li>
+        </ul>
+        <p>Learn more about developing a well-articulated <a href='https://www.score.org/blog/does-your-small-business-have-strong-mission-and-vision'>vision and value proposition</a> for your small business.</p>
+      `
+    },
+    {
+      question: 'Accounting for multiple products and services',
+      answer: `
+        <p>Most businesses offer more than just one product or service, and there are different ways of accounting for the multiple products and services you offer. This break-even analysis is based on the foundation of a single product or service. Here are some pricing approaches to consider:</p>
+        <ul>
+        <li><strong>Versioning</strong>: Create different versions of a product to encourage consumers to self-select into groups that pay different prices. This approach, popular with cell phone manufacturers, can potentially grow the size of the market.</li>
+        <li><strong>Multi-product pricing</strong>: If you offer a portfolio of “good/better/best” products and services, aim to ensure the number of customers paying higher prices outweigh the number of customers who choose lower-priced products and services.</li>
+      </ul>
+      
   ]
 }

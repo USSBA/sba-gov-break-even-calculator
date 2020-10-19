@@ -74,6 +74,23 @@ export const FAQ_CONTENT = {
         <p>Break out products and services into factors that are easy to track. To make it manageable, identify no more than five major categories. For example, if you run a bookstore, your categories might be paperbacks, hard covers, and magazines.</p>
         <p>Try to organize your sales forecast the same way that your accounting or bookkeeping tracks each category of sales.</p>`
     } 
-
+  ],
+  3: [
+    {
+      question: 'Qualifications for variable costs',
+      answer: `
+        <p>Sometimes it can be difficult to determine which costs are variable. For instance, a full-time employee’s salary will be fixed, but the cost of a temporary or seasonal worker would be considered variable. Keep in mind that your variable costs might also change with discounts or opportunity sales.</p>
+      `
+    },
+    {
+      question: 'How to identify a fixed cost vs. a variable cost',
+      answer: `
+        <p>Fixed costs are expenses that typically stay the same each month, while variable costs increase or decrease based on a company's production volume. For example, utility costs incur monthly but are considered variable because they change in proportion to energy usage.</p>`
+    },
+    {
+      question: 'Considerations for semi-variable costs',
+      answer: `
+        <p>Semi-variable costs comprise a mixture of both fixed and variable components. Costs are fixed for a set level of production or consumption and become variable after this production level is exceeded. For example, fixed expenses such as salaries might increase in proportion to production volume increases in the form of overtime pay.</p>`
+    }  
   ]
 }

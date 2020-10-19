@@ -136,7 +136,7 @@ class BreakEvenCalculator extends React.Component {
           </Grid>
         </Container>
         <Container>
-            <BecAccordion data={FAQ_CONTENT[this.state.stepNum]}/>
+            <BecAccordion data={FAQ_CONTENT[this.state.stepNum] || []}/>
         </Container>
       </Layout>
     )

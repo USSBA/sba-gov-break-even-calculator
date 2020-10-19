@@ -21,21 +21,21 @@ const EditableTotal = (props) => {
 
 
   useEffect(() => {
+    const handleClickOutside = e => {
+      if (node.current.contains(e.target) || formError) {
+        return;
+      }
+      setIsEditing(false)
+      setFormError(false)
+    };
     // add when mounted
     document.addEventListener("mousedown", handleClickOutside);
     // return function to be called when unmounted
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [node, formError]);
 
-  const handleClickOutside = e => {
-    if (node.current.contains(e.target) || formError) {
-      return;
-    }
-    setIsEditing(false)
-    setFormError(false)
-  };
 
   const handleInputFieldChange = (value) => {
     setFieldValue(value)
@@ -92,7 +92,7 @@ const EditableTotal = (props) => {
           </Form>
         {!isEditing && (
           <Grid columns={2} stackable={false}>
-            <Grid.Column className='totalValue-container' computer={11} tablet={10} mobile={10} verticalAlign='middle' className='editableValue'>
+            <Grid.Column className='totalValue-container editableValue' computer={11} tablet={10} mobile={10} verticalAlign='middle'>
               {formatTotals(props.value)}
             </Grid.Column>
             <Grid.Column className='editTotal-container' computer={5} tablet={6} mobile={6} verticalAlign='middle'>

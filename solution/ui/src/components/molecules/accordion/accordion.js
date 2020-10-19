@@ -14,38 +14,38 @@ import {
 
 const BecAccordion = (props) => {
   return(
-  <div className='accordionContainer'>
-    <div className='accordionContent'>
-      <Accordion allowZeroExpanded>
-        {props.data.map(faq => (
-          <AccordionItem key={faq.question}>
-            <AccordionItemHeading className='accordionHeading'>
-              <AccordionItemButton className='accordionButton'>
-                <h3>
-                  {faq.question}
-                  <AccordionItemState>
-                    {({ expanded }) => {
-                      return expanded ? (
-                        <Icon name='chevron up' />
-                      ) : (
-                        <Icon name='chevron down' />
-                      )
-                    }}
-                  </AccordionItemState>
-                </h3>
-              </AccordionItemButton>
-            </AccordionItemHeading>
-            <AccordionItemPanel>
-              <div
-                className='accordionText'
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </AccordionItemPanel>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </div>
-  </div>)
+    <div className='accordionContainer'>
+      <div className='accordionContent'>
+        <Accordion allowZeroExpanded>
+          {props.data.map(faq => (
+            <AccordionItem key={faq.question}>
+              <AccordionItemHeading className='accordionHeading'>
+                <AccordionItemButton className='accordionButton'>
+                  <h3>
+                    {faq.question}
+                    <AccordionItemState>
+                      {({ expanded }) => {
+                        return expanded ? (
+                          <Icon name='chevron up' />
+                        ) : (
+                          <Icon name='chevron down' />
+                        )
+                      }}
+                    </AccordionItemState>
+                  </h3>
+                </AccordionItemButton>
+              </AccordionItemHeading>
+              <AccordionItemPanel>
+                <div
+                  className='accordionText'
+                  dangerouslySetInnerHTML={{ __html: faq.answer }}
+                />
+              </AccordionItemPanel>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    </div>)
 }
 
 export default BecAccordion;

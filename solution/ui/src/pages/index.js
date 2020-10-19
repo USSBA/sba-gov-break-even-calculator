@@ -56,8 +56,6 @@ class BreakEvenCalculator extends React.Component {
   }
 
   render() {
-    console.log(this.state.stepNum)
-    console.log(FAQ_CONTENT[this.state.stepNum])
     if (this.state.stepNum === CALCULATOR_STEPS.RESULTS_PAGE) {
       return(
         <Layout>

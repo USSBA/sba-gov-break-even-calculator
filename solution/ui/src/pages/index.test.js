@@ -19,4 +19,9 @@ describe('BreakEvenCalculator', () => {
     wrapper.setState({stepNum: 3})
     expect(wrapper.find('EditableTotal')).toHaveLength(3)
   })
+
+  it('renders an accordion', () => {
+    const wrapper = shallow(<BreakEvenCalculator />)
+    expect(wrapper.find('BecAccordion')).toHaveLength(1)
+  })
 })

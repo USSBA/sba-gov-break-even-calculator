@@ -92,5 +92,24 @@ export const FAQ_CONTENT = {
       answer: `
         <p>Semi-variable costs comprise a mixture of both fixed and variable components. Costs are fixed for a set level of production or consumption and become variable after this production level is exceeded. For example, fixed expenses such as salaries might increase in proportion to production volume increases in the form of overtime pay.</p>`
     }  
+  ],
+  4: [
+    {
+      question: 'How to reduce your break-even point',
+      answer: `
+        <p>There are a number of ways you can reduce your break-even point, including:</p>
+        <ul>
+          <li>Minimizing fixed costs</li>
+          <li>Reducing variable costs per unit</li>
+          <li>Increasing prices for products and services</li>
+        </ul>
+      <p>Keep in mind that increasing prices will not reduce your break-even point if it causes a decrease in per-unit sales.</p>
+      `
+    },
+    {
+      question: 'Factors that increase the break-even point',
+      answer: `
+        <p>Increases in fixed costs will increase your break-even point. The same holds true if your variable expenses increase without a corresponding rise in sales prices. Look for areas where you can cut costs without impacting quality.</p>`
+    }  
   ]
 }

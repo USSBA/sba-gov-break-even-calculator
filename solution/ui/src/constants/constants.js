@@ -57,7 +57,23 @@ export const FAQ_CONTENT = {
         <ul>
         <li><strong>Versioning</strong>: Create different versions of a product to encourage consumers to self-select into groups that pay different prices. This approach, popular with cell phone manufacturers, can potentially grow the size of the market.</li>
         <li><strong>Multi-product pricing</strong>: If you offer a portfolio of “good/better/best” products and services, aim to ensure the number of customers paying higher prices outweigh the number of customers who choose lower-priced products and services.</li>
-      </ul>
-      
+      </ul>`
+    } 
+  ],
+  2: [
+    {
+      question: 'How to predict unit sales',
+      answer: `
+        <p>Predicting unit sales, also known as sales forecasting, is less about accuracy and more about effective business management. Good forecasting helps you make the connection between sales, costs, and expenses by tracking your business numbers back to key drivers you need to manage such as web traffic, inventory levels, and returns.</p>
+        <p>Predicting unit sales helps you compare expectations with actual outcomes so you can make change. Make good educated guesses and implement forecasting early on so that adjustments can be made sooner rather than later.</p>
+      `
+    },
+    {
+      question: 'Accounting for multiple products and services',
+      answer: `
+        <p>Break out products and services into factors that are easy to track. To make it manageable, identify no more than five major categories. For example, if you run a bookstore, your categories might be paperbacks, hard covers, and magazines.</p>
+        <p>Try to organize your sales forecast the same way that your accounting or bookkeeping tracks each category of sales.</p>`
+    } 
+
   ]
 }

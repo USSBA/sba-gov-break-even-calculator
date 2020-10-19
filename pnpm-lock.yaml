@@ -286,6 +286,7 @@ importers:
       node-sass: 4.14.1
       prop-types: 15.7.2
       react: 16.13.1
+      react-accessible-accordion: 3.3.3_react-dom@16.13.1+react@16.13.1
       react-dom: 16.13.1_react@16.13.1
       react-helmet: 6.1.0_react@16.13.1
       semantic-ui-less: 2.4.1
@@ -341,6 +342,7 @@ importers:
       prettier: 2.0.5
       prop-types: ^15.7.2
       react: ^16.13.1
+      react-accessible-accordion: ^3.3.3
       react-dom: ^16.13.1
       react-helmet: ^6.0.0
       react-test-renderer: ^16.13.1
@@ -16522,6 +16524,16 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==
+  /react-accessible-accordion/3.3.3_react-dom@16.13.1+react@16.13.1:
+    dependencies:
+      react: 16.13.1
+      react-dom: 16.13.1_react@16.13.1
+    dev: false
+    peerDependencies:
+      react: ^16.3.2
+      react-dom: ^16.3.3
+    resolution:
+      integrity: sha512-I1Niy21IIyXIzcDuIlTnnN3k8bUux7puq60eyNuwf+lhvftnocn7hLhAz2NycXrZOqBClqi50YBqXlnbOTNrjQ==
   /react-circular-progressbar/2.0.3_react@16.13.1:
     dependencies:
       react: 16.13.1

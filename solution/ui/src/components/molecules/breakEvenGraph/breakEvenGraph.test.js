@@ -21,7 +21,7 @@ describe('BreakEvenGraph', () => {
         breakEvenSales={'1200'}
       />
     );
-    expect(wrapper.find('.lineLegend')).toHaveLength(4)
+    expect(wrapper.find('.labelImg')).toHaveLength(4)
   })
 
   it('includes unit label bottom of x axis', () => {

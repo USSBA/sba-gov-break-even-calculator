@@ -259,7 +259,6 @@ const drawLineChart = (data, windowWidth) => {
         })
       })
     }
-    console.log('tooltipData', tooltipData)
     tooltip.html('Units: ' + unit)
       .style('display', 'block')
       .style('left', d3.event.layerX + 20 + 'px')

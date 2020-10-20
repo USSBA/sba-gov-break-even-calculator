@@ -131,8 +131,6 @@ const drawLineChart = (data, windowWidth) => {
       .append('path')
       .attr('d',d3.symbol().type(d3[`symbol${data[path].shape}`]))
       .attr('fill', data[path].lineColor)
-      .attr('stroke','#000')
-      .attr('stroke-width',1)
       .attr('transform',function(d,i){ return "translate("+(x(d.x))+","+(y(d.y))+")"; })
   ))
 
@@ -195,7 +193,6 @@ const drawLineChart = (data, windowWidth) => {
     .style('stroke-width', '1px')
     .style('opacity', '0')
 
-  
   mouseG.append('svg:rect') // append a rect to catch mouse movements on canvas
     .attr('width', width) // can't catch mouse events on a g element
     .attr('height', height)
@@ -236,7 +233,6 @@ const drawLineChart = (data, windowWidth) => {
             }
             obj.push({cost: Math.floor(y.invert(pos.y).toFixed(2)), 
                       unit: x.invert(mouse[0])})
-
             return 'translate(' + mouse[0] + ',' + pos.y +')';
           }
         });
@@ -256,7 +252,13 @@ const drawLineChart = (data, windowWidth) => {
         })
       })
     }
+
+    tooltipData = tooltipData.reverse()
+    // move tooltip to left of the line after your values are higher 
+    // than breakeven point.
+    var tooltipClass = data['breakEven'].data[1].x < unit ? 'tooltipLeft' : ''
     tooltip.html('Units: ' + unit)
+      .attr('class', tooltipClass)
       .style('display', 'block')
       .style('left', d3.event.layerX + 20 + 'px')
       .style('top', d3.event.layerY + 'px')

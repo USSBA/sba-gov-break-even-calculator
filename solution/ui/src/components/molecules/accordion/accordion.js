@@ -23,16 +23,16 @@ const BecAccordion = (props) => {
                 <AccordionItemButton className='accordionButton'>
                   <h3>
                     {faq.question}
-                    <AccordionItemState>
-                      {({ expanded }) => {
-                        return expanded ? (
-                          <Icon name='chevron up' />
-                        ) : (
-                          <Icon name='chevron down' />
-                        )
-                      }}
-                    </AccordionItemState>
                   </h3>
+                  <AccordionItemState>
+                    {({ expanded }) => {
+                      return expanded ? (
+                        <Icon name='chevron up' />
+                      ) : (
+                        <Icon name='chevron down' />
+                      )
+                    }}
+                  </AccordionItemState>
                 </AccordionItemButton>
               </AccordionItemHeading>
               <AccordionItemPanel>

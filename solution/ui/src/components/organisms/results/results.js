@@ -1,8 +1,15 @@
 import React, {useEffect} from 'react'
 
 import { Container, Grid, Button } from 'semantic-ui-react'
-import { BreakEvenProfileCard, BreakEvenResultsCard, BreakEvenGraph, BreakEvenDataTable } from '../../molecules'
+import { 
+  BreakEvenProfileCard, 
+  BreakEvenResultsCard, 
+  BreakEvenGraph, 
+  BreakEvenDataTable, 
+  BecAccordion 
+} from '../../molecules'
 import { findStepSize } from '../../../helpers'
+import { FAQ_CONTENT, CALCULATOR_STEPS } from '../../../constants/constants'
 
 import './results.less'
 
@@ -117,6 +124,9 @@ const Results = (props) => {
         <h3>Next Steps</h3>
         <p>Print this dashboard for your reference to add to your business plan or to share with a consultant.</p>
         <Button color='red' onClick={() => window.print()}>Print Results</Button>
+      </Container>
+      <Container id='faqAccordion'>
+        <BecAccordion data={FAQ_CONTENT[CALCULATOR_STEPS.RESULTS_PAGE] || []}/>
       </Container>
     </>
   )

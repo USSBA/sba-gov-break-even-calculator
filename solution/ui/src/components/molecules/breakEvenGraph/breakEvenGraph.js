@@ -296,7 +296,7 @@ class BreakEvenGraph extends React.Component {
               <Grid.Column computer={5} mobile={10}>
                 <h3>Break-Even Point Graph</h3>
                 <div className='subtext'>
-                  Graphical representation of your inputs Click or tap in the graph for 
+                  Graphical representation of your inputs. Click or tap in the graph for 
                   detailed values.
                 </div>
               </Grid.Column>

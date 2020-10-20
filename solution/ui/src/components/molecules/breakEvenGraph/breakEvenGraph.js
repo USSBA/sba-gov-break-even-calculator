@@ -23,7 +23,6 @@ const drawLineChart = (data, windowWidth) => {
   const dollarFormat = function(d) {
     return d3.format('$,.2s')(d)
   }
-  
   const unitsFormat = function(d) {
     if(d.toString().length < 4) {
       return d3.format(',')(d)
@@ -267,7 +266,7 @@ const drawLineChart = (data, windowWidth) => {
       .attr('d',d3.symbol().type(d3.symbolDiamond))
       .attr('class', d => d.name)
       .style('color', d => d.color)
-      .html(d => d.label + ': ' + d.cost)
+      .html(d => d.label + ': ' +  "$" + d3.format(",")(d.cost))
     
   }
 }
@@ -309,7 +308,7 @@ class BreakEvenGraph extends React.Component {
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-              <Grid.Column width={16}>
+              <Grid.Column>
                 <div className='graphContainer'>
                 <div id='lineChart'></div>
                 <div className='unitLabel' aria-hidden='true'>Units</div>

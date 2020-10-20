@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Card, Label, Grid } from 'semantic-ui-react'
+import { Image, Card, Grid } from 'semantic-ui-react'
 import { formatBreakEvenGraphData, formatNumber } from '../../../helpers'
 import './breakEvenGraph.less'
 import * as d3 from 'd3';
@@ -95,7 +95,7 @@ const drawLineChart = (data, windowWidth) => {
     .call(d3.axisLeft(y).tickFormat('').ticks(5).tickSize(-width))
     .attr('class', 'yGridLines')
 
-   // CREATE HOVER TOOLTIP WITH VERTICAL LINE //
+   // Create Hover Tooltip 
    mouseG = g.append('g')
       .attr('class', 'mouse-over-effects');
 
@@ -107,7 +107,7 @@ const drawLineChart = (data, windowWidth) => {
   
   const lines = ['totalCost', 'fixedCost', 'unitSales']
 
-  // draw line
+  // Draw line
   lines.map(path => (
     g.append('g')
     .attr('class','bec')
@@ -124,7 +124,7 @@ const drawLineChart = (data, windowWidth) => {
       .attr('class', 'line')
   ))
 
-  // plot the totalCost point
+  // Plot the shapes
   lines.map(path => (
     g.selectAll("dot")
       .data([data[path].data[data[path].data.length-1]])
@@ -136,7 +136,8 @@ const drawLineChart = (data, windowWidth) => {
       .attr('stroke-width',1)
       .attr('transform',function(d,i){ return "translate("+(x(d.x))+","+(y(d.y))+")"; })
   ))
-  // this is the break even line
+
+  // Draw the break even line
   g.append('g')
     .append('path')
       .datum(data['breakEven'].data)
@@ -148,7 +149,7 @@ const drawLineChart = (data, windowWidth) => {
       .attr('d', line)
 
 
-  // this is the black vertical line to follow mouse
+  // Draw the black vertical line to follow mouse
   mouseG.append('path')
     .attr('class', 'mouse-line')
     .style('stroke', 'black')
@@ -157,7 +158,7 @@ const drawLineChart = (data, windowWidth) => {
 
   var becLines = document.getElementsByClassName('line');
 
-  // format the data
+  // Format the data
   var becs = Object.keys(data).map(function(key) {
     if (key !=='breakEven' && key !== 'breakEvenPoint') {
       return { name: key,
@@ -168,7 +169,7 @@ const drawLineChart = (data, windowWidth) => {
     }
   }).filter(Boolean)
 
-  // plot the break even point
+  // Plot the break even point
   g.selectAll('dot')
     .data(data.breakEvenPoint.data)
     .enter()
@@ -182,7 +183,6 @@ const drawLineChart = (data, windowWidth) => {
     .attr('id', 'breakEvenCircle')
   
   // The area where the mouse hovers
-  console.log('becs',becs)
   var mousePerLine = mouseG.selectAll('.mouse-per-line')
     .data(becs)
     .enter()
@@ -196,9 +196,7 @@ const drawLineChart = (data, windowWidth) => {
     .style('stroke-width', '1px')
     .style('opacity', '0')
 
-  mousePerLine.append('text')
-    .attr('transform', 'translate(10,3)')
-
+  
   mouseG.append('svg:rect') // append a rect to catch mouse movements on canvas
     .attr('width', width) // can't catch mouse events on a g element
     .attr('height', height)

@@ -9,11 +9,13 @@ import './404.less'
 const NotFoundPage = () => (
   <div className='notFoundContainer'>
     <SEO title="404: Not found" />
-    <Image className='SBAlogo' src={logo} alt='Small Business Administration' />  
-    <Container className='notFoundText' textAlign='center' text>
+    <header>
+      <Image className='SBAlogo' src={logo} alt='Small Business Administration' />  
+    </header>
+    <Container role="main" className='notFoundText' textAlign='center' text>
       <h1>Something went wrong</h1>
       <p>Click the button below to be taken back to the Break-Even Calculator welcome page.</p>
-      <Button as='a' href='sba.gov/breakevenpointcalculator/calculate/' color='blue'>BREAK-EVEN CALCULATOR</Button>
+      <Button as='a' href='sba.gov/breakevenpointcalculator' color='blue'>BREAK-EVEN CALCULATOR</Button>
     </Container>
   </div>
 )

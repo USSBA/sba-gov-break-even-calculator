@@ -255,7 +255,7 @@ const drawLineChart = (data, windowWidth) => {
     tooltipData = tooltipData.reverse()
     // move tooltip to left of the line after your values are higher 
     // than breakeven point.
-    var tooltipClass = data['breakEven'].data[1].x < unit ? 'tooltipLeft' : ''
+    var tooltipClass = data['breakEven'].data[1].x < unit ? 'tooltipLeft' : 'tooltipRight'
     tooltip.html('Units: ' + unit)
       .attr('class', tooltipClass)
       .style('display', 'block')

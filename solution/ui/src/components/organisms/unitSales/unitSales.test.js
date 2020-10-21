@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 
 import UnitSales from './unitSales'
-import { CALCULATOR_STEPS } from '../../../constants/constants'
+import { CALCULATOR_STEPS } from '../../../constants'
 
 
 describe('UnitSales', () => {

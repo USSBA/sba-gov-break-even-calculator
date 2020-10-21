@@ -3,7 +3,7 @@ import { shallow } from 'enzyme'
 
 import FixedCosts from './fixedCosts'
 import { fixedCostInitState } from './fixedCostsFieldsData'
-import { CALCULATOR_STEPS } from '../../../constants/constants.js'
+import { CALCULATOR_STEPS } from '../../../constants'
 
 describe('FixedCosts', () => {
   it('renders without crashing', () => {

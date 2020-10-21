@@ -5,3 +5,4 @@ export const CALCULATOR_STEPS = {
   VARIABLE_COSTS: 3,
   RESULTS_PAGE: 4,
 }
+

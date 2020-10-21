@@ -2,9 +2,9 @@ import React from 'react'
 import { Grid, Container } from 'semantic-ui-react'
 import Layout from '../components/layout'
 import { EditableTotal } from '../components/atoms'
-import { Hero } from '../components/molecules/'
+import { BecAccordion, Hero } from '../components/molecules/'
 import { FixedCosts, UnitSales, PricePerUnit, Results, VariableCosts } from '../components/organisms/'
-import { CALCULATOR_STEPS } from '../constants/constants.js'
+import { CALCULATOR_STEPS, FAQ_CONTENT } from '../constants'
 import '../styles/typography.less'
 import './index.less'
 
@@ -134,6 +134,9 @@ class BreakEvenCalculator extends React.Component {
                 onEdit={this.updateFixedCost}
               />}
           </Grid>
+        </Container>
+        <Container>
+            <BecAccordion data={FAQ_CONTENT[this.state.stepNum] || []}/>
         </Container>
       </Layout>
     )

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Grid, Form, Input } from 'semantic-ui-react'
-import { CALCULATOR_STEPS } from '../../../constants/constants'
+import { CALCULATOR_STEPS } from '../../../constants'
 import './unitSales.less'
 
 const UnitSales = (props) => {

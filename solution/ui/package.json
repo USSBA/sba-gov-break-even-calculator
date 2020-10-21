@@ -22,6 +22,7 @@
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-accessible-accordion": "^3.3.3",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
     "semantic-ui-less": "^2.4.1",

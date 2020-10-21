@@ -292,17 +292,17 @@ class BreakEvenGraph extends React.Component {
         <Card.Content id='breakEvenGraph'>
           <Grid>
             <Grid.Row columns={3}>
-              <Grid.Column computer={2} mobile={6}>
-                <Image src={graphIcon} alt='graph icon' size='small' left/>              
+              <Grid.Column textAlign='center' computer={2} tablet={2} mobile={4}>
+                <Image src={graphIcon} centered alt='graph icon' size='tiny' left/>              
               </Grid.Column>
-              <Grid.Column computer={5} mobile={10}>
+              <Grid.Column computer={5} tablet={10} mobile={12}>
                 <h3>Break-Even Point Graph</h3>
                 <div className='subtext'>
                   Graphical representation of your inputs. Click or tap in the graph for 
                   detailed values.
                 </div>
               </Grid.Column>
-              <Grid.Column textAlign='center' computer={9} mobile={16}>
+              <Grid.Column textAlign='center' computer={9} tablet={16} mobile={16}>
                 <Image className='labelImg' src={unitSalesImg} alt='unit sales label' size='small' left/>
                 <Image className='labelImg' src={totalCostImg} alt='total cost label' size='small' left/>              
                 <Image className='labelImg' src={fixedCostImg} alt='fixed cost label' size='small' left/> 

@@ -34,7 +34,6 @@ const drawLineChart = (data, windowWidth) => {
     .append('svg')
     .attr("preserveAspectRatio", "xMinYMin meet")
     .attr('viewBox', `0 ${svgVerticalOffset} ${svgWidth} ${svgHeight}`)
-    .attr("preserveAspectRatio", "xMinYMin meet")
     .attr('aria-labelledby','breakEvenTitle breakEvenDescription')
     .attr('role','img')
 
@@ -295,7 +294,7 @@ class BreakEvenGraph extends React.Component {
               <Grid.Column textAlign='center' computer={2} tablet={2} mobile={4}>
                 <Image src={graphIcon} centered alt='graph icon' size='tiny' left/>              
               </Grid.Column>
-              <Grid.Column computer={5} tablet={10} mobile={12}>
+              <Grid.Column computer={5} tablet={10} mobile={12} stretched>
                 <h3>Break-Even Point Graph</h3>
                 <div className='subtext'>
                   Graphical representation of your inputs. Click or tap in the graph for 

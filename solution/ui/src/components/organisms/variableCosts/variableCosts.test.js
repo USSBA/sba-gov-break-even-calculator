@@ -3,7 +3,7 @@ import { shallow } from 'enzyme'
 
 import VariableCosts from './variableCosts'
 import { variableCostInitState } from './variableCostsFieldsData'
-import { CALCULATOR_STEPS } from '../../../constants/constants.js'
+import { CALCULATOR_STEPS } from '../../../constants'
 
 describe('VariableCosts', () => {
   it('renders without crashing', () => {

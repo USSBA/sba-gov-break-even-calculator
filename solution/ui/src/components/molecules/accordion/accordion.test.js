@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import { FAQ_CONTENT } from '../../../constants/constants'
+import { FAQ_CONTENT } from '../../../constants'
 import BecAccordion from './accordion'
 
 describe('Accordion', () => {

@@ -6,7 +6,7 @@ import { MoneyInput } from '../../atoms'
 import { variableCostFields, variableCostInitState } from './variableCostsFieldsData'
 
 import './variableCosts.less'
-import { CALCULATOR_STEPS } from '../../../constants/constants.js'
+import { CALCULATOR_STEPS } from '../../../constants'
 import { sumValues } from '../../../helpers'
 
 class VariableCosts extends React.Component {

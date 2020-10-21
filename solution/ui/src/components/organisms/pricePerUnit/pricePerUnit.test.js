@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 
 import PricePerUnit from './pricePerUnit'
-import { CALCULATOR_STEPS } from '../../../constants/constants'
+import { CALCULATOR_STEPS } from '../../../constants'
 
 describe('PricePerUnit', () => {
   const setUnitPriceMock = jest.fn()

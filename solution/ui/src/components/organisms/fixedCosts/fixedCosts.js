@@ -6,7 +6,7 @@ import { MoneyInput } from '../../atoms'
 import { fixedCostFields, fixedCostInitState } from './fixedCostsFieldsData'
 
 import './fixedCosts.less'
-import { CALCULATOR_STEPS } from '../../../constants/constants.js'
+import { CALCULATOR_STEPS } from '../../../constants'
 import { sumValues } from '../../../helpers'
 
 class FixedCosts extends React.Component {

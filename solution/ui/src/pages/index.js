@@ -4,7 +4,7 @@ import Layout from '../components/layout'
 import { EditableTotal } from '../components/atoms'
 import { BecAccordion, Hero } from '../components/molecules/'
 import { FixedCosts, UnitSales, PricePerUnit, Results, VariableCosts } from '../components/organisms/'
-import { CALCULATOR_STEPS, FAQ_CONTENT } from '../constants/constants.js'
+import { CALCULATOR_STEPS, FAQ_CONTENT } from '../constants'
 import '../styles/typography.less'
 import './index.less'
 

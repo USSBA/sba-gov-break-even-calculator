@@ -9,7 +9,7 @@ import {
   BecAccordion 
 } from '../../molecules'
 import { findStepSize } from '../../../helpers'
-import { FAQ_CONTENT, CALCULATOR_STEPS } from '../../../constants/constants'
+import { FAQ_CONTENT, CALCULATOR_STEPS } from '../../../constants'
 
 import './results.less'
 

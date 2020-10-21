@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react'
 import { Grid, Form } from 'semantic-ui-react'
 
 import { MoneyInput } from '../../atoms'
-import { CALCULATOR_STEPS } from '../../../constants/constants'
+import { CALCULATOR_STEPS } from '../../../constants'
 import './pricePerUnit.less'
 
 const PricePerUnit = (props) => {

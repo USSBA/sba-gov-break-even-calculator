@@ -84,14 +84,14 @@ describe('formatBreakEvenGraphData', () => {
       fixedCost: '1000'
     })
     expect(formattedData).toEqual(expect.objectContaining({
-      unitSales: {
-        lineColor: '#00518B',
-        stroke: '5,10',
-        data: [ 
-          { x: 0, y: 0 },
-          { x: 200, y: 4000 }
-        ],
-        label: 'Unit Sales'
+      "unitSales": { 
+        "data": [
+          {"x": 0, "y": 0}, 
+          {"x": 200, "y": 4000}], 
+        "label": "Unit Sales",
+        "lineColor": "#00518B", 
+        "shape": "Square", 
+        "stroke": "5,10"
       }
     }))
   })
@@ -104,14 +104,14 @@ describe('formatBreakEvenGraphData', () => {
       fixedCost: '1000'
     })
     expect(formattedData).toEqual(expect.objectContaining({
-      totalCost: {
-        lineColor: '#197E4E',
-        stroke: '10,10',
-        data: [ 
-          { x: 0, y: 1000 },
-          { x: 200, y: 3000 }
-        ],
-        label: 'Total Cost'
+      "totalCost": {
+        "data": [
+          {"x": 0, "y": 1000}, 
+          {"x": 200, "y": 3000}], 
+        "label": "Total Cost", 
+        "lineColor": "#197E4E", 
+        "shape": "Diamond", 
+        "stroke": "10,10"
       }
     }))
   })
@@ -124,15 +124,16 @@ describe('formatBreakEvenGraphData', () => {
       fixedCost: '1000'
     })
     expect(formattedData).toEqual(expect.objectContaining({
-      fixedCost: {
-        lineColor: '#FF4F30',
-        stroke: '5,5',
-        data: [ 
-          { x: 0, y: 1000},
-          { x: 200, y: 1000}
-        ],
-        label: 'Fixed Cost'
+      "fixedCost": {
+        "data": [
+          {"x": 0, "y": 1000}, 
+          {"x": 200, "y": 1000}], 
+        "label": "Fixed Cost", 
+        "lineColor": "#FF4F30", 
+        "shape": "Triangle", 
+        "stroke": "5,5"
       }
+      
     }))
   })
 })

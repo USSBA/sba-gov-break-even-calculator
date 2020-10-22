@@ -133,6 +133,7 @@ describe('formatBreakEvenGraphData', () => {
         "shape": "Triangle", 
         "stroke": "5,5"
       }
+      
     }))
   })
 })

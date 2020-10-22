@@ -1,14 +1,23 @@
 import React from "react"
 
-import Layout from "../components/layout"
+import { Button, Container, Image } from 'semantic-ui-react'
 import SEO from "../components/seo"
+import logo from '../images/sba-logo-horizontal.jpg'
+
+import './404.less'
 
 const NotFoundPage = () => (
-  <Layout>
+  <div className='notFoundContainer'>
     <SEO title="404: Not found" />
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </Layout>
+    <header>
+      <Image className='SBAlogo' src={logo} alt='Small Business Administration' />  
+    </header>
+    <Container role="main" className='notFoundText' textAlign='center' text>
+      <h1>Something went wrong</h1>
+      <p>Click the button below to be taken back to the Break-Even Calculator welcome page.</p>
+      <Button as='a' href='/breakevenpointcalculator' color='blue'>BREAK-EVEN CALCULATOR</Button>
+    </Container>
+  </div>
 )
 
 export default NotFoundPage

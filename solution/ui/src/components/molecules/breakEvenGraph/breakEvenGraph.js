@@ -205,7 +205,7 @@ const drawLineChart = (data, windowWidth) => {
       d3.selectAll("#tooltip")
         .style('display', 'block')
     })
-    .on('mousemove touchmove', function() {
+    .on('mousemove touchmove focus', function() {
       var mouse = d3.mouse(this);
       var obj = [];
       d3.select('.mouse-line')
@@ -264,11 +264,9 @@ const drawLineChart = (data, windowWidth) => {
       .selectAll()
       .data(tooltipData).enter()
       .append('div')
-      .attr('d',d3.symbol().type(d3.symbolDiamond))
       .attr('class', d => d.name)
       .style('color', d => d.color)
       .html(d => d.label + ': ' +  "$" + d3.format(",")(d.cost))
-    
   }
 }
 class BreakEvenGraph extends React.Component {

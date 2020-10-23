@@ -128,11 +128,11 @@ Resources:
           - ErrorCachingMinTTL: 300
             ErrorCode: 404
             ResponseCode: 200
-            ResponsePagePath: /breakevenpointcalculator/calculate/index.html
+            ResponsePagePath: /breakevenpointcalculator/calculate/404.html
           - ErrorCachingMinTTL: 300
             ErrorCode: 403
             ResponseCode: 200
-            ResponsePagePath: /breakevenpointcalculator/calculate/index.html
+            ResponsePagePath: /breakevenpointcalculator/calculate/404.html
         DefaultCacheBehavior:
           DefaultTTL: ${self:custom.settings.cloudfrontDefaultTtl}
           MinTTL: ${self:custom.settings.cloudfrontMinTtl}

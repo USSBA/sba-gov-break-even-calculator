@@ -175,6 +175,7 @@ const drawLineChart = (data, windowWidth) => {
     .attr('cy', function(d) { return y(d.y); })
     .style('stroke',  'white')
     .style('stroke-width', '3px')
+    .style('cursor', 'pointer')
     .attr('fill', data.breakEvenPoint.color)
     .attr('id', 'breakEvenCircle')
   
@@ -192,6 +193,8 @@ const drawLineChart = (data, windowWidth) => {
     .style('stroke-width', '1px')
     .style('opacity', '0')
 
+  let clickHappened = false;
+
   mouseG.append('svg:rect') // append a rect to catch mouse movements on canvas
     .attr('width', width) // can't catch mouse events on a g element
     .attr('height', height)
@@ -205,7 +208,11 @@ const drawLineChart = (data, windowWidth) => {
       d3.selectAll("#tooltip")
         .style('display', 'block')
     })
-    .on('mousemove touchmove focus', function() {
+    .on('click mousemove touchmove focus', function() {
+      if(d3.event.type === 'click') {
+        clickHappened = true;
+      }
+      if(!clickHappened) return;
       var mouse = d3.mouse(this);
       var obj = [];
       d3.select('.mouse-line')

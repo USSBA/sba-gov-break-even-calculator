@@ -13,7 +13,7 @@ const NotFoundPage = () => (
       <Image className='SBAlogo' src={logo} alt='Small Business Administration' />  
     </header>
     <Container role="main" className='notFoundText' textAlign='center' text>
-      <h1>Something went wrong</h1>
+      <h1>Something went wrong.</h1>
       <p>Click the button below to be taken back to the Break-Even Calculator welcome page.</p>
       <Button as='a' href='/breakevenpointcalculator' color='blue'>BREAK-EVEN CALCULATOR</Button>
     </Container>

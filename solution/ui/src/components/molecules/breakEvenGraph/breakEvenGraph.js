@@ -219,12 +219,13 @@ const drawLineChart = (data, windowWidth) => {
         .style('opacity', '1');
       d3.selectAll('.mouse-per-line circle')
         .style('opacity', '1');
-      d3.selectAll("#tooltip")
-        .style('display', 'block')
     })
     .on('click mousemove touchmove focus', function() {
+      let lineChart
       if(d3.event.type === 'click') {
         shouldHideBep = true;
+        lineChart = d3.select('#lineChart')
+          .style('cursor', 'auto')
         updateTooltipsVisibility()
       }
       if(!shouldHideBep) return;
@@ -267,7 +268,7 @@ const drawLineChart = (data, windowWidth) => {
     tooltip = d3.selectAll('#tooltip')
       .style('display', `${shouldHideBep ? 'block' : 'none'}`)
 
-      mouseG = d3.select('.mouse-line')
+    mouseG = d3.select('.mouse-line')
       .style('display', `${shouldHideBep ? 'block' : 'none'}`)
   }
     

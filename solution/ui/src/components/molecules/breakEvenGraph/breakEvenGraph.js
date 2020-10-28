@@ -15,6 +15,8 @@ const drawLineChart = (data, windowWidth) => {
 
   var tooltip
   var mouseG
+  let bepLabel
+  let shouldHideBep = false;
   const mobileBreakpoint = 768;
   const svgWidth = 800; 
   const svgHeight = windowWidth > mobileBreakpoint ? 330 : 700;
@@ -98,11 +100,20 @@ const drawLineChart = (data, windowWidth) => {
       .attr('class', 'mouse-over-effects');
 
   tooltip = d3.selectAll("#lineChart").append("div")
-      .attr('id', 'tooltip')
-      .style('position', 'absolute')
-      .style('padding', 6)
-      .style('display', 'none')
-  
+    .attr('id', 'tooltip')
+    .style('position', 'absolute')
+    .style('padding', 6)
+    .style('display', 'none')
+
+  bepLabel = d3.selectAll("#lineChart").append("div")
+    .attr('class', 'ui fluid card tooltip breakEvenLabel')
+    .append('div')
+      .attr('class', 'number units')
+      .html(`${data.breakEvenPoint.data[0].x}`)
+
+  bepLabel = d3.selectAll(".breakEvenLabel.tooltip").append('div')
+    .html('Break-Even Units Sold')
+
   const lines = ['totalCost', 'fixedCost', 'unitSales']
 
   // Draw line
@@ -170,13 +181,19 @@ const drawLineChart = (data, windowWidth) => {
     .data(data.breakEvenPoint.data)
     .enter()
     .append('circle')
+    .attr('pointer-events', 'click')
     .attr('r', windowWidth > mobileBreakpoint ? 9 : 16)
     .attr('cx', function(d) { return x(d.x); })
     .attr('cy', function(d) { return y(d.y); })
     .style('stroke',  'white')
     .style('stroke-width', '3px')
+    .style('cursor', 'pointer')
     .attr('fill', data.breakEvenPoint.color)
     .attr('id', 'breakEvenCircle')
+    .on('click', () => {
+      shouldHideBep = !shouldHideBep;
+      updateTooltipsVisibility()
+    })
   
   // The area where the mouse hovers
   var mousePerLine = mouseG.selectAll('.mouse-per-line')
@@ -201,11 +218,17 @@ const drawLineChart = (data, windowWidth) => {
       d3.select('.mouse-line')
         .style('opacity', '1');
       d3.selectAll('.mouse-per-line circle')
-        .style('opacity', '1');
-      d3.selectAll("#tooltip")
-        .style('display', 'block')
+        .style('opacity', `${shouldHideBep ? '1' : '0'}`);
     })
-    .on('mousemove touchmove focus', function() {
+    .on('click mousemove touchmove focus', function() {
+      let lineChart
+      if(d3.event.type === 'click') {
+        shouldHideBep = true;
+        lineChart = d3.select('#lineChart')
+          .style('cursor', 'auto')
+        updateTooltipsVisibility()
+      }
+      if(!shouldHideBep) return;
       var mouse = d3.mouse(this);
       var obj = [];
       d3.select('.mouse-line')
@@ -237,6 +260,20 @@ const drawLineChart = (data, windowWidth) => {
         });
         updateTooltipContent(obj,Math.floor(x.invert(mouse[0]))) 
     });
+
+  const updateTooltipsVisibility = () => {
+    bepLabel = d3.selectAll(".breakEvenLabel.tooltip")
+      .style('display', `${shouldHideBep ? 'none' : 'block'}`)
+
+    tooltip = d3.selectAll('#tooltip')
+      .style('display', `${shouldHideBep ? 'block' : 'none'}`)
+
+    mouseG = d3.select('.mouse-line')
+      .style('display', `${shouldHideBep ? 'block' : 'none'}`)
+
+    d3.selectAll('.mouse-per-line circle')
+      .style('opacity', `${shouldHideBep ? '1' : '0'}`);
+  }
     
   function updateTooltipContent(obj,unit) {
     var tooltipData = [];
@@ -309,15 +346,8 @@ class BreakEvenGraph extends React.Component {
             <Grid.Row>
               <Grid.Column>
                 <div className='graphContainer'>
-                <div id='lineChart'></div>
-                <div className='unitLabel' aria-hidden='true'>Units</div>
-                  <Card fluid className='tooltip breakEvenLabel' >
-                    <div className='units number'>
-                      { formatNumber(formatBreakEvenGraphData(this.props).breakEvenPoint.data[0].x) }
-                    </div>
-                    <div>Break-Even</div>
-                    <div>Units Sold</div>
-                  </Card>
+                  <div id='lineChart'></div>
+                  <div className='unitLabel' aria-hidden='true'>Units</div>
                 </div>
               </Grid.Column>
             </Grid.Row>

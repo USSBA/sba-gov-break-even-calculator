@@ -34,16 +34,6 @@ describe('BreakEvenGraph', () => {
     expect(wrapper.find('.unitLabel').first().text()).toEqual('Units')
   })
 
-  it('includes break even point label', () => {
-    const wrapper = shallow(
-      <BreakEvenGraph 
-        breakEvenUnits={'100'}
-        breakEvenSales={'1200'}
-      />
-    );
-    expect(wrapper.find('.units').first().text()).toEqual('100')
-  })
-
   it('includes unit label bottom of x axis', () => {
     const wrapper = shallow(
       <BreakEvenGraph 

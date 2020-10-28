@@ -4,3 +4,4 @@
 @borderRadius: 0;
 @primaryColor: @secondary-blue;
 @blue: @secondary-blue;
+@fontWeight: 600;

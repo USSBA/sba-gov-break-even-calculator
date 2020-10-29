@@ -23,7 +23,7 @@ const BreakEvenResultsCard = (props) => {
   return(
     <Card fluid>
       <Card.Content className='breakEvenWelcome-container'>
-        <Grid>
+        <Grid stackable>
           <Grid.Row columns={2} stretched>
             <Grid.Column width={4}>
               <Image src={calculatorIcon} alt='calculator icon' size='tiny' centered/>

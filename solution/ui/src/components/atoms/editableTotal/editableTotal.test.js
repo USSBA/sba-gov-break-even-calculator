@@ -23,7 +23,7 @@ describe('EditableTotal', () => {
     const wrapper = shallow(<EditableTotal {...sampleProps}/>)
     expect(wrapper.find('.editableValue').dive().text()).toEqual('$1,000')
     wrapper.setProps({type: 'units'})
-    expect(wrapper.find('.editableValue').dive().text()).toEqual('1,000 Units')
+    expect(wrapper.find('.editableValue').dive().text()).toEqual('1,000')
   })
 
   it('renders input field when edit button is clicked', () => {

@@ -9,13 +9,15 @@
   &.ui.table td,
   &.ui.sortable.table thead th {
     overflow: visible;
-    text-overflow: unset;
-    overflow-wrap: break-word;
-    white-space: unset;
     color: @sba-blue;
     
     &.netLoss {
       color: @sba-red;
+
+      span {
+        overflow: visible;
+        white-space: nowrap;
+      }
     }
   
     &.netGain {

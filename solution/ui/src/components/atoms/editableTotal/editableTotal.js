@@ -55,13 +55,13 @@ const EditableTotal = (props) => {
 
   const formatTotals = (val) => {
     if(!val && val !== 0) return ''
-    return `${type === 'currency' ? '$' : ''}${formatNumber(val)}${type !== 'currency' ? ' Units' : ''}`
+    return `${type === 'currency' ? '$' : ''}${formatNumber(val)}`
   }
 
   return (
     <Grid.Row verticalAlign='middle' className='editableTotal-row' columns={2}>
-      <Grid.Column computer={6} tablet={6} mobile={6} className='title'>{title}</Grid.Column>
-      <Grid.Column computer={10} tablet={10} mobile={10} textAlign='right' className='editableSection'>
+      <Grid.Column computer={6} tablet={7} mobile={7} className='title'>{title}</Grid.Column>
+      <Grid.Column computer={10} tablet={9} mobile={9} textAlign='right' className='editableSection'>
           <Form className='editValueForm' onSubmit={handleApply} size='small'>
             <Form.Field>
               <div ref={node}>

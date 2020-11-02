@@ -22,7 +22,7 @@ const BreakEvenProfileCard = (props) => {
         <div className='runningTotals-container'>
           <Grid>
             <EditableTotal
-              title='Number of units'
+              title='# of units'
               type='units'
               value={props.numUnits}
               onEdit={(val) => {
@@ -32,7 +32,7 @@ const BreakEvenProfileCard = (props) => {
               }}
             />
             <EditableTotal
-              title='Selling price per unit'
+              title='Price Per Unit'
               value={props.pricePerUnit}
               onEdit={(val) => {
                 props.updatePricePerUnit(val)
@@ -41,7 +41,7 @@ const BreakEvenProfileCard = (props) => {
               }}
             />
             <EditableTotal
-              title='Total fixed cost'
+              title='Fixed Costs'
               value={props.totalFixedCost}
               onEdit={(val) => {
                 props.updateFixedCost(val)
@@ -50,7 +50,7 @@ const BreakEvenProfileCard = (props) => {
               }}
             />
             <EditableTotal
-              title='Total variable cost'
+              title='Variable Costs'
               value={props.variableCostPerUnit}
               onEdit={(val) => {
                 props.updateVariableCost(val)

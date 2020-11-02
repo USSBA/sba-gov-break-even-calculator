@@ -23,7 +23,7 @@ const BreakEvenResultsCard = (props) => {
   return(
     <Card fluid>
       <Card.Content className='breakEvenWelcome-container'>
-        <Grid>
+        <Grid stackable>
           <Grid.Row columns={2} stretched>
             <Grid.Column width={4}>
               <Image src={calculatorIcon} alt='calculator icon' size='tiny' centered/>
@@ -38,7 +38,7 @@ const BreakEvenResultsCard = (props) => {
               <Card className='units'>
                 <Card.Content>
                   <Card.Header>
-                    Units
+                    Break-Even Units Sold
                     <div className='number'>{formatNumber(breakEvenUnits)}</div>
                     <p>needed to sell in order to cover your costs</p>
                   </Card.Header>
@@ -57,7 +57,7 @@ const BreakEvenResultsCard = (props) => {
               <Card className='sales'>
                 <Card.Content>
                   <Card.Header>
-                    Sales
+                    Unit Sales
                     <div className='number'>${formatNumber(breakEvenRevenue)}</div>
                     <p>revenue dollars needed to break even</p>
                   </Card.Header>

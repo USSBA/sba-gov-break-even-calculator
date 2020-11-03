@@ -204,10 +204,12 @@ const drawLineChart = (data, windowWidth) => {
 
   mousePerLine.append('circle')
     .attr('r', 4)
-    .style('stroke', data['unitSales'].lineColor)
     .style('fill', 'none')
     .style('stroke-width', '1px')
     .style('opacity', '0')
+    .attr('stroke', function(d) {
+      return d.color
+    })
 
   mouseG.append('svg:rect') // append a rect to catch mouse movements on canvas
     .attr('width', width) // can't catch mouse events on a g element

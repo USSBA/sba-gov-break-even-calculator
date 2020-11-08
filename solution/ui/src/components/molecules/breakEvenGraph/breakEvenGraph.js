@@ -216,6 +216,7 @@ const drawLineChart = (data, windowWidth) => {
     .attr('height', height)
     .attr('fill', 'none')
     .attr('pointer-events', 'all')
+    .attr('class', 'graphCanvas')
     .on('mouseover', function() { // on mouse in show line, circles and text
       d3.select('.mouse-line')
         .style('opacity', '1');

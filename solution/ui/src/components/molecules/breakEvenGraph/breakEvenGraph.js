@@ -264,6 +264,22 @@ const drawLineChart = (data, windowWidth) => {
         updateTooltipContent(obj,Math.floor(x.invert(mouse[0]))) 
     });
 
+    function equalToEventTarget() {
+      return this == d3.event.target;
+    }
+
+    const insideGraph = d3.selectAll('.graphCanvas, .graphCanvas *, .bec, .bec *, .becLine, #breakEvenCircle, #breakEvenCircle *')
+  
+    d3.select('body').on('click', () => {
+      const outside = insideGraph.filter(equalToEventTarget).empty()
+      if(outside) {
+        shouldHideBep = false
+        updateTooltipsVisibility()
+        d3.select('#lineChart')
+          .style('cursor', 'pointer')
+      }
+    })
+
   const updateTooltipsVisibility = () => {
     bepLabel = d3.selectAll(".breakEvenLabel.tooltip")
       .style('display', `${shouldHideBep ? 'none' : 'block'}`)

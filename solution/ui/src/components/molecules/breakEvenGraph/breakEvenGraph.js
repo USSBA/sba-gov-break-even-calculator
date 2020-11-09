@@ -43,7 +43,7 @@ const drawLineChart = (data, windowWidth) => {
     .text('Break-Even Point Line graph')
     .attr('id','breakEvenTitle')
   svg.append('desc')
-    .text('This image is a line graph representation of the data table below.')
+    .text(`This image is a line graph representation of the break even point at ${data.breakEvenPoint.data[0].x} Units Sold and the data table below`)
     .attr('id','breakEvenDescription')
  
   const margin = { 

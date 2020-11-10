@@ -38,10 +38,8 @@ const drawLineChart = (data, windowWidth) => {
     .attr('viewBox', `0 ${svgVerticalOffset} ${svgWidth} ${svgHeight}`)
     .attr('aria-labelledby','breakEvenTitle breakEvenDescription')
     .attr('role','img')
-
-  svg.append('title')
-    .text('Break-Even Point Line graph')
-    .attr('id','breakEvenTitle')
+    .attr('aria-label', `This image is a line graph representation of the break even point at ${data.breakEvenPoint.data[0].x} Units Sold and the data table below`)
+  
   svg.append('desc')
     .text(`This image is a line graph representation of the break even point at ${data.breakEvenPoint.data[0].x} Units Sold and the data table below`)
     .attr('id','breakEvenDescription')

@@ -257,9 +257,7 @@ export const drawLineChart = (data, windowWidth) => {
       .attr('fill', data.breakEvenPoint.color)
       .attr('id', 'breakEvenCircle')
       .on('click', () => {
-        console.log('before', shouldHideBep)
         shouldHideBep = !shouldHideBep;
-        console.log('after', shouldHideBep)
         updateTooltipsVisibility()
       })
   }
@@ -305,7 +303,6 @@ export const drawLineChart = (data, windowWidth) => {
     d3.select('body').on('click', () => {
       const outside = insideGraph.filter((equalToEventTarget)).empty()
       if(outside) {
-        console.log('outside')
         shouldHideBep = false
         updateTooltipsVisibility()
         d3.select('#lineChart')

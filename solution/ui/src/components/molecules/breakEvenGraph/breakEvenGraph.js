@@ -13,6 +13,7 @@ export const drawLineChart = (data, windowWidth) => {
   //Clean out the SVG
   d3.selectAll('#lineChart > *').remove()
 
+  let g, x, y
   let mouseG
   let tooltip
   let bepLabel
@@ -22,145 +23,138 @@ export const drawLineChart = (data, windowWidth) => {
   const svgHeight = windowWidth > mobileBreakpoint ? 330 : 700;
   const svgVerticalOffset = windowWidth > mobileBreakpoint ? 0 : 15;
 
-  const dollarFormat = function(d) {
-    return d3.format('$,.2s')(d)
-  }
-  const unitsFormat = function(d) {
-    if(d.toString().length < 4) {
-      return d3.format(',')(d)
-    }
-    return d3.format(',.2s')(d)
-  }
-
-  const svg = d3.select('#lineChart')
-    .append('svg')
-    .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr('viewBox', `0 ${svgVerticalOffset} ${svgWidth} ${svgHeight}`)
-    .attr('aria-labelledby','breakEvenTitle breakEvenDescription')
-    .attr('role','img')
-    .attr('aria-label', `This image is a line graph representation of the break even point at ${data.breakEvenPoint.data[0].x} Units Sold and the data table below`)
-  
-  svg.append('desc')
-    .text(`This image is a line graph representation of the break even point at ${data.breakEvenPoint.data[0].x} Units Sold and the data table below`)
-    .attr('id','breakEvenDescription')
- 
   const margin = { 
     top: windowWidth > mobileBreakpoint ? 15 : 90, 
     right: 20, 
     bottom: windowWidth > mobileBreakpoint ? 30 : 50, 
     left: windowWidth > mobileBreakpoint ? 60 : 110 
   };
-
-  const g = svg.append('g')
-    .attr('transform','translate(' + margin.left + ',' + margin.top + ')')
+    
   const width = svgWidth - margin.left - margin.right;
   const height = svgHeight - margin.top - margin.bottom;
-  
-  // Scale Y
-  const y = d3.scaleLinear()
-    .domain([0, Math.max( data.totalCost.data[1].y, data.breakEven.data[1].y )])
-    .range([height, 0])
-
-  // Scale X
-  const x = d3.scaleLinear()
-    .domain([0, data.breakEven.data[1].x*2])
-    .range([0, width])
 
   const line = d3.line()
-    .x((d) => x(d.x))
-    .y((d) =>y(d.y))
+  .x((d) => x(d.x))
+  .y((d) =>y(d.y))
 
-  // X - Axis
-  g.append('g')
-    .attr('class', 'xAxis')
-    .attr('transform', 'translate(0,' + height + ')')
-    .call(d3.axisBottom(x).tickFormat(unitsFormat).ticks(9))
-    .selectAll('text')
-    .attr('dy', '1.2em')
+  const initialSetUp = () => {
+    const svg = d3.select('#lineChart')
+      .append('svg')
+      .attr("preserveAspectRatio", "xMinYMin meet")
+      .attr('viewBox', `0 ${svgVerticalOffset} ${svgWidth} ${svgHeight}`)
+      .attr('role','img')
+      .attr('aria-label', `This image is a line graph representation of the break even point at ${data.breakEvenPoint.data[0].x} Units Sold and the data table below`)
+  
+    g = svg.append('g')
+      .attr('transform','translate(' + margin.left + ',' + margin.top + ')')
 
-  // Y - Axis
-  g.append('g')
-    .attr('class', 'yAxis')
-    .call(d3.axisLeft(y).tickFormat(dollarFormat).ticks(5))
-    .append('text')
-    .attr('fill', '#000')
-    .attr('transform', 'rotate(-90)')
-    .attr('y', -40)
-    .attr('x', -180)
-    .attr('dy', '0.71em')
+    // Scale Y
+    y = d3.scaleLinear()
+      .domain([0, Math.max( data.totalCost.data[1].y, data.breakEven.data[1].y )])
+      .range([height, 0])
 
-  // Y Grid Lines
-  g.append('g')
-    .call(d3.axisLeft(y).tickFormat('').ticks(5).tickSize(-width))
-    .attr('class', 'yGridLines')
+    // Scale X
+    x = d3.scaleLinear()
+      .domain([0, data.breakEven.data[1].x*2])
+      .range([0, width])
 
-   // Create Hover Tooltip 
-   mouseG = g.append('g')
+    // Y Grid Lines
+    g.append('g')
+      .call(d3.axisLeft(y).tickFormat('').ticks(5).tickSize(-width))
+      .attr('class', 'yGridLines')
+  }
+
+  const drawAxes = () => {
+    const dollarFormat = function(d) {
+      return d3.format('$,.2s')(d)
+    }
+    const unitsFormat = function(d) {
+      if(d.toString().length < 4) {
+        return d3.format(',')(d)
+      }
+      return d3.format(',.2s')(d)
+    }
+    // X - Axis
+    g.append('g')
+      .attr('class', 'xAxis')
+      .attr('transform', 'translate(0,' + height + ')')
+      .call(d3.axisBottom(x).tickFormat(unitsFormat).ticks(9))
+      .selectAll('text')
+      .attr('dy', '1.2em')
+  
+    // Y - Axis
+    g.append('g')
+      .attr('class', 'yAxis')
+      .call(d3.axisLeft(y).tickFormat(dollarFormat).ticks(5))
+      .append('text')
+      .attr('fill', '#000')
+      .attr('transform', 'rotate(-90)')
+      .attr('y', -40)
+      .attr('x', -180)
+      .attr('dy', '0.71em')
+  }
+
+  const drawLines = () => {
+    const lines = ['totalCost', 'fixedCost', 'unitSales']
+
+    // Draw line
+    lines.map(path => (
+      g.append('g')
+      .attr('class','bec')
+      .append('path')
+        .datum(data[path].data)
+        .attr('fill', 'none')
+        .attr('stroke', data[path].lineColor)
+        .attr('stroke-linejoin', 'round')
+        .attr('stroke-linecap', 'butt')
+        .attr('stroke-width', windowWidth > mobileBreakpoint ? 2 : 3)
+        .attr('class', `${path}Line`)
+        .attr('class','becLine')
+        .attr('d', line)
+        .attr('class', 'line')
+    ))
+  
+    // Plot the shapes
+    lines.map(path => (
+      g.selectAll("dot")
+        .data([data[path].data[data[path].data.length-1]])
+        .enter()
+        .append('path')
+        .attr('d',d3.symbol().type(d3[`symbol${data[path].shape}`]))
+        .attr('fill', data[path].lineColor)
+        .attr('transform',function(d,i){ return "translate("+(x(d.x))+","+(y(d.y))+")"; })
+    ))
+  
+    // Draw the break even line
+    g.append('g')
+      .append('path')
+        .datum(data['breakEven'].data)
+        .attr('fill', 'none')
+        .attr('stroke', data['breakEven'].lineColor)
+        .attr('stroke-width', 4)
+        .attr('class', `breakEvenLine`)
+        .attr('class','becLine')
+        .attr('d', line)
+  }
+
+  const setUpInteractiveTooltip = () => {
+    // Create Area for listening to mouse events
+    mouseG = g.append('g')
       .attr('class', 'mouse-over-effects');
 
-  const lines = ['totalCost', 'fixedCost', 'unitSales']
-
-  // Draw line
-  lines.map(path => (
-    g.append('g')
-    .attr('class','bec')
-    .append('path')
-      .datum(data[path].data)
-      .attr('fill', 'none')
-      .attr('stroke', data[path].lineColor)
-      .attr('stroke-linejoin', 'round')
-      .attr('stroke-linecap', 'butt')
-      .attr('stroke-width', windowWidth > mobileBreakpoint ? 2 : 3)
-      .attr('class', `${path}Line`)
-      .attr('class','becLine')
-      .attr('d', line)
-      .attr('class', 'line')
-  ))
-
-  // Plot the shapes
-  lines.map(path => (
-    g.selectAll("dot")
-      .data([data[path].data[data[path].data.length-1]])
-      .enter()
-      .append('path')
-      .attr('d',d3.symbol().type(d3[`symbol${data[path].shape}`]))
-      .attr('fill', data[path].lineColor)
-      .attr('transform',function(d,i){ return "translate("+(x(d.x))+","+(y(d.y))+")"; })
-  ))
-
-  // Draw the break even line
-  g.append('g')
-    .append('path')
-      .datum(data['breakEven'].data)
-      .attr('fill', 'none')
-      .attr('stroke', data['breakEven'].lineColor)
-      .attr('stroke-width', 4)
-      .attr('class', `breakEvenLine`)
-      .attr('class','becLine')
-      .attr('d', line)
-
-
-  // Draw the black vertical line to follow mouse
-  mouseG.append('path')
+    // Draw the black vertical line to follow mouse
+    mouseG.append('path')
     .attr('class', 'mouse-line')
     .style('stroke', 'black')
     .style('stroke-width', '1px')
     .style('opacity', '0');
+  }
 
-  const becLines = document.getElementsByClassName('line');
-
-  // Format the data
-  const becs = Object.keys(data).map(function(key) {
-    if (key !=='breakEven' && key !== 'breakEvenPoint') {
-      return { 
-        name: key,
-        values: data[key].data,
-        label: data[key].label,
-        color: data[key].lineColor
-      }
-    }
-  }).filter(Boolean)
-
+  initialSetUp()
+  drawAxes()
+  drawLines()
+  setUpInteractiveTooltip()
+  
   // Plot the break even point
   g.selectAll('dot')
     .data(data.breakEvenPoint.data)
@@ -179,6 +173,22 @@ export const drawLineChart = (data, windowWidth) => {
       shouldHideBep = !shouldHideBep;
       updateTooltipsVisibility()
     })
+
+
+  const becLines = document.getElementsByClassName('line');
+
+  // Format the data
+  const becs = Object.keys(data).map(function(key) {
+    if (key !=='breakEven' && key !== 'breakEvenPoint') {
+      return { 
+        name: key,
+        values: data[key].data,
+        label: data[key].label,
+        color: data[key].lineColor
+      }
+    }
+  }).filter(Boolean)
+
   
   // The area where the mouse hovers
   const mousePerLine = mouseG.selectAll('.mouse-per-line')

@@ -14,9 +14,7 @@ export const drawLineChart = (data, windowWidth) => {
   d3.selectAll('#lineChart > *').remove()
 
   let g, x, y
-  let mouseG
-  let tooltip
-  let bepLabel
+  let mouseG, tooltip, becs, bepLabel
   let shouldHideBep = false;
   const mobileBreakpoint = 768;
   const svgWidth = 800; 
@@ -36,6 +34,16 @@ export const drawLineChart = (data, windowWidth) => {
   const line = d3.line()
   .x((d) => x(d.x))
   .y((d) =>y(d.y))
+
+
+  const updateTooltipsVisibility = () => {
+    bepLabel = d3.selectAll(".breakEvenLabel.tooltip")
+      .style('display', `${shouldHideBep ? 'none' : 'block'}`)
+
+    tooltip = d3.selectAll('#tooltip, .mouse-line, .mouse-per-line circle')
+      .style('display', `${shouldHideBep ? 'block' : 'none'}`)
+      .style('opacity', `${shouldHideBep ? '1' : '0'}`);
+  }
 
   const initialSetUp = () => {
     const svg = d3.select('#lineChart')
@@ -62,6 +70,18 @@ export const drawLineChart = (data, windowWidth) => {
     g.append('g')
       .call(d3.axisLeft(y).tickFormat('').ticks(5).tickSize(-width))
       .attr('class', 'yGridLines')
+
+    // Format the data
+    becs = Object.keys(data).map(function(key) {
+      if (key !=='breakEven' && key !== 'breakEvenPoint') {
+        return { 
+          name: key,
+          values: data[key].data,
+          label: data[key].label,
+          color: data[key].lineColor
+        }
+      }
+    }).filter(Boolean)
   }
 
   const drawAxes = () => {
@@ -148,144 +168,103 @@ export const drawLineChart = (data, windowWidth) => {
     .style('stroke', 'black')
     .style('stroke-width', '1px')
     .style('opacity', '0');
-  }
 
-  initialSetUp()
-  drawAxes()
-  drawLines()
-  setUpInteractiveTooltip()
+    const becLines = document.getElementsByClassName('line');
   
-  // Plot the break even point
-  g.selectAll('dot')
-    .data(data.breakEvenPoint.data)
-    .enter()
-    .append('circle')
-    .attr('pointer-events', 'click')
-    .attr('r', windowWidth > mobileBreakpoint ? 9 : 16)
-    .attr('cx', function(d) { return x(d.x); })
-    .attr('cy', function(d) { return y(d.y); })
-    .style('stroke',  'white')
-    .style('stroke-width', '3px')
-    .style('cursor', 'pointer')
-    .attr('fill', data.breakEvenPoint.color)
-    .attr('id', 'breakEvenCircle')
-    .on('click', () => {
-      shouldHideBep = !shouldHideBep;
-      updateTooltipsVisibility()
-    })
-
-
-  const becLines = document.getElementsByClassName('line');
-
-  // Format the data
-  const becs = Object.keys(data).map(function(key) {
-    if (key !=='breakEven' && key !== 'breakEvenPoint') {
-      return { 
-        name: key,
-        values: data[key].data,
-        label: data[key].label,
-        color: data[key].lineColor
-      }
-    }
-  }).filter(Boolean)
-
-  
-  // The area where the mouse hovers
-  const mousePerLine = mouseG.selectAll('.mouse-per-line')
-    .data(becs)
-    .enter()
-    .append('g')
-    .attr('class', 'mouse-per-line')
-
-  mousePerLine.append('circle')
-    .attr('r', 4)
-    .style('fill', 'none')
-    .style('stroke-width', '1px')
-    .style('opacity', '0')
-    .attr('stroke', function(d) {
-      return d.color
-    })
-
-  mouseG.append('svg:rect') // append a rect to catch mouse movements on canvas
-    .attr('width', width) // can't catch mouse events on a g element
-    .attr('height', height)
-    .attr('fill', 'none')
-    .attr('pointer-events', 'all')
-    .attr('class', 'graphCanvas')
-    .on('mouseover', function() { // on mouse in show line, circles and text
-      d3.select('.mouse-line')
-        .style('opacity', '1');
-      d3.selectAll('.mouse-per-line circle')
-        .style('opacity', `${shouldHideBep ? '1' : '0'}`);
-    })
-    .on('click mousemove touchmove focus', function() {
-      let lineChart
-      if(d3.event.type === 'click') {
-        shouldHideBep = true;
-        lineChart = d3.select('#lineChart')
-          .style('cursor', 'auto')
-        updateTooltipsVisibility()
-      }
-      if(!shouldHideBep) return;
-      let mouse = d3.mouse(this);
-      let obj = [];
-      d3.select('.mouse-line')
-        .attr('d', function() {
-          let d = 'M' + mouse[0] + ',' + height;
-          d += ' ' + mouse[0] + ',' + 0;
-          return d;
-        });
-      d3.selectAll('.mouse-per-line') 
-        .attr('transform', function(d, i) {
-          if(becLines[i]) {
-            let beginning = 0,
-                end = becLines[i].getTotalLength(),
-                target = null,
-                pos;
-            while (true){
-              target = Math.floor((beginning + end) / 2);
-              pos = becLines[i].getPointAtLength(target);
-              if ((target === end || target === beginning) && pos.x !== mouse[0]) {
-                  break;
-              }
-              if (pos.x > mouse[0])      end = target;
-              else if (pos.x < mouse[0]) beginning = target;
-              else break; //position found
-            }
-            obj.push({cost: Math.floor(y.invert(pos.y).toFixed(2)), 
-                      unit: x.invert(mouse[0])})
-            return 'translate(' + mouse[0] + ',' + pos.y +')';
-          }
-        });
-        updateTooltipContent(obj,Math.floor(x.invert(mouse[0]))) 
-    });
-
-    function equalToEventTarget() {
-      return this == d3.event.target;
-    }
-
-    const insideGraph = d3.selectAll('.graphCanvas, .graphCanvas *, .bec, .bec *, .becLine, #breakEvenCircle, #breakEvenCircle *')
-  
-    d3.select('body').on('click', () => {
-      const outside = insideGraph.filter(equalToEventTarget).empty()
-      if(outside) {
-        shouldHideBep = false
-        updateTooltipsVisibility()
-        d3.select('#lineChart')
-          .style('cursor', 'pointer')
-      }
-    })
-
-  const updateTooltipsVisibility = () => {
-    bepLabel = d3.selectAll(".breakEvenLabel.tooltip")
-      .style('display', `${shouldHideBep ? 'none' : 'block'}`)
-
-    tooltip = d3.selectAll('#tooltip, .mouse-line, .mouse-per-line circle')
-      .style('display', `${shouldHideBep ? 'block' : 'none'}`)
-      .style('opacity', `${shouldHideBep ? '1' : '0'}`);
-  }
     
-  function updateTooltipContent(obj,unit) {
+    // The area where the mouse hovers
+    const mousePerLine = mouseG.selectAll('.mouse-per-line')
+      .data(becs)
+      .enter()
+      .append('g')
+      .attr('class', 'mouse-per-line')
+  
+    mousePerLine.append('circle')
+      .attr('r', 4)
+      .style('fill', 'none')
+      .style('stroke-width', '1px')
+      .style('opacity', '0')
+      .attr('stroke', function(d) {
+        return d.color
+      })
+  
+    mouseG.append('svg:rect') // append a rect to catch mouse movements on canvas
+      .attr('width', width) // can't catch mouse events on a g element
+      .attr('height', height)
+      .attr('fill', 'none')
+      .attr('pointer-events', 'all')
+      .attr('class', 'graphCanvas')
+      .on('mouseover', function() { // on mouse in show line, circles and text
+        d3.select('.mouse-line')
+          .style('opacity', '1');
+        d3.selectAll('.mouse-per-line circle')
+          .style('opacity', `${shouldHideBep ? '1' : '0'}`);
+      })
+      .on('click mousemove touchmove focus', function() {
+        let lineChart
+        if(d3.event.type === 'click') {
+          shouldHideBep = true;
+          lineChart = d3.select('#lineChart')
+            .style('cursor', 'auto')
+          updateTooltipsVisibility()
+        }
+        if(!shouldHideBep) return;
+        let mouse = d3.mouse(this);
+        let obj = [];
+        d3.select('.mouse-line')
+          .attr('d', function() {
+            let d = 'M' + mouse[0] + ',' + height;
+            d += ' ' + mouse[0] + ',' + 0;
+            return d;
+          });
+        d3.selectAll('.mouse-per-line') 
+          .attr('transform', function(d, i) {
+            if(becLines[i]) {
+              let beginning = 0,
+                  end = becLines[i].getTotalLength(),
+                  target = null,
+                  pos;
+              while (true){
+                target = Math.floor((beginning + end) / 2);
+                pos = becLines[i].getPointAtLength(target);
+                if ((target === end || target === beginning) && pos.x !== mouse[0]) {
+                    break;
+                }
+                if (pos.x > mouse[0])      end = target;
+                else if (pos.x < mouse[0]) beginning = target;
+                else break; //position found
+              }
+              obj.push({cost: Math.floor(y.invert(pos.y).toFixed(2)), 
+                        unit: x.invert(mouse[0])})
+              return 'translate(' + mouse[0] + ',' + pos.y +')';
+            }
+          });
+          updateTooltipContent(obj,Math.floor(x.invert(mouse[0]))) 
+      });
+
+      // Plot the break even point
+      g.selectAll('dot')
+      .data(data.breakEvenPoint.data)
+      .enter()
+      .append('circle')
+      .attr('pointer-events', 'click')
+      .attr('r', windowWidth > mobileBreakpoint ? 9 : 16)
+      .attr('cx', function(d) { return x(d.x); })
+      .attr('cy', function(d) { return y(d.y); })
+      .style('stroke',  'white')
+      .style('stroke-width', '3px')
+      .style('cursor', 'pointer')
+      .attr('fill', data.breakEvenPoint.color)
+      .attr('id', 'breakEvenCircle')
+      .on('click', () => {
+        console.log('before', shouldHideBep)
+        shouldHideBep = !shouldHideBep;
+        console.log('after', shouldHideBep)
+        updateTooltipsVisibility()
+      })
+  }
+
+  const updateTooltipContent = (obj,unit) => {
     let tooltipData = [];
     if(becs) {
       obj.map((d,i) => {
@@ -315,6 +294,31 @@ export const drawLineChart = (data, windowWidth) => {
       .style('color', d => d.color)
       .html(d => d.label + ': ' +  "$" + d3.format(",")(d.cost))
   }
+
+  const detectClickOutside = () => {
+    function equalToEventTarget() {
+      return this == d3.event.target;
+    }
+
+    const insideGraph = d3.selectAll('.graphCanvas, .graphCanvas *, .bec, .bec *, .becLine, #breakEvenCircle, #breakEvenCircle *')
+  
+    d3.select('body').on('click', () => {
+      const outside = insideGraph.filter((equalToEventTarget)).empty()
+      if(outside) {
+        console.log('outside')
+        shouldHideBep = false
+        updateTooltipsVisibility()
+        d3.select('#lineChart')
+          .style('cursor', 'pointer')
+      }
+    })
+  }
+
+  initialSetUp()
+  drawAxes()
+  drawLines()
+  setUpInteractiveTooltip()
+  detectClickOutside()
 }
 class BreakEvenGraph extends React.Component {
   componentDidMount() {

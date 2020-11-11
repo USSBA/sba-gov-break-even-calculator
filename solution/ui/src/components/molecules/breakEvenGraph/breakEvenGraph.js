@@ -9,12 +9,12 @@ import unitSalesImg from '../../../images/unit_sales.svg'
 import breakEvenPointImg from '../../../images/breakeven_point.svg'
 import totalCostImg from '../../../images/total_costs.svg'
 
-const drawLineChart = (data, windowWidth) => {
+export const drawLineChart = (data, windowWidth) => {
   //Clean out the SVG
   d3.selectAll('#lineChart > *').remove()
 
-  var tooltip
-  var mouseG
+  let mouseG
+  let tooltip
   let bepLabel
   let shouldHideBep = false;
   const mobileBreakpoint = 768;
@@ -32,7 +32,7 @@ const drawLineChart = (data, windowWidth) => {
     return d3.format(',.2s')(d)
   }
 
-  const svg = d3.select('div#lineChart')
+  const svg = d3.select('#lineChart')
     .append('svg')
     .attr("preserveAspectRatio", "xMinYMin meet")
     .attr('viewBox', `0 ${svgVerticalOffset} ${svgWidth} ${svgHeight}`)
@@ -48,7 +48,8 @@ const drawLineChart = (data, windowWidth) => {
     top: windowWidth > mobileBreakpoint ? 15 : 90, 
     right: 20, 
     bottom: windowWidth > mobileBreakpoint ? 30 : 50, 
-    left: windowWidth > mobileBreakpoint ? 60 : 110 };
+    left: windowWidth > mobileBreakpoint ? 60 : 110 
+  };
 
   const g = svg.append('g')
     .attr('transform','translate(' + margin.left + ',' + margin.top + ')')
@@ -96,21 +97,6 @@ const drawLineChart = (data, windowWidth) => {
    // Create Hover Tooltip 
    mouseG = g.append('g')
       .attr('class', 'mouse-over-effects');
-
-  tooltip = d3.selectAll("#lineChart").append("div")
-    .attr('id', 'tooltip')
-    .style('position', 'absolute')
-    .style('padding', 6)
-    .style('display', 'none')
-
-  bepLabel = d3.selectAll("#lineChart").append("div")
-    .attr('class', 'ui fluid card tooltip breakEvenLabel')
-    .append('div')
-      .attr('class', 'number units')
-      .html(`${data.breakEvenPoint.data[0].x}`)
-
-  bepLabel = d3.selectAll(".breakEvenLabel.tooltip").append('div')
-    .html('Break-Even Units Sold')
 
   const lines = ['totalCost', 'fixedCost', 'unitSales']
 
@@ -161,15 +147,16 @@ const drawLineChart = (data, windowWidth) => {
     .style('stroke-width', '1px')
     .style('opacity', '0');
 
-  var becLines = document.getElementsByClassName('line');
+  const becLines = document.getElementsByClassName('line');
 
   // Format the data
-  var becs = Object.keys(data).map(function(key) {
+  const becs = Object.keys(data).map(function(key) {
     if (key !=='breakEven' && key !== 'breakEvenPoint') {
-      return { name: key,
-               values: data[key].data,
-               label: data[key].label,
-               color: data[key].lineColor
+      return { 
+        name: key,
+        values: data[key].data,
+        label: data[key].label,
+        color: data[key].lineColor
       }
     }
   }).filter(Boolean)
@@ -194,7 +181,7 @@ const drawLineChart = (data, windowWidth) => {
     })
   
   // The area where the mouse hovers
-  var mousePerLine = mouseG.selectAll('.mouse-per-line')
+  const mousePerLine = mouseG.selectAll('.mouse-per-line')
     .data(becs)
     .enter()
     .append('g')
@@ -230,23 +217,24 @@ const drawLineChart = (data, windowWidth) => {
         updateTooltipsVisibility()
       }
       if(!shouldHideBep) return;
-      var mouse = d3.mouse(this);
-      var obj = [];
+      let mouse = d3.mouse(this);
+      let obj = [];
       d3.select('.mouse-line')
         .attr('d', function() {
-          var d = 'M' + mouse[0] + ',' + height;
+          let d = 'M' + mouse[0] + ',' + height;
           d += ' ' + mouse[0] + ',' + 0;
           return d;
         });
       d3.selectAll('.mouse-per-line') 
         .attr('transform', function(d, i) {
           if(becLines[i]) {
-            var beginning = 0,
+            let beginning = 0,
                 end = becLines[i].getTotalLength(),
-                target = null;
+                target = null,
+                pos;
             while (true){
               target = Math.floor((beginning + end) / 2);
-              var pos = becLines[i].getPointAtLength(target);
+              pos = becLines[i].getPointAtLength(target);
               if ((target === end || target === beginning) && pos.x !== mouse[0]) {
                   break;
               }
@@ -282,18 +270,13 @@ const drawLineChart = (data, windowWidth) => {
     bepLabel = d3.selectAll(".breakEvenLabel.tooltip")
       .style('display', `${shouldHideBep ? 'none' : 'block'}`)
 
-    tooltip = d3.selectAll('#tooltip')
+    tooltip = d3.selectAll('#tooltip, .mouse-line, .mouse-per-line circle')
       .style('display', `${shouldHideBep ? 'block' : 'none'}`)
-
-    mouseG = d3.select('.mouse-line')
-      .style('display', `${shouldHideBep ? 'block' : 'none'}`)
-
-    d3.selectAll('.mouse-per-line circle')
       .style('opacity', `${shouldHideBep ? '1' : '0'}`);
   }
     
   function updateTooltipContent(obj,unit) {
-    var tooltipData = [];
+    let tooltipData = [];
     if(becs) {
       obj.map((d,i) => {
         tooltipData.push({
@@ -309,8 +292,8 @@ const drawLineChart = (data, windowWidth) => {
     tooltipData = tooltipData.reverse()
     // move tooltip to left of the line after your values are higher 
     // than breakeven point.
-    var tooltipClass = data['breakEven'].data[1].x < unit ? 'tooltipLeft' : 'tooltipRight'
-    tooltip.html('Units: ' + unit)
+    let tooltipClass = data['breakEven'].data[1].x < unit ? 'tooltipLeft' : 'tooltipRight'
+    d3.select('#tooltip').html('Units: ' + unit)
       .attr('class', tooltipClass)
       .style('display', 'block')
       .style('left', d3.event.layerX + 20 + 'px')
@@ -365,6 +348,14 @@ class BreakEvenGraph extends React.Component {
                 <div className='graphContainer'>
                   <div id='lineChart'></div>
                   <div className='unitLabel' aria-hidden='true'>Units</div>
+                  <div id='tooltip'></div>
+                  <Card fluid className='tooltip breakEvenLabel' >	
+                    <div className='units number'>	
+                      { formatNumber(formatBreakEvenGraphData(this.props).breakEvenPoint.data[0].x) }	
+                    </div>	
+                    <div>Break-Even</div>	
+                    <div>Units Sold</div>	
+                  </Card>
                 </div>
               </Grid.Column>
             </Grid.Row>

@@ -32,8 +32,8 @@ export const drawLineChart = (data, windowWidth) => {
   const height = svgHeight - margin.top - margin.bottom;
 
   const line = d3.line()
-  .x((d) => x(d.x))
-  .y((d) =>y(d.y))
+    .x((d) => x(d.x))
+    .y((d) =>y(d.y))
 
 
   const updateTooltipsVisibility = () => {
@@ -122,16 +122,16 @@ export const drawLineChart = (data, windowWidth) => {
       g.append('g')
       .attr('class','bec')
       .append('path')
-        .datum(data[path].data)
-        .attr('fill', 'none')
-        .attr('stroke', data[path].lineColor)
-        .attr('stroke-linejoin', 'round')
-        .attr('stroke-linecap', 'butt')
-        .attr('stroke-width', windowWidth > mobileBreakpoint ? 2 : 3)
-        .attr('class', `${path}Line`)
-        .attr('class','becLine')
-        .attr('d', line)
-        .attr('class', 'line')
+      .datum(data[path].data)
+      .attr('fill', 'none')
+      .attr('stroke', data[path].lineColor)
+      .attr('stroke-linejoin', 'round')
+      .attr('stroke-linecap', 'butt')
+      .attr('stroke-width', windowWidth > mobileBreakpoint ? 2 : 3)
+      .attr('class', `${path}Line`)
+      .attr('class','becLine')
+      .attr('d', line)
+      .attr('class', 'line')
     ))
   
     // Plot the shapes
@@ -148,13 +148,13 @@ export const drawLineChart = (data, windowWidth) => {
     // Draw the break even line
     g.append('g')
       .append('path')
-        .datum(data['breakEven'].data)
-        .attr('fill', 'none')
-        .attr('stroke', data['breakEven'].lineColor)
-        .attr('stroke-width', 4)
-        .attr('class', `breakEvenLine`)
-        .attr('class','becLine')
-        .attr('d', line)
+      .datum(data['breakEven'].data)
+      .attr('fill', 'none')
+      .attr('stroke', data['breakEven'].lineColor)
+      .attr('stroke-width', 4)
+      .attr('class', `breakEvenLine`)
+      .attr('class','becLine')
+      .attr('d', line)
   }
 
   const setUpInteractiveTooltip = () => {
@@ -164,10 +164,10 @@ export const drawLineChart = (data, windowWidth) => {
 
     // Draw the black vertical line to follow mouse
     mouseG.append('path')
-    .attr('class', 'mouse-line')
-    .style('stroke', 'black')
-    .style('stroke-width', '1px')
-    .style('opacity', '0');
+      .attr('class', 'mouse-line')
+      .style('stroke', 'black')
+      .style('stroke-width', '1px')
+      .style('opacity', '0');
 
     const becLines = document.getElementsByClassName('line');
   
@@ -244,22 +244,22 @@ export const drawLineChart = (data, windowWidth) => {
 
       // Plot the break even point
       g.selectAll('dot')
-      .data(data.breakEvenPoint.data)
-      .enter()
-      .append('circle')
-      .attr('pointer-events', 'click')
-      .attr('r', windowWidth > mobileBreakpoint ? 9 : 16)
-      .attr('cx', function(d) { return x(d.x); })
-      .attr('cy', function(d) { return y(d.y); })
-      .style('stroke',  'white')
-      .style('stroke-width', '3px')
-      .style('cursor', 'pointer')
-      .attr('fill', data.breakEvenPoint.color)
-      .attr('id', 'breakEvenCircle')
-      .on('click', () => {
-        shouldHideBep = !shouldHideBep;
-        updateTooltipsVisibility()
-      })
+        .data(data.breakEvenPoint.data)
+        .enter()
+        .append('circle')
+        .attr('pointer-events', 'click')
+        .attr('r', windowWidth > mobileBreakpoint ? 9 : 16)
+        .attr('cx', function(d) { return x(d.x); })
+        .attr('cy', function(d) { return y(d.y); })
+        .style('stroke',  'white')
+        .style('stroke-width', '3px')
+        .style('cursor', 'pointer')
+        .attr('fill', data.breakEvenPoint.color)
+        .attr('id', 'breakEvenCircle')
+        .on('click', () => {
+          shouldHideBep = !shouldHideBep;
+          updateTooltipsVisibility()
+        })
   }
 
   const updateTooltipContent = (obj,unit) => {

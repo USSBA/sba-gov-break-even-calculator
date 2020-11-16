@@ -1,6 +1,20 @@
 @import '../../../styles/variables.less';
 
 #breakEvenGraph {
+  .subtext {
+    margin-bottom: 0;
+  }
+
+  #lineChart {
+    cursor: pointer;
+
+    .graphCanvas {
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
   card.breakEvenPointLabel {
     left: 191px;
     position: relative;
@@ -8,8 +22,24 @@
     top: 100px;
   }
 
+  #tooltip {
+    padding: 5px;
+    background-color: white;
+    box-shadow: @box-shadow;
+    z-index: 2000;
+    position: absolute;
+  }
+
+  .tooltipLeft {
+    margin-left: -210px;
+  }
   .graphLineLabel {
     margin-bottom: 5px;
+  }
+
+  .labelImg {
+    padding-top: 5px;
+    padding-right: 15px;
   }
 
   .yGridLines line {
@@ -42,7 +72,8 @@
       font-size: 25px;
     }
   }
-    
+
+
     .ui.card.tooltip {
       border-width: 2px;
       font-size: calc(12px + .6vw);

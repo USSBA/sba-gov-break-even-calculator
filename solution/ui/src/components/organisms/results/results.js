@@ -59,7 +59,7 @@ const Results = (props) => {
   const { variableCostPerUnit, numUnits, pricePerUnit, totalFixedCost } = props
 
   useEffect(() => {
-    typeof window.scrollTo(0, 0)
+    window.scrollTo(0, 0)
   }, [])
 
   const contributionMarginRatio = (pricePerUnit - variableCostPerUnit) / pricePerUnit;
@@ -123,7 +123,7 @@ const Results = (props) => {
       <Container id='printCTA'>
         <h3>Next Steps</h3>
         <p>Print this dashboard for your reference to add to your business plan or to share with a consultant.</p>
-        <Button color='red' onClick={() => typeof window.print()}>Print Results</Button>
+        <Button color='red' onClick={() => window.print()}>Print Results</Button>
       </Container>
       <Container id='faqAccordion'>
         <BecAccordion data={FAQ_CONTENT[CALCULATOR_STEPS.RESULTS_PAGE] || []}/>

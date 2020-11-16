@@ -139,36 +139,36 @@ class BreakEvenGraph extends React.Component {
           <Label className='graphLineLabel' basic size='small'>
             Unit Sales
             <svg className="lineLegend" height="20" width="60">
-              <g fill="none" stroke="#00518B" stroke-width="10">
-                <path stroke-dasharray="5,10" d="M5 20 l215 0" />
+              <g fill="none" stroke="#00518B" strokeWidth="10">
+                <path strokeDasharray="5,10" d="M5 20 l215 0" />
               </g>
             </svg>
           </Label>
           <Label className='graphLineLabel' basic size='small'>
             Break-Even Point
             <svg className="lineLegend" height="20" width="90">
-              <g fill="none" stroke="#007dbc" stroke-width="10">
-                <path stroke-dasharray="0" d="M5 20 l215 0" />
+              <g fill="none" stroke="#007dbc" strokeWidth="10">
+                <path strokeDasharray="0" d="M5 20 l215 0" />
               </g>
             </svg>
           </Label>
           <Label className='graphLineLabel' basic size='small'>
             Total Costs
             <svg className="lineLegend" height="20" width="80">
-              <g fill="none" stroke="#197E4E" stroke-width="10">
-                <path stroke-dasharray="10,10" d="M5 20 l215 0" />
+              <g fill="none" stroke="#197E4E" strokeWidth="10">
+                <path strokeDasharray="10,10" d="M5 20 l215 0" />
               </g>
             </svg>
           </Label>
           <Label className='graphLineLabel' basic size='small'>
             Fixed Costs
             <svg className="lineLegend" height="20" width="70">
-              <g fill="none" stroke="#FF4F30" stroke-width="10">
-                <path stroke-dasharray="5,5" d="M5 20 l215 0" />
+              <g fill="none" stroke="#FF4F30" strokeWidth="10">
+                <path strokeDasharray="5,5" d="M5 20 l215 0" />
               </g>
             </svg>
           </Label>
-          <div class="graphContainer">
+          <div className="graphContainer">
             <div id="lineChart"></div>
             <div className='unitLabel' aria-hidden="true">Units</div>
             <Card fluid className="tooltip" >

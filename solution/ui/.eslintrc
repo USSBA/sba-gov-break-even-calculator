@@ -1,8 +1,13 @@
 {
   "parser": "babel-eslint",
   "rules": {
-    "strict": 0,
+    "strict": 1,
     "react/prop-types": 0
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   },
   "env": {
     "browser": true,

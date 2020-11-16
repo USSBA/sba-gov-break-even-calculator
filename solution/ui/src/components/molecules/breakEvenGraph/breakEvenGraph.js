@@ -37,6 +37,9 @@ export const drawLineChart = (data, windowWidth) => {
 
 
   const updateTooltipsVisibility = () => {
+    d3.selectAll(".breakEvenLabel.tooltip")
+      .style('display', `${shouldHideBep ? 'none' : 'block'}`)
+
     d3.selectAll('#tooltip, .mouse-line, .mouse-per-line circle')
       .style('display', `${shouldHideBep ? 'block' : 'none'}`)
       .style('opacity', `${shouldHideBep ? '1' : '0'}`);

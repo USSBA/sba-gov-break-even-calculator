@@ -3,7 +3,7 @@ import logo from '../../../images/sba-logo-horizontal.jpg'
 import './header.less'
 import { Image, Divider, Grid, Icon } from 'semantic-ui-react'
 
-const Header = ({ siteTitle }) => (
+const Header = () => (
   <header className='bec-header'>
     <Grid columns={1}>
       <Grid.Column textAlign='left'>

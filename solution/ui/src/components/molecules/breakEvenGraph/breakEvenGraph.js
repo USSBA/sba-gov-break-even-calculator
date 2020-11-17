@@ -14,7 +14,7 @@ export const drawLineChart = (data, windowWidth) => {
   d3.selectAll('#lineChart > *').remove()
 
   let g, x, y
-  let mouseG, tooltip, becs, bepLabel
+  let mouseG, becs
   let shouldHideBep = false;
   const mobileBreakpoint = 768;
   const svgWidth = 800; 
@@ -37,10 +37,10 @@ export const drawLineChart = (data, windowWidth) => {
 
 
   const updateTooltipsVisibility = () => {
-    bepLabel = d3.selectAll(".breakEvenLabel.tooltip")
+    d3.selectAll(".breakEvenLabel.tooltip")
       .style('display', `${shouldHideBep ? 'none' : 'block'}`)
 
-    tooltip = d3.selectAll('#tooltip, .mouse-line, .mouse-per-line circle')
+    d3.selectAll('#tooltip, .mouse-line, .mouse-per-line circle')
       .style('display', `${shouldHideBep ? 'block' : 'none'}`)
       .style('opacity', `${shouldHideBep ? '1' : '0'}`);
   }
@@ -142,7 +142,7 @@ export const drawLineChart = (data, windowWidth) => {
         .append('path')
         .attr('d',d3.symbol().type(d3[`symbol${data[path].shape}`]))
         .attr('fill', data[path].lineColor)
-        .attr('transform',function(d,i){ return "translate("+(x(d.x))+","+(y(d.y))+")"; })
+        .attr('transform',function(d){ return "translate("+(x(d.x))+","+(y(d.y))+")"; })
     ))
   
     // Draw the break even line
@@ -201,11 +201,8 @@ export const drawLineChart = (data, windowWidth) => {
           .style('opacity', `${shouldHideBep ? '1' : '0'}`);
       })
       .on('click mousemove touchmove focus', function() {
-        let lineChart
         if(d3.event.type === 'click') {
           shouldHideBep = true;
-          lineChart = d3.select('#lineChart')
-            .style('cursor', 'auto')
           updateTooltipsVisibility()
         }
         if(!shouldHideBep) return;
@@ -224,15 +221,17 @@ export const drawLineChart = (data, windowWidth) => {
                   end = becLines[i].getTotalLength(),
                   target = null,
                   pos;
-              while (true){
+              let positionFound = false
+              while (!positionFound) {
                 target = Math.floor((beginning + end) / 2);
                 pos = becLines[i].getPointAtLength(target);
                 if ((target === end || target === beginning) && pos.x !== mouse[0]) {
                     break;
                 }
-                if (pos.x > mouse[0])      end = target;
+                if (pos.x > mouse[0])      
+                  end = target;
                 else if (pos.x < mouse[0]) beginning = target;
-                else break; //position found
+                else positionFound = true;
               }
               obj.push({cost: Math.floor(y.invert(pos.y).toFixed(2)), 
                         unit: x.invert(mouse[0])})

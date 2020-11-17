@@ -127,7 +127,7 @@ default or with a hygen script based on the developer's choices.
 # Project Details
 
 ### License
-The SBA.gov UI (Katana) is licensed permissively under the Apache License v2.0.
+The SBA.gov UI (Break Even Calculator) is licensed permissively under the Apache License v2.0.
 A copy of that license is distributed with this software.
 
 ### Contributing

@@ -129,7 +129,7 @@ describe('formatBreakEvenGraphData', () => {
           {"x": 0, "y": 1000}, 
           {"x": 200, "y": 1000}], 
         "label": "Fixed Cost", 
-        "lineColor": "#cc0000", 
+        "lineColor": "#930000", 
         "shape": "Triangle", 
         "stroke": "5,5"
       }

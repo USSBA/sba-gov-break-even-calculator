@@ -83,10 +83,16 @@ class BreakEvenDataTable extends React.Component {
                 >
                   Fixed Costs
                 </Table.HeaderCell>
+                <Table.HeaderCell
+                  sorted={column === 'totalCosts' ? direction : null}
+                  onClick={this.handleSort('totalCosts')}
+                >
+                  Total Costs
+                </Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body key={uniqueKey()}>
-              {data.map(({ units, profit, revenue, variableCosts, fixedCosts }) => (
+              {data.map(({ units, profit, revenue, variableCosts, fixedCosts, totalCosts }) => (
                 <Table.Row key={`${profit}-${revenue}-${variableCosts}`}>
                   <Table.Cell>
                     {formatNumber(units)}
@@ -102,6 +108,9 @@ class BreakEvenDataTable extends React.Component {
                   </Table.Cell>
                   <Table.Cell>
                     ${formatNumber(fixedCosts)}
+                  </Table.Cell>
+                  <Table.Cell>
+                    ${formatNumber(totalCosts)}
                   </Table.Cell>
                 </Table.Row>
               ))}

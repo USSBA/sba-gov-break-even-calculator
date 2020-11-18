@@ -68,7 +68,7 @@ export const formatBreakEvenGraphData = (data) => {
       label: 'Total Cost'
     },
     fixedCost: {
-      lineColor: '#FF4F30',
+      lineColor: '#cc0000',
       stroke: '5,5',
       shape: 'Triangle',
       data: [ 

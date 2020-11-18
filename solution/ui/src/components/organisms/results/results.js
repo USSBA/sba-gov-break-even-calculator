@@ -25,6 +25,7 @@ export const generateDataTableRow = (data) => {
     revenue: revenue,
     variableCosts: totalVariableCost,
     fixedCosts: fixedCost,
+    totalCosts: totalVariableCost + fixedCost,
   }
 }
 
@@ -48,6 +49,7 @@ export const generateTableData = (breakEvenPointUnits, pricePerUnit, variableCos
         revenue: Math.round(breakEvenPointUnits * pricePerUnit),
         variableCosts: Math.round(variableCostPerUnit * breakEvenPointUnits),
         fixedCosts: fixedCost,
+        totalCosts: fixedCost + Math.round(variableCostPerUnit * breakEvenPointUnits)
       })
     }
   }

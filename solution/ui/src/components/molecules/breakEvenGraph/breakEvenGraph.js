@@ -357,7 +357,7 @@ class BreakEvenGraph extends React.Component {
               <Grid.Column>
                 <div className='graphContainer'>
                   <div id='lineChart'></div>
-                  <div className='unitLabel' aria-hidden='true'>Units</div>
+                  <div className='unitLabel' aria-hidden='true'>Units Sold</div>
                   <div id='tooltip'></div>
                   <Card fluid className='tooltip breakEvenLabel' >	
                     <div className='units number'>	

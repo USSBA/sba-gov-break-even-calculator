@@ -36,7 +36,6 @@ MoneyInput.propTypes = {
   onChange: PropTypes.func,
   name: PropTypes.string,
   value: PropTypes.number,
-
 }
 
 export default MoneyInput

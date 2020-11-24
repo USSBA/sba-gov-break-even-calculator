@@ -136,9 +136,9 @@ const Results = (props) => {
 }
 
 Results.propTypes = {
-  variableCostPerUnit: PropTypes.number,
-  numUnits: PropTypes.number,
-  pricePerUnit: PropTypes.number,
+  variableCostPerUnit: PropTypes.number.isRequired,
+  numUnits: PropTypes.number.isRequired,
+  pricePerUnit: PropTypes.number.isRequired,
   totalFixedCost: PropTypes.number.isRequired,
   updateFixedCost: PropTypes.func.isRequired,
   updateNumUnits: PropTypes.func.isRequired,

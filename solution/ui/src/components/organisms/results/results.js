@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react'
+import PropTypes from 'prop-types'
 
 import { Container, Grid, Button } from 'semantic-ui-react'
 import { 
@@ -132,6 +133,17 @@ const Results = (props) => {
       </Container>
     </>
   )
+}
+
+Results.propTypes = {
+  variableCostPerUnit: PropTypes.number,
+  numUnits: PropTypes.number,
+  pricePerUnit: PropTypes.number,
+  totalFixedCost: PropTypes.number.isRequired,
+  updateFixedCost: PropTypes.func.isRequired,
+  updateNumUnits: PropTypes.func.isRequired,
+  updatePricePerUnit: PropTypes.func.isRequired,
+  updateVariableCost: PropTypes.func.isRequired,
 }
 
 export default Results

@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { Container, Image } from 'semantic-ui-react'
 import calculatorIcon from '../../../images/calculator_icon.svg'
 import './hero.less'
@@ -24,6 +26,10 @@ const Hero = (props) => {
       </Container>
     </>
   )
+}
+
+Hero.propTypes = {
+  children: PropTypes.element.isRequired,
 }
 
 export default Hero

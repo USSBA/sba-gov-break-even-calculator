@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { Grid, Image, Card } from 'semantic-ui-react'
 
@@ -81,6 +82,15 @@ const BreakEvenResultsCard = (props) => {
       </Card.Content>
     </Card>
   )
+}
+
+BreakEvenResultsCard.propTypes = {
+  expectedUnits: PropTypes.number.isRequired,
+  breakEvenUnits: PropTypes.number.isRequired,
+  breakEvenRevenue: PropTypes.number.isRequired,
+  pricePerUnit: PropTypes.number.isRequired,
+  variableCost: PropTypes.number.isRequired,
+  fixedCost: PropTypes.number.isRequired,
 }
 
 export default BreakEvenResultsCard

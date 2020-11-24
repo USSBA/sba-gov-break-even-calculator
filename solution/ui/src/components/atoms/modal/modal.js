@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { Icon } from 'semantic-ui-react'
 
 import './modal.less'
@@ -19,6 +21,12 @@ const Modal = (props) => {
         }}>+</a>
     </div>
   )
+}
+
+Modal.propTypes = {
+  onClose: PropTypes.func,
+  content: PropTypes.string,
+  open: PropTypes.bool,
 }
 
 export default Modal;

@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { Grid, Form } from 'semantic-ui-react'
+import PropTypes from 'prop-types'
 
+import { Grid, Form } from 'semantic-ui-react'
 import { MoneyInput } from '../../atoms'
 import { CALCULATOR_STEPS } from '../../../constants'
 import './pricePerUnit.less'
@@ -69,6 +70,14 @@ const PricePerUnit = (props) => {
       </Form>
     </div>
   )
+}
+
+PricePerUnit.propTypes = {
+  goToStep: PropTypes.func.isRequired,
+  restart: PropTypes.func.isRequired,
+  setUnitPrice: PropTypes.func.isRequired,
+  value: PropTypes.number,
+  visible: PropTypes.bool.isRequired,
 }
 
 export default PricePerUnit;

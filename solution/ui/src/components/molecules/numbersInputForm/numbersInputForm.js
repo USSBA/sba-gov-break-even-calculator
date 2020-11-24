@@ -1,6 +1,7 @@
 import React from 'react'
-import { Form, Grid } from 'semantic-ui-react'
+import PropTypes from 'prop-types'
 
+import { Form, Grid } from 'semantic-ui-react'
 import { MoneyInput } from '../../atoms'
 
 import './numbersInputForm.less'
@@ -23,6 +24,11 @@ const NumbersInputForm = (props) => {
      )
    })
  )
+}
+
+NumbersInputForm.propTypes = {
+  fields: PropTypes.arrayOf(PropTypes.object),
+  onChange: PropTypes.func.isRequired,
 }
 
 export default NumbersInputForm

@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { Form, Radio, Grid } from 'semantic-ui-react'
 import { NumbersInputForm } from '../../molecules'
 import { MoneyInput } from '../../atoms'
@@ -148,6 +150,13 @@ class FixedCosts extends React.Component {
       </div>
     )
   }
+}
+
+FixedCosts.propTypes = {
+  goToStep: PropTypes.func.isRequired,
+  setFixedCost: PropTypes.func.isRequired,
+  totalFixedCosts: PropTypes.number,
+  visible: PropTypes.bool.isRequired,
 }
 
 export default FixedCosts

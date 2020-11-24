@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { Form, Icon, Radio, Grid } from 'semantic-ui-react'
 import { NumbersInputForm } from '../../molecules'
 import { MoneyInput } from '../../atoms'
@@ -176,6 +178,15 @@ class VariableCosts extends React.Component {
       </div>
     )
   }
+}
+
+VariableCosts.propTypes = {
+  goToStep: PropTypes.func.isRequired,
+  restart: PropTypes.func.isRequired,
+  setVariableCost: PropTypes.func.isRequired,
+  value: PropTypes.number,
+  pricePerUnit: PropTypes.number.isRequired,
+  visible: PropTypes.bool.isRequired,
 }
 
 export default VariableCosts

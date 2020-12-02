@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { Card, Table } from 'semantic-ui-react'
 import { sortBy } from 'lodash';
 import { formatNumber } from '../../../helpers'
@@ -120,6 +122,10 @@ class BreakEvenDataTable extends React.Component {
       </Card>
     )
   }
+}
+
+BreakEvenDataTable.propTypes = {
+  data: PropTypes.objectOf(PropTypes.number).isRequired
 }
 
 export default BreakEvenDataTable;

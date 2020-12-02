@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-
+import PropTypes from 'prop-types'
 import { Grid, Input, Form } from 'semantic-ui-react'
 import { formatNumber } from '../../../helpers'
 import './editableTotal.less'
@@ -110,6 +110,13 @@ const EditableTotal = (props) => {
       </Grid.Column>
     </Grid.Row>
   )
+}
+
+EditableTotal.propTypes = {
+  onEdit: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['units', 'currency']),
+  value: PropTypes.number,
 }
 
 export default EditableTotal;

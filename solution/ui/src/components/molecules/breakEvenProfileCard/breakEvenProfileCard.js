@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
 import { Card, Grid } from 'semantic-ui-react'
 import { Modal } from '../../atoms'
@@ -63,6 +64,17 @@ const BreakEvenProfileCard = (props) => {
       </Card.Content>
     </Card>
   )
+}
+
+BreakEvenProfileCard.propTypes = {
+  updateNumUnits: PropTypes.func.isRequired,
+  updateFixedCost: PropTypes.func.isRequired,
+  updatePricePerUnit: PropTypes.func.isRequired,
+  updateVariableCost: PropTypes.func.isRequired,
+  numUnits: PropTypes.number.isRequired,
+  pricePerUnit: PropTypes.number.isRequired,
+  totalFixedCost: PropTypes.number.isRequired,
+  variableCostPerUnit: PropTypes.number.isRequired,
 }
 
 export default BreakEvenProfileCard

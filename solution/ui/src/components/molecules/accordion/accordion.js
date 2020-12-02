@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import {
     Accordion,
     AccordionItem,
@@ -46,6 +48,10 @@ const BecAccordion = (props) => {
         </Accordion>
       </div>
     </div>)
+}
+
+BecAccordion.propTypes = {
+  data: PropTypes.objectOf(PropTypes.string)
 }
 
 export default BecAccordion;

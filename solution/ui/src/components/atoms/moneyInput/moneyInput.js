@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import { Form, Input } from 'semantic-ui-react'
 
 const errorContent = (error) => {
@@ -24,6 +26,16 @@ const MoneyInput = (props) => {
         />
     </Form.Input>
   )
+}
+
+MoneyInput.propTypes = {
+  ariaLabel: PropTypes.string,
+  autoFocus: PropTypes.bool,
+  formError: PropTypes.bool,
+  inputRef: PropTypes.object,
+  onChange: PropTypes.func,
+  name: PropTypes.string,
+  value: PropTypes.number,
 }
 
 export default MoneyInput

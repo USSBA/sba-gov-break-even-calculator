@@ -77,35 +77,37 @@ class BreakEvenCalculator extends React.Component {
         <Grid columns={1}>
           <Grid.Column>
             <Hero>
-              <FixedCosts
-                visible={this.state.stepNum === CALCULATOR_STEPS.FIXED_COSTS}
-                goToStep={this.goToStep}
-                setFixedCost={this.updateFixedCost}
-                totalFixedCosts={this.state.totalFixedCost}
-                key={this.state.shouldReset} // change in key forces a re-mount
-                />
-              <UnitSales 
-                visible={this.state.stepNum === CALCULATOR_STEPS.UNIT_SALES}
-                goToStep={this.goToStep}
-                setNumUnits={this.updateNumUnits}
-                value={this.state.numUnits}
-                restart={this.restartAnalysis}
-                />
-              <PricePerUnit 
-                visible={this.state.stepNum === CALCULATOR_STEPS.PRICE_PER_UNIT}
-                goToStep={this.goToStep}
-                setUnitPrice={this.updatePricePerUnit}
-                value={this.state.pricePerUnit}
-                restart={this.restartAnalysis}
-                />
-              <VariableCosts
-                visible={this.state.stepNum === CALCULATOR_STEPS.VARIABLE_COSTS}
-                pricePerUnit={this.state.pricePerUnit}
-                goToStep={this.goToStep}
-                setVariableCost={this.updateVariableCost}
-                restart={this.restartAnalysis}
-                key={this.state.shouldReset + 1} // change in key forces a re-mount
-                />
+              <>
+                <FixedCosts
+                  visible={this.state.stepNum === CALCULATOR_STEPS.FIXED_COSTS}
+                  goToStep={this.goToStep}
+                  setFixedCost={this.updateFixedCost}
+                  totalFixedCosts={this.state.totalFixedCost}
+                  key={this.state.shouldReset} // change in key forces a re-mount
+                  />
+                <UnitSales 
+                  visible={this.state.stepNum === CALCULATOR_STEPS.UNIT_SALES}
+                  goToStep={this.goToStep}
+                  setNumUnits={this.updateNumUnits}
+                  value={this.state.numUnits}
+                  restart={this.restartAnalysis}
+                  />
+                <PricePerUnit 
+                  visible={this.state.stepNum === CALCULATOR_STEPS.PRICE_PER_UNIT}
+                  goToStep={this.goToStep}
+                  setUnitPrice={this.updatePricePerUnit}
+                  value={this.state.pricePerUnit}
+                  restart={this.restartAnalysis}
+                  />
+                <VariableCosts
+                  visible={this.state.stepNum === CALCULATOR_STEPS.VARIABLE_COSTS}
+                  pricePerUnit={this.state.pricePerUnit}
+                  goToStep={this.goToStep}
+                  setVariableCost={this.updateVariableCost}
+                  restart={this.restartAnalysis}
+                  key={this.state.shouldReset + 1} // change in key forces a re-mount
+                  />
+              </>
             </Hero>
           </Grid.Column>
         </Grid>

@@ -6,20 +6,33 @@ import { fixedCostInitState } from './fixedCostsFieldsData'
 import { CALCULATOR_STEPS } from '../../../constants'
 
 describe('FixedCosts', () => {
+  const goToStepMock = jest.fn()
+
+  const baseProps = {
+    visible: true,
+    setFixedCost: jest.fn(),
+    restart: jest.fn(),
+    goToStep: goToStepMock,
+  }
+
+  beforeEach(() => {
+    goToStepMock.mockReset()
+  })
+
   it('renders without crashing', () => {
-    const wrapper = shallow(<FixedCosts />);
+    const wrapper = shallow(<FixedCosts {...baseProps} />);
     expect(wrapper).toHaveLength(1);
   })
 
   it('has correct initial state', () => {
-    const wrapper = shallow(<FixedCosts />);
+    const wrapper = shallow(<FixedCosts {...baseProps} />);
     expect(wrapper.state().knowFixedCosts).toBe(null)
     expect(wrapper.state().totalFixedCosts).toEqual('')
     expect(wrapper.state().fields).toEqual(fixedCostInitState);
   })
 
   it('changes knowFixedCosts state on radio button selection', () => {
-    const wrapper = shallow(<FixedCosts />);
+    const wrapper = shallow(<FixedCosts {...baseProps} />);
     const yesButton = wrapper.find('[label="Yes"]')
     const noButton = wrapper.find('[name="noBox"]')
     yesButton.simulate('change', null, {value: 'yes'})
@@ -29,21 +42,21 @@ describe('FixedCosts', () => {
   })
 
   it('shows the continue button when a selection has been made', () => {
-    const wrapper = shallow(<FixedCosts />);
+    const wrapper = shallow(<FixedCosts {...baseProps} />);
     expect(wrapper.find('FormButton')).toHaveLength(0)
     wrapper.setState({knowFixedCosts: 'yes'})
     expect(wrapper.find('FormButton')).toHaveLength(1)
   })
 
   it('shows fixed cost suggestion box on yes selection', () => {
-    const wrapper = shallow(<FixedCosts />);
+    const wrapper = shallow(<FixedCosts {...baseProps} />);
     expect(wrapper.find('.fixedCost-suggestion')).toHaveLength(0)
     wrapper.setState({knowFixedCosts: 'yes'})
     expect(wrapper.find('.fixedCost-suggestion')).toHaveLength(1)
   })
 
   it('shows NumbersInputForm on suggestion link click', () => {
-    const wrapper = shallow(<FixedCosts />);
+    const wrapper = shallow(<FixedCosts {...baseProps} />);
     wrapper.setState({knowFixedCosts: 'yes'})
     expect(wrapper.find('NumbersInputForm')).toHaveLength(0)
     wrapper.find('.fixedCost-suggestion a').simulate('click')
@@ -51,20 +64,20 @@ describe('FixedCosts', () => {
   })
 
   it('shows NumbersInputForm on no selection', () => {
-    const wrapper = shallow(<FixedCosts />);
+    const wrapper = shallow(<FixedCosts {...baseProps} />);
     expect(wrapper.find('NumbersInputForm')).toHaveLength(0)
     wrapper.setState({knowFixedCosts: 'no'})
     expect(wrapper.find('NumbersInputForm')).toHaveLength(1)
   })
 
   it('has the correct number of fields in the form', () => {
-    const wrapper = shallow(<FixedCosts />);
+    const wrapper = shallow(<FixedCosts {...baseProps} />);
     wrapper.setState({knowFixedCosts: 'no'})
     expect(wrapper.find('NumbersInputForm').dive()).toHaveLength(10)
   })
 
   it('updates the corresponding field in state', () => {
-    const wrapper = shallow(<FixedCosts />);
+    const wrapper = shallow(<FixedCosts {...baseProps} />);
     wrapper.setState({knowFixedCosts: 'no'})
     wrapper.find('NumbersInputForm').simulate('change', null, {name: 'Rent', value: '100'})
     expect(wrapper.state().fields.Rent).toEqual('100')
@@ -72,9 +85,8 @@ describe('FixedCosts', () => {
 
   it('calls setFixedCost and goToStep functions on submit', () => {
     const setFixedCostMock = jest.fn()
-    const goToStepMock = jest.fn()
     const wrapper = shallow(
-      <FixedCosts setFixedCost={setFixedCostMock} goToStep={goToStepMock} />
+      <FixedCosts {...baseProps} setFixedCost={setFixedCostMock} />
     );
     wrapper.setState({totalFixedCosts: 10}) 
     wrapper.setState({knowFixedCosts: 'yes'})
@@ -86,9 +98,8 @@ describe('FixedCosts', () => {
 
   it('calls setFixedCost and does not go to the next step when fixedcost field is empty', () => {
     const setFixedCostMock = jest.fn()
-    const goToStepMock = jest.fn()
     const wrapper = shallow(
-      <FixedCosts setFixedCost={setFixedCostMock} goToStep={goToStepMock} />
+      <FixedCosts {...baseProps} setFixedCost={setFixedCostMock} />
     );
     wrapper.setState({knowFixedCosts: 'yes'})
     
@@ -98,10 +109,8 @@ describe('FixedCosts', () => {
   })
 
   it ('goes to next step if at least one of the form fields is filled', () => {
-    const setFixedCostMock = jest.fn()
-    const goToStepMock = jest.fn()
     const wrapper = shallow(
-      <FixedCosts setFixedCost={setFixedCostMock} goToStep={goToStepMock} />
+      <FixedCosts {...baseProps} />
     );
     wrapper.setState({knowFixedCosts: 'no'})
     wrapper.find('NumbersInputForm').simulate('change', null, {name: 'Rent', value: '100'})
@@ -112,10 +121,8 @@ describe('FixedCosts', () => {
   })
 
   it ('does not go to next step if all the fields are empty', () => {
-    const setFixedCostMock = jest.fn()
-    const goToStepMock = jest.fn()
     const wrapper = shallow(
-      <FixedCosts setFixedCost={setFixedCostMock} goToStep={goToStepMock} />
+      <FixedCosts {...baseProps} />
     );
     wrapper.setState({knowFixedCosts: 'no'})
     wrapper.find('Form').simulate('submit')
@@ -125,10 +132,8 @@ describe('FixedCosts', () => {
   })
 
   it ('outputs a message if user has not filled at least one field', () => {
-    const setFixedCostMock = jest.fn()
-    const goToStepMock = jest.fn()
     const wrapper = shallow(
-      <FixedCosts setFixedCost={setFixedCostMock} goToStep={goToStepMock} />
+      <FixedCosts {...baseProps}/>
     );
     wrapper.setState({knowFixedCosts: 'no'})
     wrapper.find('Form').simulate('submit')
@@ -137,7 +142,7 @@ describe('FixedCosts', () => {
   })
 
   it('resets fields on radio button switch', () => {
-    const wrapper = shallow(<FixedCosts />);
+    const wrapper = shallow(<FixedCosts {...baseProps} />);
     wrapper.setState({knowFixedCosts: 'no'})
     wrapper.setState({fields: {Rent: '100'}})
     wrapper.find('[label="Yes"]').simulate('change', null, {value: 'yes'})
@@ -145,7 +150,7 @@ describe('FixedCosts', () => {
   })
 
   it('correctly resets the total cost value on radio button change', () => {
-    const wrapper = shallow(<FixedCosts />);
+    const wrapper = shallow(<FixedCosts {...baseProps}/>);
     const yesButton = wrapper.find('[label="Yes"]')
     const noButton = wrapper.find('[name="noBox"]')
     yesButton.simulate('change', null, {value: 'yes'})
@@ -155,7 +160,7 @@ describe('FixedCosts', () => {
   })
 
   it('correctly calculates total cost when a field value is erased', () => {
-    const wrapper = shallow(<FixedCosts />);
+    const wrapper = shallow(<FixedCosts {...baseProps}/>);
     wrapper.setState({knowFixedCosts: 'no'})
     wrapper.find('NumbersInputForm').simulate('change', null, {name: 'Rent', value: '100'})
     wrapper.find('NumbersInputForm').simulate('change', null, {name: 'Salaries', value: '3000'})

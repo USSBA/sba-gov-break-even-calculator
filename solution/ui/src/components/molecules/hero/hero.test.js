@@ -4,7 +4,7 @@ import Hero from './hero'
 
 describe('Hero', () => {
   it('contains calculator icon', () => {
-    const wrapper = shallow(<Hero />)
+    const wrapper = shallow(<Hero><div>hi</div></Hero>)
     expect(wrapper.find('Image')).toHaveLength(1)
   })
 })

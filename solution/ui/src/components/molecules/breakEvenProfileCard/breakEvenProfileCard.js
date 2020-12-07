@@ -71,10 +71,22 @@ BreakEvenProfileCard.propTypes = {
   updateFixedCost: PropTypes.func.isRequired,
   updatePricePerUnit: PropTypes.func.isRequired,
   updateVariableCost: PropTypes.func.isRequired,
-  numUnits: PropTypes.number.isRequired,
-  pricePerUnit: PropTypes.number.isRequired,
-  totalFixedCost: PropTypes.number.isRequired,
-  variableCostPerUnit: PropTypes.number.isRequired,
+  numUnits: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  pricePerUnit: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  totalFixedCost: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  variableCostPerUnit: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ])
 }
 
 export default BreakEvenProfileCard

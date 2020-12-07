@@ -125,7 +125,7 @@ class BreakEvenDataTable extends React.Component {
 }
 
 BreakEvenDataTable.propTypes = {
-  data: PropTypes.objectOf(PropTypes.number).isRequired
+  data: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default BreakEvenDataTable;

@@ -136,10 +136,22 @@ const Results = (props) => {
 }
 
 Results.propTypes = {
-  variableCostPerUnit: PropTypes.number.isRequired,
-  numUnits: PropTypes.number.isRequired,
-  pricePerUnit: PropTypes.number.isRequired,
-  totalFixedCost: PropTypes.number.isRequired,
+  variableCostPerUnit: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+  numUnits: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+  pricePerUnit: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+  totalFixedCost: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
   updateFixedCost: PropTypes.func.isRequired,
   updateNumUnits: PropTypes.func.isRequired,
   updatePricePerUnit: PropTypes.func.isRequired,

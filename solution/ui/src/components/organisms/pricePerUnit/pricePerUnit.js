@@ -76,7 +76,10 @@ PricePerUnit.propTypes = {
   goToStep: PropTypes.func.isRequired,
   restart: PropTypes.func.isRequired,
   setUnitPrice: PropTypes.func.isRequired,
-  value: PropTypes.number,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   visible: PropTypes.bool.isRequired,
 }
 

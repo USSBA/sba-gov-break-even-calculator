@@ -88,7 +88,10 @@ UnitSales.propTypes = {
   goToStep: PropTypes.func.isRequired,
   restart: PropTypes.func.isRequired,
   setNumUnits: PropTypes.func.isRequired,
-  value: PropTypes.number,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   visible: PropTypes.bool.isRequired,
 }
 

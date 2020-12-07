@@ -85,12 +85,30 @@ const BreakEvenResultsCard = (props) => {
 }
 
 BreakEvenResultsCard.propTypes = {
-  expectedUnits: PropTypes.number.isRequired,
-  breakEvenUnits: PropTypes.number.isRequired,
-  breakEvenRevenue: PropTypes.number.isRequired,
-  pricePerUnit: PropTypes.number.isRequired,
-  variableCost: PropTypes.number.isRequired,
-  fixedCost: PropTypes.number.isRequired,
+  expectedUnits: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  breakEvenUnits: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  breakEvenRevenue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  pricePerUnit: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  variableCost: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  fixedCost: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
 }
 
 export default BreakEvenResultsCard

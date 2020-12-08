@@ -73,19 +73,19 @@ BreakEvenProfileCard.propTypes = {
   updateVariableCost: PropTypes.func.isRequired,
   numUnits: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number,
+    PropTypes.number
   ]),
   pricePerUnit: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number,
+    PropTypes.number
   ]),
   totalFixedCost: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number,
+    PropTypes.number
   ]),
   variableCostPerUnit: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number,
+    PropTypes.number
   ])
 }
 

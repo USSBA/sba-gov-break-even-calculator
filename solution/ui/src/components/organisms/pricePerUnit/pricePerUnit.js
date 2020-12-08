@@ -78,9 +78,9 @@ PricePerUnit.propTypes = {
   setUnitPrice: PropTypes.func.isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number,
+    PropTypes.number
   ]),
-  visible: PropTypes.bool.isRequired,
+  visible: PropTypes.bool.isRequired
 }
 
 export default PricePerUnit;

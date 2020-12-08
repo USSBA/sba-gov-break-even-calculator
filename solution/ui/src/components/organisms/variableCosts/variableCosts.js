@@ -187,9 +187,9 @@ VariableCosts.propTypes = {
   value: PropTypes.number,
   pricePerUnit: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number,
+    PropTypes.number
   ]).isRequired,
-  visible: PropTypes.bool.isRequired,
+  visible: PropTypes.bool.isRequired
 }
 
 export default VariableCosts

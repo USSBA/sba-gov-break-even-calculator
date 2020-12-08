@@ -138,24 +138,24 @@ const Results = (props) => {
 Results.propTypes = {
   variableCostPerUnit: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number,
+    PropTypes.number
   ]).isRequired,
   numUnits: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number,
+    PropTypes.number
   ]).isRequired,
   pricePerUnit: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number,
+    PropTypes.number
   ]).isRequired,
   totalFixedCost: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number,
+    PropTypes.number
   ]).isRequired,
   updateFixedCost: PropTypes.func.isRequired,
   updateNumUnits: PropTypes.func.isRequired,
   updatePricePerUnit: PropTypes.func.isRequired,
-  updateVariableCost: PropTypes.func.isRequired,
+  updateVariableCost: PropTypes.func.isRequired
 }
 
 export default Results

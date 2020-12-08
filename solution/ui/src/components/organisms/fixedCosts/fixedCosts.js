@@ -157,9 +157,9 @@ FixedCosts.propTypes = {
   setFixedCost: PropTypes.func.isRequired,
   totalFixedCosts: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number,
+    PropTypes.number
   ]),
-  visible: PropTypes.bool.isRequired,
+  visible: PropTypes.bool.isRequired
 }
 
 export default FixedCosts

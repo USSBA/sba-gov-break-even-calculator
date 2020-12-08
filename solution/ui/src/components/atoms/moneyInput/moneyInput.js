@@ -37,7 +37,7 @@ MoneyInput.propTypes = {
   name: PropTypes.string,
   value: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number,
+    PropTypes.number
   ])
 }
 

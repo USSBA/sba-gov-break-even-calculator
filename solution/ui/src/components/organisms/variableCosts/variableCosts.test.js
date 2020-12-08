@@ -13,7 +13,7 @@ describe('VariableCosts', () => {
     setVariableCost: jest.fn(),
     pricePerUnit: '12',
     restart: jest.fn(),
-    goToStep: goToStepMock,
+    goToStep: goToStepMock
   }
 
   beforeEach(() => {

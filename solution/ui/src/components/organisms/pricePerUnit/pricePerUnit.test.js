@@ -13,7 +13,7 @@ describe('PricePerUnit', () => {
     goToStep: goToStepMock,
     restart: restartMock,
     setUnitPrice: setUnitPriceMock,
-    visible: true,
+    visible: true
   }
 
   afterEach(() => {

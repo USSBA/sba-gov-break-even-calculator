@@ -8,6 +8,7 @@ module.exports = {
   plugins: [
     `gatsby-plugin-pnpm`,
     `gatsby-plugin-less`,
+    `gatsby-plugin-webpack-size`,
     {
       resolve: 'gatsby-plugin-eslint',
       options: {

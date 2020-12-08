@@ -14,7 +14,7 @@ describe('UnitSales', () => {
     goToStep: goToStepMock,
     restart: restartMock,
     setNumUnits: setNumUnitsMock,
-    visible: true,
+    visible: true
   }
 
   afterEach(() => {

@@ -51,7 +51,7 @@ const BecAccordion = (props) => {
 }
 
 BecAccordion.propTypes = {
-  data: PropTypes.objectOf(PropTypes.string)
+  data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string))
 }
 
 export default BecAccordion;

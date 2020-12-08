@@ -11,12 +11,12 @@ describe('NumbersInputForm', () => {
   const onChangeMock = jest.fn()
 
   it('renders the correct number of fields', () => {
-    const wrapper = shallow(<NumbersInputForm fields={fields} />)
+    const wrapper = shallow(<NumbersInputForm fields={fields} onChange={onChangeMock}/>)
     expect(wrapper).toHaveLength(2)
   })
 
   it('renders correct field name and description', () => {
-    const wrapper = shallow(<NumbersInputForm fields={fields} />)
+    const wrapper = shallow(<NumbersInputForm fields={fields} onChange={onChangeMock}/>)
     expect(wrapper.find('label').first().text()).toBe(fields[0].name)
     expect(wrapper.find('p').first().text()).toBe(fields[0].description)
   })

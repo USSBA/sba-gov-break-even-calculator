@@ -9,19 +9,26 @@ describe('PricePerUnit', () => {
   const goToStepMock = jest.fn()
   const restartMock = jest.fn()
 
+  const baseProps = {
+    goToStep: goToStepMock,
+    restart: restartMock,
+    setUnitPrice: setUnitPriceMock,
+    visible: true
+  }
+
   afterEach(() => {
     jest.clearAllMocks()
   })
 
   it('renders money input field and submit button', () => {
-    const wrapper = shallow(<PricePerUnit />)
+    const wrapper = shallow(<PricePerUnit {...baseProps} />)
     expect(wrapper.find('MoneyInput')).toHaveLength(1)
     expect(wrapper.find('FormButton')).toHaveLength(1)
   })
 
   it('calls setUnitPrice on change', () => {
     const wrapper = shallow(
-      <PricePerUnit setUnitPrice={setUnitPriceMock} goToStep={goToStepMock} />
+      <PricePerUnit {...baseProps} />
     )
     wrapper.find('MoneyInput').simulate('change', null, {value: 100})
     expect(setUnitPriceMock).toHaveBeenCalledWith(100)
@@ -29,7 +36,7 @@ describe('PricePerUnit', () => {
 
   it('sets formError to false when input field is changed.', () => {
     const wrapper = shallow(
-      <PricePerUnit setUnitPrice={setUnitPriceMock} goToStep={goToStepMock} />
+      <PricePerUnit {...baseProps} />
     )
 
     wrapper.find('MoneyInput').simulate('change', null, {value: 100})
@@ -38,7 +45,7 @@ describe('PricePerUnit', () => {
 
   it('goes to the next step on submit', () => {
     const wrapper = shallow(
-      <PricePerUnit setUnitPrice={setUnitPriceMock} goToStep={goToStepMock} />
+      <PricePerUnit {...baseProps} />
     )
 
     wrapper.setProps({value: 100})
@@ -48,7 +55,7 @@ describe('PricePerUnit', () => {
 
   it('does not go to the next step on submit if field is empty', () => {
     const wrapper = shallow(
-      <PricePerUnit setUnitPrice={setUnitPriceMock} goToStep={goToStepMock} />
+      <PricePerUnit {...baseProps} />
     )
 
     wrapper.find('Form').simulate('submit')
@@ -57,7 +64,7 @@ describe('PricePerUnit', () => {
 
   it('returns an error if field is empty', () => {
     const wrapper = shallow(
-      <PricePerUnit setUnitPrice={setUnitPriceMock} goToStep={goToStepMock} />
+      <PricePerUnit {...baseProps} />
     )
 
     wrapper.find('Form').simulate('submit')    
@@ -66,7 +73,7 @@ describe('PricePerUnit', () => {
 
   it('goes to the previous step on back click', () => {
     const wrapper = shallow(
-      <PricePerUnit goToStep={goToStepMock} />
+      <PricePerUnit {...baseProps} />
     )
     wrapper.find('a').first().simulate('click')
     expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.PRICE_PER_UNIT - 1)
@@ -74,7 +81,7 @@ describe('PricePerUnit', () => {
 
   it('calls restart prop on restart analysis click', () => {
     const wrapper = shallow(
-      <PricePerUnit restart={restartMock} />
+      <PricePerUnit {...baseProps} />
     )
     wrapper.find('a').last().simulate('click')
     expect(restartMock).toHaveBeenCalledTimes(1)

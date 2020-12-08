@@ -185,8 +185,11 @@ VariableCosts.propTypes = {
   restart: PropTypes.func.isRequired,
   setVariableCost: PropTypes.func.isRequired,
   value: PropTypes.number,
-  pricePerUnit: PropTypes.number.isRequired,
-  visible: PropTypes.bool.isRequired,
+  pricePerUnit: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired,
+  visible: PropTypes.bool.isRequired
 }
 
 export default VariableCosts

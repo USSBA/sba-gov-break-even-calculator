@@ -116,7 +116,10 @@ EditableTotal.propTypes = {
   onEdit: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['units', 'currency']),
-  value: PropTypes.number,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ])
 }
 
 export default EditableTotal;

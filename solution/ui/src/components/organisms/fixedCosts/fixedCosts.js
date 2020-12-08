@@ -155,8 +155,11 @@ class FixedCosts extends React.Component {
 FixedCosts.propTypes = {
   goToStep: PropTypes.func.isRequired,
   setFixedCost: PropTypes.func.isRequired,
-  totalFixedCosts: PropTypes.number,
-  visible: PropTypes.bool.isRequired,
+  totalFixedCosts: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+  visible: PropTypes.bool.isRequired
 }
 
 export default FixedCosts

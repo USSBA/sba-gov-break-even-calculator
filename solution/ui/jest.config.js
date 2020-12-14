@@ -13,4 +13,5 @@ module.exports = {
   },
   testURL: `http://localhost`,
   setupFiles: [`<rootDir>/loadershim.js`,`<rootDir>/test/setup.js`],
+  setupFilesAfterEnv: ["<rootDir>/setup-test-env.js"]
 }

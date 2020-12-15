@@ -6,7 +6,7 @@ import { BreakEvenCalculator } from './index.js'
 
 test('renders an accordion', () => {
   render(<BreakEvenCalculator />)
-  expect(screen.getByTestId('accordion')).toHaveLength(1)
+  expect(screen.getAllByTestId('accordion')).toHaveLength(1)
 })
 
 // describe('BreakEvenCalculator', () => {

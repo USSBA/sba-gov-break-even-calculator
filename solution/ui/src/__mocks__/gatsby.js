@@ -30,5 +30,14 @@ module.exports = {
     },
   })
 ),
-  useStaticQuery: jest.fn(),
+  useStaticQuery: jest.fn().mockReturnValue({
+    site: {
+      siteMetadata: {
+        title: `BEP Calc`,
+        description: `test`,
+        author: `SBA`,
+        siteUrl: `test`,
+      },
+    },
+})
 }

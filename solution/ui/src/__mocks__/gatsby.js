@@ -30,14 +30,14 @@ module.exports = {
     },
   })
 ),
-  useStaticQuery: jest.fn().mockReturnValue({
-    site: {
-      siteMetadata: {
-        title: `BEP Calc`,
-        description: `test`,
-        author: `SBA`,
-        siteUrl: `test`,
-      },
+useStaticQuery: jest.fn().mockReturnValue({
+  site: {
+    siteMetadata: {
+      title: `BEP Calc`,
+      description: `test`,
+      author: `SBA`,
+      siteUrl: `test`,
     },
+  },
 })
 }

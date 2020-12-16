@@ -8,7 +8,7 @@ import { CALCULATOR_STEPS, FAQ_CONTENT } from '../constants'
 import '../styles/typography.less'
 import './index.less'
 
-export class BreakEvenCalculator extends React.Component {
+class BreakEvenCalculator extends React.Component {
   constructor(props) {
     super(props)
     this.state = {

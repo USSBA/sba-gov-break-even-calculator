@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { render, screen } from '@testing-library/react';
 
-import { BreakEvenCalculator } from './index.js'
+import BreakEvenCalculator from './index.js'
 
 test('renders an accordion', () => {
   render(<BreakEvenCalculator />)

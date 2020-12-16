@@ -17,7 +17,7 @@ import {
 const BecAccordion = (props) => {
   return(
     <div className='accordionContainer'>
-      <div className='accordionContent'>
+      <div className='accordionContent' data-testid='accordion'>
         <Accordion allowZeroExpanded>
           {props.data.map(faq => (
             <AccordionItem key={faq.question}>

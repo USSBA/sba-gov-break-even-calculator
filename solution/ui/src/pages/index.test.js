@@ -1,7 +1,13 @@
 import React from 'react'
 import { shallow } from 'enzyme'
+import { render, screen } from '@testing-library/react';
 
 import BreakEvenCalculator from './index.js'
+
+test('renders an accordion', () => {
+  render(<BreakEvenCalculator />)
+  expect(screen.getAllByTestId('accordion')).toHaveLength(1)
+})
 
 describe('BreakEvenCalculator', () => {
   it('renders without crashing', () => {
@@ -18,10 +24,5 @@ describe('BreakEvenCalculator', () => {
     expect(wrapper.find('EditableTotal')).toHaveLength(2)
     wrapper.setState({stepNum: 3})
     expect(wrapper.find('EditableTotal')).toHaveLength(3)
-  })
-
-  it('renders an accordion', () => {
-    const wrapper = shallow(<BreakEvenCalculator />)
-    expect(wrapper.find('BecAccordion')).toHaveLength(1)
   })
 })

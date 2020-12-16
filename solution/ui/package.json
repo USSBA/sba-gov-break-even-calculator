@@ -31,6 +31,10 @@
   "devDependencies": {
     "@aws-ee/serverless-settings-helper": "workspace:^1.0.0",
     "@aws-ee/serverless-ui-tools": "workspace:^1.0.0",
+    "@testing-library/dom": "^7.29.0",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/user-event": "^12.6.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.0.1",
     "babel-preset-gatsby": "^0.4.9",

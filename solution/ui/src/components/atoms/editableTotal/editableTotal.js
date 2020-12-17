@@ -60,9 +60,9 @@ const EditableTotal = (props) => {
 
   return (
     <Grid.Row verticalAlign='middle' className='editableTotal-row' columns={2}>
-      <Grid.Column computer={6} tablet={7} mobile={7} className='title'>{title}</Grid.Column>
+      <Grid.Column computer={6} tablet={7} mobile={7} className='title' data-testid='title'>{title}</Grid.Column>
       <Grid.Column computer={10} tablet={9} mobile={9} textAlign='right' className='editableSection'>
-          <Form className='editValueForm' onSubmit={handleApply} size='small'>
+          <Form role='form' className='editValueForm' onSubmit={handleApply} size='small'>
             <Form.Field>
               <div ref={node}>
                 {isEditing && 
@@ -70,15 +70,18 @@ const EditableTotal = (props) => {
                     size='small' 
                     {...(formError ? {error: errorContent()} : {})} >
                     <Input
+                      role='input'
                       width={8}
                       size='small'
                       aria-label={title}
+                      name={title}
                       autoFocus
                       label={{basic: true, content: `${type === 'currency' ? '$' : 'Units'}`}} 
                       action={!formError && {
                         color: 'blue',
                         content:'APPLY',
                         size: 'small',
+                        'aria-label':'apply',
                         onClick: () => handleApply(),
                       }}
                       type='number'
@@ -92,11 +95,12 @@ const EditableTotal = (props) => {
           </Form>
         {!isEditing && (
           <Grid columns={2} stackable={false}>
-            <Grid.Column className='totalValue-container editableValue' computer={11} tablet={10} mobile={10} verticalAlign='middle'>
+            <Grid.Column data-testid='value' className='totalValue-container editableValue' computer={11} tablet={10} mobile={10} verticalAlign='middle'>
               {formatTotals(props.value)}
             </Grid.Column>
             <Grid.Column className='editTotal-container' computer={5} tablet={6} mobile={6} verticalAlign='middle'>
               <a 
+                role='button'
                 aria-label={`edit ${title}`} 
                 href="/" className='editButton' 
                 onClick={(e) => {

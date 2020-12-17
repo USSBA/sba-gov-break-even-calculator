@@ -66,6 +66,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "jest",
+    "test-watch": "jest --watch",
     "lint": "eslint src --fix"
   },
   "repository": {

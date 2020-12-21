@@ -1,28 +1,12 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { render, screen, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
+import { render, screen } from '@testing-library/react';
 
 import BreakEvenCalculator from './index.js'
 
 test('renders an accordion', () => {
   render(<BreakEvenCalculator />)
   expect(screen.getAllByTestId('accordion')).toHaveLength(1)
-})
-
-test('Editable Total updates value when apply is clicked', () => {
-  render(<BreakEvenCalculator />)
-  // setup to get to page two where editable total appears
-  const totalFixedCostYesRadioText = 'yes, I know the total of my monthly fixed costs'
-  userEvent.click(screen.getByLabelText(totalFixedCostYesRadioText))
-  userEvent.type(screen.getByLabelText('total fixed cost'), '1000')
-  fireEvent.submit(screen.getByTestId('fixedCosts-form'))
-  // test eaditable total onEdit implementation
-  userEvent.click(screen.getByLabelText(`edit Total fixed cost`))
-  userEvent.type(screen.getByRole('input'), '0')
-  expect(screen.getByRole('input')).toHaveValue(10000)
-  userEvent.click(screen.getByLabelText('apply'))
-  expect(screen.getByTestId('value')).toHaveTextContent('10,000')
 })
 
 describe('BreakEvenCalculator', () => {

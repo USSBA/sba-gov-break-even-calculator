@@ -9,7 +9,9 @@ const Modal = (props) => {
   const { onClose, content, open } = props;
 
   return(
-    <div className={`confirmationModal-container ${open ? '' : 'hidden'}`}>
+    <div 
+      className={`confirmationModal-container ${open ? '' : 'hidden'}`}
+      aria-hidden={!open} >
       <p role={open ? 'alert' : ''} className='modalContent'><Icon name='check circle' size='small' />{content}</p>
       <a 
         aria-label='close modal'

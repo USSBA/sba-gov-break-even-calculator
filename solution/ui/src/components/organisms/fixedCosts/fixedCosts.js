@@ -76,7 +76,7 @@ class FixedCosts extends React.Component {
           For this calculator the time period is calculated monthly. <br/>
           <span className="subtext">* indicates required field</span>
         </p>
-        <Form onSubmit={this.handleSubmit}>
+        <Form data-testid='fixedCosts-form' onSubmit={this.handleSubmit}>
           <div role='group' aria-labelledby='fixedCostQuestion'>
             <h4 id='fixedCostQuestion'>Do you know the total of your monthly fixed costs?*</h4>
             <Grid container columns={2} stackable>

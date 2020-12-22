@@ -27,7 +27,8 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
     "semantic-ui-less": "^2.4.1",
-    "semantic-ui-react": "^0.88.2"
+    "semantic-ui-react": "^0.88.2",
+    "snyk": "^1.437.3"
   },
   "devDependencies": {
     "@aws-ee/serverless-settings-helper": "workspace:^1.0.0",
@@ -68,7 +69,9 @@
     "clean": "gatsby clean",
     "test": "jest",
     "test-watch": "jest --watch",
-    "lint": "eslint src --fix"
+    "lint": "eslint src --fix",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -77,5 +80,6 @@
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
-  "build:ci": "node_modules/.bin/gatsby build"
+  "build:ci": "node_modules/.bin/gatsby build",
+  "snyk": true
 }

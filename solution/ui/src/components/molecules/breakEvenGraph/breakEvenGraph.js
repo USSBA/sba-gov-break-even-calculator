@@ -316,7 +316,7 @@ export const drawLineChart = (data, windowWidth) => {
   setUpInteractiveTooltip()
   detectClickOutside()
 }
-class BreakEvenGraph extends React.Component {
+export class BreakEvenGraph extends React.Component {
   componentDidMount() {
     window.addEventListener('resize', () => drawLineChart(formatBreakEvenGraphData(this.props), window.innerWidth));
     drawLineChart(formatBreakEvenGraphData(this.props), window.innerWidth)
@@ -337,7 +337,7 @@ class BreakEvenGraph extends React.Component {
           <Grid>
             <Grid.Row columns={3}>
               <Grid.Column textAlign='center' computer={2} tablet={2} mobile={4}>
-                <Image src={graphIcon} centered alt='graph icon' size='tiny' left/>              
+                <Image src={graphIcon} centered alt='graph icon' size='tiny' left='true'/>              
               </Grid.Column>
               <Grid.Column computer={5} tablet={10} mobile={12} stretched>
                 <h3>Break-Even Point Graph</h3>
@@ -347,19 +347,19 @@ class BreakEvenGraph extends React.Component {
                 </div>
               </Grid.Column>
               <Grid.Column textAlign='center' computer={9} tablet={16} mobile={16}>
-                <Image className='labelImg' src={unitSalesImg} alt='unit sales label' size='small' left/>
-                <Image className='labelImg' src={totalCostImg} alt='total cost label' size='small' left/>              
-                <Image className='labelImg' src={fixedCostImg} alt='fixed cost label' size='small' left/> 
-                <Image className='labelImg' src={breakEvenPointImg} alt='breakeven point label' size='small' left/>                           
+                <Image className='labelImg' src={unitSalesImg} alt='unit sales label' size='small' left='true'/>
+                <Image className='labelImg' src={totalCostImg} alt='total cost label' size='small' left='true'/>              
+                <Image className='labelImg' src={fixedCostImg} alt='fixed cost label' size='small' left='true'/> 
+                <Image className='labelImg' src={breakEvenPointImg} alt='breakeven point label' size='small' left='true'/>                           
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
               <Grid.Column>
                 <div className='graphContainer'>
-                  <div id='lineChart'></div>
-                  <div className='unitLabel' aria-hidden='true'>Units Sold</div>
+                  <div id='lineChart' data-testid='graph'></div>
+                  <div className='unitLabel' data-testid='unit-sold' aria-hidden='true'>Units Sold</div>
                   <div id='tooltip'></div>
-                  <Card fluid className='tooltip breakEvenLabel' >	
+                  <Card data-testid='breakevenLabel' fluid className='tooltip breakEvenLabel' >	
                     <div className='units number'>	
                       { formatNumber(formatBreakEvenGraphData(this.props).breakEvenPoint.data[0].x) }	
                     </div>	

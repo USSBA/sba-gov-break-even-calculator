@@ -27,7 +27,8 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
     "semantic-ui-less": "^2.4.1",
-    "semantic-ui-react": "^0.88.2"
+    "semantic-ui-react": "^0.88.2",
+    "sharp": "^0.27.0"
   },
   "devDependencies": {
     "@aws-ee/serverless-settings-helper": "workspace:^1.0.0",

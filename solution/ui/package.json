@@ -51,6 +51,7 @@
     "gatsby-plugin-webpack-size": "^1.0.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.0.1",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
     "prettier": "2.0.5",
     "react-test-renderer": "^16.13.1",
     "serverless-deployment-bucket": "^1.1.2"
@@ -66,7 +67,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "jest",
+    "test": "jest --env=jest-environment-jsdom-sixteen",
     "test-watch": "jest --watch",
     "lint": "eslint src --fix"
   },

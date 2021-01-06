@@ -290,6 +290,7 @@ importers:
       react-accessible-accordion: 3.3.3_react-dom@16.13.1+react@16.13.1
       react-dom: 16.13.1_react@16.13.1
       react-helmet: 6.1.0_react@16.13.1
+      regenerator-runtime: 0.13.7
       semantic-ui-less: 2.4.1
       semantic-ui-react: 0.88.2_react-dom@16.13.1+react@16.13.1
       sharp: 0.27.0
@@ -365,6 +366,7 @@ importers:
       react-dom: ^16.13.1
       react-helmet: ^6.0.0
       react-test-renderer: ^16.13.1
+      regenerator-runtime: ^0.13.7
       semantic-ui-less: ^2.4.1
       semantic-ui-react: ^0.88.2
       serverless-deployment-bucket: ^1.1.2

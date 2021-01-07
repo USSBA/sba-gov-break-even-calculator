@@ -1,7 +1,6 @@
 ---
 to: ui/src/models/<%= h.changeCase.kebab(h.inflection.pluralize(name)) %>/<%= h.changeCase.ucFirst(h.changeCase.camel(h.inflection.pluralize(name))) %>Store.js
 ---
-import _ from 'lodash';
 import { types } from 'mobx-state-tree';
 
 import { get<%= h.changeCase.ucFirst(h.changeCase.camel(h.inflection.pluralize(name))) %> } from '../../helpers/api';
@@ -80,8 +79,7 @@ const <%= h.changeCase.ucFirst(h.changeCase.camel(h.inflection.pluralize(name)))
     get list() {
       const result = [];
       self.<%= h.changeCase.camel(h.inflection.pluralize(name)) %>.forEach((<%= h.changeCase.camel(name) %>) => result.push(<%= h.changeCase.camel(name) %>));
-
-      return _.reverse(_.sortBy(result, ['createdAt', 'name']));
+      return result.reverse.sort(function(a, b){return a.createdAt - b.createdAt}).sort(function(a, b){return a.name - b.name});
     },
 
     has<%= h.changeCase.ucFirst(h.changeCase.camel(name)) %>(id) {

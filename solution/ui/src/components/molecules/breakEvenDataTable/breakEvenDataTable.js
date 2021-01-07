@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Card, Table } from 'semantic-ui-react'
+import { sortBy } from 'lodash';
 import { formatNumber } from '../../../helpers'
 
 import './breakEvenDataTable.less'
@@ -19,7 +20,7 @@ class BreakEvenDataTable extends React.Component {
     if (column !== clickedColumn) {
       this.setState({
         column: clickedColumn,
-        data: data.sort(function(a, b){return a.clickedColumn - b.clickedColumn}),
+        data: sortBy(data, [clickedColumn]),
         direction: 'ascending',
       })
 

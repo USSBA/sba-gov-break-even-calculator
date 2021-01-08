@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render, screen } from '@testing-library/react'
 
 import BreakEvenProfileCard from './breakEvenProfileCard'
 
@@ -15,13 +15,8 @@ const sampleProps = {
 }
 
 describe('BreakEvenProfileCard', () => {
-  it('renders running totals', () => {
-    const wrapper = shallow(<BreakEvenProfileCard {...sampleProps}/>)
-    expect(wrapper.find('EditableTotal')).toHaveLength(4)
-  })
-
-  it('renders a modal', () => {
-    const wrapper = shallow(<BreakEvenProfileCard {...sampleProps}/>)
-    expect(wrapper.find('Modal')).toHaveLength(1)
+  test('renders running totals', () => {
+    render(<BreakEvenProfileCard {...sampleProps}/>)
+    expect(screen.getAllByTestId('title')).toHaveLength(4)
   })
 })

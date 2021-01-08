@@ -1,7 +1,6 @@
 ---
 to: ui/src/parts/<%= h.changeCase.kebab(h.inflection.pluralize(name)) %>/<%= h.changeCase.ucFirst(h.changeCase.camel(h.inflection.pluralize(name))) %>List.js
 ---
-import _ from 'lodash';
 import React from 'react';
 import { decorate, action } from 'mobx';
 import { observer, inject } from 'mobx-react';
@@ -106,7 +105,7 @@ class <%= h.changeCase.ucFirst(h.changeCase.camel(h.inflection.pluralize(name)))
     
     return (
       <div>
-        {_.map(list, (item) => <Segment className="p3 mb2  cursor-pointer" clearing={true} key={item.id} data-instance={item.id} onClick={this.handleDetailClick}><<%= h.changeCase.ucFirst(h.changeCase.camel(name)) %>Card <%= h.changeCase.camel(name) %>={item} /></Segment>)}
+        {list.map( item => <Segment className="p3 mb2  cursor-pointer" clearing={true} key={item.id} data-instance={item.id} onClick={this.handleDetailClick}><<%= h.changeCase.ucFirst(h.changeCase.camel(name)) %>Card <%= h.changeCase.camel(name) %>={item} /></Segment>)}
       </div>
     );
   }

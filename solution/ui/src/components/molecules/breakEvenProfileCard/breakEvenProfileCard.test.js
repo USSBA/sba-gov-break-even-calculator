@@ -19,4 +19,12 @@ describe('BreakEvenProfileCard', () => {
     render(<BreakEvenProfileCard {...sampleProps}/>)
     expect(screen.getAllByTestId('title')).toHaveLength(4)
   })
+
+  test('renders passed numbers for running totals', () => {
+    render(<BreakEvenProfileCard {...sampleProps}/>)
+    expect(screen.getByText(/\$1,000/i))
+    expect(screen.getByText(/90/i))
+    expect(screen.getByText(/\$110/i))
+    expect(screen.getByText(/\$10/i))
+  })
 })

@@ -20,7 +20,7 @@ const BecAccordion = (props) => {
       <div className='accordionContent' data-testid='accordion'>
         <Accordion allowZeroExpanded>
           {props.data.map(faq => (
-            <AccordionItem key={faq.question}>
+            <AccordionItem data-testid='accordion-item' key={faq.question}>
               <AccordionItemHeading className='accordionHeading'>
                 <AccordionItemButton className='accordionButton'>
                   <h3>

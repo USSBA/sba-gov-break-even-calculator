@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render, screen } from '@testing-library/react'
 
 import BreakEvenResultsCard from './breakEvenResultsCard'
 
@@ -7,34 +7,57 @@ describe('BreakEvenResultsCard', () => {
   const props = {
     expectedUnits: '100',
     breakEvenUnits: '200',
-    breakEvenRevenue: '2000',
+    breakEvenRevenue: '3000',
     pricePerUnit: '15',
     variableCost: '5',
     fixedCost: '2000',
   }
-
-  it('renders two rows of content', () => {
-    const wrapper = shallow(<BreakEvenResultsCard {...props}/>)
-    expect(wrapper.find('GridRow')).toHaveLength(2)
+  
+  describe('loss', () => {
+    beforeEach(() => {
+      render(<BreakEvenResultsCard {...props} />)
+    })
+  
+    test('displays correct heading', () => {
+      expect(screen.getByRole('heading', { name: /your break-even point results/i }))
+    })
+  
+    test('displays correct subheading', () => {
+      expect(screen.getByText(/estimated calculation based on your inputs/i))
+    })
+  
+    test('displays break even units sold', () => {
+      expect(screen.getByText(/200/i))
+    })
+  
+    test('displays anticipated units', () => {
+      expect(screen.getByText(/100 units/i))
+    })
+  
+    test('displays unit sales', () => {
+      expect(screen.getByText(/\$3,000/i))
+    })
+  
+    test('displays contribution margin ratio', () => {
+      expect(screen.getByText(/67%/i))
+    })
+  
+    test('displays units to sell to break even', () => {
+      expect(screen.getAllByText(/100/i))
+      expect(screen.getByText(/more to break even/i))
+    })
+  
+    test('corectly formats loss', () => {
+      expect(screen.getByText(/your loss will be/i))
+      expect(screen.getByText(/-\$1,000/i))
+    })
   })
 
-  it('displays loss as expected', () => {
-    const wrapper = shallow(<BreakEvenResultsCard {...props}/>)
-    expect(wrapper.find('.number.loss')).toHaveLength(2)
-    expect(wrapper.find('.number.loss').first().text()).toEqual('-$1,000')
-  })
-
-  it('displays profit as expected', () => {
-    const wrapper = shallow(
-      <BreakEvenResultsCard {...props} expectedUnits={300}/>
-    )
-    expect(wrapper.find('.number.loss')).toHaveLength(0)
-    expect(wrapper.find('.number.profit')).toHaveLength(1)
-    expect(wrapper.find('.number.profit').text()).toEqual('$1,000')
-  })
-
-  it('displays correct contribution margin ratio', () => {
-    const wrapper = shallow(<BreakEvenResultsCard {...props}/>)
-    expect(wrapper.find('.contributionMargin').text()).toEqual('67%')
+  describe('profit', () => {
+    test('correctly formats profit', () => {
+      render(<BreakEvenResultsCard {...props} expectedUnits='500' />)
+      expect(screen.getByText(/your profit will be/i))
+      expect(screen.getAllByText(/\$3,000/i))
+    })
   })
 })

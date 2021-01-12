@@ -1,36 +1,92 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render, screen, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 
-import BreakEvenDataTable from './breakEvenDataTable'
+import Results from '../../organisms/results/results'
+
+window.scrollTo = jest.fn()
 
 describe('BreakEvenDataTable', () => {
-  const tableData = [
-    {units: 0, profit: -500, revenue: 0, variableCosts: 0, fixedCosts: 500, totalCosts: 500},
-    {units: 10, profit: 0, revenue: 550, variableCosts: 50, fixedCosts: 500, totalCosts: 550},
-    {units: 20, profit: 500, revenue: 1100, variableCosts: 100, fixedCosts: 500, totalCosts: 600},
-    {units: 30, profit: 1000, revenue: 2200, variableCosts: 200, fixedCosts: 500, totalCosts: 700}
-  ]
+  const sampleProps = {
+    variableCostPerUnit: '15',
+    numUnits: '500',
+    pricePerUnit: '150',
+    totalFixedCost: '10000',
+    updateNumUnits: jest.fn(),
+    updatePricePerUnit: jest.fn(),
+    updateFixedCost: jest.fn(),
+    updateVariableCost: jest.fn()
+  }
 
-  it('Renders the right number of rows', () => {
-    const wrapper = shallow(<BreakEvenDataTable data={tableData} />)
-    expect(wrapper.find('TableRow')).toHaveLength(tableData.length + 1)
+  beforeEach(() => {
+    render(<Results {...sampleProps} />)
   })
 
-  it('Renders 5 columns', () => {
-    const wrapper = shallow(<BreakEvenDataTable data={tableData} />)
-    expect(wrapper.find('TableHeaderCell')).toHaveLength(6)
+  test('creates a table with seven rows', () => {
+    expect(screen.getAllByTestId('data-table-row')).toHaveLength(9)
   })
 
-  it('Adds class of netLoss on profits less than zero', () => {
-    const wrapper = shallow(<BreakEvenDataTable data={tableData} />)
-    expect(wrapper.find('.netLoss')).toHaveLength(1)
+  test('it displays the break-even point', () => {
+    const bepRow = screen.getAllByTestId('data-table-row')[4]
+    within(bepRow).getByRole('cell', { name: /\$0/i })
   })
 
-  it('Sorts columns on click', () => {
-    const wrapper = shallow(<BreakEvenDataTable data={tableData} />)
-    expect(wrapper.find('TableCell').first().html()).toEqual('<td class="">0</td>')
-    wrapper.find('TableHeaderCell').first().simulate('click')
-    wrapper.find('TableHeaderCell').first().simulate('click')
-    expect(wrapper.find('TableCell').first().html()).toEqual('<td class="">30</td>')
+  test('renders six columns', () => {
+    expect(screen.getAllByRole('columnheader')).toHaveLength(6)
+  })
+
+  test('sorts units column on click', () => {
+    userEvent.click(screen.getByRole('columnheader', {
+      name: /units sold/i
+    }))
+    expect(within(screen.getAllByTestId('data-table-row')[0]).getAllByRole('cell')[0].textContent).toEqual('0')
+    userEvent.click(screen.getByRole('columnheader', {
+      name: /units sold/i
+    }))
+    expect(within(screen.getAllByTestId('data-table-row')[0]).getAllByRole('cell')[0].textContent).toEqual('140')
+  })
+
+  test('sorts profit column on click', () => {
+    userEvent.click(screen.getByRole('columnheader', {
+      name: /profit/i
+    }))
+    expect(within(screen.getAllByTestId('data-table-row')[0]).getAllByRole('cell')[1].textContent).toEqual('−$10,000')
+    userEvent.click(screen.getByRole('columnheader', {
+      name: /profit/i
+    }))
+    expect(within(screen.getAllByTestId('data-table-row')[0]).getAllByRole('cell')[1].textContent).toEqual('$8,900')
+  })
+  
+  test('sorts unit sales column on click', () => {
+    userEvent.click(screen.getByRole('columnheader', {
+      name: /unit sales/i
+    }))
+    expect(within(screen.getAllByTestId('data-table-row')[0]).getAllByRole('cell')[2].textContent).toEqual('$0')
+    userEvent.click(screen.getByRole('columnheader', {
+      name: /unit sales/i
+    }))
+    expect(within(screen.getAllByTestId('data-table-row')[0]).getAllByRole('cell')[2].textContent).toEqual('$21,000')
+  })
+
+  test('sorts variable costs column on click', () => {
+    userEvent.click(screen.getByRole('columnheader', {
+      name: /variable costs/i
+    }))
+    expect(within(screen.getAllByTestId('data-table-row')[0]).getAllByRole('cell')[3].textContent).toEqual('$0')
+    userEvent.click(screen.getByRole('columnheader', {
+      name: /variable costs/i
+    }))
+    expect(within(screen.getAllByTestId('data-table-row')[0]).getAllByRole('cell')[3].textContent).toEqual('$2,100')
+  })
+
+  test('sorts total costs column on click', () => {
+    userEvent.click(screen.getByRole('columnheader', {
+      name: /total costs/i
+    }))
+    expect(within(screen.getAllByTestId('data-table-row')[0]).getAllByRole('cell')[5].textContent).toEqual('$10,000')
+    userEvent.click(screen.getByRole('columnheader', {
+      name: /total costs/i
+    }))
+    expect(within(screen.getAllByTestId('data-table-row')[0]).getAllByRole('cell')[5].textContent).toEqual('$12,100')
   })
 })

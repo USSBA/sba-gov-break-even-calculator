@@ -51,7 +51,7 @@ class BreakEvenDataTable extends React.Component {
       <Card fluid>
         <Card.Content className='bep-table-overflow'>
           <h3>Break-Even Point Unit Sales</h3>
-          <Table id='bep-dataTable' textAlign='right' sortable unstackable >
+          <Table data-testid='bep-dataTable' id='bep-dataTable' textAlign='right' sortable unstackable >
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell
@@ -94,7 +94,7 @@ class BreakEvenDataTable extends React.Component {
             </Table.Header>
             <Table.Body key={uniqueKey()}>
               {data.map(({ units, profit, revenue, variableCosts, fixedCosts, totalCosts }) => (
-                <Table.Row key={`${profit}-${revenue}-${variableCosts}`}>
+                <Table.Row data-testid='data-table-row' key={`${profit}-${revenue}-${variableCosts}`}>
                   <Table.Cell>
                     {formatNumber(units)}
                   </Table.Cell>

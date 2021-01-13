@@ -27,7 +27,7 @@ const PricePerUnit = (props) => {
   }, [props.visible])
 
   return (
-    <div className={`pricePerUnit-container ${props.visible ? '' : 'hidden'}`}>
+    <div className={`pricePerUnit-container ${props.visible ? '' : 'hidden'}`} aria-hidden={!props.visible}>
       <h3>Estimate your selling price per unit</h3>
       <p>
         Calculate the price at which your unit or service will sell to customers.<br/>

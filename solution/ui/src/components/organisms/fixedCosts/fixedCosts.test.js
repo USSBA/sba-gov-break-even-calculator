@@ -1,5 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
+import userEvent from '@testing-library/user-event'
+import { render, screen } from '@testing-library/react'
 
 import FixedCosts from './fixedCosts'
 import { fixedCostInitState } from './fixedCostsFieldsData'
@@ -61,6 +63,32 @@ describe('FixedCosts', () => {
     expect(wrapper.find('NumbersInputForm')).toHaveLength(0)
     wrapper.find('.fixedCost-suggestion a').simulate('click')
     expect(wrapper.find('NumbersInputForm')).toHaveLength(1)
+  })
+
+  test('shows NumbersInputForm on suggestion link click', () => {
+    render(<FixedCosts
+      visible={true}
+      goToStep={jest.fn()}
+      setFixedCost={jest.fn()}
+      totalFixedCosts='0'
+      key='false' 
+    />)
+    const knowFixedCost = screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i })
+    userEvent.click(knowFixedCost)
+    userEvent.click(screen.getByRole('link', { name: /add all fixed costs individually/i }))
+    setTimeout(() => {
+      expect(screen.queryByRole('spinbutton', { name: /total fixed cost/i })).not.toBeInTheDocument()
+      expect(screen.queryByRole('spinbutton', { name: /amortization/i })).toBeInTheDocument()
+      expect(screen.queryByRole('spinbutton', { name: /rent/i })).toBeInTheDocument()
+      expect(screen.queryByRole('spinbutton', { name: /insurance/i })).toBeInTheDocument()
+      expect(screen.queryByRole('spinbutton', { name: /salaries/i })).toBeInTheDocument()
+      expect(screen.queryByRole('spinbutton', { name: /utilities/i })).toBeInTheDocument()
+      expect(screen.queryByRole('spinbutton', { name: /deprecation/i })).toBeInTheDocument()
+      expect(screen.queryByRole('spinbutton', { name: /interest expense/i })).toBeInTheDocument()
+      expect(screen.queryByRole('spinbutton', { name: /property taxes/i })).toBeInTheDocument()
+      expect(screen.queryByRole('spinbutton', { name: /other monthly costs/i })).toBeInTheDocument()
+      expect(screen.queryByRole('spinbutton', { name: /other fixed costs/i })).toBeInTheDocument()
+    }, 5000)
   })
 
   it('shows NumbersInputForm on no selection', () => {

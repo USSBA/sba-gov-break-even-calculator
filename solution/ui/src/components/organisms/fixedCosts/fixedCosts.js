@@ -67,6 +67,11 @@ class FixedCosts extends React.Component {
     }
   }
 
+  handleClick = (e) => {
+    e.preventDefault();
+    this.setState({ knowFixedCosts: 'no'})
+  }
+
   render() {
     return (
       <div className={`fixedCosts-container ${this.props.visible ? '' : 'hidden'}`}>
@@ -134,7 +139,7 @@ class FixedCosts extends React.Component {
             {this.state.knowFixedCosts === 'yes' && 
               <Grid.Column>
                 <div className='fixedCost-suggestion'>Unsure about your total fixed costs? 
-                  <a href="/" onClick={() => this.setState({ knowFixedCosts: 'no'})}>Add all fixed costs individually</a>
+                  <a href="/" onClick={this.handleClick}>Add all fixed costs individually</a>
                 </div>
               </Grid.Column>
             }

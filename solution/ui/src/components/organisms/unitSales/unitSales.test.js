@@ -66,7 +66,7 @@ describe('UnitSales', () => {
     const wrapper = shallow(
       <UnitSales {...baseProps} />
     )
-    wrapper.find('a').first().simulate('click')
+    wrapper.find('Button').first().simulate('click')
     expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.UNIT_SALES - 1)
   })
 
@@ -74,7 +74,7 @@ describe('UnitSales', () => {
     const wrapper = shallow(
       <UnitSales {...baseProps} />
     )
-    wrapper.find('a').last().simulate('click')
+    wrapper.find('Button').last().simulate('click')
     expect(restartMock).toHaveBeenCalledTimes(1)
   })
 })

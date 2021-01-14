@@ -1,20 +1,16 @@
 /*******************************
          Site Overrides
 *******************************/
-.ui.basic.darkBlue.buttons .button, button.ui.basic.darkBlue.button.noBorder {
+.ui.basic.buttons .button, button.ui.basic.button.noBorder {
   -webkit-box-shadow: none !important;
 	-moz-box-shadow: none !important;
 	box-shadow: none !important;
   padding:0px;
   text-decoration: underline;
+}
+
+.ui.basic.darkBlue.buttons .button, button.ui.basic.darkBlue.button.noBorder {
   color: @secondary-blue-dark !important;
 }
 
-.ui.basic.blue.buttons .button, button.ui.basic.blue.button.noBorder {
-  -webkit-box-shadow: none !important;
-	-moz-box-shadow: none !important;
-	box-shadow: none !important;
-  padding:0px;
-  text-decoration: underline;
-}
 

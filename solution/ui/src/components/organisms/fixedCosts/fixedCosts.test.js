@@ -57,33 +57,6 @@ describe('FixedCosts', () => {
     expect(wrapper.find('.fixedCost-suggestion')).toHaveLength(1)
   })
 
-  it('shows NumbersInputForm on suggestion link click', () => {
-    render(<FixedCosts
-      visible={true}
-      goToStep={jest.fn()}
-      setFixedCost={jest.fn()}
-      totalFixedCosts='0'
-      key='false' 
-    />)
-    const knowFixedCost = screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i })
-    userEvent.click(knowFixedCost)
-    expect(screen.queryByRole('spinbutton', { name: /total fixed cost/i })).toBeInTheDocument()
-
-    userEvent.click(screen.getByRole('button', {  name: /add all fixed costs individually/i}))
-    expect(screen.queryByRole('spinbutton', { name: /total fixed cost/i })).not.toBeInTheDocument()
-    expect(screen.queryByRole('spinbutton', { name: /amortization/i })).toBeInTheDocument()
-    expect(screen.queryByRole('spinbutton', { name: /rent/i })).toBeInTheDocument()
-    expect(screen.queryByRole('spinbutton', { name: /insurance/i })).toBeInTheDocument()
-    expect(screen.queryByRole('spinbutton', { name: /salaries/i })).toBeInTheDocument()
-    expect(screen.queryByRole('spinbutton', { name: /utilities/i })).toBeInTheDocument()
-    expect(screen.queryByRole('spinbutton', { name: /deprecation/i })).toBeInTheDocument()
-    expect(screen.queryByRole('spinbutton', { name: /interest expense/i })).toBeInTheDocument()
-    expect(screen.queryByRole('spinbutton', { name: /property taxes/i })).toBeInTheDocument()
-    expect(screen.queryByRole('spinbutton', { name: /other monthly costs/i })).toBeInTheDocument()
-    expect(screen.queryByRole('spinbutton', { name: /other fixed costs/i })).toBeInTheDocument()
-
-  })
-
   test('shows NumbersInputForm on suggestion link click', () => {
     render(<FixedCosts
       visible={true}

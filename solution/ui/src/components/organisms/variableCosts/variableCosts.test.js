@@ -60,7 +60,10 @@ describe('VariableCosts', () => {
     const wrapper = shallow(<VariableCosts {...baseProps}/>);
     wrapper.setState({knowVariableCosts: 'yes'})
     expect(wrapper.find('NumbersInputForm')).toHaveLength(0)
-    wrapper.find('.variableCost-suggestion a').simulate('click')
+    console.log(wrapper.find('.variableCost-suggestion Button').debug())
+
+    wrapper.find('.variableCost-suggestion Button').simulate('click')
+    console.log(wrapper.find('Button').debug())
     expect(wrapper.find('NumbersInputForm')).toHaveLength(1)
   })
 

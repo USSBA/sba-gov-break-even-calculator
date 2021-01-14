@@ -75,7 +75,7 @@ describe('PricePerUnit', () => {
     const wrapper = shallow(
       <PricePerUnit {...baseProps} />
     )
-    wrapper.find('a').first().simulate('click')
+    wrapper.find('Button').first().simulate('click')
     expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.PRICE_PER_UNIT - 1)
   })
 
@@ -83,7 +83,7 @@ describe('PricePerUnit', () => {
     const wrapper = shallow(
       <PricePerUnit {...baseProps} />
     )
-    wrapper.find('a').last().simulate('click')
+    wrapper.find('Button').last().simulate('click')
     expect(restartMock).toHaveBeenCalledTimes(1)
   })
 })

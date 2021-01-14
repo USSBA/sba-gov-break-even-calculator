@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Form, Icon, Radio, Grid } from 'semantic-ui-react'
+import { Button, Form, Icon, Radio, Grid } from 'semantic-ui-react'
 import { NumbersInputForm } from '../../molecules'
 import { MoneyInput } from '../../atoms'
 
@@ -135,7 +135,7 @@ class VariableCosts extends React.Component {
             {this.state.knowVariableCosts === 'yes' && 
               <Grid.Column>
                 <div className='variableCost-suggestion'>Unsure about your total variable costs? 
-                  <a href="/" onClick={() => this.setState({ knowVariableCosts: 'no'})}>Add all variable costs individually</a>
+                  <Button basic color='blue' className='noBorder' onClick={() => this.setState({ knowVariableCosts: 'no'})}>Add all variable costs individually</Button>
                 </div>
               </Grid.Column>}
               { this.state.formError && this.state.knowVariableCosts === 'no' &&
@@ -164,15 +164,16 @@ class VariableCosts extends React.Component {
         </Form>
         <Grid className='returnLinks' columns={2} >
           <Grid.Column id='backLink' mobile={8} computer={4}>
-            <a 
+            <Button 
+              basic
+              color='blue'
               aria-label='Back to unit sales'
-              href="/"
-              className='navLink'
+              className='noBorder navLink'
               onClick={() => this.props.goToStep(this.self - 1)}
-            >{`< Back to unit sales`}</a>
+            >{`< Back to unit sales`}</Button>
           </Grid.Column>
           <Grid.Column id='restartLink' mobile={8} computer={3}>
-            <a href="/" className='navLink' onClick={this.props.restart}>Restart Analysis</a>
+            <Button basic color='blue' className='noBorder navLink' onClick={this.props.restart}>Restart Analysis</Button>
           </Grid.Column>
         </Grid>
       </div>

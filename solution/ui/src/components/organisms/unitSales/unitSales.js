@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-import { Grid, Form, Input } from 'semantic-ui-react'
+import { Button, Grid, Form, Input } from 'semantic-ui-react'
 import { CALCULATOR_STEPS } from '../../../constants'
 import './unitSales.less'
 
@@ -69,14 +69,16 @@ const UnitSales = (props) => {
         </div>
         <Grid className='returnLinks' columns={2}>
           <Grid.Column id='backLink' mobile={8} computer={4}>
-            <a 
-              href="/" 
+            <Button 
+              basic 
+              color='blue' 
+              className='noBorder' 
               aria-label='Back to price per unit' 
               onClick={() => props.goToStep(self - 1)}
-            >{`< Back to price per unit`}</a>
+            >{`< Back to price per unit`}</Button>
           </Grid.Column>
           <Grid.Column id='restartLink' mobile={8} computer={3}>
-            <a href="/" onClick={props.restart}>Restart Analysis</a>
+            <Button basic color='blue' className='noBorder' onClick={props.restart}>Restart Analysis</Button>
           </Grid.Column>
         </Grid>
       </Form>

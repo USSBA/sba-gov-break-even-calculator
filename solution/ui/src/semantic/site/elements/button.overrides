@@ -1,3 +1,9 @@
 /*******************************
          Site Overrides
 *******************************/
+.ui.basic.blue.buttons .button, button.ui.blue.basic.button.noBorder {
+  -webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+  padding:0px;
+}

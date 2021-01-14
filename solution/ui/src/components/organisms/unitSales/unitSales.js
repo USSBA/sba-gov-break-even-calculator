@@ -71,14 +71,15 @@ const UnitSales = (props) => {
           <Grid.Column id='backLink' mobile={8} computer={4}>
             <Button 
               basic 
-              color='blue' 
+              color='blue'
+              type='button' 
               className='noBorder' 
               aria-label='Back to price per unit' 
               onClick={() => props.goToStep(self - 1)}
             >{`< Back to price per unit`}</Button>
           </Grid.Column>
           <Grid.Column id='restartLink' mobile={8} computer={3}>
-            <Button basic color='blue' className='noBorder' onClick={props.restart}>Restart Analysis</Button>
+            <Button basic color='blue' type='button' className='noBorder' onClick={props.restart}>Restart Analysis</Button>
           </Grid.Column>
         </Grid>
       </Form>

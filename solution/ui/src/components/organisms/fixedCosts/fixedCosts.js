@@ -134,7 +134,7 @@ class FixedCosts extends React.Component {
             {this.state.knowFixedCosts === 'yes' && 
               <Grid.Column>
                 <div className='fixedCost-suggestion'>Unsure about your total fixed costs?  
-                  <Button basic color='blue' className='noBorder' onClick={() => this.setState({ knowFixedCosts: 'no'})}>&nbsp;Add all fixed costs individually</Button>
+                  <Button basic className='noBorder' type='button' color='darkBlue' onClick={() => this.setState({ knowFixedCosts: 'no'})}>Add all fixed costs individually</Button>
                 </div>
               </Grid.Column>
             }

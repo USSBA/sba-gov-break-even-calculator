@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Form, Radio, Grid } from 'semantic-ui-react'
+import { Button, Form, Radio, Grid } from 'semantic-ui-react'
 import { NumbersInputForm } from '../../molecules'
 import { MoneyInput } from '../../atoms'
 
@@ -133,8 +133,8 @@ class FixedCosts extends React.Component {
           <Grid columns={1}>
             {this.state.knowFixedCosts === 'yes' && 
               <Grid.Column>
-                <div className='fixedCost-suggestion'>Unsure about your total fixed costs? 
-                  <a href='#' onClick={() => this.setState({ knowFixedCosts: 'no'})}>Add all fixed costs individually</a>
+                <div className='fixedCost-suggestion'>Unsure about your total fixed costs?  
+                  <Button basic className='noBorder' type='button' color='darkBlue' onClick={() => this.setState({ knowFixedCosts: 'no'})}>Add all fixed costs individually</Button>
                 </div>
               </Grid.Column>
             }

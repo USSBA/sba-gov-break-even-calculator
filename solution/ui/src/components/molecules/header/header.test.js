@@ -1,15 +1,16 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render, screen } from '@testing-library/react'
+
 import Header from './header.js'
 
 describe('Header', () => {
-  it('renders without crashing', () => {
-    const wrapper = shallow(<Header />)
-    expect(wrapper).toHaveLength(1);
+  it('renders SBA logo', () => {
+    render(<Header />)
+    screen.getByRole('img', { name: /small business administration/i })
   })
 
   it('renders link back to landing page', () => {
-    const wrapper = shallow(<Header />)
-    expect(wrapper.find('.return-link').text()).toContain('Return to break-even page')
+    render(<Header />)
+    expect(screen.getByRole('link', { name: /return to break-even page/i })).toHaveAttribute('href', '/breakevenpointcalculator')
   })
 })

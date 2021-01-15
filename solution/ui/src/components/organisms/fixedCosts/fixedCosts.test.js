@@ -24,8 +24,6 @@ describe('FixedCosts', () => {
     goToStepMock.mockReset()
   })
 
-  
-
   beforeEach(() => { 
     render(<FixedCosts
       visible={true}
@@ -38,11 +36,6 @@ describe('FixedCosts', () => {
 
   test('Has a heading caleld "Calculate your total fixed costs"', () => {
     screen.getByRole('heading', { name: /calculate your total fixed costs/i })
-  })
-
-  it('has correct initial state', () => {
-    expect(screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i }).checked).toBe(false)
-    expect(screen.getByRole('radio', { name: /no, input values individually/i }).checked).toBe(false)
   })
 
   test("Click on 'yes' displays text field and sets knowFixedCost value to yes", () => {
@@ -113,13 +106,12 @@ describe('FixedCosts', () => {
     expect(screen.queryByText(/unsure about your total fixed costs?/i)).toBeInTheDocument()
     userEvent.click(notKnowFixedCost)
     expect(screen.queryByText(/unsure about your total fixed costs?/i)).not.toBeInTheDocument()
-
   })
 
   test('shows NumbersInputForm on suggestion link click', () => {
     const knowFixedCost = screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i })
     userEvent.click(knowFixedCost)
-    userEvent.click(screen.getByRole('link', { name: /add all fixed costs individually/i }))
+    userEvent.click(screen.getByRole('button', { name: /add all fixed costs individually/i }))
     expect(screen.queryByRole('spinbutton', { name: /total fixed cost/i })).not.toBeInTheDocument()
     expect(screen.queryByRole('spinbutton', { name: /amortization/i })).toBeInTheDocument()
     expect(screen.queryByRole('spinbutton', { name: /rent/i })).toBeInTheDocument()
@@ -181,9 +173,11 @@ describe('FixedCosts', () => {
     userEvent.type(screen.getByRole('spinbutton', { name: /salaries/i }), '3000')
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
     expect(screen.getByText(/\$3,100/i)).toBeInTheDocument
-    userEvent.click(screen.getByRole('link', {  name: /back to fixed costs/i}))
+    userEvent.click(screen.getByRole('button', {  name: /back to fixed costs/i}))
     userEvent.click(notKnowFixedCost)
-    userEvent.type(screen.getByRole('spinbutton', { name: /rent/i }), '')
+
+    userEvent.clear(screen.getByRole('spinbutton', { name: /rent/i }))
+    userEvent.clear(screen.getByRole('spinbutton', { name: /salaries/i }))
     userEvent.type(screen.getByRole('spinbutton', { name: /salaries/i }), '3000')
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
     expect(screen.getByText(/\$3,000/i)).toBeInTheDocument

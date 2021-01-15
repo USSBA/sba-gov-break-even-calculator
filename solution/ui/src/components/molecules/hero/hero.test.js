@@ -1,10 +1,21 @@
 import React from 'react'
-import {shallow} from 'enzyme'
-import Hero from './hero'
+import { render, screen } from '@testing-library/react'
+import BreakEvenCalculator from '../../../pages/index'
 
 describe('Hero', () => {
+  beforeEach(() => {
+    render(<BreakEvenCalculator />)
+  })
+
   it('contains calculator icon', () => {
-    const wrapper = shallow(<Hero><div>hi</div></Hero>)
-    expect(wrapper.find('Image')).toHaveLength(1)
+    screen.getByRole('img', { name: /calculator icon/i })
+  })
+
+  it('displays the correct heading', () => {
+    screen.getByRole('heading', { name: /calculate your break-even point/i })
+  })
+
+  it('displays the formula', () => {
+    screen.getByText(/fixed costs ÷ \(price - variable costs\) = break-even point in units/i)
   })
 })

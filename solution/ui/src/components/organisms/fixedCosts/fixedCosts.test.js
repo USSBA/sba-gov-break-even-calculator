@@ -32,7 +32,7 @@ describe('FixedCosts', () => {
     />)
   });
 
-  test('Has a heading caleld "Calculate your total fixed costs"', () => {
+  test('Has a heading called "Calculate your total fixed costs"', () => {
     screen.getByRole('heading', { name: /calculate your total fixed costs/i })
   })
 

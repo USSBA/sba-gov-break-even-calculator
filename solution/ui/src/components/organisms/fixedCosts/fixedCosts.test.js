@@ -5,9 +5,7 @@ import userEvent from '@testing-library/user-event'
 
 import BreakEvenCalculator from '../../../pages/index'
 import FixedCosts from './fixedCosts'
-import PricePerUnit from '../pricePerUnit/pricePerUnit'
 import { fixedCostInitState } from './fixedCostsFieldsData'
-import { CALCULATOR_STEPS } from '../../../constants'
 
 describe('FixedCosts', () => {
   

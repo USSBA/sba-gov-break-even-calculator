@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 
 import BreakEvenCalculator from '../../../pages/index'
@@ -66,8 +66,6 @@ describe('FixedCosts', () => {
     userEvent.click(notKnowFixedCost)
     expect(notKnowFixedCost.checked).toBe(true)
     expect(notKnowFixedCost.value).toEqual("no")
-
-    userEvent.click(notKnowFixedCost)
   })
 
   test("Click 'no, input values individually', displays all fields but fixed cost field", () => {

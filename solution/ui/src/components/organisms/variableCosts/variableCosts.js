@@ -88,7 +88,7 @@ class VariableCosts extends React.Component {
     const showWarning = parseInt(this.state.totalVariableCosts) >= parseInt(this.props.pricePerUnit);
     
     return (
-      <div className={`variableCosts-container ${this.props.visible ? '' : 'hidden'}`}>
+      <div className={`variableCosts-container ${this.props.visible ? '' : 'hidden'}`} aria-hidden={!this.props.visible}>
         <h3>Calculate your total variable costs per unit</h3>
         <p>
           Variable costs are costs that change with sales or volume. They are based on the production of one unit.<br/>

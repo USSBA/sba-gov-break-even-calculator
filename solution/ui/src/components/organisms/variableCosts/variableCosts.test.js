@@ -62,7 +62,6 @@ describe('VariableCosts', () => {
     expect(wrapper.find('NumbersInputForm')).toHaveLength(0)
 
     wrapper.find('.variableCost-suggestion Button').simulate('click')
-    console.log(wrapper.find('Button').debug())
     expect(wrapper.find('NumbersInputForm')).toHaveLength(1)
   })
 

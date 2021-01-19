@@ -69,7 +69,7 @@ class FixedCosts extends React.Component {
 
   render() {
     return (
-      <div className={`fixedCosts-container ${this.props.visible ? '' : 'hidden'}`} aria-hidden={!this.props.visible} >
+      <div aria-hidden={!this.props.visible} className={`fixedCosts-container ${this.props.visible ? '' : 'hidden'}`}>
         <h3>Calculate your total fixed costs</h3>
         <p>
           Fixed costs are costs that do not change with sales or volume because they are based on time.

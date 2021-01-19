@@ -1,89 +1,74 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render, screen, fireEvent } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 
-import PricePerUnit from './pricePerUnit'
-import { CALCULATOR_STEPS } from '../../../constants'
+import BreakEvenCalculator from '../../../pages/index'
 
 describe('PricePerUnit', () => {
-  const setUnitPriceMock = jest.fn()
-  const goToStepMock = jest.fn()
-  const restartMock = jest.fn()
-
-  const baseProps = {
-    goToStep: goToStepMock,
-    restart: restartMock,
-    setUnitPrice: setUnitPriceMock,
-    visible: true
-  }
-
-  afterEach(() => {
-    jest.clearAllMocks()
+  beforeEach(() => {
+    render(<BreakEvenCalculator />)
+    const totalFixedCostYesRadioText = 'yes, I know the total of my monthly fixed costs'
+    userEvent.click(screen.getByLabelText(totalFixedCostYesRadioText))
+    userEvent.type(screen.getByLabelText('total fixed cost'), '1000')
+    fireEvent.submit(screen.getByTestId('fixedCosts-form'))
   })
 
-  it('renders money input field and submit button', () => {
-    const wrapper = shallow(<PricePerUnit {...baseProps} />)
-    expect(wrapper.find('MoneyInput')).toHaveLength(1)
-    expect(wrapper.find('FormButton')).toHaveLength(1)
+  test('renders correct heading', () => {
+    screen.getByRole('heading', { name: /estimate your selling price per unit/i })
   })
 
-  it('calls setUnitPrice on change', () => {
-    const wrapper = shallow(
-      <PricePerUnit {...baseProps} />
-    )
-    wrapper.find('MoneyInput').simulate('change', null, {value: 100})
-    expect(setUnitPriceMock).toHaveBeenCalledWith(100)
-  })  
-
-  it('sets formError to false when input field is changed.', () => {
-    const wrapper = shallow(
-      <PricePerUnit {...baseProps} />
-    )
-
-    wrapper.find('MoneyInput').simulate('change', null, {value: 100})
-    expect(wrapper.find('MoneyInput').prop('formError')).toEqual(false);
-  })  
-
-  it('goes to the next step on submit', () => {
-    const wrapper = shallow(
-      <PricePerUnit {...baseProps} />
-    )
-
-    wrapper.setProps({value: 100})
-    wrapper.find('Form').simulate('submit')
-    expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.PRICE_PER_UNIT + 1)
+  test('renders input field with label', () => {
+    screen.getByText(/per unit selling price\*/i)
+    screen.getByRole('spinbutton', { name: /per unit selling price\*/i })
   })
 
-  it('does not go to the next step on submit if field is empty', () => {
-    const wrapper = shallow(
-      <PricePerUnit {...baseProps} />
-    )
-
-    wrapper.find('Form').simulate('submit')
-    expect(goToStepMock).toHaveBeenCalledTimes(0)
+  test('renders continue button', () => {
+    screen.getByRole('button', { name: /continue/i })
   })
 
-  it('returns an error if field is empty', () => {
-    const wrapper = shallow(
-      <PricePerUnit {...baseProps} />
-    )
-
-    wrapper.find('Form').simulate('submit')    
-    expect(wrapper.find('MoneyInput').prop('errorMessage')).toEqual('Enter a valid selling price to continue');
+  test('renders back link', () => {
+    screen.getByRole('button', { name: /back to fixed costs/i })
   })
 
-  it('goes to the previous step on back click', () => {
-    const wrapper = shallow(
-      <PricePerUnit {...baseProps} />
-    )
-    wrapper.find('Button').first().simulate('click')
-    expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.PRICE_PER_UNIT - 1)
+  test('renders restart analysis link', () => {
+    screen.getByRole('button', { name: /restart analysis/i })
   })
 
-  it('calls restart prop on restart analysis click', () => {
-    const wrapper = shallow(
-      <PricePerUnit {...baseProps} />
-    )
-    wrapper.find('Button').last().simulate('click')
-    expect(restartMock).toHaveBeenCalledTimes(1)
+  test('goes to previous page on back link click', () => {
+    userEvent.click(screen.getByRole('button', { name: /back to fixed costs/i }))
+    screen.getByRole('heading', {name: /calculate your total fixed costs/i})
+    screen.getByRole('button', { name: /continue/i })
+  })
+
+  test('resets app on restart analysis link', () => {
+    userEvent.click(screen.getByRole('button', { name: /restart analysis/i }))
+    screen.getByRole('heading', {name: /calculate your total fixed costs/i})
+    expect(screen.queryByRole('button', { name: /continue/i })).toBeNull()
+  })
+
+  test('returns an error if the field is empty', () => {
+    expect(screen.queryByRole('alert')).toBeNull()
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
+    screen.getByRole('alert')
+  })
+
+  test('clears error when the field has a value', () => {
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
+    screen.getByRole('alert')
+    userEvent.type(screen.getByRole('spinbutton', { name: /per unit selling price\*/i }), '100')
+    expect(screen.queryByRole('alert')).toBeNull()
+  })
+
+  test('does not go to the next step on submit if field is empty', () => {
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
+    screen.getByRole('heading', { name: /estimate your selling price per unit/i })
+    expect(screen.queryByRole('heading', { name: /estimate your expected unit sales/i })).toBeNull()
+  })
+  
+  test('it goes to the next page when field is not empty', () => {
+    userEvent.type(screen.getByRole('spinbutton', { name: /per unit selling price\*/i }), '1000')
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
+    expect(screen.queryByRole('heading', { name: /estimate your selling price per unit/i })).toBeNull()
+    screen.getByRole('heading', { name: /estimate your expected unit sales/i })
   })
 })

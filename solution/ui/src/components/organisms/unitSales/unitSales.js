@@ -33,7 +33,7 @@ const UnitSales = (props) => {
   }, [props.visible])
   
   return (
-    <div className={`unitSales-container ${props.visible ? '' : 'hidden'}`} aria-hidden={!props.visible}>
+    <div aria-hidden={!props.visible} className={`unitSales-container ${props.visible ? '' : 'hidden'}`}>
       <h3>Estimate your expected unit sales</h3>
       <p>
         Establish the number of units your business is expected to sell<br/>

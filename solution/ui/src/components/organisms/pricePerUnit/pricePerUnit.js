@@ -27,7 +27,7 @@ const PricePerUnit = (props) => {
   }, [props.visible])
 
   return (
-    <div className={`pricePerUnit-container ${props.visible ? '' : 'hidden'}`} aria-hidden={!props.visible}>
+    <div aria-hidden={!props.visible} className={`pricePerUnit-container ${props.visible ? '' : 'hidden'}`}>
       <h3>Estimate your selling price per unit</h3>
       <p>
         Calculate the price at which your unit or service will sell to customers.<br/>
@@ -53,7 +53,7 @@ const PricePerUnit = (props) => {
           </Grid.Column>
         </Grid>
         <div className='button-container'>
-          <Form.Button primary content='CONTINUE' />
+          <Form.Button type='submit' primary content='CONTINUE' />
         </div>
         <Grid className='returnLinks' columns={2}>
           <Grid.Column id='backLink' mobile={8} computer={4}>

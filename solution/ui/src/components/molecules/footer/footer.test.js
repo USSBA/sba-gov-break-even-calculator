@@ -1,10 +1,10 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { render, screen } from '@testing-library/react'
 import Footer from './footer.js'
 
 describe('Footer', () => {
-  it('renders without crashing', () => {
-    const wrapper = shallow(<Footer />)
-    expect(wrapper).toHaveLength(1);
+  it('renders SBA logo', () => {
+    render(<Footer />)
+    screen.getByRole('img', { name: /small business administration/i })
   })
 })

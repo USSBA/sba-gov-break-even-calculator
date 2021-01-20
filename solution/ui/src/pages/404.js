@@ -2,7 +2,7 @@ import React from "react"
 
 import { Button, Container, Image } from 'semantic-ui-react'
 import SEO from "../components/seo"
-import logo from '../images/sba-logo-horizontal.jpg'
+import logo from '../images/sba_logo_with_text.svg'
 
 import './404.less'
 

@@ -99,9 +99,9 @@ describe('FixedCosts', () => {
     expect(screen.queryByText(/unsure about your total fixed costs?/i)).not.toBeInTheDocument()
 
     userEvent.click(knowFixedCost)
-    expect(screen.queryByText(/unsure about your total fixed costs?/i)).toBeInTheDocument()
+    expect(screen.queryByText(/Help with your total fixed costs?/i)).toBeInTheDocument()
     userEvent.click(notKnowFixedCost)
-    expect(screen.queryByText(/unsure about your total fixed costs?/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Help with your total fixed costs?/i)).not.toBeInTheDocument()
   })
 
   test('shows NumbersInputForm on suggestion link click', () => {

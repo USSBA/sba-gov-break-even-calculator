@@ -134,8 +134,8 @@ class VariableCosts extends React.Component {
           <Grid columns={1}>
             {this.state.knowVariableCosts === 'yes' && 
               <Grid.Column>
-                <div className='variableCost-suggestion'>Unsure about your total variable costs? 
-                  <Button basic color='darkBlue' className='noBorder' type='button' onClick={() => this.setState({ knowVariableCosts: 'no'})}>Add all variable costs individually</Button>
+                <div className='variableCost-suggestion'>Help with your total variable costs? 
+                  <Button basic color='darkBlue' className='noBorder' type='button' onClick={() => this.setState({ knowVariableCosts: 'no'})}>Add variable costs individually</Button>
                 </div>
               </Grid.Column>}
               { this.state.formError && this.state.knowVariableCosts === 'no' &&

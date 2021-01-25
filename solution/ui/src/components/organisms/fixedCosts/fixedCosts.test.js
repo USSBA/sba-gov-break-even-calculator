@@ -1,5 +1,4 @@
 import React from 'react'
-import { shallow } from 'enzyme'
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 
@@ -9,19 +8,6 @@ import { fixedCostInitState } from './fixedCostsFieldsData'
 
 describe('FixedCosts', () => {
   
-  const goToStepMock = jest.fn()
-
-  const baseProps = {
-    visible: true,
-    setFixedCost: jest.fn(),
-    restart: jest.fn(),
-    goToStep: goToStepMock,
-  }
-
-  beforeEach(() => {
-    goToStepMock.mockReset()
-  })
-
   beforeEach(() => { 
     render(<FixedCosts
       visible={true}
@@ -137,11 +123,13 @@ describe('FixedCosts', () => {
   })
 
   test('resets fields on radio button switch', () => {
-    const wrapper = shallow(<FixedCosts {...baseProps} />);
-    wrapper.setState({knowFixedCosts: 'no'})
-    wrapper.setState({fields: {Rent: '100'}})
-    wrapper.find('[label="Yes"]').simulate('change', null, {value: 'yes'})
-    expect(wrapper.state().fields).toEqual(fixedCostInitState);
+    const notKnowFixedCost = screen.getByRole('radio', { name: /no, input values individually/i })
+    const knowFixedCost = screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i })
+
+    userEvent.click(notKnowFixedCost)
+    userEvent.type(screen.getByRole('spinbutton', { name: /rent/i }), '100')
+    userEvent.click(knowFixedCost)
+    expect(screen.getByRole('spinbutton', {  name: /total fixed cost/i})).toHaveValue(null)
   })
 
   test('correctly resets the total cost value on radio button change', () => {

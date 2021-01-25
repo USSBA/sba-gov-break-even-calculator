@@ -37,7 +37,7 @@ const PricePerUnit = (props) => {
       <Form onSubmit={handleSubmit}>
         <Grid>
           <Grid.Column computer={8} tablet={8} mobile={16}>
-            <label htmlFor='unit price'>Per unit selling price*</label>
+            <label htmlFor='unitPrice'>Per unit selling price*</label>
             <p className="subtext">Enter the price you plan to sell per unit or service:</p>
             <MoneyInput
               inputRef={priceInputRef}
@@ -49,7 +49,7 @@ const PricePerUnit = (props) => {
                 props.setUnitPrice(value)
                 setFormError(false)
               }}
-              name='unit price' />
+              name='unitPrice' />
           </Grid.Column>
         </Grid>
         <div className='button-container'>

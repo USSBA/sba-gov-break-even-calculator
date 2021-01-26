@@ -20,38 +20,37 @@ describe('UnitSales', () => {
   })
 
   test('renders an input field and submit button', () => {
-    screen.getByRole('spinbutton', {  name: /number of units to sell\*/i})
-    screen.getByRole('button', {  name: /continue/i})
+    screen.getByRole('spinbutton', {  name: /number of units to sell\*/i })
+    screen.getByRole('button', { name: /continue/i })
   })
 
-  test('calls setNumUnits on Change', () => {
-    userEvent.type(screen.getByRole('spinbutton', {  name: /number of units to sell\*/i}), '123')
+  test('Sets the number of units to 123', () => {
+    userEvent.type(screen.getByRole('spinbutton', { name: /number of units to sell\*/i }), '123')
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
     expect(screen.getByText(/123/i)).toBeInTheDocument()
   })
 
   test('does not go to the next step on submit if the input field is blank', () => {
-    userEvent.type(screen.getByRole('spinbutton', {  name: /number of units to sell\*/i}), '')
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
-    screen.getByRole('spinbutton', {  name: /number of units to sell\*/i})
+    screen.getByRole('spinbutton', { name: /number of units to sell\*/i })
   })
 
   test('returns an error if the field is empty', () => {
-    userEvent.type(screen.getByRole('spinbutton', {  name: /number of units to sell\*/i}), '')
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
     expect(screen.getByText(/enter a valid number of units to continue/i)).toBeInTheDocument()
   })
   
   test('goes to the previous step on back click', () => {
-    userEvent.click(screen.getByRole('button', {  name: /back to price per unit/i}))
-    expect(screen.getByRole('heading', {  name: /estimate your selling price per unit/i})).toBeInTheDocument()
+    userEvent.click(screen.getByRole('button', { name: /back to price per unit/i }))
+    expect(screen.getByRole('heading', { name: /estimate your selling price per unit/i })).toBeInTheDocument()
   })
 
-  test('calls restart prop on restart analysis click', () => {
+  test('resets fields and goes back to fixed cost on restart analysis click', () => {
     userEvent.click(screen.getByRole('button', {  name: /restart analysis/i}))
-    expect(screen.getByRole('heading', {  name: /calculate your total fixed costs/i}))
-    expect(screen.getByRole('radio', {name: /yes, i know the total of my monthly fixed costs/i}).checked).toEqual(false)
-    expect(screen.getByRole('radio', {name: /no, input values individually/i}).checked).toEqual(false)
+    expect(screen.getByRole('heading', { name: /calculate your total fixed costs/i }))
+    expect(screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i }).checked).toEqual(false)
+    expect(screen.getByRole('radio', { name: /no, input values individually/i }).checked).toEqual(false)
     expect(screen.queryByRole('spinbutton', { name: /total fixed cost/i })).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /continue/i }))
   })
 })

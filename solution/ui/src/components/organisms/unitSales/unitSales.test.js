@@ -1,11 +1,7 @@
 import React from 'react'
-import { shallow } from 'enzyme'
 import { render, screen, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import BreakEvenCalculator from '../../../pages/index'
-import UnitSales from './unitSales'
-import { CALCULATOR_STEPS } from '../../../constants'
-
 
 describe('UnitSales', () => {
 
@@ -56,6 +52,7 @@ describe('UnitSales', () => {
     expect(screen.getByRole('heading', {  name: /calculate your total fixed costs/i}))
     expect(screen.getByRole('radio', {name: /yes, i know the total of my monthly fixed costs/i}).checked).toEqual(false)
     expect(screen.getByRole('radio', {name: /no, input values individually/i}).checked).toEqual(false)
+    expect(screen.getByRole('spinbutton', {  name: /total fixed cost/i})).not.toBeInTheDocument()
     expect(screen.queryByRole('spinbutton', { name: /total fixed cost/i })).not.toBeInTheDocument()
 
   })

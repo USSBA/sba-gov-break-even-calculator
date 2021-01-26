@@ -52,8 +52,6 @@ describe('UnitSales', () => {
     expect(screen.getByRole('heading', {  name: /calculate your total fixed costs/i}))
     expect(screen.getByRole('radio', {name: /yes, i know the total of my monthly fixed costs/i}).checked).toEqual(false)
     expect(screen.getByRole('radio', {name: /no, input values individually/i}).checked).toEqual(false)
-    expect(screen.getByRole('spinbutton', {  name: /total fixed cost/i})).not.toBeInTheDocument()
     expect(screen.queryByRole('spinbutton', { name: /total fixed cost/i })).not.toBeInTheDocument()
-
   })
 })

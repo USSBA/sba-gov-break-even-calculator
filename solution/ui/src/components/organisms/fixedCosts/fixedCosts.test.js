@@ -1,27 +1,12 @@
 import React from 'react'
-import { shallow } from 'enzyme'
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 
 import BreakEvenCalculator from '../../../pages/index'
 import FixedCosts from './fixedCosts'
-import { fixedCostInitState } from './fixedCostsFieldsData'
 
 describe('FixedCosts', () => {
   
-  const goToStepMock = jest.fn()
-
-  const baseProps = {
-    visible: true,
-    setFixedCost: jest.fn(),
-    restart: jest.fn(),
-    goToStep: goToStepMock,
-  }
-
-  beforeEach(() => {
-    goToStepMock.mockReset()
-  })
-
   beforeEach(() => { 
     render(<FixedCosts
       visible={true}
@@ -137,11 +122,15 @@ describe('FixedCosts', () => {
   })
 
   test('resets fields on radio button switch', () => {
-    const wrapper = shallow(<FixedCosts {...baseProps} />);
-    wrapper.setState({knowFixedCosts: 'no'})
-    wrapper.setState({fields: {Rent: '100'}})
-    wrapper.find('[label="Yes"]').simulate('change', null, {value: 'yes'})
-    expect(wrapper.state().fields).toEqual(fixedCostInitState);
+    const notKnowFixedCost = screen.getByRole('radio', { name: /no, input values individually/i })
+    const knowFixedCost = screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i })
+
+    userEvent.click(notKnowFixedCost)
+    userEvent.type(screen.getByRole('spinbutton', { name: /rent/i }), '100')
+    userEvent.click(knowFixedCost)
+    userEvent.click(notKnowFixedCost)
+
+    expect(screen.getByRole('spinbutton', { name: /rent/i })).toHaveValue(null)
   })
 
   test('correctly resets the total cost value on radio button change', () => {
@@ -149,7 +138,7 @@ describe('FixedCosts', () => {
     const notKnowFixedCost = screen.getByRole('radio', { name: /no, input values individually/i })
     userEvent.click(knowFixedCost)
     expect(userEvent.type(screen.getByRole('spinbutton', { name: /total fixed cost/i }), '1000'))
-    expect(screen.getByRole('spinbutton', {  name: /total fixed cost/i})).toHaveValue(1000)
+    expect(screen.getByRole('spinbutton', { name: /total fixed cost/i })).toHaveValue(1000)
     userEvent.click(notKnowFixedCost)
     userEvent.click(knowFixedCost)
 
@@ -169,7 +158,7 @@ describe('FixedCosts', () => {
     userEvent.type(screen.getByRole('spinbutton', { name: /salaries/i }), '3000')
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
     expect(screen.getByText(/\$3,100/i)).toBeInTheDocument
-    userEvent.click(screen.getByRole('button', {  name: /back to fixed costs/i}))
+    userEvent.click(screen.getByRole('button', { name: /back to fixed costs/i }))
     userEvent.click(notKnowFixedCost)
 
     userEvent.clear(screen.getByRole('spinbutton', { name: /rent/i }))
@@ -183,7 +172,7 @@ describe('FixedCosts', () => {
     const notKnowFixedCost = screen.getByRole('radio', { name: /no, input values individually/i })
     userEvent.click(notKnowFixedCost)
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
-    expect(screen.getByRole('heading', {  name: /calculate your total fixed costs/i})).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /calculate your total fixed costs/i })).toBeInTheDocument()
   })
   
   test ('goes to next step if at least one of the form fields is filled', () => {
@@ -192,6 +181,6 @@ describe('FixedCosts', () => {
     userEvent.type(screen.getByRole('spinbutton', { name: /rent/i }), '1000')
     expect(screen.getByRole('spinbutton', { name: /rent/i })).toHaveValue(1000)
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
-    screen.getByRole('heading', {  name: /estimate your selling price per unit/i})
+    screen.getByRole('heading', { name: /estimate your selling price per unit/i })
   })
 })

@@ -1,80 +1,54 @@
 import React from 'react'
-import { shallow } from 'enzyme'
-
-import UnitSales from './unitSales'
-import { CALCULATOR_STEPS } from '../../../constants'
-
+import { render, screen, fireEvent } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import BreakEvenCalculator from '../../../pages/index'
 
 describe('UnitSales', () => {
-  const setNumUnitsMock = jest.fn()
-  const goToStepMock = jest.fn()
-  const restartMock = jest.fn()
 
-  const baseProps = {
-    goToStep: goToStepMock,
-    restart: restartMock,
-    setNumUnits: setNumUnitsMock,
-    visible: true
-  }
-
-  afterEach(() => {
-    jest.clearAllMocks()
+  beforeEach(() => {
+    render(<BreakEvenCalculator />)
+    const totalFixedCostYesRadioText = 'yes, I know the total of my monthly fixed costs'
+    userEvent.click(screen.getByLabelText(totalFixedCostYesRadioText))
+    userEvent.type(screen.getByLabelText('total fixed cost'), '1000')
+    fireEvent.submit(screen.getByTestId('fixedCosts-form'))
+    userEvent.type(screen.getByRole('spinbutton', { name: /per unit selling price\*/i }), '25')
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
   })
 
-  it('renders an input field and submit button', () => {
-    const wrapper = shallow(<UnitSales {...baseProps} />)
-    expect(wrapper.find('Input')).toHaveLength(1)
-    expect(wrapper.find('FormButton')).toHaveLength(1)
+  test('renders an input field and submit button', () => {
+    screen.getByRole('spinbutton', { name: /number of units to sell\*/i })
+    screen.getByRole('button', { name: /continue/i })
   })
 
-  it('calls setNumUnits on Change', () => {
-    const wrapper = shallow(
-      <UnitSales {...baseProps} />
-    )
-    wrapper.find('Input').simulate('change', null, {value: 100})
-    expect(setNumUnitsMock).toHaveBeenCalledWith(100)
+  test('Sets the number of units to 123', () => {
+    userEvent.type(screen.getByRole('spinbutton', { name: /number of units to sell\*/i }), '123')
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
+    expect(screen.getByText(/123/i)).toBeInTheDocument()
   })
 
-  it('goes to the next step on submit if a value is entered', () => {
-    const wrapper = shallow(
-      <UnitSales {...baseProps} />
-    )
-
-    wrapper.setProps({value: 100})
-    wrapper.find('Form').simulate('submit')
-    expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.UNIT_SALES + 1)
+  test('does not go to the next step on submit if the input field is blank', () => {
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
+    screen.getByRole('spinbutton', { name: /number of units to sell\*/i })
   })
 
-  it('does not go to the next step on submit if the input field is blank', () => {
-    const wrapper = shallow(
-      <UnitSales  {...baseProps} />
-    )
-    wrapper.find('Form').simulate('submit')
-    expect(goToStepMock).toHaveBeenCalledTimes(0)
-  })
-
-  it('returns an error if the field is empty', () => {
-    const wrapper = shallow(
-      <UnitSales  {...baseProps} />
-    )
-
-    wrapper.find('Form').simulate('submit')
-    expect(wrapper.find('FormInput').dive().dive().find('Label').prop('content')).toEqual('Enter a valid number of units to continue');
+  test('returns an error if the field is empty', () => {
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
+    expect(screen.getByRole('heading', { name: /estimate your expected unit sales/i })).toBeInTheDocument()
+    expect(screen.getByText(/enter a valid number of units to continue/i)).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).not.toBeInTheDocument()
   })
   
-  it('goes to the previous step on back click', () => {
-    const wrapper = shallow(
-      <UnitSales {...baseProps} />
-    )
-    wrapper.find('Button').first().simulate('click')
-    expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.UNIT_SALES - 1)
+  test('goes to the previous step on back click', () => {
+    userEvent.click(screen.getByRole('button', { name: /back to price per unit/i }))
+    expect(screen.getByRole('heading', { name: /estimate your selling price per unit/i })).toBeInTheDocument()
   })
 
-  it('calls restart prop on restart analysis click', () => {
-    const wrapper = shallow(
-      <UnitSales {...baseProps} />
-    )
-    wrapper.find('Button').last().simulate('click')
-    expect(restartMock).toHaveBeenCalledTimes(1)
+  test('resets fields and goes back to fixed cost on restart analysis click', () => {
+    userEvent.click(screen.getByRole('button', { name: /restart analysis/i }))
+    expect(screen.getByRole('heading', { name: /calculate your total fixed costs/i }))
+    expect(screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i }).checked).toEqual(false)
+    expect(screen.getByRole('radio', { name: /no, input values individually/i }).checked).toEqual(false)
+    expect(screen.queryByRole('spinbutton', { name: /total fixed cost/i })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /continue/i }))
   })
 })

@@ -16,7 +16,7 @@ describe('UnitSales', () => {
   })
 
   test('renders an input field and submit button', () => {
-    screen.getByRole('spinbutton', {  name: /number of units to sell\*/i })
+    screen.getByRole('spinbutton', { name: /number of units to sell\*/i })
     screen.getByRole('button', { name: /continue/i })
   })
 

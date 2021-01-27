@@ -33,7 +33,9 @@ describe('UnitSales', () => {
 
   test('returns an error if the field is empty', () => {
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
+    expect(screen.getByRole('heading', {  name: /estimate your expected unit sales/i})).toBeInTheDocument()
     expect(screen.getByText(/enter a valid number of units to continue/i)).toBeInTheDocument()
+    expect(screen.queryByRole('heading', {  name: /do you know your variable cost per unit\?\*/i})).not.toBeInTheDocument()
   })
   
   test('goes to the previous step on back click', () => {

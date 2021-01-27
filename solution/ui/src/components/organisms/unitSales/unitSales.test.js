@@ -15,10 +15,6 @@ describe('UnitSales', () => {
     userEvent.click(screen.getByRole('button', {  name: /continue/i}))
   })
 
-  afterEach(() => {
-    jest.clearAllMocks()
-  })
-
   test('renders an input field and submit button', () => {
     screen.getByRole('spinbutton', {  name: /number of units to sell\*/i })
     screen.getByRole('button', { name: /continue/i })
@@ -51,6 +47,6 @@ describe('UnitSales', () => {
     expect(screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i }).checked).toEqual(false)
     expect(screen.getByRole('radio', { name: /no, input values individually/i }).checked).toEqual(false)
     expect(screen.queryByRole('spinbutton', { name: /total fixed cost/i })).not.toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /continue/i }))
+    expect(screen.queryByRole('button', { name: /continue/i }))
   })
 })

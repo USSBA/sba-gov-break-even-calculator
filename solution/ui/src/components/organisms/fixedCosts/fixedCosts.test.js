@@ -128,7 +128,9 @@ describe('FixedCosts', () => {
     userEvent.click(notKnowFixedCost)
     userEvent.type(screen.getByRole('spinbutton', { name: /rent/i }), '100')
     userEvent.click(knowFixedCost)
-    expect(screen.getByRole('spinbutton', {  name: /total fixed cost/i})).toHaveValue(null)
+    userEvent.click(notKnowFixedCost)
+
+    expect(screen.getByRole('spinbutton', {  name: /rent/i})).toHaveValue(null)
   })
 
   test('correctly resets the total cost value on radio button change', () => {

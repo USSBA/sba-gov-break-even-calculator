@@ -11,8 +11,8 @@ describe('UnitSales', () => {
     userEvent.click(screen.getByLabelText(totalFixedCostYesRadioText))
     userEvent.type(screen.getByLabelText('total fixed cost'), '1000')
     fireEvent.submit(screen.getByTestId('fixedCosts-form'))
-    userEvent.type(screen.getByRole('spinbutton', {  name: /per unit selling price\*/i}), '25')
-    userEvent.click(screen.getByRole('button', {  name: /continue/i}))
+    userEvent.type(screen.getByRole('spinbutton', { name: /per unit selling price\*/i }), '25')
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
   })
 
   test('renders an input field and submit button', () => {
@@ -33,9 +33,9 @@ describe('UnitSales', () => {
 
   test('returns an error if the field is empty', () => {
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
-    expect(screen.getByRole('heading', {  name: /estimate your expected unit sales/i})).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /estimate your expected unit sales/i })).toBeInTheDocument()
     expect(screen.getByText(/enter a valid number of units to continue/i)).toBeInTheDocument()
-    expect(screen.queryByRole('heading', {  name: /do you know your variable cost per unit\?\*/i})).not.toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).not.toBeInTheDocument()
   })
   
   test('goes to the previous step on back click', () => {
@@ -44,7 +44,7 @@ describe('UnitSales', () => {
   })
 
   test('resets fields and goes back to fixed cost on restart analysis click', () => {
-    userEvent.click(screen.getByRole('button', {  name: /restart analysis/i}))
+    userEvent.click(screen.getByRole('button', { name: /restart analysis/i }))
     expect(screen.getByRole('heading', { name: /calculate your total fixed costs/i }))
     expect(screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i }).checked).toEqual(false)
     expect(screen.getByRole('radio', { name: /no, input values individually/i }).checked).toEqual(false)

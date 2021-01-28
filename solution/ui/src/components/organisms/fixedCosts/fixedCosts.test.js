@@ -1,7 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
-
 import BreakEvenCalculator from '../../../pages/index'
 import FixedCosts from './fixedCosts'
 
@@ -81,7 +80,7 @@ describe('FixedCosts', () => {
   test('shows fixed cost suggestion box only on yes selection', () => {
     const knowFixedCost = screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i })
     const notKnowFixedCost = screen.getByRole('radio', { name: /no, input values individually/i })
-    expect(screen.queryByText(/unsure about your total fixed costs?/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Help with your total fixed costs?/i)).not.toBeInTheDocument()
 
     userEvent.click(knowFixedCost)
     expect(screen.queryByText(/Help with your total fixed costs?/i)).toBeInTheDocument()

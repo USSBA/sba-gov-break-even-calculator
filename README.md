@@ -14,7 +14,7 @@
 1. ***install node version 12 ***
 ```brew install node```
 
-1. run ```npm install```
+1. run ```pnpm install```
 
 1.  **Start developing.**
 
@@ -22,7 +22,7 @@
 
     ```shell
     cd sba-gov-break-even-calculator/solutions/ui
-    gatsby develop
+    pnpm start
     ```
 
 1.  **Open the source code and start editing!**

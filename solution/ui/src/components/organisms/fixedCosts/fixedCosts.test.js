@@ -5,7 +5,8 @@ import BreakEvenCalculator from '../../../pages/index'
 import FixedCosts from './fixedCosts'
 
 describe('FixedCosts', () => {
-  
+  let knowFixedCost
+  let notKnowFixedCost
   beforeEach(() => { 
     render(<FixedCosts
       visible={true}
@@ -14,6 +15,12 @@ describe('FixedCosts', () => {
       totalFixedCosts='0'
       key='false' 
     />)
+    knowFixedCost = screen.getByRole('radio', { 
+      name: /yes, i know the total of my monthly fixed costs/i 
+    })
+    notKnowFixedCost = screen.getByRole('radio', { 
+      name: /no, input values individually/i 
+    })
   });
 
   test('Has a heading called "Calculate your total fixed costs"', () => {
@@ -21,14 +28,12 @@ describe('FixedCosts', () => {
   })
 
   test("Click on 'yes' displays text field and sets knowFixedCost value to yes", () => {
-    const knowFixedCost = screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i })
     userEvent.click(knowFixedCost)
     expect(knowFixedCost.checked).toBe(true)
     expect(knowFixedCost.value).toEqual("yes")
   })
   
   test("Click on 'yes' displays only fixed cost text field" , () => {
-    const knowFixedCost = screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i })
     userEvent.click(knowFixedCost)
     screen.getByRole('spinbutton', { name: /total fixed cost/i })
     expect(screen.queryByRole('spinbutton', { name: /amortization/i })).not.toBeInTheDocument()
@@ -44,14 +49,12 @@ describe('FixedCosts', () => {
   })
 
   test("Click 'no, input values individually', sets not knowFixedCost value to no", () => {
-    const notKnowFixedCost = screen.getByRole('radio', { name: /no, input values individually/i })
     userEvent.click(notKnowFixedCost)
     expect(notKnowFixedCost.checked).toBe(true)
     expect(notKnowFixedCost.value).toEqual("no")
   })
 
   test("Click 'no, input values individually', displays all fields but fixed cost field", () => {
-    const notKnowFixedCost = screen.getByRole('radio', { name: /no, input values individually/i })
     userEvent.click(notKnowFixedCost)
     expect(screen.queryByRole('spinbutton', { name: /total fixed cost/i })).not.toBeInTheDocument()
     expect(screen.queryByRole('spinbutton', { name: /amortization/i })).toBeInTheDocument()
@@ -67,8 +70,6 @@ describe('FixedCosts', () => {
   })
 
   test('shows the continue button when a selection has been made', () => {
-    const knowFixedCost = screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i })
-    const notKnowFixedCost = screen.getByRole('radio', { name: /no, input values individually/i })
     expect(screen.queryByRole('button', { name: /continue/i })).not.toBeInTheDocument()
 
     userEvent.click(knowFixedCost)
@@ -78,8 +79,6 @@ describe('FixedCosts', () => {
   })
 
   test('shows fixed cost suggestion box only on yes selection', () => {
-    const knowFixedCost = screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i })
-    const notKnowFixedCost = screen.getByRole('radio', { name: /no, input values individually/i })
     expect(screen.queryByText(/Help with your total fixed costs?/i)).not.toBeInTheDocument()
 
     userEvent.click(knowFixedCost)
@@ -89,7 +88,6 @@ describe('FixedCosts', () => {
   })
 
   test('shows NumbersInputForm on suggestion link click', () => {
-    const knowFixedCost = screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i })
     userEvent.click(knowFixedCost)
     userEvent.click(screen.getByRole('button', { name: /add all fixed costs individually/i }))
     expect(screen.queryByRole('spinbutton', { name: /total fixed cost/i })).not.toBeInTheDocument()
@@ -106,7 +104,6 @@ describe('FixedCosts', () => {
   })
 
   test('calls setFixedCost and does not go to the next step when fixedcost field is empty', () => {
-    const knowFixedCost = screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i })
     userEvent.click(knowFixedCost)
     screen.getByRole('spinbutton', { name: /total fixed cost/i })
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
@@ -114,16 +111,12 @@ describe('FixedCosts', () => {
   })
 
   test('outputs a message if user has not filled at least one field', () => {
-    const notKnowFixedCost = screen.getByRole('radio', { name: /no, input values individually/i })
     userEvent.click(notKnowFixedCost)
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
     screen.getByText(/enter a valid fixed cost to continue/i)
   })
 
   test('resets fields on radio button switch', () => {
-    const notKnowFixedCost = screen.getByRole('radio', { name: /no, input values individually/i })
-    const knowFixedCost = screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i })
-
     userEvent.click(notKnowFixedCost)
     userEvent.type(screen.getByRole('spinbutton', { name: /rent/i }), '100')
     userEvent.click(knowFixedCost)
@@ -133,8 +126,6 @@ describe('FixedCosts', () => {
   })
 
   test('correctly resets the total cost value on radio button change', () => {
-    const knowFixedCost = screen.getByRole('radio', { name: /yes, i know the total of my monthly fixed costs/i })
-    const notKnowFixedCost = screen.getByRole('radio', { name: /no, input values individually/i })
     userEvent.click(knowFixedCost)
     expect(userEvent.type(screen.getByRole('spinbutton', { name: /total fixed cost/i }), '1000'))
     expect(screen.getByRole('spinbutton', { name: /total fixed cost/i })).toHaveValue(1000)
@@ -146,12 +137,20 @@ describe('FixedCosts', () => {
 })
 
 describe('FixedCosts', () => {
+  let knowFixedCost
+  let notKnowFixedCost
+
   beforeEach(() => { 
     render(<BreakEvenCalculator/>)
+    knowFixedCost = screen.getByRole('radio', { 
+      name: /yes, i know the total of my monthly fixed costs/i 
+    })
+    notKnowFixedCost = screen.getByRole('radio', { 
+      name: /no, input values individually/i 
+    })
   });
 
   test('correctly calculates total cost when a field value is erased', () => {
-    const notKnowFixedCost = screen.getByRole('radio', { name: /no, input values individually/i })
     userEvent.click(notKnowFixedCost)
     userEvent.type(screen.getByRole('spinbutton', { name: /rent/i }), '100')
     userEvent.type(screen.getByRole('spinbutton', { name: /salaries/i }), '3000')
@@ -168,14 +167,12 @@ describe('FixedCosts', () => {
   })
 
   test ('does not go to next step if all the fields are empty', () => {
-    const notKnowFixedCost = screen.getByRole('radio', { name: /no, input values individually/i })
     userEvent.click(notKnowFixedCost)
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
     expect(screen.getByRole('heading', { name: /calculate your total fixed costs/i })).toBeInTheDocument()
   })
   
   test ('goes to next step if at least one of the form fields is filled', () => {
-    const notKnowFixedCost = screen.getByRole('radio', { name: /no, input values individually/i })
     userEvent.click(notKnowFixedCost)
     userEvent.type(screen.getByRole('spinbutton', { name: /rent/i }), '1000')
     expect(screen.getByRole('spinbutton', { name: /rent/i })).toHaveValue(1000)

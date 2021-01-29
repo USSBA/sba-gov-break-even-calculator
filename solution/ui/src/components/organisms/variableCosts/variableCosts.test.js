@@ -4,37 +4,33 @@ import userEvent from '@testing-library/user-event'
 import BreakEvenCalculator from '../../../pages/index'
 
 describe('VariableCosts', () => {
+
+  let knowVariableCost
+  let notKnowVariableCost
   beforeEach(() => {
     render(<BreakEvenCalculator />)
-    const knowVariableCost = 'yes, I know the total of my monthly fixed costs'
-    userEvent.click(screen.getByLabelText(knowVariableCost))
+    userEvent.click(screen.getByLabelText('yes, I know the total of my monthly fixed costs'))
     userEvent.type(screen.getByLabelText('total fixed cost'), '1000')
     fireEvent.submit(screen.getByTestId('fixedCosts-form'))
     userEvent.type(screen.getByRole('spinbutton', { name: /per unit selling price\*/i }), '25')
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
     userEvent.type(screen.getByRole('spinbutton', {  name: /number of units to sell\*/i}), '123')
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
-  })
-
-  test('has correct initial fields', () => {
-    const knowVariableCost = screen.getByRole('radio', {
+    knowVariableCost = screen.getByRole('radio', {
       name: /yes, i know the total of my variable costs per unit/i
     })
-    const notKnowVariableCost = screen.getByRole('radio', {
+    notKnowVariableCost = screen.getByRole('radio', {
       name: /no, input values individually/i
     })
-    
+  })
+
+  test('displays radio buttons that are null', () => {
+   console.log('within test')
     expect(knowVariableCost.value).toBeNull
     expect(notKnowVariableCost.value).toBeNull
   })
 
   test('sets VariableCosts value to true on radio button selection', () => {
-    const knowVariableCost = screen.getByRole('radio', {
-      name: /yes, i know the total of my variable costs per unit/i
-    })
-    const notKnowVariableCost = screen.getByRole('radio', {
-      name: /no, input values individually/i
-    })
     userEvent.click(knowVariableCost)
 
     expect(knowVariableCost.checked).toEqual(true)
@@ -47,13 +43,6 @@ describe('VariableCosts', () => {
   })
 
   test('shows the continue button when a selection has been made', () => {
-    const knowVariableCost = screen.getByRole('radio', {
-      name: /yes, i know the total of my variable costs per unit/i
-    })
-    const notKnowVariableCost = screen.getByRole('radio', {
-      name: /no, input values individually/i
-    })
-
     expect(screen.queryByRole('button', { name: /continue/i })).not.toBeInTheDocument()
 
     userEvent.click(knowVariableCost)
@@ -66,13 +55,6 @@ describe('VariableCosts', () => {
   })
 
   test('shows variable cost suggestion box on yes selection', () => {
-    const knowVariableCost = screen.getByRole('radio', {
-      name: /yes, i know the total of my variable costs per unit/i
-    })
-    const notKnowVariableCost = screen.getByRole('radio', {
-      name: /no, input values individually/i
-    })
-
     expect(screen.queryByText(/Help with your total variable costs?/i)).not.toBeInTheDocument()
   
     userEvent.click(knowVariableCost)
@@ -99,9 +81,6 @@ describe('VariableCosts', () => {
   })
 
   test('shows NumbersInputForm on no selection', () => {
-    const notKnowVariableCost = screen.getByRole('radio', {
-      name: /no, input values individually/i
-    })
     userEvent.click(notKnowVariableCost)
   
     expect(screen.queryByRole('spinbutton', { name: /total monthly variable costs\*/i })).not.toBeInTheDocument()
@@ -113,21 +92,17 @@ describe('VariableCosts', () => {
     expect(screen.queryByRole('spinbutton', { name: /other variable costs/i })).toBeInTheDocument()
   })
 
-  test('calculates the variable cost value and when you go to the next page it displays it', () => {
-    const notKnowVariableCost = screen.getByRole('radio', {
-      name: /no, input values individually/i
-    })
+  test('calculates the variable cost values individually and displays total on next page', () => {
     userEvent.click(notKnowVariableCost)
     userEvent.type(screen.getByRole('spinbutton', { name: /commissions/i }), '12')
+    userEvent.type(screen.getByRole('spinbutton', { name: /direct materials/i }), '5')
+
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
 
-    screen.getByText(/\$12/i)
+    screen.getByText(/\$17/i)
   })
 
   test('saves the variable cost value and when you go to the next page it displays it', () => {
-    const knowVariableCost = screen.getByRole('radio', {
-      name: /yes, i know the total of my variable costs per unit/i
-    })
     userEvent.click(knowVariableCost)
     userEvent.type(screen.getByRole('spinbutton', { name: /total monthly variable costs\*/i }), '12')
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
@@ -135,10 +110,7 @@ describe('VariableCosts', () => {
     expect(screen.getByText(/\$12/i)).toBeInTheDocument()
   })
   
-  it('Does not go to the next step when variable cost field is empty', () => {
-    const knowVariableCost = screen.getByRole('radio', {
-      name: /yes, i know the total of my variable costs per unit/i
-    })
+  test('Does not go to the next step when variable cost field is empty', () => {
     expect(screen.getByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).toBeInTheDocument()
 
     userEvent.click(knowVariableCost)
@@ -148,13 +120,7 @@ describe('VariableCosts', () => {
     expect(screen.queryByRole('heading', { name: /break-even point results/i })).not.toBeInTheDocument()
   })
 
-  it('resets fields on radio button switch', () => {
-    const knowVariableCost = screen.getByRole('radio', {
-      name: /yes, i know the total of my variable costs per unit/i
-    })
-    const notKnowVariableCost = screen.getByRole('radio', {
-      name: /no, input values individually/i
-    })
+  test('resets fields on radio button switch', () => {
     userEvent.click(knowVariableCost)
     userEvent.type(screen.getByRole('spinbutton', { name: /total monthly variable costs\*/i }), '12')
   
@@ -177,9 +143,6 @@ describe('VariableCosts', () => {
   })
 
   test('goes to next step if at least one of the form fields is filled', () => {
-    const notKnowVariableCost = screen.getByRole('radio', {
-      name: /no, input values individually/i
-    })
     userEvent.click(notKnowVariableCost)
     userEvent.type(screen.getByRole('spinbutton', { name: /commissions/i }), '12')
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
@@ -189,9 +152,6 @@ describe('VariableCosts', () => {
   })
 
   test('does not go to next step if all the fields are empty', () => {
-    const notKnowVariableCost = screen.getByRole('radio', {
-      name: /no, input values individually/i
-    })
     userEvent.click(notKnowVariableCost)
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
     
@@ -200,30 +160,22 @@ describe('VariableCosts', () => {
   })
 
   test('outputs a message if user has not filled at least one field', () => {
-    const notKnowVariableCost = screen.getByRole('radio', {
-      name: /no, input values individually/i
-    })
+    const errorMsg = /Enter a valid variable cost per unit to continue/i
     userEvent.click(notKnowVariableCost)
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
-    expect(screen.getByText(/Enter a valid variable cost per unit to continue/i)).toBeInTheDocument()
+    expect(screen.getByText(errorMsg)).toBeInTheDocument()
   })
 
-  test('displays warning message when appropriate', () => {
-    const notKnowVariableCost = screen.getByRole('radio', {
-      name: /no, input values individually/i
-    })
+  test('displays a warning, when variable cost is higher than price per unit', () => {
+    const warningMsg = /your variable costs are higher than your unit price\. you will never break-even\. consider adjusting your values\./i
+
     userEvent.click(notKnowVariableCost)
     userEvent.type(screen.getByRole('spinbutton', { name: /commissions/i }), '1200')
 
-    expect(screen.getByText(
-      /your variable costs are higher than your unit price\. you will never break-even\. consider adjusting your values\./i
-    )).toBeInTheDocument
+    expect(screen.getByText(warningMsg)).toBeInTheDocument
   })
 
   test('does not prevent submission when warning is displayed', () => {
-    const notKnowVariableCost = screen.getByRole('radio', {
-      name: /no, input values individually/i
-    })
     userEvent.click(notKnowVariableCost)
     userEvent.type(screen.getByRole('spinbutton', { name: /commissions/i }), '1200')
     userEvent.click(screen.getByRole('button', { name: /continue/i }))

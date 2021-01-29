@@ -145,7 +145,7 @@ describe('VariableCosts', () => {
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
 
     expect(screen.getByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).toBeInTheDocument()
-    expect(screen.queryByRole('heading', { name: /break\-even point results/i })).not.toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /break-even point results/i })).not.toBeInTheDocument()
   })
 
   it('resets fields on radio button switch', () => {
@@ -185,7 +185,7 @@ describe('VariableCosts', () => {
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
 
     expect(screen.queryByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).not.toBeInTheDocument()
-    expect(screen.getAllByRole('heading', { name: /break\-even point results/i })[0]).toBeInTheDocument()
+    expect(screen.getAllByRole('heading', { name: /break-even point results/i })[0]).toBeInTheDocument()
   })
 
   test('does not go to next step if all the fields are empty', () => {
@@ -196,7 +196,7 @@ describe('VariableCosts', () => {
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
     
     expect(screen.queryByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).toBeInTheDocument()
-    expect(screen.queryByRole('heading', { name: /break\-even point results/i })).not.toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /break-even point results/i })).not.toBeInTheDocument()
   })
 
   test('outputs a message if user has not filled at least one field', () => {
@@ -216,7 +216,7 @@ describe('VariableCosts', () => {
     userEvent.type(screen.getByRole('spinbutton', { name: /commissions/i }), '1200')
 
     expect(screen.getByText(
-      /your variable costs are higher than your unit price\. you will never break\-even\. consider adjusting your values\./i
+      /your variable costs are higher than your unit price\. you will never break-even\. consider adjusting your values\./i
     )).toBeInTheDocument
   })
 
@@ -229,6 +229,6 @@ describe('VariableCosts', () => {
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
 
     expect(screen.queryByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).not.toBeInTheDocument()
-    expect(screen.getAllByRole('heading', { name: /break\-even point results/i })[0]).toBeInTheDocument()
+    expect(screen.getAllByRole('heading', { name: /break-even point results/i })[0]).toBeInTheDocument()
   })
 })

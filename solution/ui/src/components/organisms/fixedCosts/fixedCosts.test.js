@@ -113,7 +113,7 @@ describe('FixedCosts', () => {
     screen.getByText(/enter a valid fixed cost to continue/i)
   })
 
-  test ('outputs a message if user has not filled at least one field', () => {
+  test('outputs a message if user has not filled at least one field', () => {
     const notKnowFixedCost = screen.getByRole('radio', { name: /no, input values individually/i })
     userEvent.click(notKnowFixedCost)
     userEvent.click(screen.getByRole('button', { name: /continue/i }))

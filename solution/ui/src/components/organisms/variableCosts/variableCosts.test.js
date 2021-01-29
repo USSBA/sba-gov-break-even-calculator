@@ -16,7 +16,6 @@ describe('VariableCosts', () => {
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
   })
 
-
   test('has correct initial fields', () => {
     const knowVariableCost = screen.getByRole('radio', {
       name: /yes, i know the total of my variable costs per unit/i
@@ -24,6 +23,7 @@ describe('VariableCosts', () => {
     const notKnowVariableCost = screen.getByRole('radio', {
       name: /no, input values individually/i
     })
+    
     expect(knowVariableCost.value).toBeNull
     expect(notKnowVariableCost.value).toBeNull
   })
@@ -35,12 +35,13 @@ describe('VariableCosts', () => {
     const notKnowVariableCost = screen.getByRole('radio', {
       name: /no, input values individually/i
     })
-
     userEvent.click(knowVariableCost)
+
     expect(knowVariableCost.checked).toEqual(true)
     expect(notKnowVariableCost.checked).toEqual(false)
 
     userEvent.click(notKnowVariableCost)
+
     expect(knowVariableCost.checked).toEqual(false)
     expect(notKnowVariableCost.checked).toEqual(true)
   })
@@ -52,11 +53,15 @@ describe('VariableCosts', () => {
     const notKnowVariableCost = screen.getByRole('radio', {
       name: /no, input values individually/i
     })
+
     expect(screen.queryByRole('button', { name: /continue/i })).not.toBeInTheDocument()
+
     userEvent.click(knowVariableCost)
+
     expect(screen.getByRole('button', { name: /continue/i })).toBeInTheDocument()
     
     userEvent.click(notKnowVariableCost)
+  
     expect(screen.getByRole('button', { name: /continue/i })).toBeInTheDocument()
   })
 
@@ -67,10 +72,15 @@ describe('VariableCosts', () => {
     const notKnowVariableCost = screen.getByRole('radio', {
       name: /no, input values individually/i
     })
+
     expect(screen.queryByText(/Help with your total variable costs?/i)).not.toBeInTheDocument()
+  
     userEvent.click(knowVariableCost)
+  
     expect(screen.queryByText(/Help with your total variable costs?/i)).toBeInTheDocument()
+  
     userEvent.click(notKnowVariableCost)
+  
     expect(screen.queryByText(/Help with your total variable costs?/i)).not.toBeInTheDocument()    
   })
 
@@ -78,6 +88,7 @@ describe('VariableCosts', () => {
     const knowVariableCost = screen.getByRole('radio', { name: /yes, i know the total of my variable costs per unit/i })
     userEvent.click(knowVariableCost)
     userEvent.click(screen.getByRole('button', { name: /add variable costs individually/i }))
+  
     expect(screen.queryByRole('spinbutton', { name: /total monthly variable costs\*/i })).not.toBeInTheDocument()
     expect(screen.queryByRole('spinbutton', { name: /direct materials/i })).toBeInTheDocument()
     expect(screen.queryByRole('spinbutton', { name: /piece rate labor/i })).toBeInTheDocument()
@@ -92,6 +103,7 @@ describe('VariableCosts', () => {
       name: /no, input values individually/i
     })
     userEvent.click(notKnowVariableCost)
+  
     expect(screen.queryByRole('spinbutton', { name: /total monthly variable costs\*/i })).not.toBeInTheDocument()
     expect(screen.queryByRole('spinbutton', { name: /direct materials/i })).toBeInTheDocument()
     expect(screen.queryByRole('spinbutton', { name: /piece rate labor/i })).toBeInTheDocument()
@@ -127,13 +139,13 @@ describe('VariableCosts', () => {
     const knowVariableCost = screen.getByRole('radio', {
       name: /yes, i know the total of my variable costs per unit/i
     })
-    expect(screen.getByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).toBeInTheDocument
+    expect(screen.getByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).toBeInTheDocument()
 
     userEvent.click(knowVariableCost)
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
 
-    expect(screen.getByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).toBeInTheDocument
-    expect(screen.queryByRole('heading', { name: /break\-even point results/i })).not.toBeInTheDocument
+    expect(screen.getByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /break\-even point results/i })).not.toBeInTheDocument()
   })
 
   it('resets fields on radio button switch', () => {
@@ -145,16 +157,22 @@ describe('VariableCosts', () => {
     })
     userEvent.click(knowVariableCost)
     userEvent.type(screen.getByRole('spinbutton', { name: /total monthly variable costs\*/i }), '12')
+  
     expect(screen.getByRole('spinbutton', { name: /total monthly variable costs\*/i }).value).toEqual('12')
+  
     userEvent.click(notKnowVariableCost)
     userEvent.click(knowVariableCost)
+  
     expect(screen.getByRole('spinbutton', { name: /total monthly variable costs\*/i }).value).toEqual('')
 
     userEvent.click(notKnowVariableCost)
     userEvent.type(screen.getByRole('spinbutton', { name: /commission/i }), '120')
+  
     expect(screen.getByRole('spinbutton', { name: /commission/i }).value).toEqual('120')
+  
     userEvent.click(knowVariableCost)
     userEvent.click(notKnowVariableCost)
+  
     expect(screen.getByRole('spinbutton', { name: /commission/i }).value).toEqual('')
   })
 
@@ -166,8 +184,8 @@ describe('VariableCosts', () => {
     userEvent.type(screen.getByRole('spinbutton', { name: /commissions/i }), '12')
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
 
-    expect(screen.queryByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).not.toBeInTheDocument
-    expect(screen.getAllByRole('heading', { name: /break\-even point results/i }[0])).toBeInTheDocument
+    expect(screen.queryByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).not.toBeInTheDocument()
+    expect(screen.getAllByRole('heading', { name: /break\-even point results/i })[0]).toBeInTheDocument()
   })
 
   test('does not go to next step if all the fields are empty', () => {
@@ -177,8 +195,8 @@ describe('VariableCosts', () => {
     userEvent.click(notKnowVariableCost)
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
     
-    expect(screen.queryByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).not.toBeInTheDocument
-    expect(screen.getAllByRole('heading', { name: /break\-even point results/i }[0])).toBeInTheDocument
+    expect(screen.queryByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /break\-even point results/i })).not.toBeInTheDocument()
   })
 
   test('outputs a message if user has not filled at least one field', () => {
@@ -187,7 +205,7 @@ describe('VariableCosts', () => {
     })
     userEvent.click(notKnowVariableCost)
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
-    screen.getByText(/Enter a valid variable cost per unit to continue/i)
+    expect(screen.getByText(/Enter a valid variable cost per unit to continue/i)).toBeInTheDocument()
   })
 
   test('displays warning message when appropriate', () => {
@@ -208,8 +226,9 @@ describe('VariableCosts', () => {
     })
     userEvent.click(notKnowVariableCost)
     userEvent.type(screen.getByRole('spinbutton', { name: /commissions/i }), '1200')
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
 
-    expect(screen.queryByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).not.toBeInTheDocument
-    expect(screen.getAllByRole('heading', { name: /break\-even point results/i }[0])).toBeInTheDocument
+    expect(screen.queryByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).not.toBeInTheDocument()
+    expect(screen.getAllByRole('heading', { name: /break\-even point results/i })[0]).toBeInTheDocument()
   })
 })

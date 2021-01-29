@@ -24,7 +24,7 @@ class FixedCosts extends React.Component {
         Insurance: '',
         Salaries: '',
         Utilities: '',
-        Deprecation: '',
+        Depreciation: '',
         'Interest Expense': '',
         'Property Taxes': '',
         'Other Monthly Costs': '',

@@ -25,9 +25,8 @@ describe('VariableCosts', () => {
   })
 
   test('displays radio buttons that are null', () => {
-   console.log('within test')
-    expect(knowVariableCost.value).toBeNull
-    expect(notKnowVariableCost.value).toBeNull
+    expect(knowVariableCost.checked).toBe(false)
+    expect(notKnowVariableCost.checked).toBe(false)
   })
 
   test('sets VariableCosts value to true on radio button selection', () => {

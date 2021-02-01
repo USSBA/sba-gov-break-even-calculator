@@ -174,6 +174,6 @@ describe('FixedCosts', () => {
     userEvent.type(screen.getByRole('spinbutton', { name: /rent/i }), '1000')
     expect(screen.getByRole('spinbutton', { name: /rent/i })).toHaveValue(1000)
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
-    screen.getByRole('heading', { name: /estimate your selling price per unit/i })
+    expect(screen.getByRole('heading', { name: /estimate your selling price per unit/i })).toBeInTheDocument()
   })
 })

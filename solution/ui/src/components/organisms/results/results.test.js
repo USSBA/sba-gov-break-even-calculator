@@ -24,25 +24,25 @@ describe('Results', () => {
 
   test('renders break even result card', () => {
     expect(screen.getByRole('heading', {
-      name: /your break\-even point results/i
+      name: /your break-even point results/i
     })).toBeInTheDocument()
   })
 
   test('renders break even profile card', () => {
     expect(screen.getByRole('heading', {
-      name: /break\-even profile/i
+      name: /break-even profile/i
     })).toBeInTheDocument()
   })
 
   test('renders the graph', () => {
     expect(screen.getByRole('heading', {
-      name: /break\-even point graph/i
+      name: /break-even point graph/i
     })).toBeInTheDocument()
   })
 
   test('renders BreakEvenDataTable', () => {
     expect(screen.getByRole('heading', {
-      name: /break\-even point unit sales/i
+      name: /break-even point unit sales/i
     })).toBeInTheDocument()
   })
 
@@ -226,7 +226,7 @@ describe ('ResultsWithHighVC', () => {
     });
 
     expect(screen.queryByRole('heading', {
-      name: /break\-even point graph/i
+      name: /break-even point graph/i
     })).not.toBeInTheDocument()
   })
 })

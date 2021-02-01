@@ -24,7 +24,7 @@ describe('FixedCosts', () => {
   });
 
   test('Has a heading called "Calculate your total fixed costs"', () => {
-    screen.getByRole('heading', { name: /calculate your total fixed costs/i })
+    expect(screen.getByRole('heading', { name: /calculate your total fixed costs/i })).toBeInTheDocument()
   })
 
   test("Click on 'yes' displays text field and sets knowFixedCost value to yes", () => {

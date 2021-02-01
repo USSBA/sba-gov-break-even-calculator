@@ -99,7 +99,7 @@ describe('VariableCosts', () => {
 
     userEvent.click(screen.getByRole('button', { name: /continue/i }))
 
-    screen.getByText(/\$17/i)
+    expect(screen.getByText(/\$17/i)).toBeInTheDocument()
   })
 
   test('saves the variable cost value and when you go to the next page it displays it', () => {
@@ -172,7 +172,7 @@ describe('VariableCosts', () => {
     userEvent.click(notKnowVariableCost)
     userEvent.type(screen.getByRole('spinbutton', { name: /commissions/i }), '1200')
 
-    expect(screen.getByText(warningMsg)).toBeInTheDocument
+    expect(screen.getByText(warningMsg)).toBeInTheDocument()
   })
 
   test('does not prevent submission when warning is displayed', () => {

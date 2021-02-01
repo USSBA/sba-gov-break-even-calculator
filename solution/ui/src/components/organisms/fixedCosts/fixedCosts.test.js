@@ -137,14 +137,11 @@ describe('FixedCosts', () => {
 })
 
 describe('FixedCosts', () => {
-  let knowFixedCost
   let notKnowFixedCost
 
   beforeEach(() => { 
     render(<BreakEvenCalculator/>)
-    knowFixedCost = screen.getByRole('radio', { 
-      name: /yes, i know the total of my monthly fixed costs/i 
-    })
+   
     notKnowFixedCost = screen.getByRole('radio', { 
       name: /no, input values individually/i 
     })

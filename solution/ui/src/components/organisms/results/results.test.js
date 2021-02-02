@@ -1,79 +1,232 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { within, render, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
 
-import Results from './results'
+import BreakEvenCalculator from '../../../pages/index'
 
 describe('Results', () => {
-  const sampleProps = {
-    variableCostPerUnit: '10',
-    numUnits: '90',
-    pricePerUnit: '110',
-    totalFixedCost: '1000',
-    updateNumUnits: jest.fn(),
-    updatePricePerUnit: jest.fn(),
-    updateFixedCost: jest.fn(),
-    updateVariableCost: jest.fn()
-  }
+  beforeEach(() => {
+    render(<BreakEvenCalculator />)
+    userEvent.click(screen.getByLabelText('yes, I know the total of my monthly fixed costs'))
+    userEvent.type(screen.getByLabelText('total fixed cost'), '1000')
+    fireEvent.submit(screen.getByTestId('fixedCosts-form'))
+    userEvent.type(screen.getByRole('spinbutton', { name: /per unit selling price\*/i }), '25')
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
+    userEvent.type(screen.getByRole('spinbutton', {  name: /number of units to sell\*/i}), '123')
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
+    userEvent.click(screen.getByRole('radio', {
+      name: /yes, i know the total of my variable costs per unit/i
+    }))
+    userEvent.type(screen.getByRole('spinbutton', { name: /total monthly variable costs\*/i }), '12')
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
 
-  it('renders without crashing', () => {
-    const wrapper = shallow(<Results {...sampleProps}/>)
-    expect(wrapper).toHaveLength(1)
+  });
+
+  test('renders break even result card', () => {
+    expect(screen.getByRole('heading', {
+      name: /your break-even point results/i
+    })).toBeInTheDocument()
   })
 
-  it('renders break even result card', () => {
-    const wrapper = shallow(<Results {...sampleProps}/>)
-    expect(wrapper.find('BreakEvenResultsCard')).toHaveLength(1)
+  test('renders break even profile card', () => {
+    expect(screen.getByRole('heading', {
+      name: /break-even profile/i
+    })).toBeInTheDocument()
   })
 
-  it('passes correct props to BreakEvenResultsCard', () => {
-    const wrapper = shallow(<Results {...sampleProps}/>)
-    expect(wrapper.find('BreakEvenResultsCard').props()).toEqual({
-      breakEvenRevenue: 1100,
-      breakEvenUnits: 10,
-      expectedUnits: sampleProps.numUnits,
-      fixedCost: sampleProps.totalFixedCost,
-      pricePerUnit: sampleProps.pricePerUnit,
-      variableCost: sampleProps.variableCostPerUnit,
-    })
+  test('renders the graph', () => {
+    expect(screen.getByRole('heading', {
+      name: /break-even point graph/i
+    })).toBeInTheDocument()
   })
 
-  it('renders break even profile card', () => {
-    const wrapper = shallow(<Results {...sampleProps}/>)
-    expect(wrapper.find('BreakEvenProfileCard')).toHaveLength(1)
+  test('renders BreakEvenDataTable', () => {
+    expect(screen.getByRole('heading', {
+      name: /break-even point unit sales/i
+    })).toBeInTheDocument()
   })
 
-  it('passes correct props to BreakEvenProfileCard', () => {
-    const wrapper = shallow(<Results {...sampleProps}/>)
-    expect(wrapper.find('BreakEvenProfileCard').props()).toEqual({
-      numUnits: sampleProps.numUnits,
-      totalFixedCost: sampleProps.totalFixedCost,
-      pricePerUnit: sampleProps.pricePerUnit,
-      variableCostPerUnit: sampleProps.variableCostPerUnit,
-      updateNumUnits: expect.any(Function),
-      updatePricePerUnit: expect.any(Function),
-      updateFixedCost: expect.any(Function),
-      updateVariableCost: expect.any(Function),
-    })
+  test('renders print CTA', () => {
+    expect(screen.getByRole('button', {
+      name: /print results/i
+    })).toBeInTheDocument()
   })
 
-  it('renders the graph', () => {
-    const wrapper = shallow(<Results {...sampleProps}/>)
-    expect(wrapper.find('BreakEvenGraph')).toHaveLength(1)
+  test('Changing number of units updates the results page values', () => {
+    //test number of units is currently at
+    expect(screen.getByText(/123 units/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/123/i)).toHaveLength(2)
+
+    //profit is currently at
+    expect(screen.getByText(/\$599/i)).toBeInTheDocument()
+
+    //unit sales value is currently
+    expect(screen.getByText(/\$1,923/i)).toBeInTheDocument()
+
+    //the breakeven value is currently at
+    const view = screen.getByTestId('breakevenLabel');
+    expect(within(view).getByText(/77/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/77/i)).toHaveLength(3)
+
+    // change number of units
+    userEvent.click(screen.getByRole('button', { name: /edit # of units/i }))
+    userEvent.clear(screen.getByRole('input', { name: /# of units/i }))
+    userEvent.type(screen.getByRole('input', { name: /# of units/i }), '555')
+    userEvent.click(screen.getByRole('button', { name: /apply/i }))
+
+    //profit is updated
+    expect(screen.getByText(/\$6,215/i)).toBeInTheDocument()
+
+    //unit sales value remains the same
+    expect(screen.getByText(/\$1,923/i)).toBeInTheDocument()
+
+    //number of units is updated everywhere.
+    expect(screen.getByText(/555 units/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/555/i)).toHaveLength(2)
+
+    //the breakeven value remains the same
+    const breakevenLabelView = screen.getByTestId('breakevenLabel');
+    expect(within(breakevenLabelView).getByText(/77/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/77/i)).toHaveLength(3)
   })
 
-  it('doesn\'t render the graph when variable cost is equal or higher than price per unit', () => {
-    const wrapper = shallow(<Results {...sampleProps} variableCostPerUnit={110} />)
-    expect(wrapper.find('BreakEvenGraph')).toHaveLength(0)
+  test('Changing price per unit updates the results page values', () => {
+    //test number of units is currently at
+    expect(screen.getByText(/123 units/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/123/i)).toHaveLength(2)
+
+    //profit is currently at
+    expect(screen.getByText(/\$599/i)).toBeInTheDocument()
+
+    //unit sales value is currently
+    expect(screen.getByText(/\$1,923/i)).toBeInTheDocument()
+
+    //the breakeven value is currently at
+    const view = screen.getByTestId('breakevenLabel');
+    expect(within(view).getByText(/77/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/77/i)).toHaveLength(3)
+
+    // change number of units
+    userEvent.click(screen.getByRole('button', {  name: /edit price per unit/i}))
+    userEvent.clear(screen.getByRole('input', {  name: /price per unit/i}))
+    userEvent.type(screen.getByRole('input', {  name: /price per unit/i}), '55')
+    userEvent.click(screen.getByRole('button', { name: /apply/i }))
+
+    //profit is updated
+    expect(screen.getByText(/\$4,289/i)).toBeInTheDocument()
+
+    //unit sales value remains the same
+    expect(screen.getByText(/\$1,279/i)).toBeInTheDocument()
+
+    //number of units is updated everywhere.
+    expect(screen.getByText(/^123 units/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/^123/i)).toHaveLength(2)
+
+    //the breakeven value is updated
+    const breakevenLabelView = screen.getByTestId('breakevenLabel');
+    expect(within(breakevenLabelView).getByText(/^23/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/^23/i)).toHaveLength(3)
   })
 
-  it('renders BreakEvenDataTable', () => {
-    const wrapper = shallow(<Results {...sampleProps}/>)
-    const bepDataTable = wrapper.find('BreakEvenDataTable').dive()
-    expect(bepDataTable.find('TableRow')).toHaveLength(9)
+
+  test('Changing fixed costs updates the results page values', () => {
+    //test number of units is currently at
+    expect(screen.getByText(/123 units/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/123/i)).toHaveLength(2)
+
+    //profit is currently at
+    expect(screen.getByText(/\$599/i)).toBeInTheDocument()
+
+    //unit sales value is currently
+    expect(screen.getByText(/\$1,923/i)).toBeInTheDocument()
+
+    //the breakeven value is currently at
+    const view = screen.getByTestId('breakevenLabel');
+    expect(within(view).getByText(/77/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/77/i)).toHaveLength(3)
+
+    // change number of units
+    userEvent.click(screen.getByRole('button', { name: /edit fixed costs/i }))
+    userEvent.clear(screen.getByRole('input', {  name: /fixed costs/i}))
+    userEvent.type(screen.getByRole('input', {  name: /fixed costs/i}), '1003')
+    userEvent.click(screen.getByRole('button', { name: /apply/i }))
+
+    //profit is updated
+    expect(screen.getByText(/\$596/i)).toBeInTheDocument()
+
+    //unit sales value is updated
+    expect(screen.getByText(/\$1,929/i)).toBeInTheDocument()
+
+    //number of units is updated everywhere.
+    expect(screen.getByText(/^123 units/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/^123/i)).toHaveLength(2)
+
+    //the breakeven value is updated
+    const breakevenLabelView = screen.getByTestId('breakevenLabel');
+    expect(within(breakevenLabelView).getByText(/^77/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/^77/i)).toHaveLength(3)
   })
 
-  it('renders print CTA', () => {
-    const wrapper = shallow(<Results {...sampleProps}/>)
-    expect(wrapper.find('#printCTA')).toHaveLength(1)
+  test('Changing variable costs updates the results page values', () => {
+    //test number of units is currently at
+    expect(screen.getByText(/123 units/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/123/i)).toHaveLength(2)
+
+    //profit is currently at
+    expect(screen.getByText(/\$599/i)).toBeInTheDocument()
+
+    //unit sales value is currently
+    expect(screen.getByText(/\$1,923/i)).toBeInTheDocument()
+
+    //the breakeven value is currently at
+    const view = screen.getByTestId('breakevenLabel');
+    expect(within(view).getByText(/77/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/77/i)).toHaveLength(3)
+
+    // change variable cost
+    userEvent.click(screen.getByRole('button', {  name: /edit variable costs/i}))
+    userEvent.clear(screen.getByRole('input', {  name: /variable costs/i}))
+    userEvent.type(screen.getByRole('input', {  name: /variable costs/i}), '8')
+    userEvent.click(screen.getByRole('button', { name: /apply/i }))
+
+    //profit is updated
+    expect(screen.getByText(/\$1,091/i)).toBeInTheDocument()
+
+    //unit sales value is updated
+    expect(screen.getByText(/\$1,471/i)).toBeInTheDocument()
+
+    //number of units is updated everywhere.
+    expect(screen.getByText(/^123 units/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/^123/i)).toHaveLength(2)
+
+    //the breakeven value is updated
+    const breakevenLabelView = screen.getByTestId('breakevenLabel');
+    expect(within(breakevenLabelView).getByText(/^59/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/^59/i)).toHaveLength(3)
+  })
+})
+
+
+describe ('ResultsWithHighVC', () => { 
+  test('doesn\'t render the graph when variable cost is equal or higher than price per unit', () => {
+    beforeEach(() => {
+      render(<BreakEvenCalculator />)
+      userEvent.click(screen.getByLabelText('yes, I know the total of my monthly fixed costs'))
+      userEvent.type(screen.getByLabelText('total fixed cost'), '1000')
+      fireEvent.submit(screen.getByTestId('fixedCosts-form'))
+      userEvent.type(screen.getByRole('spinbutton', { name: /per unit selling price\*/i }), '25')
+      userEvent.click(screen.getByRole('button', { name: /continue/i }))
+      userEvent.type(screen.getByRole('spinbutton', {  name: /number of units to sell\*/i}), '123')
+      userEvent.click(screen.getByRole('button', { name: /continue/i }))
+      userEvent.click(screen.getByRole('radio', {
+        name: /yes, i know the total of my variable costs per unit/i
+      }))
+      userEvent.type(screen.getByRole('spinbutton', { name: /total monthly variable costs\*/i }), '1200')
+      userEvent.click(screen.getByRole('button', { name: /continue/i }))
+    });
+
+    expect(screen.queryByRole('heading', {
+      name: /break-even point graph/i
+    })).not.toBeInTheDocument()
   })
 })

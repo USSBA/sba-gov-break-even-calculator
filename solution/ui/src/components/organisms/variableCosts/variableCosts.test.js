@@ -1,182 +1,185 @@
 import React from 'react'
-import { shallow } from 'enzyme'
-
-import VariableCosts from './variableCosts'
-import { variableCostInitState } from './variableCostsFieldsData'
-import { CALCULATOR_STEPS } from '../../../constants'
+import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
+import BreakEvenCalculator from '../../../pages/index'
 
 describe('VariableCosts', () => {
-  const goToStepMock = jest.fn()
 
-  const baseProps = {
-    visible: true,
-    setVariableCost: jest.fn(),
-    pricePerUnit: '12',
-    restart: jest.fn(),
-    goToStep: goToStepMock
-  }
-
+  let knowVariableCost
+  let notKnowVariableCost
   beforeEach(() => {
-    goToStepMock.mockReset()
+    render(<BreakEvenCalculator />)
+    userEvent.click(screen.getByLabelText('yes, I know the total of my monthly fixed costs'))
+    userEvent.type(screen.getByLabelText('total fixed cost'), '1000')
+    fireEvent.submit(screen.getByTestId('fixedCosts-form'))
+    userEvent.type(screen.getByRole('spinbutton', { name: /per unit selling price\*/i }), '25')
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
+    userEvent.type(screen.getByRole('spinbutton', {  name: /number of units to sell\*/i}), '123')
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
+    knowVariableCost = screen.getByRole('radio', {
+      name: /yes, i know the total of my variable costs per unit/i
+    })
+    notKnowVariableCost = screen.getByRole('radio', {
+      name: /no, input values individually/i
+    })
   })
 
-  it('renders without crashing', () => {
-    const wrapper = shallow(<VariableCosts {...baseProps}/>);
-    expect(wrapper).toHaveLength(1);
+  test('displays radio buttons are not checked', () => {
+    expect(knowVariableCost.checked).toBe(false)
+    expect(notKnowVariableCost.checked).toBe(false)
   })
 
-  it('has correct initial state', () => {
-    const wrapper = shallow(<VariableCosts {...baseProps}/>);
-    expect(wrapper.state().knowVariableCosts).toBe(null)
-    expect(wrapper.state().totalVariableCosts).toEqual('')
-    expect(wrapper.state().fields).toEqual(variableCostInitState);
+  test('sets VariableCosts value to true on radio button selection', () => {
+    userEvent.click(knowVariableCost)
+
+    expect(knowVariableCost.checked).toEqual(true)
+    expect(notKnowVariableCost.checked).toEqual(false)
+
+    userEvent.click(notKnowVariableCost)
+
+    expect(knowVariableCost.checked).toEqual(false)
+    expect(notKnowVariableCost.checked).toEqual(true)
   })
 
-  it('changes knowVariableCosts state on radio button selection', () => {
-    const wrapper = shallow(<VariableCosts {...baseProps}/>);
-    const yesButton = wrapper.find('[label="Yes"]')
-    const noButton = wrapper.find('[name="noBox"]')
-    yesButton.simulate('change', null, {value: 'yes'})
-    expect(wrapper.state().knowVariableCosts).toEqual('yes')
-    noButton.simulate('change', null, {value: 'no'})
-    expect(wrapper.state().knowVariableCosts).toEqual('no')
-  })
+  test('shows the continue button when a selection has been made', () => {
+    expect(screen.queryByRole('button', { name: /continue/i })).not.toBeInTheDocument()
 
-  it('shows the continue button when a selection has been made', () => {
-    const wrapper = shallow(<VariableCosts {...baseProps}/>);
-    expect(wrapper.find('FormButton')).toHaveLength(0)
-    wrapper.setState({knowVariableCosts: 'yes'})
-    expect(wrapper.find('FormButton')).toHaveLength(1)
-  })
+    userEvent.click(knowVariableCost)
 
-  it('shows variable cost suggestion box on yes selection', () => {
-    const wrapper = shallow(<VariableCosts {...baseProps}/>);
-    expect(wrapper.find('.variableCost-suggestion')).toHaveLength(0)
-    wrapper.setState({knowVariableCosts: 'yes'})
-    expect(wrapper.find('.variableCost-suggestion')).toHaveLength(1)
-  })
-
-  it('shows NumbersInputForm on suggestion link click', () => {
-    const wrapper = shallow(<VariableCosts {...baseProps}/>);
-    wrapper.setState({knowVariableCosts: 'yes'})
-    expect(wrapper.find('NumbersInputForm')).toHaveLength(0)
-
-    wrapper.find('.variableCost-suggestion Button').simulate('click')
-    expect(wrapper.find('NumbersInputForm')).toHaveLength(1)
-  })
-
-  it('shows NumbersInputForm on no selection', () => {
-    const wrapper = shallow(<VariableCosts {...baseProps}/>);
-    expect(wrapper.find('NumbersInputForm')).toHaveLength(0)
-    wrapper.setState({knowVariableCosts: 'no'})
-    expect(wrapper.find('NumbersInputForm')).toHaveLength(1)
-  })
-
-  it('has the correct number of fields in the form', () => {
-    const wrapper = shallow(<VariableCosts {...baseProps}/>);
-    wrapper.setState({knowVariableCosts: 'no'})
-    expect(wrapper.find('NumbersInputForm').dive()).toHaveLength(6)
-  })
-
-  it('updates the corresponding field in state', () => {
-    const wrapper = shallow(<VariableCosts {...baseProps}/>);
-    wrapper.setState({knowVariableCosts: 'no'})
-    wrapper.find('NumbersInputForm').simulate('change', null, {name: 'Rent', value: '100'})
-    expect(wrapper.state().fields.Rent).toEqual('100')
-  })
-
-  it('calls setVariableCost and goToStep functions on submit', () => {
-    const setVariableCostMock = jest.fn()
-    const wrapper = shallow(
-      <VariableCosts {...baseProps} setVariableCost={setVariableCostMock} goToStep={goToStepMock} />
-    );
-
-    wrapper.setState({knowVariableCosts: 'yes'})
-    wrapper.setState({totalVariableCosts: 10})
-    wrapper.find('Form').simulate('submit')
-
-    expect(setVariableCostMock).toHaveBeenCalledWith(10)
-    expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.VARIABLE_COSTS + 1)
-  })
-
-  it('calls setVariableCost and does not go to the next step when variable cost field is empty', () => {
-    const setVariableCostMock = jest.fn()
-    const wrapper = shallow(
-      <VariableCosts {...baseProps} setVariableCost={setVariableCostMock} goToStep={goToStepMock} />
-    );
-
-    wrapper.setState({knowVariableCosts: 'yes'})
-    wrapper.find('Form').simulate('submit')
+    expect(screen.getByRole('button', { name: /continue/i })).toBeInTheDocument()
     
-    expect(setVariableCostMock).toHaveBeenCalledTimes(0)
-    expect(goToStepMock).toHaveBeenCalledTimes(0)
+    userEvent.click(notKnowVariableCost)
+  
+    expect(screen.getByRole('button', { name: /continue/i })).toBeInTheDocument()
   })
 
-  it('resets fields on radio button switch', () => {
-    const wrapper = shallow(<VariableCosts {...baseProps} pricePerUnit={10}/>);
-    wrapper.setState({knowVariableCosts: 'no'})
-    wrapper.setState({fields: {Rent: '100'}})
-    wrapper.setState({totalVariableCosts: '20'})
-    wrapper.find('[label="Yes"]').simulate('change', null, {value: 'yes'})
-    expect(wrapper.state().fields).toEqual(variableCostInitState);
+  test('shows variable cost suggestion box on yes selection', () => {
+    expect(screen.queryByText(/Help with your total variable costs?/i)).not.toBeInTheDocument()
+  
+    userEvent.click(knowVariableCost)
+  
+    expect(screen.queryByText(/Help with your total variable costs?/i)).toBeInTheDocument()
+  
+    userEvent.click(notKnowVariableCost)
+  
+    expect(screen.queryByText(/Help with your total variable costs?/i)).not.toBeInTheDocument()    
   })
 
-  it ('goes to next step if at least one of the form fields is filled', () => {
-    const setVariableCostMock = jest.fn()
-    const wrapper = shallow(
-      <VariableCosts {...baseProps} setVariableCost={setVariableCostMock} goToStep={goToStepMock} />
-    );
-    wrapper.setState({knowVariableCosts: 'no'})
-    wrapper.find('NumbersInputForm').simulate('change', null, {name: 'Rent', value: '100'})
-    wrapper.find('Form').simulate('submit')
-
-    expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.VARIABLE_COSTS + 1)
-    expect(wrapper.state().formError).toEqual(false)
+  test('shows NumbersInputForm on suggestion link click', () => {
+    const knowVariableCost = screen.getByRole('radio', { name: /yes, i know the total of my variable costs per unit/i })
+    userEvent.click(knowVariableCost)
+    userEvent.click(screen.getByRole('button', { name: /add variable costs individually/i }))
+  
+    expect(screen.queryByRole('spinbutton', { name: /total monthly variable costs\*/i })).not.toBeInTheDocument()
+    expect(screen.queryByRole('spinbutton', { name: /direct materials/i })).toBeInTheDocument()
+    expect(screen.queryByRole('spinbutton', { name: /piece rate labor/i })).toBeInTheDocument()
+    expect(screen.queryByRole('spinbutton', { name: /production supplies/i })).toBeInTheDocument()
+    expect(screen.queryByRole('spinbutton', { name: /commissions/i })).toBeInTheDocument()
+    expect(screen.queryByRole('spinbutton', { name: /freight out/i })).toBeInTheDocument()
+    expect(screen.queryByRole('spinbutton', { name: /other variable costs/i })).toBeInTheDocument()
   })
 
-  it ('does not go to next step if all the fields are empty', () => {
-    const setVariableCostMock = jest.fn()
-    const wrapper = shallow(
-      <VariableCosts {...baseProps} setVariableCost={setVariableCostMock} goToStep={goToStepMock} />
-    );
-    wrapper.setState({knowVariableCosts: 'no'})
-    wrapper.find('Form').simulate('submit')
-
-    expect(goToStepMock).toHaveBeenCalledTimes(0)
-    expect(wrapper.state().formError).toEqual(true)
+  test('shows NumbersInputForm on no selection', () => {
+    userEvent.click(notKnowVariableCost)
+  
+    expect(screen.queryByRole('spinbutton', { name: /total monthly variable costs\*/i })).not.toBeInTheDocument()
+    expect(screen.queryByRole('spinbutton', { name: /direct materials/i })).toBeInTheDocument()
+    expect(screen.queryByRole('spinbutton', { name: /piece rate labor/i })).toBeInTheDocument()
+    expect(screen.queryByRole('spinbutton', { name: /production supplies/i })).toBeInTheDocument()
+    expect(screen.queryByRole('spinbutton', { name: /commissions/i })).toBeInTheDocument()
+    expect(screen.queryByRole('spinbutton', { name: /freight out/i })).toBeInTheDocument()
+    expect(screen.queryByRole('spinbutton', { name: /other variable costs/i })).toBeInTheDocument()
   })
 
-  it ('outputs a message if user has not filled at least one field', () => {
-    const setVariableCostMock = jest.fn()
-    const wrapper = shallow(
-      <VariableCosts {...baseProps} setVariableCost={setVariableCostMock} goToStep={goToStepMock} />
-    );
+  test('calculates the variable cost values individually and displays total on next page', () => {
+    userEvent.click(notKnowVariableCost)
+    userEvent.type(screen.getByRole('spinbutton', { name: /commissions/i }), '12')
+    userEvent.type(screen.getByRole('spinbutton', { name: /direct materials/i }), '5')
 
-    wrapper.setState({knowVariableCosts: 'no'})
-    wrapper.find('Form').simulate('submit')
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
+
+    expect(screen.getByText(/\$17/i)).toBeInTheDocument()
+  })
+
+  test('saves the variable cost value and when you go to the next page it displays it', () => {
+    userEvent.click(knowVariableCost)
+    userEvent.type(screen.getByRole('spinbutton', { name: /total monthly variable costs\*/i }), '12')
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
+
+    expect(screen.getByText(/\$12/i)).toBeInTheDocument()
+  })
+  
+  test('Does not go to the next step when variable cost field is empty', () => {
+    expect(screen.getByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).toBeInTheDocument()
+
+    userEvent.click(knowVariableCost)
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
+
+    expect(screen.getByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /break-even point results/i })).not.toBeInTheDocument()
+  })
+
+  test('resets fields on radio button switch', () => {
+    userEvent.click(knowVariableCost)
+    userEvent.type(screen.getByRole('spinbutton', { name: /total monthly variable costs\*/i }), '12')
+  
+    expect(screen.getByRole('spinbutton', { name: /total monthly variable costs\*/i }).value).toEqual('12')
+  
+    userEvent.click(notKnowVariableCost)
+    userEvent.click(knowVariableCost)
+  
+    expect(screen.getByRole('spinbutton', { name: /total monthly variable costs\*/i }).value).toEqual('')
+
+    userEvent.click(notKnowVariableCost)
+    userEvent.type(screen.getByRole('spinbutton', { name: /commission/i }), '120')
+  
+    expect(screen.getByRole('spinbutton', { name: /commission/i }).value).toEqual('120')
+  
+    userEvent.click(knowVariableCost)
+    userEvent.click(notKnowVariableCost)
+  
+    expect(screen.getByRole('spinbutton', { name: /commission/i }).value).toEqual('')
+  })
+
+  test('goes to next step if at least one of the form fields is filled', () => {
+    userEvent.click(notKnowVariableCost)
+    userEvent.type(screen.getByRole('spinbutton', { name: /commissions/i }), '12')
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
+
+    expect(screen.queryByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).not.toBeInTheDocument()
+    expect(screen.getAllByRole('heading', { name: /break-even point results/i })[0]).toBeInTheDocument()
+  })
+
+  test('does not go to next step if all the fields are empty', () => {
+    userEvent.click(notKnowVariableCost)
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
     
-    expect(wrapper.find('.errorMsg').text()).toEqual('Enter a valid variable cost per unit to continue')
-    expect(wrapper.state().formError).toEqual(true)
+    expect(screen.queryByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /break-even point results/i })).not.toBeInTheDocument()
   })
 
-  it('displays warning message when appropriate', () => {
-    const wrapper = shallow(<VariableCosts {...baseProps} pricePerUnit={10}/>);
-    expect(wrapper.find('.warningMessage')).toHaveLength(0)
-    wrapper.setState({knowVariableCosts: 'yes'})
-    wrapper.setState({totalVariableCosts: '20'})
-    expect(wrapper.find('.warningMessage')).toHaveLength(2)
-    wrapper.setState({totalVariableCosts: '10'})
-    expect(wrapper.find('.warningMessage')).toHaveLength(2)
+  test('outputs a message if user has not filled at least one field', () => {
+    const errorMsg = /Enter a valid variable cost per unit to continue/i
+    userEvent.click(notKnowVariableCost)
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
+    expect(screen.getByText(errorMsg)).toBeInTheDocument()
   })
 
-  it('does not prevent submission when warning is displayed', () => {
-    const setVariableCostMock = jest.fn()
-    const wrapper = shallow(
-      <VariableCosts {...baseProps} pricePerUnit={10} goToStep={goToStepMock} setVariableCost={setVariableCostMock} />
-    );
-    wrapper.setState({knowVariableCosts: 'yes'})
-    wrapper.setState({totalVariableCosts: '20'})
-    wrapper.find('Form').simulate('submit')
-    expect(goToStepMock).toHaveBeenCalledWith(CALCULATOR_STEPS.VARIABLE_COSTS + 1)
+  test('displays a warning, when variable cost is higher than price per unit', () => {
+    const warningMsg = /your variable costs are higher than your unit price\. you will never break-even\. consider adjusting your values\./i
+
+    userEvent.click(notKnowVariableCost)
+    userEvent.type(screen.getByRole('spinbutton', { name: /commissions/i }), '1200')
+
+    expect(screen.getByText(warningMsg)).toBeInTheDocument()
+  })
+
+  test('does not prevent submission when warning is displayed', () => {
+    userEvent.click(notKnowVariableCost)
+    userEvent.type(screen.getByRole('spinbutton', { name: /commissions/i }), '1200')
+    userEvent.click(screen.getByRole('button', { name: /continue/i }))
+
+    expect(screen.queryByRole('heading', { name: /do you know your variable cost per unit\?\*/i })).not.toBeInTheDocument()
+    expect(screen.getAllByRole('heading', { name: /break-even point results/i })[0]).toBeInTheDocument()
   })
 })

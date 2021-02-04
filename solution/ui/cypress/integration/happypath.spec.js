@@ -11,7 +11,7 @@ describe ('Happy path through BEP Calc', () => {
     cy.get('[type="submit"]:visible').click()
   })
 
-  it('Gets trhough second page', () => {
+  it('Gets through second page', () => {
     cy.get('.pricePerUnit-container')
     cy.focused()
       .should('have.id', 'unitPrice')

@@ -69,7 +69,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "jest --env=jest-environment-jsdom-sixteen",
+    "test": "jest --env=jest-environment-jsdom-sixteen src/",
     "test-watch": "jest --watch",
     "lint": "eslint src --fix",
     "cypress:open": "cypress open"

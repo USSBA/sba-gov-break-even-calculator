@@ -143,7 +143,7 @@ class FixedCosts extends React.Component {
             }
             {this.state.knowFixedCosts && 
               <Grid.Column>
-                <Form.Button primary content='CONTINUE' />
+                <Form.Button type='submit' primary content='CONTINUE' />
               </Grid.Column>}          
           </Grid>
         </Form>

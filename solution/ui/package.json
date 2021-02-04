@@ -40,6 +40,7 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.0.1",
     "babel-preset-gatsby": "^0.4.9",
+    "cypress": "^6.3.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^7.13.0",
@@ -68,9 +69,10 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "jest --env=jest-environment-jsdom-sixteen",
+    "test": "jest --env=jest-environment-jsdom-sixteen src/",
     "test-watch": "jest --watch",
-    "lint": "eslint src --fix"
+    "lint": "eslint src --fix",
+    "cypress:open": "cypress open"
   },
   "repository": {
     "type": "git",

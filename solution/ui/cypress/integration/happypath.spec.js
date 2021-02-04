@@ -26,10 +26,4 @@ describe ('Happy path through BEP Calc', () => {
     cy.get('#units').type(1000)
     cy.get('[type="submit"]:visible').click()
   })
-
-  it('Gets through fourth page', () => {
-    cy.get('.variableCosts-container').contains('Yes').click()
-    cy.focused()
-    // .should('have.id', 'totalVariableCosts')
-  })
 })

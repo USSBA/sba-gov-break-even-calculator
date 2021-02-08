@@ -39,6 +39,11 @@ jobs:
           command: |
             cd ~/project/solution/ui
             pnpm run test
+      - run: 
+          name: Run cypress test
+          command: | 
+            cd ~/project/solution/ui
+            pnpm run cypress:run
       - deploy:
           name: Deploy the code
           requires:

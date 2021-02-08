@@ -12,9 +12,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-deps-{{ .Branch }}-{{ checksum "pnpm-lock.yaml" }}
-            - v1-deps-{{ .Branch }}-
-            - v1-deps-
+            - v2-deps-{{ .Branch }}-{{ checksum "pnpm-lock.yaml" }}
+            - v2-deps-{{ .Branch }}-
+            - v2-deps-
       - run:
           name: Install tooling
           command: |

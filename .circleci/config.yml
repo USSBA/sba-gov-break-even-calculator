@@ -18,9 +18,9 @@ jobs:
       - run:
           name: Install tooling
           command: |
-            sudo apt-get -y -qq install awscli dnsutils
-            sudo npm install -g pnpm
-            sudo npm install -g serverless
+            apt-get -y -qq install awscli dnsutils
+            npm install -g pnpm
+            npm install -g serverless
       - run:
           name: Install dependencies
           command: |

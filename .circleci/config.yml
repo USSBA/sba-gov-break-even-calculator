@@ -1,6 +1,6 @@
 defaults: &defaults
   docker:
-    - image: circleci/node:12
+    - image: cypress/base:12
       environment:
         ## this enables colors in the output
         TERM: xterm

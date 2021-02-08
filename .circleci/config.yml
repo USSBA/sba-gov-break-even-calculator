@@ -12,9 +12,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v2-deps-{{ .Branch }}-{{ checksum "pnpm-lock.yaml" }}
-            - v2-deps-{{ .Branch }}-
-            - v2-deps-
+            - v1-deps-{{ .Branch }}-{{ checksum "pnpm-lock.yaml" }}
+            - v1-deps-{{ .Branch }}-
+            - v1-deps-
       - run:
           name: Install tooling
           command: |
@@ -29,6 +29,7 @@ jobs:
           key: v1-deps-{{ .Branch }}-{{ checksum "pnpm-lock.yaml" }}
           paths:
             - ~/project/node_modules
+            - /home/circleci/.cache/Cypress
       - run:
           name: pnpm run lint
           command: |
@@ -44,6 +45,10 @@ jobs:
           command: | 
             cd ~/project/solution/ui
             pnpm run cypress:run
+      - store_artifacts:
+              path: solution/ui/cypress/videos
+      - store_artifacts:
+              path: solution/ui/cypress/screenshots
       - deploy:
           name: Deploy the code
           requires:

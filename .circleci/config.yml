@@ -28,8 +28,7 @@ jobs:
       - save_cache:
           key: v1-deps-{{ .Branch }}-{{ checksum "pnpm-lock.yaml" }}
           paths:
-            - ~/project/node_modules
-            - /home/circleci/.cache/Cypress
+            - ~/.cache
       - run:
           name: pnpm run lint
           command: |

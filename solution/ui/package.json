@@ -76,7 +76,7 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "start-server": "pnpm run develop",
-    "ci": "start-server-and-test start-server http://localhost:8000 cypress:run"
+    "cy-server-test": "start-server-and-test start-server http://localhost:8000 cypress:run"
   },
   "repository": {
     "type": "git",

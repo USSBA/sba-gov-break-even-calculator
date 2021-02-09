@@ -145,7 +145,7 @@ class VariableCosts extends React.Component {
               <Grid.Column>
                 <Grid columns={2} reversed='mobile' verticalAlign='middle' stackable>
                   <Grid.Column width={3}>
-                    <Form.Button className='continueButton' primary content='CONTINUE' />
+                    <Form.Button type='submit' className='continueButton' primary content='CONTINUE' />
                   </Grid.Column>
                   {showWarning && 
                   <Grid.Column width={12}>

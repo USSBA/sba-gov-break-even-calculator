@@ -45,7 +45,7 @@ jobs:
           name: Run cypress test
           command: | 
             cd ~/project/solution/ui
-            pnpm run cypress:run
+            pnpm run ci 
       - store_artifacts:
               path: solution/ui/cypress/videos
       - store_artifacts:

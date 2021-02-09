@@ -49,3 +49,9 @@
 
 // e.g. alert
 @secondary-yellow: #f1c400;
+
+// # Breakpoints (mobile-first) -----------------------------------------------
+
+@breakpoint-small: 0px;
+@breakpoint-medium: 768px;
+@breakpoint-large: 1200px;

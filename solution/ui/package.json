@@ -56,7 +56,8 @@
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "prettier": "2.0.5",
     "react-test-renderer": "^16.13.1",
-    "serverless-deployment-bucket": "^1.1.2"
+    "serverless-deployment-bucket": "^1.1.2",
+    "start-server-and-test": "^1.12.0"
   },
   "keywords": [
     "gatsby"
@@ -73,7 +74,9 @@
     "test-watch": "jest --watch",
     "lint": "eslint src --fix",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "start-server": "pnpm run develop",
+    "ci": "start-server-and-test start-server http://localhost:8080 test"
   },
   "repository": {
     "type": "git",

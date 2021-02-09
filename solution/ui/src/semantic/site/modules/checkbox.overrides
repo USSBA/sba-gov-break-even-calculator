@@ -9,6 +9,22 @@
   max-height: 3.5rem;
   width: 100%;
   padding: 1rem;
+
+  @media only screen and (max-width: @breakpoint-medium) {
+    width: 110%;
+
+    & label {
+      font-size: 15px;
+    }
+  }
+  /* really small phones */
+  @media only screen and (max-width: 320px) {
+    width: 116%;
+    padding: 1rem 10px;
+    label {
+      font-size: 14px;
+    }
+  }
 }
 
 .ui.checkbox .box,

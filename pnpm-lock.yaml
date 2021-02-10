@@ -5017,15 +5017,8 @@ packages:
   /@sideway/address/4.1.0:
     dependencies:
       '@hapi/hoek': 9.1.1
-    dev: false
     resolution:
       integrity: sha512-wAH/JYRXeIFQRsxerIuLjgUu2Xszam+O5xKeatJ4oudShOOirfmsQ1D6LL54XOU2tizpCYku+s1wmU0SYdpoSA==
-  /@sideway/address/4.1.1:
-    dependencies:
-      '@hapi/hoek': 9.1.1
-    dev: true
-    resolution:
-      integrity: sha512-+I5aaQr3m0OAmMr7RQ3fR9zx55sejEYR2BFJaxL+zT3VM2611X0SHvPWIbAUBZVTn/YzYKbV8gJ2oT/QELknfQ==
   /@sideway/formula/3.0.0:
     resolution:
       integrity: sha512-vHe7wZ4NOXVfkoRb8T5otiENVlT7a3IAiw7H5M2+GO+9CDgcVUUsX1zalAztCmwyOr2RUTGJdgB+ZvSVqmdHmg==
@@ -6592,7 +6585,7 @@ packages:
       integrity: sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==
   /axios/0.21.1_debug@4.3.1:
     dependencies:
-      follow-redirects: 1.13.2_debug@4.3.1
+      follow-redirects: 1.13.1_debug@4.3.1
     dev: true
     peerDependencies:
       debug: '*'
@@ -11731,8 +11724,7 @@ packages:
         optional: true
     resolution:
       integrity: sha512-SSG5xmZh1mkPGyKzjZP8zLjltIfpW32Y5QpdNJyjcfGxK3qo3NDDkZOZSFiGn1A6SclQxY9GzEwAHQ3dmYRWpg==
-<<<<<<< HEAD
-  /follow-redirects/1.13.2_debug@4.3.1:
+  /follow-redirects/1.13.1_debug@4.3.1:
     dependencies:
       debug: 4.3.1
     dev: true
@@ -11744,9 +11736,7 @@ packages:
       debug:
         optional: true
     resolution:
-      integrity: sha512-6mPTgLxYm3r6Bkkg0vNM0HTjfGrOEtsfbhagQvbxDEsEkpNhw582upBaoRZylzen6krEmxXJgt9Ju6HiI4O7BA==
-=======
->>>>>>> 22a7e392f50d0120137c46922665b720eb48fbb8
+      integrity: sha512-SSG5xmZh1mkPGyKzjZP8zLjltIfpW32Y5QpdNJyjcfGxK3qo3NDDkZOZSFiGn1A6SclQxY9GzEwAHQ3dmYRWpg==
   /follow-redirects/1.5.10:
     dependencies:
       debug: 3.1.0
@@ -12254,8 +12244,6 @@ packages:
     peerDependencies:
       gatsby: ^2.0.0
     resolution:
-<<<<<<< HEAD
-=======
       integrity: sha512-TElfBrcitk3bYphBpfFv7rI+tYQ/SwKhQMNKj3J31yoVUh/GUu2/FnRwEpvNbfGkTql87DffxR/83mN4vUCWOA==
   /gatsby-plugin-less/3.2.9_gatsby@2.30.1+less@3.12.2:
     dependencies:
@@ -12270,7 +12258,6 @@ packages:
       gatsby: ^2.0.0
       less: ^3.0.0
     resolution:
->>>>>>> 22a7e392f50d0120137c46922665b720eb48fbb8
       integrity: sha512-JcUpHv53WdgSCKxaatqGTc/zRqJ6hc39W62ClLPLHLTtm7fa1x8RCrzuBu1kFLJl6uRkZfbAg4DSKuc50KMNNQ==
   /gatsby-plugin-offline/3.2.22_gatsby@2.30.1:
     dependencies:
@@ -12372,7 +12359,7 @@ packages:
       gatsby: '>2.0.15'
     resolution:
       integrity: sha512-I9O9tPWT5noEhOJnqEeaQ4E9rfKSIKH+cN+xvmJcRPJP4HKcXQqs1NH/tbhKrNvuNyIQK+f8xGiXKeFVvQDcUA==
-  /gatsby-plugin-typescript/2.10.0:
+  /gatsby-plugin-typescript/2.10.0_gatsby@2.30.1:
     dependencies:
       '@babel/core': 7.12.10
       '@babel/plugin-proposal-nullish-coalescing-operator': 7.12.1_@babel+core@7.12.10
@@ -12384,6 +12371,8 @@ packages:
     dev: false
     engines:
       node: '>=10.13.0'
+    peerDependencies:
+      gatsby: '*'
     resolution:
       integrity: sha512-1mf7zrFVE5UEut+3YRnb3N2XareM0Xk4Mfzw0K89ASqWT4R4QaEIxycsjPERBZMFy0GLWt8e0Hl93Wwn+eefwg==
   /gatsby-plugin-utils/0.7.0_gatsby@2.30.1:
@@ -12739,7 +12728,7 @@ packages:
       gatsby-legacy-polyfills: 0.5.0
       gatsby-link: 2.9.0_3914268316c542370cbb046de235e031
       gatsby-plugin-page-creator: 2.8.0_gatsby@2.30.1
-      gatsby-plugin-typescript: 2.10.0
+      gatsby-plugin-typescript: 2.10.0_gatsby@2.30.1
       gatsby-plugin-utils: 0.7.0_gatsby@2.30.1
       gatsby-react-router-scroll: 3.5.0_3914268316c542370cbb046de235e031
       gatsby-telemetry: 1.8.0
@@ -12749,7 +12738,7 @@ packages:
       graphql-compose: 6.3.8_graphql@14.7.0
       graphql-playground-middleware-express: 1.7.22_express@4.17.1
       hasha: 5.2.2
-      http-proxy: 1.18.1
+      http-proxy: 1.18.1_debug@3.2.7
       invariant: 2.2.4
       is-relative: 1.0.0
       is-relative-url: 3.0.0
@@ -13787,6 +13776,18 @@ packages:
     dev: false
     engines:
       node: '>=8.0.0'
+    resolution:
+      integrity: sha512-7mz/721AbnJwIVbnaSv1Cz3Am0ZLT/UBwkC92VlxhXv/k/BBQfM2fXElQNC27BVGr0uwUpplYPQM9LnaBMR5NQ==
+  /http-proxy/1.18.1_debug@3.2.7:
+    dependencies:
+      eventemitter3: 4.0.7
+      follow-redirects: 1.13.1_debug@3.2.7
+      requires-port: 1.0.0
+    dev: false
+    engines:
+      node: '>=8.0.0'
+    peerDependencies:
+      debug: '*'
     resolution:
       integrity: sha512-7mz/721AbnJwIVbnaSv1Cz3Am0ZLT/UBwkC92VlxhXv/k/BBQfM2fXElQNC27BVGr0uwUpplYPQM9LnaBMR5NQ==
   /http-signature/1.2.0:
@@ -15948,19 +15949,8 @@ packages:
       '@sideway/address': 4.1.0
       '@sideway/formula': 3.0.0
       '@sideway/pinpoint': 2.0.0
-    dev: false
     resolution:
       integrity: sha512-Qh5gdU6niuYbUIUV5ejbsMiiFmBdw8Kcp8Buj2JntszCkCfxJ9Cz76OtHxOZMPXrt5810iDIXs+n1nNVoquHgg==
-  /joi/17.4.0:
-    dependencies:
-      '@hapi/hoek': 9.1.1
-      '@hapi/topo': 5.0.0
-      '@sideway/address': 4.1.1
-      '@sideway/formula': 3.0.0
-      '@sideway/pinpoint': 2.0.0
-    dev: true
-    resolution:
-      integrity: sha512-F4WiW2xaV6wc1jxete70Rw4V/VuMd6IN+a5ilZsxG4uYtUXWu2kq9W5P2dz30e7Gmw8RCbY/u/uk+dMPma9tAg==
   /jpeg-js/0.4.2:
     dev: false
     resolution:
@@ -21736,7 +21726,7 @@ packages:
   /spdx-license-ids/3.0.7:
     resolution:
       integrity: sha512-U+MTEOO0AiDzxwFvoa4JVnMV6mZlJKk2sBLt90s7G0Gd0Mlknc7kxEn3nuDPNZRta7O2uy8oLcZLVT+4sqNZHQ==
-  /spdy-transport/3.0.0:
+  /spdy-transport/3.0.0_supports-color@6.1.0:
     dependencies:
       debug: 4.3.1_supports-color@6.1.0
       detect-node: 2.0.4
@@ -21745,18 +21735,22 @@ packages:
       readable-stream: 3.6.0
       wbuf: 1.7.3
     dev: false
+    peerDependencies:
+      supports-color: '*'
     resolution:
       integrity: sha512-hsLVFE5SjA6TCisWeJXFKniGGOpBgMLmerfO2aCyCU5s7nJ/rpAepqmFifv/GCbSbueEeAJJnmSQ2rKC/g8Fcw==
-  /spdy/4.0.2:
+  /spdy/4.0.2_supports-color@6.1.0:
     dependencies:
       debug: 4.3.1_supports-color@6.1.0
       handle-thing: 2.0.1
       http-deceiver: 1.2.7
       select-hose: 2.0.0
-      spdy-transport: 3.0.0
+      spdy-transport: 3.0.0_supports-color@6.1.0
     dev: false
     engines:
       node: '>=6.0.0'
+    peerDependencies:
+      supports-color: '*'
     resolution:
       integrity: sha512-r46gZQZQV+Kl9oItvl1JZZqJKGr+oEkB08A6BzkiR7593/7IbtuncXHd2YoYeTsG4157ZssMu9KYvUHLcjcDoA==
   /split-on-first/1.1.0:
@@ -23634,7 +23628,7 @@ packages:
   /wait-on/5.2.1_debug@4.3.1:
     dependencies:
       axios: 0.21.1_debug@4.3.1
-      joi: 17.4.0
+      joi: 17.3.0
       lodash: 4.17.20
       minimist: 1.2.5
       rxjs: 6.6.3
@@ -23740,7 +23734,7 @@ packages:
       serve-index: 1.9.1
       sockjs: 0.3.21
       sockjs-client: 1.5.0
-      spdy: 4.0.2
+      spdy: 4.0.2_supports-color@6.1.0
       strip-ansi: 3.0.1
       supports-color: 6.1.0
       url: 0.11.0

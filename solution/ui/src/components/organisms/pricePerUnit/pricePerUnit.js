@@ -23,6 +23,7 @@ const PricePerUnit = (props) => {
   useEffect(() => {
     if (props.visible) {
       priceInputRef.current.focus()
+      document.getElementsByClassName('pricePerUnit-container')[0].scrollIntoView()
     }
   }, [props.visible])
 

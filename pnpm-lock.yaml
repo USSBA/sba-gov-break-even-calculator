@@ -271,6 +271,7 @@ importers:
       gatsby: 2.30.1_e838f882ea48480c14baeb40ecd8176c
       gatsby-image: 2.4.14
       gatsby-legacy-polyfills: 0.4.0
+      gatsby-plugin-google-tagmanager: 2.11.0_gatsby@2.30.1
       gatsby-plugin-less: 3.2.9_gatsby@2.30.1+less@3.12.2
       gatsby-plugin-offline: 3.2.22_gatsby@2.30.1
       gatsby-plugin-pnpm: 1.2.5_gatsby@2.30.1
@@ -343,6 +344,7 @@ importers:
       gatsby-image: ^2.4.5
       gatsby-legacy-polyfills: 0.4.0
       gatsby-plugin-eslint: ^2.0.8
+      gatsby-plugin-google-tagmanager: ^2.11.0
       gatsby-plugin-less: ^3.2.4
       gatsby-plugin-offline: ^3.2.7
       gatsby-plugin-pnpm: ^1.2.5
@@ -11729,6 +11731,7 @@ packages:
         optional: true
     resolution:
       integrity: sha512-SSG5xmZh1mkPGyKzjZP8zLjltIfpW32Y5QpdNJyjcfGxK3qo3NDDkZOZSFiGn1A6SclQxY9GzEwAHQ3dmYRWpg==
+<<<<<<< HEAD
   /follow-redirects/1.13.2_debug@4.3.1:
     dependencies:
       debug: 4.3.1
@@ -11742,6 +11745,8 @@ packages:
         optional: true
     resolution:
       integrity: sha512-6mPTgLxYm3r6Bkkg0vNM0HTjfGrOEtsfbhagQvbxDEsEkpNhw582upBaoRZylzen6krEmxXJgt9Ju6HiI4O7BA==
+=======
+>>>>>>> 22a7e392f50d0120137c46922665b720eb48fbb8
   /follow-redirects/1.5.10:
     dependencies:
       debug: 3.1.0
@@ -12239,6 +12244,19 @@ packages:
       gatsby: '>=1'
     resolution:
       integrity: sha512-vAMy37povmQJNg6ZxY78fkWR3pKwG8MNMhO3u+4vXj2MYT5avhFvHPJTAb126ZCuygf30gAWlpwbV50zP894Jw==
+  /gatsby-plugin-google-tagmanager/2.11.0_gatsby@2.30.1:
+    dependencies:
+      '@babel/runtime': 7.12.5
+      gatsby: 2.30.1_e838f882ea48480c14baeb40ecd8176c
+    dev: false
+    engines:
+      node: '>=10.13.0'
+    peerDependencies:
+      gatsby: ^2.0.0
+    resolution:
+<<<<<<< HEAD
+=======
+      integrity: sha512-TElfBrcitk3bYphBpfFv7rI+tYQ/SwKhQMNKj3J31yoVUh/GUu2/FnRwEpvNbfGkTql87DffxR/83mN4vUCWOA==
   /gatsby-plugin-less/3.2.9_gatsby@2.30.1+less@3.12.2:
     dependencies:
       '@babel/runtime': 7.11.2
@@ -12252,6 +12270,7 @@ packages:
       gatsby: ^2.0.0
       less: ^3.0.0
     resolution:
+>>>>>>> 22a7e392f50d0120137c46922665b720eb48fbb8
       integrity: sha512-JcUpHv53WdgSCKxaatqGTc/zRqJ6hc39W62ClLPLHLTtm7fa1x8RCrzuBu1kFLJl6uRkZfbAg4DSKuc50KMNNQ==
   /gatsby-plugin-offline/3.2.22_gatsby@2.30.1:
     dependencies:

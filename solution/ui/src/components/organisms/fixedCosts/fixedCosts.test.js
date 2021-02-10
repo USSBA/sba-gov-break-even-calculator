@@ -4,6 +4,8 @@ import userEvent from '@testing-library/user-event'
 import BreakEvenCalculator from '../../../pages/index'
 import FixedCosts from './fixedCosts'
 
+Element.prototype.scrollIntoView = () => {}
+
 describe('FixedCosts', () => {
   let knowFixedCost
   let notKnowFixedCost

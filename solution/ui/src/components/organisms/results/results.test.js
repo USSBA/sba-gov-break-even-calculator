@@ -4,6 +4,9 @@ import userEvent from '@testing-library/user-event'
 
 import BreakEvenCalculator from '../../../pages/index'
 
+Element.prototype.scrollIntoView = () => {}
+window.scrollTo = jest.fn()
+
 describe('Results', () => {
   beforeEach(() => {
     render(<BreakEvenCalculator />)

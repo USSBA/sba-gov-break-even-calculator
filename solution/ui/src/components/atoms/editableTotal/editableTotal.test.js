@@ -5,6 +5,8 @@ import userEvent from '@testing-library/user-event'
 import EditableTotal from './editableTotal'
 import BreakEvenCalculator from '../../../pages/index'
 
+Element.prototype.scrollIntoView = () => {}
+
 describe('EditableTotal', () => {
   const mockOnEdit = jest.fn()
   const sampleProps = {

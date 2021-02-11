@@ -267,6 +267,7 @@ importers:
       serverless-s3-remover: ^0.6.0
   solution/ui:
     dependencies:
+      '@babel/plugin-transform-spread': 7.12.1
       d3: 5.16.0
       gatsby: 2.30.1_react-dom@16.13.1+react@16.13.1
       gatsby-image: 2.4.14
@@ -321,6 +322,7 @@ importers:
     specifiers:
       '@aws-ee/serverless-settings-helper': workspace:^1.0.0
       '@aws-ee/serverless-ui-tools': workspace:^1.0.0
+      '@babel/plugin-transform-spread': 7.12.1
       '@testing-library/dom': ^7.29.0
       '@testing-library/jest-dom': ^5.11.6
       '@testing-library/react': ^11.2.2
@@ -757,6 +759,10 @@ packages:
   /@babel/helper-plugin-utils/7.10.4:
     resolution:
       integrity: sha512-O4KCvQA6lLiMU9l2eawBPMf1xPP8xPfB3iEQw150hOVTqj/rfXz0ThTb4HEzqQfs2Bmo5Ay8BzxfzVtBrr9dVg==
+  /@babel/helper-plugin-utils/7.12.13:
+    dev: false
+    resolution:
+      integrity: sha512-C+10MXCXJLiR6IeG9+Wiejt9jmtFpxUc3MQqCmPY8hfCjyUGl9kT+B2okzEZrtykiwrc4dbCPdDoz0A/HQbDaA==
   /@babel/helper-regex/7.10.5:
     dependencies:
       lodash: 4.17.19
@@ -818,7 +824,7 @@ packages:
       integrity: sha512-0XIdiQln4Elglgjbwo9wuJpL/K7AGCY26kmEt0+pRP0TAj4jjyNq1MjoRvikrTVqKcx4Gysxt4cXvVFXP/JO2Q==
   /@babel/helper-skip-transparent-expression-wrappers/7.12.1:
     dependencies:
-      '@babel/types': 7.12.12
+      '@babel/types': 7.12.13
     dev: false
     resolution:
       integrity: sha512-Mf5AUuhG1/OCChOJ/HcADmvcHM42WJockombn8ATJG3OnyiSxBK/Mm5x78BQWvmtXZKHgbjdGL2kin/HOLlZGA==
@@ -2646,10 +2652,19 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-UwQYGOqIdQJe4aWNyS7noqAnN2VbaczPLiEtln+zPowRNlD+79w3oi2TWfYe0eZgd+gjZCbsydN7lzWysDt+gw==
+  /@babel/plugin-transform-spread/7.12.1:
+    dependencies:
+      '@babel/helper-plugin-utils': 7.12.13
+      '@babel/helper-skip-transparent-expression-wrappers': 7.12.1
+    dev: false
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    resolution:
+      integrity: sha512-vuLp8CP0BE18zVYjsEBZ5xoCecMK6LBMMxYzJnh01rxQRvhNhH1csMMmBfNo5tGpGO+NhdSNW2mzIvBu3K1fng==
   /@babel/plugin-transform-spread/7.12.1_@babel+core@7.12.10:
     dependencies:
       '@babel/core': 7.12.10
-      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/helper-plugin-utils': 7.12.13
       '@babel/helper-skip-transparent-expression-wrappers': 7.12.1
     dev: false
     peerDependencies:
@@ -3198,6 +3213,14 @@ packages:
       to-fast-properties: 2.0.0
     resolution:
       integrity: sha512-lnIX7piTxOH22xE7fDXDbSHg9MM1/6ORnafpJmov5rs0kX5g4BZxeXNJLXsMRiO0U5Rb8/FvMS6xlTnTHvxonQ==
+  /@babel/types/7.12.13:
+    dependencies:
+      '@babel/helper-validator-identifier': 7.12.11
+      lodash: 4.17.20
+      to-fast-properties: 2.0.0
+    dev: false
+    resolution:
+      integrity: sha512-oKrdZTld2im1z8bDwTOQvUbxKwE+854zc16qWZQlcTqMN00pWxHQ4ZeOq0yDMnisOpRykH2/5Qqcrk/OlbAjiQ==
   /@bcoe/v8-coverage/0.2.3:
     dev: true
     resolution:

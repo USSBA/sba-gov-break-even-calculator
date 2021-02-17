@@ -18,7 +18,7 @@ provider:
   # All other ${* references will be resolved by CloudFormation
   # See https://forum.serverless.com/t/getting-handle-accountid-in-serverless-config/946/11 and
   # See https://github.com/serverless/serverless/issues/5011
-  variableSyntax: '\$\{((((self|opt|deep|cf):)|file)((?!\$\{).)+?)}'
+  variableSyntax: '\$\{((((self|opt|deep|cf|ssm):)|file)((?!\$\{).)+?)}'
 
 custom:
   default.aws.profile: '' # Keep default profile to use as empty string to force people to specify profile or use env

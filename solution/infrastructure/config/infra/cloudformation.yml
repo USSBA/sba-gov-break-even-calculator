@@ -30,10 +30,7 @@ Resources:
             - 's3:GetObject'
           Effect: Allow
           Principal:
-            AWS:
-            - ${self:custom.settings.oai.iam_arn}
-            #TODO: delete below and de-array above
-            - !Join ['',['arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ', !Ref 'CloudFrontOAI']]
+            AWS: ${self:custom.settings.oai.iam_arn}
           Resource:
             - !Join ['', ['arn:aws:s3:::', !Ref 'WebsiteBucket', '/*']]
 
@@ -93,13 +90,6 @@ Resources:
             Locations:
               - 'US'
             RestrictionType: 'whitelist'
-
-  # TODO: Delete entire OAI when no longer in use
-  CloudFrontOAI:
-    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
-    Properties:
-      CloudFrontOriginAccessIdentityConfig:
-        Comment: 'OAI for ${self:custom.settings.websiteBucketName}'
 
   # =============================================================================================
   # KMS Insertion Point (do not change this text, it is being used by hygen cli)

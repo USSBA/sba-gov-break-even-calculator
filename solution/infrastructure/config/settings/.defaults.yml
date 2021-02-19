@@ -21,3 +21,12 @@ cloudfrontMinTtl: 0
 # caches before CloudFront forwards another request to your origin to determine
 # whether the object has been updated.
 cloudfrontMaxTtl: 0
+
+# These values are populated using AWS ParameterStore.  The PS resources are created by the sba-gov-infrastructure/terraform/account repository
+oai:
+  id: "${ssm:/account/oai/id}"
+  iam_arn: "${ssm:/account/oai/iam_arn}"
+  cloudfront_access_identity_path: "${ssm:/account/oai/cloudfront_access_identity_path}"
+waf:
+  global:
+    id: "${ssm:/account/wafv1_global/id}"

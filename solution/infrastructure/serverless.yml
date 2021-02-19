@@ -15,10 +15,10 @@ provider:
   # All other ${* references will be resolved by CloudFormation
   # See https://forum.serverless.com/t/getting-handle-accountid-in-serverless-config/946/11 and
   # See https://github.com/serverless/serverless/issues/5011
-  variableSyntax: '\$\{((((self|opt|deep|cf):)|file)((?!\$\{).)+?)}'
+  variableSyntax: '\$\{((((self|opt|deep|cf|ssm):)|file)((?!\$\{).)+?)}'
 
 custom:
-  default.aws.profile: '' # Keep default profile to use as empty string to force people to specify profile or use env
+  #default.aws.profile: '' # Keep default profile to use as empty string to force people to specify profile or use env
   settings: ${file(./config/settings/.settings.js):merged}
   tags:
     Name: ${self:custom.settings.envName}-${self:service}
@@ -26,6 +26,14 @@ custom:
     buckets:
       - ${self:custom.settings.awsAccountInfo.awsAccountId}-${self:custom.settings.namespace}-artifacts
       - ${self:custom.settings.awsAccountInfo.awsAccountId}-${self:custom.settings.namespace}-website
+  ssm:
+    oai:
+      id: ${ssm:/account/oai/id}
+      iam_arn: ${ssm:/account/oai/iam_arn}
+      cloudfront_access_identity_path: ${ssm:/account/oai/cloudfront_access_identity_path}
+    waf:
+      global:
+        id: ${ssm:/account/wafv1_global/id}
 
 resources:
    - Description: The infrastructure stack for [${self:custom.settings.solutionName}] and env [${self:custom.settings.envName}]

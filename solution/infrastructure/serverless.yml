@@ -26,14 +26,6 @@ custom:
     buckets:
       - ${self:custom.settings.awsAccountInfo.awsAccountId}-${self:custom.settings.namespace}-artifacts
       - ${self:custom.settings.awsAccountInfo.awsAccountId}-${self:custom.settings.namespace}-website
-  ssm:
-    oai:
-      id: ${ssm:/account/oai/id}
-      iam_arn: ${ssm:/account/oai/iam_arn}
-      cloudfront_access_identity_path: ${ssm:/account/oai/cloudfront_access_identity_path}
-    waf:
-      global:
-        id: ${ssm:/account/wafv1_global/id}
 
 resources:
    - Description: The infrastructure stack for [${self:custom.settings.solutionName}] and env [${self:custom.settings.envName}]

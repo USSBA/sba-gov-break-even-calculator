@@ -56,9 +56,11 @@ class BreakEvenCalculator extends React.Component {
   }
 
   render() {
+
     if (this.state.stepNum === CALCULATOR_STEPS.RESULTS_PAGE) {
       return(
         <Layout>
+
           <Results 
             variableCostPerUnit={this.state.variableCostPerUnit || 0}
             numUnits={this.state.numUnits || 0}
@@ -73,9 +75,12 @@ class BreakEvenCalculator extends React.Component {
       )
     }
     return (
+
       <Layout>
         <Grid columns={1}>
           <Grid.Column>
+          <feedback-form product="EIDL" productTitle="COVID EIDL Calculator"></feedback-form>,
+
             <Hero>
               <>
                 <FixedCosts

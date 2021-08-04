@@ -1,6 +1,5 @@
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 
-
 # Install Break Even Calculator
 
 1.  **Make sure you have Xcode installed**

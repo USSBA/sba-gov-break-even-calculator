@@ -76,7 +76,11 @@ Resources:
             QueryString: true
             Cookies:
               Forward: none
-          ViewerProtocolPolicy: redirect-to-https
+          ViewerProtocolPolicy: redirect-to-https 
+          #associate cloudfront function
+          FunctionAssociations:
+            - EventType: viewer-request
+              FunctionARN: ${self:custom.settings.cf_functions.index_redirect}
         Aliases:
           - '${self:custom.settings.websiteDomain}'
         ViewerCertificate:

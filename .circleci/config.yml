@@ -20,7 +20,7 @@ jobs:
           command: |
             sudo apt-get -y -qq install awscli dnsutils
             sudo npm install -g pnpm
-            sudo npm install -g serverless
+            sudo npm install -g serverless@1.83.3
       - run:
           name: Install dependencies
           command: |

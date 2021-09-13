@@ -45,6 +45,8 @@ jobs:
           name: Run cypress test
           command: | 
             cd ~/project/solution/ui
+            sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+            pnpm install
             pnpm run cy-server-test
       - store_artifacts:
               path: solution/ui/cypress/videos

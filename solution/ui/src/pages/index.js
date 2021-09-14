@@ -77,9 +77,9 @@ class BreakEvenCalculator extends React.Component {
     return (
 
       <Layout>
+      
         <Grid columns={1}>
           <Grid.Column>
-          <feedback-form product="EIDL" productTitle="COVID EIDL Calculator"></feedback-form>,
 
             <Hero>
               <>
@@ -145,7 +145,9 @@ class BreakEvenCalculator extends React.Component {
         <Container>
             <BecAccordion data={FAQ_CONTENT[this.state.stepNum] || []}/>
         </Container>
+        <feedback-form product="BEPC" productTitle="COVID Break Even Point Calculator Feedback"></feedback-form>,
       </Layout>
+      
     )
   }
 }

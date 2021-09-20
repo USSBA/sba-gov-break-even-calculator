@@ -140,7 +140,7 @@ class BreakEvenCalculator extends React.Component {
         <Container>
             <BecAccordion data={FAQ_CONTENT[this.state.stepNum] || []}/>
         </Container>
-        <feedback-form product="BEPC" productTitle="COVID Break Even Point Calculator Feedback"></feedback-form>,
+        <feedback-form env={process.env.ENV_VARIABLE} product="BEPC" productTitle="COVID Break Even Point Calculator Feedback"></feedback-form>,
       </Layout>
       
     )

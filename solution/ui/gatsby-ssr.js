@@ -8,7 +8,6 @@
 
 import React from "react";
 const PostBodyComponents = [
-  <link rel="stylesheet" href="https://feedback-form.qa.ussba.io/feedbackForm.js/assets/uswds-2.12.0/css/uswds.min.css" />,
   <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.14/webcomponents-hi.js"/>,
   <script rel="import" src='https://feedback-form.qa.ussba.io/FeedbackForm.js' type="text/javascript" />,
 ];

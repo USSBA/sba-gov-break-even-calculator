@@ -12,9 +12,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v3-deps-{{ .Branch }}-{{ checksum "pnpm-lock.yaml" }}
-            - v3-deps-{{ .Branch }}-
-            - v3-deps-
+            - v2-deps-{{ .Branch }}-{{ checksum "pnpm-lock.yaml" }}
+            - v2-deps-{{ .Branch }}-
+            - v2-deps-
       - run:
           name: Install tooling
           command: |
@@ -27,7 +27,7 @@ jobs:
             pnpm install
             sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
       - save_cache:
-          key: v3-deps-{{ .Branch }}-{{ checksum "pnpm-lock.yaml" }}
+          key: v1-deps-{{ .Branch }}-{{ checksum "pnpm-lock.yaml" }}
           paths:
             - ~/project/node_modules
             - ~/.cache
@@ -45,8 +45,6 @@ jobs:
           name: Run cypress test
           command: | 
             cd ~/project/solution/ui
-            sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
-            pnpm install
             pnpm run cy-server-test
       - store_artifacts:
               path: solution/ui/cypress/videos
@@ -63,10 +61,10 @@ jobs:
                then export TARGET="staging";
              else export TARGET="${CIRCLE_USERNAME}"; fi
              source ./environment-deploy.sh ${TARGET}
-
 workflows:
   version: 2.1
   build:
     jobs:
       - deploy-code:
           context: sba-gov-bepcalc
+

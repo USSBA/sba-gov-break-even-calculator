@@ -61,10 +61,10 @@ jobs:
                then export TARGET="staging";
              else export TARGET="${CIRCLE_USERNAME}"; fi
              source ./environment-deploy.sh ${TARGET}
+
 workflows:
   version: 2.1
   build:
     jobs:
       - deploy-code:
           context: sba-gov-bepcalc
-

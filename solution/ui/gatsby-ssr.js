@@ -9,7 +9,7 @@
 import React from "react";
 const PostBodyComponents = [
   <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.14/webcomponents-hi.js"/>,
-  <script rel="import" src='localhost:9080/FeedbackForm.js' type="text/javascript" />,
+  <script rel="import" src='https://feedback-form.qa.ussba.io/FeedbackForm.js' type="text/javascript" />,
 ];
 export const onRenderBody = ({ setPostBodyComponents }, pluginOptions) => {
   setPostBodyComponents(PostBodyComponents);

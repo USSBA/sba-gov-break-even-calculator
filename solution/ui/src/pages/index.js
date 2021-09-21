@@ -55,6 +55,18 @@ class BreakEvenCalculator extends React.Component {
     this.goToStep(CALCULATOR_STEPS.FIXED_COSTS)
   }
 
+  get_env = () => {
+    let env = ''
+    if (typeof window !== 'undefined' && window.location.href.includes('http://mint.ussba.io')) {
+      env = 'mint'
+    } else if (typeof window !== 'undefined' && window.location.href.includes('sba.gov')) {
+      env = 'prod'
+    } else {
+      env = 'dev'
+    }
+    return env
+  }
+
   render() {
     if (this.state.stepNum === CALCULATOR_STEPS.RESULTS_PAGE) {
       return(
@@ -140,7 +152,10 @@ class BreakEvenCalculator extends React.Component {
         <Container>
             <BecAccordion data={FAQ_CONTENT[this.state.stepNum] || []}/>
         </Container>
+        
+        <feedback-form env={this.get_env()} product="BEPC" productTitle="COVID Break Even Point Calculator Feedback"></feedback-form>,
       </Layout>
+      
     )
   }
 }

@@ -271,7 +271,7 @@ importers:
       d3: 5.16.0
       gatsby: 2.32.3_react-dom@16.13.1+react@16.13.1
       gatsby-image: 2.4.14
-      gatsby-legacy-polyfills: 0.5.0
+      gatsby-legacy-polyfills: 0.7.0
       gatsby-plugin-google-tagmanager: 2.11.0_gatsby@2.32.3
       gatsby-plugin-less: 3.2.9_gatsby@2.32.3+less@3.12.2
       gatsby-plugin-offline: 3.2.22_gatsby@2.32.3
@@ -342,7 +342,7 @@ importers:
       gatsby: ^2.32.3
       gatsby-cli: ^2.12.44
       gatsby-image: ^2.4.5
-      gatsby-legacy-polyfills: ^0.5.0
+      gatsby-legacy-polyfills: ^0.7.0
       gatsby-plugin-eslint: ^2.0.8
       gatsby-plugin-google-tagmanager: ^2.11.0
       gatsby-plugin-less: ^3.2.4
@@ -12452,12 +12452,6 @@ packages:
       yup: ^0.27.0
     resolution:
       integrity: sha512-PN0lTVOKu50zfY7kfjgHvT5jsYZIOdSxuWrV/WVxDXo4O3oifLiWUyfFy8zg9T8S1G+TwRyfzhWT9Pfj1CZ2Dg==
-  /gatsby-legacy-polyfills/0.5.0:
-    dependencies:
-      core-js-compat: 3.8.3
-    dev: false
-    resolution:
-      integrity: sha512-BdUQnMYd1o49+TwcTvhHeptwWzkRVFPIMA1a5FmdACZt0jl2SE5MNXiiPpa1U4hOG0e7fnMJtwm/sbarPO5Ymg==
   /gatsby-legacy-polyfills/0.7.0:
     dependencies:
       core-js-compat: 3.8.3

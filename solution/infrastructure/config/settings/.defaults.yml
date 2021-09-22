@@ -30,3 +30,5 @@ oai:
 waf:
   global:
     id: "${ssm:/account/wafv1_global/id}"
+cf_functions:
+  index_redirect: "${ssm:/account/cf-function/index-redirect}"

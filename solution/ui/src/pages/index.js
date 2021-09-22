@@ -57,7 +57,7 @@ class BreakEvenCalculator extends React.Component {
 
   get_env = () => {
     let env = ''
-    if (typeof window !== 'undefined' && window.location.href.includes('http://mint.ussba.io')) {
+    if (typeof window !== 'undefined' && window.location.href.includes('https://mint.ussba.io')) {
       env = 'mint'
     } else if (typeof window !== 'undefined' && window.location.href.includes('sba.gov')) {
       env = 'prod'

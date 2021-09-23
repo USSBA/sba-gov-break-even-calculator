@@ -56,6 +56,7 @@ class BreakEvenCalculator extends React.Component {
   }
 
   render() {
+
     if (this.state.stepNum === CALCULATOR_STEPS.RESULTS_PAGE) {
       return(
         <Layout>
@@ -74,6 +75,7 @@ class BreakEvenCalculator extends React.Component {
     }
     return (
       <Layout>
+    { console.log('the process.env is',process.env.GATSBY_API_ENV)}
         <Grid columns={1}>
           <Grid.Column>
             <Hero>
@@ -141,7 +143,7 @@ class BreakEvenCalculator extends React.Component {
             <BecAccordion data={FAQ_CONTENT[this.state.stepNum] || []}/>
         </Container>
         
-        <feedback-form env={process.env.GATSBY_API_ENV} product="BEPC" productTitle="COVID Break Even Point Calculator Feedback"></feedback-form>,
+        <feedback-form env={process.env.GATSBY_API_ENV} product="BEPC" productTitle="COVID Break Even Point Calculator Feedback"></feedback-form> 
       </Layout>
       
     )

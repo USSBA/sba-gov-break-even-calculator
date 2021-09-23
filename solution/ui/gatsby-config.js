@@ -1,3 +1,12 @@
+if (process.env.STAGING) {
+  require("dotenv").config({
+    path: `.env.${process.env.NODE_ENV}.staging`,
+  })
+} else {
+  require("dotenv").config({
+    path: `.env.${process.env.NODE_ENV}`,
+  })
+}
 module.exports = {
   pathPrefix: `/breakevenpointcalculator/calculate`,
   siteMetadata: {

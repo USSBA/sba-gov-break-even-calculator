@@ -67,6 +67,8 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+# Terraform
 terraform/lower/terraform.tfstate.backup
 terraform/lower/terraform.tfstate
 terraform/lower/.terraform/plugins/linux_amd64/terraform-provider-aws_v2.68.0_x4
@@ -75,3 +77,6 @@ terraform/upper/terraform.tfstate
 terraform/upper/.terraform/plugins/linux_amd64/terraform-provider-aws_v2.68.0_x4
 terraform/lower/.terraform/plugins/linux_amd64/lock.json
 terraform/upper/.terraform/plugins/linux_amd64/lock.json
+
+# Dotenv
+.env.*

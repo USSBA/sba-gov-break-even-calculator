@@ -14,6 +14,7 @@ REACT_APP_BRAND_PAGE_TITLE: ${self:custom.settings.brandPageTitle}
 REACT_APP_BRAND_MAIN_TITLE: ${self:custom.settings.brandMainTitle}
 REACT_APP_BRAND_LOGIN_TITLE: ${self:custom.settings.brandLoginTitle}
 REACT_APP_BRAND_LOGIN_SUBTITLE: ${self:custom.settings.brandLoginSubtitle}
+GATSBY_API_ENV: covid
 
 # ========================================================================
 # Overrides for .env.local

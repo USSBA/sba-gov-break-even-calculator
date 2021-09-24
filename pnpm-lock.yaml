@@ -267,11 +267,11 @@ importers:
       serverless-s3-remover: ^0.6.0
   solution/ui:
     dependencies:
-      '@babel/plugin-transform-spread': 7.12.1
+      '@babel/plugin-transform-spread': 7.12.13
       d3: 5.16.0
       gatsby: 2.32.3_react-dom@16.13.1+react@16.13.1
       gatsby-image: 2.4.14
-      gatsby-legacy-polyfills: 0.5.0
+      gatsby-legacy-polyfills: 0.7.0
       gatsby-plugin-google-tagmanager: 2.11.0_gatsby@2.32.3
       gatsby-plugin-less: 3.2.9_gatsby@2.32.3+less@3.12.2
       gatsby-plugin-offline: 3.2.22_gatsby@2.32.3
@@ -322,7 +322,7 @@ importers:
     specifiers:
       '@aws-ee/serverless-settings-helper': workspace:^1.0.0
       '@aws-ee/serverless-ui-tools': workspace:^1.0.0
-      '@babel/plugin-transform-spread': 7.12.1
+      '@babel/plugin-transform-spread': 7.12.13
       '@testing-library/dom': ^7.29.0
       '@testing-library/jest-dom': ^5.11.6
       '@testing-library/react': ^11.2.2
@@ -342,7 +342,7 @@ importers:
       gatsby: ^2.32.3
       gatsby-cli: ^2.12.44
       gatsby-image: ^2.4.5
-      gatsby-legacy-polyfills: ^0.5.0
+      gatsby-legacy-polyfills: ^0.7.0
       gatsby-plugin-eslint: ^2.0.8
       gatsby-plugin-google-tagmanager: ^2.11.0
       gatsby-plugin-less: ^3.2.4
@@ -2772,7 +2772,7 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-UwQYGOqIdQJe4aWNyS7noqAnN2VbaczPLiEtln+zPowRNlD+79w3oi2TWfYe0eZgd+gjZCbsydN7lzWysDt+gw==
-  /@babel/plugin-transform-spread/7.12.1:
+  /@babel/plugin-transform-spread/7.12.13:
     dependencies:
       '@babel/helper-plugin-utils': 7.12.13
       '@babel/helper-skip-transparent-expression-wrappers': 7.12.1
@@ -2780,7 +2780,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     resolution:
-      integrity: sha512-vuLp8CP0BE18zVYjsEBZ5xoCecMK6LBMMxYzJnh01rxQRvhNhH1csMMmBfNo5tGpGO+NhdSNW2mzIvBu3K1fng==
+      integrity: sha512-dUCrqPIowjqk5pXsx1zPftSq4sT0aCeZVAxhdgs3AMgyaDmoUT0G+5h3Dzja27t76aUEIJWlFgPJqJ/d4dbTtg==
   /@babel/plugin-transform-spread/7.12.13_@babel+core@7.12.10:
     dependencies:
       '@babel/core': 7.12.10
@@ -12459,12 +12459,6 @@ packages:
       yup: ^0.27.0
     resolution:
       integrity: sha512-PN0lTVOKu50zfY7kfjgHvT5jsYZIOdSxuWrV/WVxDXo4O3oifLiWUyfFy8zg9T8S1G+TwRyfzhWT9Pfj1CZ2Dg==
-  /gatsby-legacy-polyfills/0.5.0:
-    dependencies:
-      core-js-compat: 3.8.3
-    dev: false
-    resolution:
-      integrity: sha512-BdUQnMYd1o49+TwcTvhHeptwWzkRVFPIMA1a5FmdACZt0jl2SE5MNXiiPpa1U4hOG0e7fnMJtwm/sbarPO5Ymg==
   /gatsby-legacy-polyfills/0.7.0:
     dependencies:
       core-js-compat: 3.8.3

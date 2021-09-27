@@ -64,6 +64,7 @@ describe ('Happy path through BEP Calc', () => {
           expect(contentValue).to.eq('inline-block')
         })
     })
+    cy.get('feedback-form').shadow().find('#feedback__button').contains('Give us Feedback')
     cy.get('#printCTA').contains('Print Results')
     cy.get('.accordion').contains('How to reduce your break-even point').click()
     cy.contains('There are a number of ways you can reduce your break-even point, including:')

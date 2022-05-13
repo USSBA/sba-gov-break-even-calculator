@@ -7,7 +7,7 @@
   "dependencies": {
     "@babel/plugin-transform-spread": "7.12.13",
     "d3": "^5.16.0",
-    "gatsby": "^2.32.3",
+    "gatsby": "^3.13.0",
     "gatsby-image": "^2.4.5",
     "gatsby-legacy-polyfills": "^0.7.0",
     "gatsby-plugin-google-tagmanager": "^2.11.0",
@@ -15,9 +15,9 @@
     "gatsby-plugin-offline": "^3.2.7",
     "gatsby-plugin-pnpm": "^1.2.5",
     "gatsby-plugin-react-helmet": "^3.3.2",
-    "gatsby-plugin-sharp": "^2.12.0",
+    "gatsby-plugin-sharp": "^3.3.0",
     "gatsby-source-filesystem": "^2.3.8",
-    "gatsby-transformer-sharp": "^2.5.3",
+    "gatsby-transformer-sharp": "^3.3.0",
     "jsdom": "^16.4.0",
     "less": "^3.11.3",
     "prop-types": "^15.7.2",
@@ -28,7 +28,7 @@
     "regenerator-runtime": "^0.13.7",
     "semantic-ui-less": "^2.4.1",
     "semantic-ui-react": "^0.88.2",
-    "sharp": "^0.27.0"
+    "sharp": "^0.28.0"
   },
   "devDependencies": {
     "@aws-ee/serverless-settings-helper": "workspace:^1.0.0",

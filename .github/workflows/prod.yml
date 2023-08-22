@@ -1,0 +1,37 @@
+# name: Production
+# on:
+#   push: 
+#     branches:
+#       - 'master'
+
+# #default shell for all jobs
+# defaults:
+#   run:
+#     shell: bash
+
+# #Permissions set globally for jobs.
+# permissions: 
+#   contents: read
+#   id-token: write
+
+# env:
+#   AWS_REGION: 'us-east-1'
+#   AWS_DEFAULT_REGION: 'us-east-1'
+
+# # NOTES:
+# # Further investigation is needed in order to figure out how the code gets deployed in the upper environment.
+# # Till then do not run the `Export the Code` portion in order to avoid potentially breaking the already existing break even calculator.
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-20.04
+#     environment: prod
+#     steps:
+#       - name: Export the code
+#         run: |
+#           serverless config credentials --provider aws --profile SBA-lower --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           cd scripts
+#           if [[ "master" == github.ref_name ]]; 
+#             then export TARGET="staging";
+#           else export TARGET=github.actor; fi
+#           source ./environment-deploy.sh ${TARGET}        

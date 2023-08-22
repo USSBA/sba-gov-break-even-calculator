@@ -1,0 +1,78 @@
+name: Tests
+on:
+  push: 
+    branches:
+      - '**'
+
+#default shell for all jobs
+defaults:
+  run:
+    shell: bash
+
+#Permissions set globally for jobs.
+permissions: 
+  contents: read
+  id-token: write
+
+env:
+  AWS_REGION: 'us-east-1'
+  AWS_DEFAULT_REGION: 'us-east-1'
+
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    environment: test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Install Tooling
+        run: |
+          sudo apt-get -y update
+          sudo apt-get -y install dnsutils curl
+
+          sudo npm install -g react-scripts@latest
+          sudo npm install -g serverless@1.83.3
+      
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 6.14.7
+
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+          pnpm install
+
+      - name: PNPM run Lint
+        run: |
+          cd solution/ui
+          pnpm run lint
+
+      - name: Run Test
+        run: |
+          cd solution/ui
+          pnpm run test
+      
+      # Cypress tests are failing due to the following errors Error:error:0308010C:digital envelope routines::unsupported.
+      # The latest version of node doesn’t support unsecured negotiation {e.g. SSL V1}.
+      # Please refer to https://us-sba.atlassian.net/browse/IA-3264 to fix the Cyprus tests.
+      
+      # - name: Run Cypress Test
+      #   run: |
+      #     cd solution/ui
+      #     unset OPENSSL_CONF
+      #     npm install -g node-fetch@2.6.1
+      #     pnpm update
+      #     pnpm audit --fix
+      #     pnpm run cy-server-test
+
+
+      # - name: Store Artifacts
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     path:
+      #       solution/ui/cypress/videos
+      #       solution/ui/cypress/screenshots

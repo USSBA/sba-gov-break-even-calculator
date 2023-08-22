@@ -17,6 +17,8 @@ permissions:
 env:
   AWS_REGION: 'us-east-1'
   AWS_DEFAULT_REGION: 'us-east-1'
+  # AWS_ACCESS_KEY_ID: 
+  # AWS_SECRET_ACCESS_KEY: 
 
 jobs:
   build:
@@ -76,18 +78,16 @@ jobs:
       #       solution/ui/cypress/videos
       #       solution/ui/cypress/screenshots
 
-      - name: Export the code
-        run: |
-          echo "hello"
-          serverless config credentials --provider aws --profile SBA-lower --key ${AWS_ACCESS_KEY_ID} --secret ${AWS_SECRET_ACCESS_KEY}
-          cd scripts
-          if [[ "master" == github.ref_name ]]; 
-            then export TARGET="staging";
-          else export TARGET="${CIRCLE_USERNAME}"; fi
-          source ./environment-deploy.sh ${TARGET}        
 
-  # export:
-  #   runs-on: ubuntu-20.04
-  #   environment: test
-  #   steps:
-   
+# NOTES:
+# Further investigation is needed in order to figure out how the code gets deployed in the upper environment.
+# Till then do not run the `Export the Code` portion in order to avoid potentially breaking the already existing break even calculator.
+
+      # - name: Export the code
+      #   run: |
+      #     serverless config credentials --provider aws --profile SBA-lower --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     cd scripts
+      #     if [[ "master" == github.ref_name ]]; 
+      #       then export TARGET="staging";
+      #     else export TARGET=github.actor; fi
+      #     source ./environment-deploy.sh ${TARGET}        
